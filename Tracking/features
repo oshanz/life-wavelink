@@ -1,0 +1,40 @@
+1. Analyse and determine the closest vehicle to the customer for the accurate time of arrival. 
+
+  6. Over speeding and rash driving are reduced thus the accidents are avoided and also the higher insurance premiums are minimized
+
+7. Detailed route reports are generated thus accurate billings are done and litigations like from customers are also well monitored and looked into.
+
+When a vehicle goes above a designated speed.
+
+When a vehicle is running without movement.------------IDLE TIME ALERT
+
+When a vehicle is driving during unauthorized times.--------ODD-HOURS ALERT
+
+
+When a vehicle enters or exits a particular landmark/geofenced area.------------LANDMARK ALERT
+///////////////////
+Extensive reports
+Vehicle performance for optimize and get more benefits out of existing assets.
+Fuel Reports to stop fuel theft
+Working hour reports to evaluate the work/idle/stop time (in percentage) to better utilize the resources.
+Over time/ unauthorized usage report, know unauthorized use of vehicle by the driver beyond duty hours.
+Distance reports to evaluate the distance travelled in the said period of time.
+Ignition Reports to see for how long the ignition was turned on.
+Idle reports to see for how long the ignition was ON without any movement.
+Stoppage Reports to evaluate the time for which the vehicle didn’t move at all.
+Over speeding Reports to see the points where the driver has crossed the speed limit for better safety of the occupants of the vehicle.
+////////////////////////
+Activity Detail - All reported locations for each vehicle
+Begin/End Day - The first start and last stop for any or all vehicles in your fleet
+Drive Time Summary - A summary of fleet driving statistics
+Fleet Driver History - Report on vehicle driver assignments
+Fleet Utilization - Utilization details on all fleet vehicles
+Fuel Card Transactions - Details about fuel transactions to help identify fuel card fraud
+Fuel Card Usage - Summary of fuel card usage
+Idle Research - Graph showing idle time trends
+Idle Time Detail - Report on individual idle stops for vehicles in your fleet
+Idle Time Summary - Report on idle durations for your fleet
+Late Start - Report late starts or early returns at a certain landmark
+Odd-Hours - Report on driving-time violations
+Scorecard - Rank vehicles on acceleration, braking, speeding, and idling
+//////////////////////////////////
