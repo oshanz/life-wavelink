@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0069)http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      UsersWikiPostGIS21UbuntuPGSQL93Apt – PostGIS
+    </title>
+        <link rel="search" href="http://trac.osgeo.org/postgis/search">
+        <link rel="help" href="http://trac.osgeo.org/postgis/wiki/TracGuide">
+        <link rel="alternate" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt?format=txt" type="text/x-trac-wiki" title="Plain Text">
+        <link rel="start" href="http://trac.osgeo.org/postgis/wiki">
+        <link rel="stylesheet" href="./UsersWikiPostGIS21UbuntuPGSQL93Apt – PostGIS_files/trac.css" type="text/css"><link rel="stylesheet" href="./UsersWikiPostGIS21UbuntuPGSQL93Apt – PostGIS_files/wiki.css" type="text/css">
+        <link rel="shortcut icon" href="http://trac.osgeo.org/postgis/chrome/common/trac.ico" type="image/x-icon">
+        <link rel="icon" href="http://trac.osgeo.org/postgis/chrome/common/trac.ico" type="image/x-icon">
+      <link type="application/opensearchdescription+xml" rel="search" href="http://trac.osgeo.org/postgis/search/opensearch" title="Search PostGIS">
+    <script type="text/javascript" src="./UsersWikiPostGIS21UbuntuPGSQL93Apt – PostGIS_files/jquery.js"></script><script type="text/javascript" src="./UsersWikiPostGIS21UbuntuPGSQL93Apt – PostGIS_files/trac.js"></script><script type="text/javascript" src="./UsersWikiPostGIS21UbuntuPGSQL93Apt – PostGIS_files/search.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/postgis/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("#content").find("h1,h2,h3,h4,h5,h6").addAnchor("Link to this section");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://trac.osgeo.org/postgis/"><img src="./UsersWikiPostGIS21UbuntuPGSQL93Apt – PostGIS_files/trac_logo.png" alt=""></a>
+      </div>
+      <form id="search" action="http://trac.osgeo.org/postgis/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="">
+          <input type="submit" value="Search">
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="http://trac.osgeo.org/postgis/login">Login</a></li><li><a href="http://trac.osgeo.org/postgis/wiki/TracGuide">Help/Guide</a></li><li><a href="http://trac.osgeo.org/postgis/about">About Trac</a></li><li class="last"><a href="http://trac.osgeo.org/postgis/prefs">Preferences</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first active"><a href="http://trac.osgeo.org/postgis/wiki">Wiki</a></li><li><a href="http://trac.osgeo.org/postgis/timeline">Timeline</a></li><li><a href="http://trac.osgeo.org/postgis/roadmap">Roadmap</a></li><li><a href="http://trac.osgeo.org/postgis/browser">Browse Source</a></li><li><a href="http://trac.osgeo.org/postgis/report">View Tickets</a></li><li class="last"><a href="http://trac.osgeo.org/postgis/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><a href="http://trac.osgeo.org/postgis/wiki/WikiStart">Start Page</a></li><li><a href="http://trac.osgeo.org/postgis/wiki/TitleIndex">Index</a></li><li><a href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt?action=history">History</a></li><li class="last"><a href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt?action=diff&version=11">Last Change</a></li>
+          </ul>
+        <hr>
+      </div>
+    <div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <p>
+The <a class="ext-link" href="http://wiki.postgresql.org/wiki/Apt"><span class="icon">&nbsp;</span>PostgreSQL Apt Repository</a> now hosts installs of PostGIS, in addition to Postgresql and PGAdmin3.
+</p>
+<p>
+The following describes how to install Postgresql 9.3, PostGIS 2.1, PGAdmin 1.18.1 and shp2pgsql-gui on Ubuntu versions 12.04 and 14.04.1
+</p>
+<p>
+Run these in terminal:
+</p>
+<h2 id="Verifywhatyouarerunning">Verify what you are running<a class="anchor" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt#Verifywhatyouarerunning" title="Link to this section"> ¶</a></h2>
+<pre class="wiki">sudo lsb_release -a 
+</pre><h2 id="AddRespositorytosources.list">Add Respository to sources.list<a class="anchor" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt#AddRespositorytosources.list" title="Link to this section"> ¶</a></h2>
+<p>
+You'll need to replace the nickname below with what you are running
+So if you see you are running precise (12.04) do this
+</p>
+<pre class="wiki">sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" &gt;&gt; /etc/apt/sources.list'
+</pre><p>
+If trusty (14.04)
+</p>
+<pre class="wiki">sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt trusty-pgdg main" &gt;&gt; /etc/apt/sources.list'
+</pre><h2 id="AddKeys">Add Keys<a class="anchor" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt#AddKeys" title="Link to this section"> ¶</a></h2>
+<pre class="wiki">wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+</pre><pre class="wiki">sudo apt-get update
+</pre><h2 id="Install">Install<a class="anchor" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt#Install" title="Link to this section"> ¶</a></h2>
+<p>
+The following will install postgresql 9.3, PostGIS, PGAdmin3, and additional supplied modules including <strong>adminpack</strong>
+</p>
+<pre class="wiki">sudo apt-get install postgresql-9.3 pgadmin3 postgresql-contrib
+</pre><p>
+For 12.04 thru 13.02, this seems to work
+</p>
+<pre class="wiki">sudo apt-get install postgresql-9.3-postgis pgadmin3 postgresql-contrib
+</pre><p>
+If you are running 14.04 (Trusty) -- you need to do this
+</p>
+<pre class="wiki">sudo apt-get install postgresql-9.3-postgis-2.1 pgadmin3 postgresql-contrib
+</pre><h2 id="TogetpgRouting">To get pgRouting<a class="anchor" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt#TogetpgRouting" title="Link to this section"> ¶</a></h2>
+<p>
+(instructions from <a class="ext-link" href="http://workshop.pgrouting.org/chapters/installation.html"><span class="icon">&nbsp;</span>http://workshop.pgrouting.org/chapters/installation.html</a>  seems to work fine with PostgreSQL Apt repo PostgreSQL 9.3 install)
+</p>
+<pre class="wiki">sudo apt-add-repository -y ppa:georepublic/pgrouting
+sudo apt-get update
+# Install pgRouting package (for Ubuntu 14.04)
+sudo apt-get install postgresql-9.3-pgrouting
+
+</pre><h2 id="EnableAdminpack">Enable Adminpack<a class="anchor" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt#EnableAdminpack" title="Link to this section"> ¶</a></h2>
+<p>
+While in terminal, log in to psql as postgres user:
+</p>
+<pre class="wiki">sudo -u postgres psql
+</pre><pre class="wiki">CREATE EXTENSION adminpack;
+</pre><p>
+Quit psql:
+</p>
+<pre class="wiki">\q
+</pre><h2 id="CreatenewPGSQLuser">Create new PGSQL user<a class="anchor" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt#CreatenewPGSQLuser" title="Link to this section"> ¶</a></h2>
+<p>
+You can create a new database super user to use instead of the default <tt>postgres</tt> user.
+</p>
+<p>
+While in terminal, run:
+</p>
+<pre class="wiki">sudo su - postgres
+</pre><pre class="wiki">createuser -d -E -i -l -P -r -s yourUserName
+</pre><p>
+(be sure to change the username to your desired username)
+</p>
+<p>
+Enter your new password when prompted
+</p>
+<p>
+Log out as <tt>postgres</tt> user:
+</p>
+<pre class="wiki">exit
+</pre><p>
+Exit terminal:
+</p>
+<pre class="wiki">exit
+</pre><h2 id="UsePGAdmintologintodatabaseserver">Use PGAdmin to log into database server<a class="anchor" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt#UsePGAdmintologintodatabaseserver" title="Link to this section"> ¶</a></h2>
+<p>
+From the Ubuntu launcher, type in PGAdmin to reveal the application
+</p>
+<p>
+Click the <tt>Add a connection to server</tt> button on the menu in the top-left corner
+</p>
+<p>
+Fill in the necessary credentials to log in:
+</p>
+<pre class="wiki">- Name: nickname you want to give your connection
+- host: localhost (until you change the connection settings)
+- port: 5432 by default
+- maintenance DB: postgres by default
+- username: whatever you chose in the step above
+- password: whatever you chose in the step above
+</pre><h2 id="Enablepostgisextensionsonnewdatabase">Enable postgis extensions on new database<a class="anchor" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt#Enablepostgisextensionsonnewdatabase" title="Link to this section"> ¶</a></h2>
+<p>
+Since you installed PostgreSQL and PostGIS from the PostgreSQL apt repository, you now have all the extensions for PostgreSQL, including PostGIS
+</p>
+<p>
+Expand the database tree in PGAdmin, and reveal the extensions node
+</p>
+<p>
+Right-click the extensions node, and click <tt>new extension</tt>
+</p>
+<p>
+Enable the <strong>postgis</strong> extension, as well as <strong>postgis_topology</strong>, and <tt></tt><tt>postgis_tiger_geocoder</tt><tt></tt>
+</p>
+<p>
+Alternatively from psql console you can do
+</p>
+<pre class="wiki">CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION postgis_tiger_geocoder;
+</pre><h2 id="ImportSHPfilesusingshp2pgsql-gui">Import SHP files using shp2pgsql-gui<a class="anchor" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt#ImportSHPfilesusingshp2pgsql-gui" title="Link to this section"> ¶</a></h2>
+<p>
+Another handy piece of software <tt>shp2pgsql-gui</tt> tool. This will allow you to quickly connect to your new PostGIS database and import a Shapefile.
+</p>
+<p>
+Open terminal, and type:
+</p>
+<pre class="wiki">shp2pgsql-gui
+</pre><p>
+Follow the on-screen prompts to load your data.
+</p>
+<p>
+For more information, visit the <a class="ext-link" href="http://www.bostongis.com/PrinterFriendly.aspx?content_name=postgis_tut01"><span class="icon">&nbsp;</span>Boston GIS</a> tutorial in the section "Load Towns Data"
+</p>
+
+        
+        
+      </div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="last first">
+          <a rel="nofollow" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt?format=txt">Plain Text</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr>
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="./UsersWikiPostGIS21UbuntuPGSQL93Apt – PostGIS_files/trac_logo_mini.png" height="30" width="107" alt="Trac Powered"></a>
+      <p class="left">
+        Powered by <a href="http://trac.osgeo.org/postgis/about"><strong>Trac 0.11.7</strong></a><br>
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.
+      </p>
+      <p class="right">Visit the Trac open source project at<br><a href="http://trac.edgewall.org/">http://trac.edgewall.org/</a></p>
+    </div>
+  
+</body></html>

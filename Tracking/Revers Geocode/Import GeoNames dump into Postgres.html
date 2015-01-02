@@ -1,0 +1,2053 @@
+
+<!-- saved from url=(0051)http://forum.geonames.org/gforum/posts/list/67.page -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<style type="text/css">@import url( /gforum/templates/default/styles/style.css?1420134879597 );</style>
+<style type="text/css">@import url(/gforum/templates/default/styles/en_US.css?1420134879597);</style>
+
+<link href="http://www.geonames.org/geonames.ico" rel="shortcut icon">
+<link rel="StyleSheet" href="./Import GeoNames dump into Postgres_files/geonames.css" type="text/css"><title>Import GeoNames dump into Postgres</title></head>
+
+
+
+
+<body class="en_US">
+
+<!--
+Original theme from phpBB (http://www.phpbb.com) subSilver
+Created by subBlue design
+http://www.subBlue.com
+
+Modifications by JForum Team
+-->
+
+
+
+<table id="topmenutable"><tbody><tr>
+<td class="topmenu">&nbsp;<a href="http://www.geonames.org/" title="GeoName Home">&nbsp;GeoNames Home</a>&nbsp;|&nbsp;<a href="http://www.geonames.org/postal-codes/" title="Postal Codes">Postal Codes</a>&nbsp;|&nbsp;<a href="http://www.geonames.org/export/" title="Database Dump and Webservice API">Download / Webservice</a>&nbsp;|&nbsp;<a href="http://www.geonames.org/about.html" title="About GeoNames">About</a>&nbsp;</td>
+
+</tr>
+</tbody></table>
+
+<br>
+
+
+
+<table width="100%" border="0">
+	<tbody><tr>
+		<td>
+			<table cellspacing="0" cellpadding="0" width="100%" border="0">
+				<tbody><tr>
+					<td width="100%" align="center" valign="middle">
+						<span class="maintitle">GeoNames Forum</span>
+						<table cellspacing="0" cellpadding="2" border="0">
+							<tbody><tr>
+								<td valign="top" nowrap="nowrap" align="center">&nbsp;
+									<img src="./Import GeoNames dump into Postgres_files/icon_mini_search.gif" alt="[Search]">
+									<span class="mainmenu"><a id="search" class="mainmenu" href="http://forum.geonames.org/gforum/search/filters.page"><b>Search</b></a> &nbsp;
+									
+									<img src="./Import GeoNames dump into Postgres_files/icon_mini_recentTopics.gif" alt="[Recent Topics]">
+									<a id="latest" class="mainmenu" href="http://forum.geonames.org/gforum/recentTopics/list.page">Recent Topics</a> &nbsp;
+									<span class="mainmenu"> <img src="./Import GeoNames dump into Postgres_files/icon_mini_groups.gif" alt="[Groups]">&nbsp;<a id="backtosite" class="mainmenu" href="http://www.geonames.org/">Back to home page</a>&nbsp;
+
+	
+										<br>
+										<a id="register" class="mainmenu" href="http://forum.geonames.org/gforum/user/insert.page"><img src="./Import GeoNames dump into Postgres_files/icon_mini_register.gif" border="0" alt="[Register]"> Register</a>&nbsp;/&nbsp;</span>
+										<a id="login" class="mainmenu" href="http://forum.geonames.org/gforum/user/login.page"><img src="./Import GeoNames dump into Postgres_files/icon_mini_login.gif" border="0" alt="[Login]"> Login</a>&nbsp; </span>
+								</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+
+<script type="text/javascript" src="./Import GeoNames dump into Postgres_files/post_show.js"></script>
+<script type="text/javascript" src="./Import GeoNames dump into Postgres_files/post.js"></script>
+<script type="text/javascript">
+<!--
+	function karmaVote(s, postId) {
+		if (s.selectedIndex == 0) {
+			return;
+		}
+
+		if (confirm("Confirm your vote?")) {
+			document.location = "/gforum/karma/insert/0/" + postId + "/" + s.value + ".page";
+		}
+		else {
+			s.selectedIndex = 0;
+		}
+	}
+
+	function karmaPointsCombo(postId)
+	{
+		document.write('<select name="karma" onchange="karmaVote(this,' + postId + ')">');
+		document.write('	<option value="">Rate</option>');
+		document.write('	<option value="1">1</option>');
+		document.write('	<option value="2">2</option>');
+		document.write('	<option value="3">3</option>');
+		document.write('	<option value="4">4</option>');
+		document.write('	<option value="5">5</option>');
+		document.write('</select>');
+	}
+function showEmail(beforeAt, afterAt)
+{
+	return beforeAt + "@" + afterAt;
+}
+
+var starOn = new Image();
+starOn.src = "/gforum/templates/default/images/star_on.gif";
+
+var starOff = new Image();
+starOff.src = "/gforum/templates/default/images/star_off.gif";
+
+function writeStars(q, postId)
+{
+	for (var i = 0; i < 5; i++) {
+		var name = "star" + postId + "_" + i;
+		document.write("<img name='" + name + "' alt='*' />");
+		document.images[name].src = q > i ? starOn.src : starOff.src;
+	}
+}
+
+function addBookmark(relationType, relationId)
+{
+	var w = window.open('/gforum/bookmarks/insert/' + relationType + '/' + relationId + '.page', 'bookmark_add', 'width="700", height="200", scrollbars="no"');
+	w.focus();
+}
+
+function supportAjax()
+{
+	if (typeof(AjaxUtils) != 'undefined') {
+		if (window.ActiveXObject) {
+			var r = new ActiveXObject("Microsoft.XMLHTTP");
+			return r != undefined;
+		}
+		else if (window.XMLHttpRequest) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+-->
+</script>
+
+<table cellspacing="0" cellpadding="10" width="100%" align="center" border="0">
+	<tbody><tr>
+		<td class="bodyline">
+			<table cellspacing="2" cellpadding="2" width="100%" border="0">
+				<tbody><tr>
+					<td valign="middle" align="left" colspan="2">
+						<span class="maintitle"><a href="./Import GeoNames dump into Postgres_files/Import GeoNames dump into Postgres.html" name="top" class="maintitle" id="top">Import GeoNames dump into Postgres</a></span>
+						&nbsp;<a href="http://forum.geonames.org/gforum/rss/topicPosts/67.page"><img src="./Import GeoNames dump into Postgres_files/xml_button.gif" border="0" alt="XML"></a>
+					</td>
+				</tr>
+			</tbody></table>
+			
+			<table cellspacing="2" cellpadding="2" width="100%" border="0">
+				<tbody><tr>
+					<td width="8%" align="left" valign="bottom" nowrap="nowrap">
+								<a href="http://forum.geonames.org/gforum/posts/reply/0/67.page" rel="nofollow" class="icon_reply nav"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+					</td>
+
+					<td valign="middle" align="left" colspan="0">
+						<span class="nav">
+						<a class="nav" href="http://forum.geonames.org/gforum/forums/list.page">Forum Index </a> 
+            			-&gt; <a class="nav" href="http://forum.geonames.org/gforum/forums/show/6.page">FAQ - frequently asked questions </a></span>
+					</td>
+					
+
+					<td valign="middle" align="right"></td>
+				</tr>
+			</tbody></table>
+
+			<table class="forumline" cellspacing="1" cellpadding="3" width="100%" border="0">
+				
+				<tbody><tr>
+					<th class="thleft" nowrap="nowrap" width="150" height="26">Author</th>
+					<th class="thright" nowrap="nowrap" width="100%">Message</th>
+				</tr>
+
+				<!-- POST LISTING --> 
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#174">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>15/05/2006 18:10:52
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="174">Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 174);</script><img name="star174_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star174_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star174_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star174_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star174_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/174.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row1" valign="top" align="left" rowspan="3">
+<span class="genmed"><b>marc</b></span>
+<br>
+	<script type="text/javascript">writeStars(5, "4174");</script><img name="star4174_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star4174_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star4174_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star4174_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star4174_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 08/12/2005 07:39:47<br>
+	Messages: 3768
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row1" valign="top">
+							<span class="postbody">I use simple psql to import the dump into postgres. First I create a file create.sql :
+<br> 
+<br> <span class="genmed"><b>Code:</b></span><br>
+		<div style="overflow: auto; width: 100%;">
+		<pre> create table geoname (
+         geonameid       int,
+         name            varchar(200),
+         asciiname        varchar(200),
+         alternatenames  varchar(6000),
+         latitude        float,
+         longitude       float,
+         fclass  char(1),
+         fcode   varchar(10),
+         country varchar(2),
+         cc2 varchar(60),
+         admin1  varchar(20),
+         admin2  varchar(80),
+         admin3  varchar(20),
+         admin4  varchar(20),
+         population      bigint,
+         elevation       int,
+         gtopo30         int,
+         timezone varchar(40),
+         moddate         date
+ );
+ 
+ create table alternatename (
+         alternatenameId  int,
+         geonameid          int,
+         isoLanguage        varchar(7),
+         alternateName     varchar(200),
+         isPreferredName      boolean,
+         isShortName    boolean,
+         isColloquial    boolean,
+         isHistoric    boolean
+ );
+ 
+ Note: the countryInfo file has changed since this posting was written.
+ 
+ 
+ CREATE TABLE "countryinfo" (
+      iso_alpha2 char(2),
+      iso_alpha3 char(3),
+      iso_numeric integer,
+      fips_code character varying(3),
+      name character varying(200),
+      capital character varying(200),
+      areainsqkm double precision,
+      population integer,
+      continent char(2),
+      languages character varying(200),
+      currency char(3),
+      geonameId int
+ );
+ </pre>
+		</div>
+<br> 
+<br> Then I create the tables with 'psql dabase_name &lt; create.sql'
+<br> 
+<br> in the psql command line I enter (copy/paste) :
+<br> 
+<br> <span class="genmed"><b>Code:</b></span><br>
+		<div style="overflow: auto; width: 100%;">
+		<pre> copy geoname (geonameid,name,asciiname,alternatenames,latitude,longitude,fclass,fcode,country,cc2, admin1,admin2,admin3,admin4,population,elevation,gtopo30,timezone,moddate) from 'allCountries.txt' null as '';
+ copy alternatename  (alternatenameid,geonameid,isoLanguage,alternateName,isPreferredName,isShortName,isColloquial,isHistoric) from 'alternateNames.txt' null as '';
+ copy countryInfo  (iso_alpha2,iso_alpha3,iso_numeric,fips_code,name,capital,areaInSqKm,population,continent,languages,currency,geonameId) from 'countryInfo.txt' null as '';
+ </pre>
+		</div>
+<br> 
+<br>  Edit 2006.08.07 : added cc2
+<br>  Edit 2006.08.08 : added timezone
+<br>  Edit 2007.03.24 : added admin2
+<br>  Edit 2007.04.01 : updated table alternatename, added isPreferredName
+<br>  Edit 2007.05.26 : update table alternateName, added isShortName
+<br>  Edit 2007.07.25 : add admin3 and admin4
+<br>  Edit 2007.07.30 : update table alternateName change isoLanguage from char(4) to char(7) to allow the pseudo code fr_1793
+<br>  Edit 2007.08.23 : update countryInfo add currency and geonameId
+<br>  Edit 2007.09.19 : remove quotes from countryInfo create table
+<br>  Edit 2009.01.10 : <a href="http://forum.geonames.org/gforum/posts/list/1208.page" target="_blank" rel="nofollow">http://forum.geonames.org/gforum/posts/list/1208.page</a>
+<br>  Edit 2009.04.13 : alter column population to bigint (from int) to allow for the population of continents.
+<br> Edit 2012.05.09 : add table alternatename, added isColloquial and isHistoric</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+						<tr>
+							<td colspan="2" class="row1" width="100%" height="28"><hr><span class="gensmall"><img src="./Import GeoNames dump into Postgres_files/logo_geonames-opengeoportail.png"></span></td>
+						</tr>
+		
+					<tr> 
+						<td class="row1" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/4.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/4.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+			<a href="http://www.geonames.org/" target="_new"><img src="./Import GeoNames dump into Postgres_files/icon_www.gif" alt="[WWW]"></a>
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#1802">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>01/04/2007 05:15:02
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="1802">Re:Import geonames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 1802);</script><img name="star1802_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1802_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1802_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1802_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1802_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/1802.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row2" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>dpc_map</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "1761802");</script><img name="star1761802_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1761802_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1761802_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1761802_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1761802_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 07/02/2007 04:02:37<br>
+	Messages: 16
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row2" valign="top">
+							<span class="postbody">Marc,
+<br>  
+<br> Can you update the helpful instructions you've provided for creating the alternatenames table and the copy command for loading the alternate names file into Postgres?  
+<br> 
+<br> alternateNameId   : the id of this alternate name, int
+<br> geonameid         : geonameId referring to id in table 'geoname', int
+<br> isolanguage       : iso 693 language code 2- or 3-characters, varchar(3)
+<br> alternate name    : alternate name or name variant, varchar(200)
+<br> isOfficialName    : '1', if this alternate name is an official/preferred name
+<br> 
+<br> Thank you.
+<br> 
+<br> Dan</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row2" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/176.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/176.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#1803">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>01/04/2007 09:05:18
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="1803">Re:Import geonames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 1803);</script><img name="star1803_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1803_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1803_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1803_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1803_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/1803.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row1" valign="top" align="left" rowspan="3">
+<span class="genmed"><b>marc</b></span>
+<br>
+	<script type="text/javascript">writeStars(5, "41803");</script><img name="star41803_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star41803_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star41803_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star41803_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star41803_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 08/12/2005 07:39:47<br>
+	Messages: 3768
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row1" valign="top">
+							<span class="postbody">Dan
+<br> 
+<br> Thanks. 
+<br> I have also updated the documentation for the column isoLanguage. We are now including iata/icao codes for airports :
+<br> isolanguage       : iso 693 language code 2- or 3-characters; 4-characters 'iata' or 'icao' for airport codes, varchar(4)
+<br> 
+<br> Cheers
+<br> 
+<br> Marc</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+						<tr>
+							<td colspan="2" class="row1" width="100%" height="28"><hr><span class="gensmall"><img src="./Import GeoNames dump into Postgres_files/logo_geonames-opengeoportail.png"></span></td>
+						</tr>
+		
+					<tr> 
+						<td class="row1" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/4.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/4.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+			<a href="http://www.geonames.org/" target="_new"><img src="./Import GeoNames dump into Postgres_files/icon_www.gif" alt="[WWW]"></a>
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#1935">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>22/04/2007 14:15:49
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="1935">Re:Import geonames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 1935);</script><img name="star1935_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1935_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1935_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1935_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1935_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/1935.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row2" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>samokk</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "901935");</script><img name="star901935_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star901935_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star901935_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star901935_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star901935_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 13/10/2006 21:56:39<br>
+	Messages: 82
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row2" valign="top">
+							<span class="postbody">A 4 character-long code can also be "post", for postal codes</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row2" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/90.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/90.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#1940">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>23/04/2007 07:32:06
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="1940">Re:Import geonames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 1940);</script><img name="star1940_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1940_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1940_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1940_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star1940_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/1940.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row1" valign="top" align="left" rowspan="3">
+<span class="genmed"><b>marc</b></span>
+<br>
+	<script type="text/javascript">writeStars(5, "41940");</script><img name="star41940_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star41940_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star41940_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star41940_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star41940_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 08/12/2005 07:39:47<br>
+	Messages: 3768
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row1" valign="top">
+							<span class="postbody">Thanks, I have updated the documentation.
+<br> 
+<br> Marc</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+						<tr>
+							<td colspan="2" class="row1" width="100%" height="28"><hr><span class="gensmall"><img src="./Import GeoNames dump into Postgres_files/logo_geonames-opengeoportail.png"></span></td>
+						</tr>
+		
+					<tr> 
+						<td class="row1" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/4.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/4.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+			<a href="http://www.geonames.org/" target="_new"><img src="./Import GeoNames dump into Postgres_files/icon_www.gif" alt="[WWW]"></a>
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#2701">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>23/08/2007 17:57:53
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="2701">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 2701);</script><img name="star2701_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2701_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2701_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2701_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2701_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/2701.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row2" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>pinhead84</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "5022701");</script><img name="star5022701_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022701_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022701_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022701_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022701_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 23/08/2007 17:50:02<br>
+	Messages: 4
+<br>
+
+	Location: Berlin, Germany
+	<br>
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row2" valign="top">
+							<span class="postbody">Hello,
+<br> 
+<br> thanks a lot for your documentation.
+<br> I've found some issues, you can possibly fix in your documentation
+<br> 
+<br> <b>countryInfo.txt</b> contains two more fields:
+<br> currency =&gt;  character(3),
+<br> geonameid =&gt;  integer NOT NULL
+<br> 
+<br> No Primary Keys are defined, i've used the following ones:
+<br> 
+<br> <span class="genmed"><b>Code:</b></span><br>
+		<div style="overflow: auto; width: 100%;">
+		<pre>ALTER TABLE ONLY alternatename
+     ADD CONSTRAINT pk_alternatenameid PRIMARY KEY (alternatenameid);
+ 
+ ALTER TABLE ONLY geoname
+     ADD CONSTRAINT pk_geonameid PRIMARY KEY (geonameid);
+ 
+ ALTER TABLE ONLY countryinfo
+     ADD CONSTRAINT pk_iso_alpha2 PRIMARY KEY (iso_alpha2);</pre>
+		</div>
+<br> 
+<br> I wasn't able to define Foreign-Keys for the <b>geonameid</b> on the tables <b>alternatename</b> and <b>countryinfo</b>. The data seems to be inconsistent on some tupels. So I decided to use the following indices:
+<br> 
+<br> <span class="genmed"><b>Code:</b></span><br>
+		<div style="overflow: auto; width: 100%;">
+		<pre> CREATE INDEX index_countryinfo_geonameid ON countryinfo USING hash (geonameid);
+ 
+ CREATE INDEX index_alternatename_geonameid ON alternatename USING hash (geonameid);</pre>
+		</div>
+<br> 
+<br> Maybe you know a better solution?
+<br> 
+<br> Greetings
+<br> 
+<br> 
+<br> Andy</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row2" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/502.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/502.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+			<a href="http://wwp.icq.com/scripts/search.dll?to=48065217"><img src="./Import GeoNames dump into Postgres_files/icon_icq_add.gif" alt="[ICQ]"></a>
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#2705">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>23/08/2007 18:43:24
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="2705">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 2705);</script><img name="star2705_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2705_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2705_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2705_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2705_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/2705.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row1" valign="top" align="left" rowspan="3">
+<span class="genmed"><b>marc</b></span>
+<br>
+	<script type="text/javascript">writeStars(5, "42705");</script><img name="star42705_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42705_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42705_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42705_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42705_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 08/12/2005 07:39:47<br>
+	Messages: 3768
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row1" valign="top">
+							<span class="postbody">Thanks, I have updated the countryInfo doc.
+<br> 
+<br> You could help us sort out the missing or wrong geonameIds in the countryInfo file.
+<br> 
+<br> Cheers
+<br> 
+<br> Marc</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+						<tr>
+							<td colspan="2" class="row1" width="100%" height="28"><hr><span class="gensmall"><img src="./Import GeoNames dump into Postgres_files/logo_geonames-opengeoportail.png"></span></td>
+						</tr>
+		
+					<tr> 
+						<td class="row1" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/4.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/4.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+			<a href="http://www.geonames.org/" target="_new"><img src="./Import GeoNames dump into Postgres_files/icon_www.gif" alt="[WWW]"></a>
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#2707">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>23/08/2007 19:10:36
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="2707">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 2707);</script><img name="star2707_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2707_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2707_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2707_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2707_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/2707.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row2" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>pinhead84</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "5022707");</script><img name="star5022707_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022707_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022707_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022707_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022707_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 23/08/2007 17:50:02<br>
+	Messages: 4
+<br>
+
+	Location: Berlin, Germany
+	<br>
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row2" valign="top">
+							<span class="postbody">Hello Marc,
+<br> 
+<br> thanks for your quick answer. 
+<br> 
+<br> <p></p>
+
+		<cite>marc wrote:</cite><br>
+		<blockquote>You could help us sort out the missing or wrong geonameIds in the countryInfo file.&nbsp;
+		</blockquote>
+<br> 
+<br> One simple problem on <b>countryinfo</b>-Table:
+<br> <span class="genmed"><b>Code:</b></span><br>
+		<div style="overflow: auto; width: 100%;">
+		<pre>SELECT * FROM countryinfo WHERE geonameid=0;</pre>
+		</div>
+<br> 
+<br> Brings up 17 tupels with the following iso_alpha2:
+<br> 
+<br> <span class="genmed"><b>Code:</b></span><br>
+		<div style="overflow: auto; width: 100%;">
+		<pre> AQ
+ AS
+ AX
+ BV
+ FO
+ GF
+ GU
+ HM
+ MP
+ MQ
+ NC
+ PM
+ RE
+ SJ
+ UM
+ VI
+ WF</pre>
+		</div>
+<br> 
+<br> If these countries aren't available on the <b>geoname</b>-table, I would suggest to create a dummy-entry with "geonameid=0".
+<br> 
+<br> <span class="genmed"><b>Code:</b></span><br>
+		<div style="overflow: auto; width: 100%;">
+		<pre>INSERT INTO geoname (geonameid) VALUES (0);</pre>
+		</div>
+<br> 
+<br> After this modification, the foreign-key on <b>countryinfo</b> is set up correctly:
+<br> 
+<br> <span class="genmed"><b>Code:</b></span><br>
+		<div style="overflow: auto; width: 100%;">
+		<pre>ALTER TABLE ONLY countryinfo
+     ADD CONSTRAINT fk_geonameid FOREIGN KEY (geonameid) REFERENCES geoname(geonameid);</pre>
+		</div>
+<br> 
+<br> On the <b>alternatename</b>-table the problem can't be fixed so easy. I'll try to find out the corrupted tupels and will tell them to you on this thread.
+<br> 
+<br> Greetz
+<br> 
+<br> 
+<br> Andy</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row2" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/502.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/502.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+			<a href="http://wwp.icq.com/scripts/search.dll?to=48065217"><img src="./Import GeoNames dump into Postgres_files/icon_icq_add.gif" alt="[ICQ]"></a>
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#2711">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>23/08/2007 20:11:20
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="2711">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 2711);</script><img name="star2711_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2711_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2711_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2711_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2711_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/2711.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row1" valign="top" align="left" rowspan="3">
+<span class="genmed"><b>marc</b></span>
+<br>
+	<script type="text/javascript">writeStars(5, "42711");</script><img name="star42711_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42711_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42711_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42711_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42711_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 08/12/2005 07:39:47<br>
+	Messages: 3768
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row1" valign="top">
+							<span class="postbody">Hi Andy
+<br> 
+<br> These countries are available, only the geonameId is missing in the countryInfo. You could add the geonameId to your list above and I will add it then to the countryInfo.txt file.
+<br> 
+<br> Marc
+<br> 
+<br> PS: It is related to another thread : <a href="http://forum.geonames.org/gforum/posts/list/570.page" target="_blank" rel="nofollow">http://forum.geonames.org/gforum/posts/list/570.page</a></span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+						<tr>
+							<td colspan="2" class="row1" width="100%" height="28"><hr><span class="gensmall"><img src="./Import GeoNames dump into Postgres_files/logo_geonames-opengeoportail.png"></span></td>
+						</tr>
+		
+					<tr> 
+						<td class="row1" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/4.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/4.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+			<a href="http://www.geonames.org/" target="_new"><img src="./Import GeoNames dump into Postgres_files/icon_www.gif" alt="[WWW]"></a>
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#2715">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>24/08/2007 16:26:17
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="2715">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 2715);</script><img name="star2715_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2715_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2715_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2715_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2715_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/2715.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row2" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>pinhead84</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "5022715");</script><img name="star5022715_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022715_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022715_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022715_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5022715_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 23/08/2007 17:50:02<br>
+	Messages: 4
+<br>
+
+	Location: Berlin, Germany
+	<br>
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row2" valign="top">
+							<span class="postbody">Hi Marc,
+<br> 
+<br> <p></p>
+
+		<cite>marc wrote:</cite><br>
+		<blockquote>These countries are available, only the geonameId is missing in the countryInfo. You could add the geonameId to your list above and I will add it then to the countryInfo.txt file.&nbsp;
+		</blockquote>
+<br> 
+<br> I tried to check the broken relations between <b>countryInfo</b> and <b>geoname</b> tables, but had some problems finding out the corresponding <b>geoname</b>-tupels. I would suggest to use the following relations:
+<br> 
+<br> <span class="genmed"><b>Code:</b></span><br>
+		<div style="overflow: auto; width: 100%;">
+		<pre> AS =&gt; geonameid=5880801; fclass=A; fcode=ADMD; name=American Samoa, Territory of
+ BV =&gt; geonameid=3371123; fclass=A; fcode=PCLD; name=Bouvet Island
+ FO =&gt; geonameid=2622320; fclass=A; fcode=ADM1; name=Faroe Islands
+ GF =&gt; geonameid=3381670; fclass=A; fcode=ADM1; name=Department of Guiana
+ GU =&gt; geonameid=4043988; fclass=A; fcode=ADMD; name=Territory of Guam
+ MP =&gt; geonameid=4041467; fclass=A; fcode=ADMD; name=Northern Islands
+ MQ =&gt; geonameid=3570311; fclass=A; fcode=ADM1; name=Department of Martinique
+ NC =&gt; geonameid=2139685; fclass=A; fcode=ADM1; name=Territory of New Caledonia and Dependencies
+ PM =&gt; geonameid=3424932; fclass=A; fcode=ADM1; name=Territorial Collectivity of Saint Pierre and Miquelon
+ RE =&gt; geonameid=935317;  fclass=A; fcode=ADM1; name=Department of Reunion
+ SJ =&gt; geonameid=607072;  fclass=A; fcode=ADM1; name=Svalbard
+ UM =&gt; geonameid=5854968; fclass=A; fcode=ADMD; name=United States Minor Outlying Islands
+ VI =&gt; geonameid=4796775; fclass=A; fcode=ADMD; name=Virgin Islands of the United States
+ WF =&gt; geonameid=4034749; fclass=A; fcode=ADM1; name=Territory of the Wallis and Futuna Islands</pre>
+		</div>
+<br> 
+<br> Because I'm relative new to the DB-structure of GeoNames, I've added the corresponding fclass and fcode fields to my listing. Is it correct, that "fclass=A" is a condition for this relations? - All the other relations between <b>countryInfo</b> and <b>geoname</b> (e.g. Germany) always have "fclass=A". Please correct me, if I misunderstood something. <img src="./Import GeoNames dump into Postgres_files/8a80c6485cd926be453217d59a84a888.gif" border="0">
+<br> 
+<br> Assuming that I'm right, the following <b>countryinfo</b>-entries can not be related correctly to the <b>geoname</b>-table:
+<br> 
+<br> <span class="genmed"><b>Code:</b></span><br>
+		<div style="overflow: auto; width: 100%;">
+		<pre> AQ =&gt; no entry in geoname-table (WHERE country='AQ' AND fclass='A')
+ AX =&gt; no entry in geoname-table (WHERE country='AX')
+ HM =&gt; no entry in geoname-table (WHERE country='HM')</pre>
+		</div>
+<br> 
+<br> These entries still relate to geonameid=0, so I still need the dummy-entry in the <b>geoname</b>-table to ensure a valid Foreign-Key-Constraint. Is it possible to create the corresponding entries in the <b>geoname</b>-table?
+<br> 
+<br> <p></p>
+
+		<cite>andy wrote:</cite><br>
+		<blockquote>On the <b>alternatename</b>-table the problem can't be fixed so easy. I'll try to find out the corrupted tupels and will tell them to you on this thread.&nbsp;
+		</blockquote>
+<br> 
+<br> I've written a small Java-tool to check the broken relations on the <b>alternatename</b>-table. It found 245 geonameid's, that don't exist in the <b>geoname</b>-table (anymore?). I attach the validation-result to this posting. 
+<br> 
+<br> If you're interested, I would send you the tool including (GPL'ed) source-code.
+<br> 
+<br> 
+<br> Greetz
+<br> 
+<br> 
+<br> Andy</span>
+
+							<!-- Attachments -->
+
+
+	<table width="70%" border="1" cellpadding="2" cellspacing="0" class="attachtable" align="center">
+
+		<tbody><tr>
+				<td width="15%" class="attachrow"><span class="genmed">&nbsp;Description</span></td>
+				<td width="75%" class="attachrow"><span class="genmed">Validation-Result</span></td>
+				<td rowspan="3" align="center">
+					<img src="./Import GeoNames dump into Postgres_files/icon_disk.gif" alt="[Disk]">
+					<a href="http://forum.geonames.org/gforum/posts/downloadAttach/16.page" class="gensmall"><b>Download</b></a>
+				</td>
+			</tr>	
+
+			<tr>
+				<td class="attachrow"><span class="genmed">&nbsp;Filesize</span></td>
+				<td class="attachrow">
+					<span class="genmed">
+							11 Kbytes
+					</span>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="attachrow"><span class="genmed">&nbsp;Downloaded:</span></td>
+				<td class="attachrow"><span class="genmed">&nbsp;4272 time(s)</span></td>
+			</tr>
+	</tbody></table>
+	<br>
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row2" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/502.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/502.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+			<a href="http://wwp.icq.com/scripts/search.dll?to=48065217"><img src="./Import GeoNames dump into Postgres_files/icon_icq_add.gif" alt="[ICQ]"></a>
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#2772">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>11/09/2007 18:05:02
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="2772">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 2772);</script><img name="star2772_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2772_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2772_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2772_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2772_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/2772.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row1" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>markdeblois</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "5132772");</script><img name="star5132772_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5132772_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5132772_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5132772_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5132772_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 03/09/2007 17:59:47<br>
+	Messages: 2
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row1" valign="top">
+							<span class="postbody">Hi there,
+<br> 
+<br> I am trying to fill an empty pgsql database based on the instructions here. I basically want to create a database which I can use to match populated places with in order to geocode them. 
+<br> I am getting an error when trying to copy the countryInfo.txt file. It complains about the column "geonamei" of relation "countryinfo" not existing. The column is there though is empty. 
+<br> Can someone point me in the right direction?! I am quite new to postgresql/postgis but eager to get fully acquainted. 
+<br> Is there a sql dump of a full database by any chance?! That would make things quite easy.
+<br> 
+<br> Thanks ahead for any help.
+<br> 
+<br> cheers,
+<br> Mark de Blois</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row1" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/513.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/513.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#2779">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>12/09/2007 17:22:12
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="2779">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 2779);</script><img name="star2779_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2779_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2779_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2779_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2779_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/2779.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row2" valign="top" align="left" rowspan="3">
+<span class="genmed"><b>marc</b></span>
+<br>
+	<script type="text/javascript">writeStars(5, "42779");</script><img name="star42779_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42779_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42779_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42779_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42779_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 08/12/2005 07:39:47<br>
+	Messages: 3768
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row2" valign="top">
+							<span class="postbody">Hi Mark
+<br> 
+<br> Did you make sure it is all spelt correctly/consistently? (a column geonamei probably  does not exist in your database schema)
+<br> 
+<br> Regards
+<br> 
+<br> Marc</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+						<tr>
+							<td colspan="2" class="row2" width="100%" height="28"><hr><span class="gensmall"><img src="./Import GeoNames dump into Postgres_files/logo_geonames-opengeoportail.png"></span></td>
+						</tr>
+		
+					<tr> 
+						<td class="row2" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/4.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/4.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+			<a href="http://www.geonames.org/" target="_new"><img src="./Import GeoNames dump into Postgres_files/icon_www.gif" alt="[WWW]"></a>
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#2781">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>12/09/2007 18:15:41
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="2781">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 2781);</script><img name="star2781_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2781_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2781_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2781_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2781_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/2781.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row1" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>markdeblois</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "5132781");</script><img name="star5132781_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5132781_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5132781_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5132781_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5132781_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 03/09/2007 17:59:47<br>
+	Messages: 2
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row1" valign="top">
+							<span class="postbody">It seems that the allCountries.txt file probably has a few lines at the top which get in the way. As the file is over 700mb big I cannot seem to find a powerful enough editor to modify it. I tried the copy with a country file in which I removed the first few lines (including the columns) which worked well. But I hope there is a better way than importing them one by one  <img src="./Import GeoNames dump into Postgres_files/47941865eb7bbc2a777305b46cc059a2.gif" border="0"> 
+<br> 
+<br> I added a spatial field as well and was able to fill the geometry with the coordinates from the latitude longitude field. The country dataset loads up fine in QGIS, although the geonameid does seem to have become 0 (it has a value when I look at it through pg3admin?!). Generating the primary and foreign keys seems to cause some difficulties...but slowly moving ahead.
+<br> 
+<br> BTW, does anyone know of a (semi) automated way of updating the database?! 
+<br> 
+<br> Thanks!
+<br> 
+<br> Mark</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row1" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/513.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/513.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#2816">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>19/09/2007 13:30:07
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="2816">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 2816);</script><img name="star2816_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2816_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2816_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2816_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2816_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/2816.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row2" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>marinheiro</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "5442816");</script><img name="star5442816_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5442816_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5442816_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5442816_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5442816_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 19/09/2007 13:24:33<br>
+	Messages: 5
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row2" valign="top">
+							<span class="postbody">Just had the same problem with the countryInfo upload claiming that column geonameId doesn't exist. I'm completely new to postgres, but it appears to be a capitalization issue. The sample 'create.sql' file at the head of this thread quotes the field names for the countryInfo table, forcing the I in geonameId to uppercase. psql appears to lowercase field names typed in (I'm using 8.2.4 on debian testing), so it never matches the stored field name.
+<br> 
+<br> To fix, just remove the quotes round the field names before creating the table.
+<br> 
+<br> Graham 
+<br> 
+<br> </span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row2" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/544.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/544.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#2817">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>19/09/2007 13:45:08
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="2817">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 2817);</script><img name="star2817_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2817_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2817_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2817_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star2817_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/2817.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row1" valign="top" align="left" rowspan="3">
+<span class="genmed"><b>marc</b></span>
+<br>
+	<script type="text/javascript">writeStars(5, "42817");</script><img name="star42817_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42817_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42817_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42817_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif"><img name="star42817_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_on.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 08/12/2005 07:39:47<br>
+	Messages: 3768
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row1" valign="top">
+							<span class="postbody">Thanks Graham. I have removed the quotes.
+<br> 
+<br> Marc</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+						<tr>
+							<td colspan="2" class="row1" width="100%" height="28"><hr><span class="gensmall"><img src="./Import GeoNames dump into Postgres_files/logo_geonames-opengeoportail.png"></span></td>
+						</tr>
+		
+					<tr> 
+						<td class="row1" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/4.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/4.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+			<a href="http://www.geonames.org/" target="_new"><img src="./Import GeoNames dump into Postgres_files/icon_www.gif" alt="[WWW]"></a>
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#5018">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>26/11/2008 10:23:50
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="5018">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 5018);</script><img name="star5018_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5018_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5018_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5018_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star5018_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/5018.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row2" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>bwakkie</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "12895018");</script><img name="star12895018_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star12895018_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star12895018_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star12895018_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star12895018_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 25/11/2008 12:49:52<br>
+	Messages: 7
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row2" valign="top">
+							<span class="postbody"><a href="http://forum.geonames.org/gforum/posts/list/926.page" target="_blank" rel="nofollow">http://forum.geonames.org/gforum/posts/list/926.page</a> does more automatically</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row2" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/1289.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/1289.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#9493">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>26/03/2011 22:02:35
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="9493">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 9493);</script><img name="star9493_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star9493_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star9493_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star9493_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star9493_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/9493.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row1" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>snrt</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "67049493");</script><img name="star67049493_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star67049493_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star67049493_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star67049493_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star67049493_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 26/03/2011 15:24:41<br>
+	Messages: 6
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row1" valign="top">
+							<span class="postbody">Hi,
+<br> 
+<br> i have a question:
+<br> where i have to  ADD "allCountries.txt" file in oder to copy it in postgres database
+<br> 
+<br> Thank you. 
+<br> 
+<br> </span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row1" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/6704.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/6704.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+<div class="postinfo">
+	<div class="date">
+				<a href="http://forum.geonames.org/gforum/posts/list/67.page#9494">
+		<img src="./Import GeoNames dump into Postgres_files/icon_minipost_new.gif" alt="[Post New]"></a>26/03/2011 23:29:03
+	</div>
+	<div class="subject">&nbsp;&nbsp; &nbsp;<b>Subject:</b> <a name="9494">Re:Import GeoNames dump into Postgres</a></div>
+	<div class="action">
+			<script type="text/javascript">writeStars(0, 9494);</script><img name="star9494_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star9494_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star9494_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star9494_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star9494_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+
+			<a href="http://forum.geonames.org/gforum/posts/quote/0/9494.page" rel="nofollow" class="icon_quote"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+
+
+		<a class="nav" href="http://forum.geonames.org/gforum/posts/list/67.page#top"><img src="./Import GeoNames dump into Postgres_files/icon_up.gif" alt="[Up]"></a>
+	</div>
+</div>						</td>
+					</tr>
+
+					<tr>
+						<!-- Username -->
+
+
+						<td class="row2" valign="top" align="left" rowspan="2">
+<span class="genmed"><b>snrt</b></span>
+<br>
+	<script type="text/javascript">writeStars(0, "67049494");</script><img name="star67049494_0" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star67049494_1" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star67049494_2" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star67049494_3" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif"><img name="star67049494_4" alt="*" src="./Import GeoNames dump into Postgres_files/star_off.gif">
+	<br>
+
+<span class="gensmall">
+	
+	<br>
+
+<br> 
+
+	Joined: 26/03/2011 15:24:41<br>
+	Messages: 6
+<br>
+
+
+
+		<span class="offline">Offline </span>
+</span>
+<br>						</td>
+		
+						<!-- Message -->
+						<td class="row2" valign="top">
+							<span class="postbody">it's ok
+<br> we must define a path  <img src="./Import GeoNames dump into Postgres_files/97ada74b88049a6d50a6ed40898a03d7.gif" border="0"> 
+<br> 
+<br> exp: c:/name.txt</span>
+
+							<!-- Attachments -->
+						</td>
+					</tr>
+
+		
+					<tr> 
+						<td class="row2" valign="bottom" nowrap="nowrap" height="28" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+	<td valign="middle" nowrap="nowrap"> 
+		<a href="http://forum.geonames.org/gforum/user/profile/6704.page" class="icon_profile"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+		<a href="http://forum.geonames.org/gforum/pm/sendTo/6704.page" class="icon_pm"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+
+		
+		
+		
+		
+	</td>
+
+</tr>
+</tbody></table>						</td>
+					</tr>
+		
+					<tr>
+						<td class="spacerow" colspan="2" height="1"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+					</tr>
+				<!-- END OF POST LISTING -->
+			
+				<tr align="center">
+					<td class="catbottom" colspan="2" height="28">
+						<table cellspacing="0" cellpadding="0" border="0">
+							<tbody><tr>
+								<td align="center"><span class="gensmall">&nbsp;</span></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+			</tbody></table>
+		
+			<table cellspacing="2" cellpadding="2" width="100%" align="center" border="0">
+				<tbody><tr>
+					<td width="8%" align="left" valign="bottom" nowrap="nowrap">
+							<a href="http://forum.geonames.org/gforum/posts/reply/0/67.page" rel="nofollow" class="icon_reply nav"><img src="./Import GeoNames dump into Postgres_files/transp.gif" alt=""></a>
+					</td>
+					
+					<td valign="middle" align="left" colspan="0">
+						<span class="nav">
+						<a class="nav" href="http://forum.geonames.org/gforum/forums/list.page">Forum Index </a> 
+            			-&gt; <a class="nav" href="http://forum.geonames.org/gforum/forums/show/6.page">FAQ - frequently asked questions </a>
+						</span>
+					</td>
+
+					<td valign="middle" align="right"></td>
+				</tr>
+				
+				<tr>
+					<td colspan="3"><img src="./Import GeoNames dump into Postgres_files/spacer.gif" alt="" width="1" height="1"></td>
+				</tr>
+
+
+				
+			</tbody></table>
+
+			<table cellspacing="0" cellpadding="0" width="100%" border="0">
+				<tbody><tr>
+					<td align="left">
+					</td>
+					<td align="right">	<table cellspacing="0" cellpadding="0" border="0">
+		<tbody><tr>			  
+			<td nowrap="nowrap">
+				<form action="" name="f" id="f" accept-charset="UTF-8">
+					<span class="gensmall">Go to:&nbsp;</span>
+					<select onchange="if(this.options[this.selectedIndex].value != -1){ document.location = &#39;/gforum/forums/show/&#39;+ this.options[this.selectedIndex].value +&#39;.page&#39;; }" name="select">
+						<option value="-1" selected="selected">Select a forum</option>				
+						
+							<option value="-1">&nbsp;</option>
+							<option value="-1">Forum in English</option>
+							<option value="-1">-------------</option>
+							
+								<option value="4">General</option>
+								<option value="9">Administrative Divisions</option>
+								<option value="6">FAQ - frequently asked questions</option>
+								<option value="7">Postal Codes</option>
+								<option value="8">Discussion of GeoNames Toponyms</option>
+							<option value="-1">&nbsp;</option>
+							<option value="-1">Forum in other language</option>
+							<option value="-1">-------------</option>
+							
+								<option value="3">Forum in Deutsch</option>
+					</select>
+					&nbsp;
+					<input class="liteoption" type="button" value="Go" onclick="if(document.f.select.options[document.f.select.selectedIndex].value != -1){ document.location = &#39;/gforum/forums/show/&#39;+ document.f.select.options[document.f.select.selectedIndex].value +&#39;.page&#39;; }">
+				</form>
+			</td>
+		</tr>
+	</tbody></table>
+</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+<a name="quick"></a>
+
+</td>
+</tr>
+	<tr>
+		<td align="center">
+			
+		</td>
+	</tr>
+
+	<tr>
+		<td align="center">
+			<span class="copyright">Powered by <a class="copyright" href="http://www.jforum.net/" target="_blank">JForum 2.1.5 </a>© <a class="copyright" href="http://www.jforum.net/team.jsp" target="_blank">JForum Team</a></span>
+		</td>
+	</tr>
+</tbody></table>
+
+
+<br><br><br>
+
+<div id="pageFooter">
+info@geonames.org  <img src="./Import GeoNames dump into Postgres_files/smallant.gif" alt="ant" align="middle" hspace="40" border="0">
+<p>
+<a href="http://www.geonames.org/">GeoNames Home</a>
+<span class="separator">•</span>
+<a href="http://www.geonames.org/postal-codes/">Postal Codes</a>
+<span class="separator">•</span>
+<a href="http://www.geonames.org/export/">Download / Webservice</a>
+<span class="separator">•</span>
+
+<a href="http://forum.geonames.org/">Forum</a>
+<span class="separator">•</span>
+<a href="http://www.geonames.org/about.html">About</a>
+</p></div>
+
+
+<iframe src="./Import GeoNames dump into Postgres_files/ping_session.html" height="0" width="0" frameborder="0" scrolling="no"></iframe>
+
+
+</body></html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)http://www.peterstratton.com/2014/04/your-own-private-geocoder-using-postgis-and-ubuntu/ -->
+<html class=" js video maskImage placeholder" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton</title>
+  <meta name="author" content="Peter Stratton">
+
+  
+  <meta name="description" content="To paraphrase Wikipedia, geocoding is the process of finding associated geographic coordinates from other geographic data, such as street addresses. …">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+
+  
+  <link rel="canonical" href="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton.html">
+  <link href="http://www.peterstratton.com/favicon.png" rel="icon">
+  <link href="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/jXHR.js"></script><script id="twitter-wjs" src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/widgets.js"></script><script type="text/javascript" async="" src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/ga.js"></script><script src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/modernizr-2.0.js"></script>
+  <script src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/ender.js"></script>
+  <script src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/octopress.js" type="text/javascript"></script>
+  <link href="http://www.peterstratton.com/atom.xml" rel="alternate" title="Peter Stratton" type="application/atom+xml">
+  <meta name="google-site-verification" content="jqdKVHA-4mAmQsfAPtxqI6cKM902CzVVEaE76V3qrZM">
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/css" rel="stylesheet" type="text/css">
+<link href="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/css(1)" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-9050798-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+<script type="text/javascript" async="" src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/embed.js"></script><script type="text/javascript" async="" src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/widgets.js"></script></head>
+
+<body data-twttr-rendered="true">
+  <header role="banner"><hgroup>
+  <h1><a href="http://www.peterstratton.com/">Peter Stratton</a></h1>
+  
+    <h2>Things I'd rather not forget.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://www.peterstratton.com/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.peterstratton.com">
+    <input class="search" type="text" name="q" results="0" placeholder="Search">
+  </fieldset><fieldset class="mobile-nav"><select><option value="">Navigate…</option><option value="http://www.peterstratton.com/">» Blog</option><option value="http://www.peterstratton.com/blog/archives">» Archives</option><option value="http://www.peterstratton.com/atom.xml">» RSS</option></select></fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="http://www.peterstratton.com/">Blog</a></li>
+  <li><a href="http://www.peterstratton.com/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Your Own Private Geocoder Using PostGIS and Ubuntu</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-23T09:40:51-04:00" pubdate="" data-updated="true">Apr 23<span>rd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>To paraphrase Wikipedia, geocoding is the process of finding associated geographic coordinates from other geographic data, such as street addresses.  To perform this wizardry, you need access to a geocoding service.  There are plenty out there to choose from, many of which are free for personal or non-commercial projects.  However, if you want to include geocoding in a commercial app, or expect to exceed a free tier’s query limit, you may want to consider running your own geocoding server.  This post will run through the steps necessary to get the <em>postgis_tiger_geocoder</em> extension running on a PostgreSQL database.</p>
+
+<!-- more -->
+
+
+<h3>Prerequisites</h3>
+
+<p>This tutorial assumes you have a PostgreSQL database with PostGIS support up and running.  If you need help setting one up, you can refer back to <a href="http://www.peterstratton.com/2014/04/how-to-install-postgis-2-dot-1-and-postgresql-9-dot-3-on-ubuntu-servers/">this post</a>.  I’ll be picking up exactly where I left off using the same database we just finished setting up.</p>
+
+<h3>Step 1 – Preparation</h3>
+
+<p>In order for the PostGIS geocoder extension to work, we’ll need to download TIGER/Line files. TIGER/Line files were a custom text based format that the Census Bureau published until 2008, at which point they switched to shapefiles.  The name stuck though.  We’ll start by creating a directory somewhere we have read/write access, I’m just going to use my home directory:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ cd
+</span><span class="line">$ mkdir tiger</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<h3>Step 2 – Update Loader Variables</h3>
+
+<p>The <em>postgis_tiger_geocoder</em> is composed of four components: the data loader functions, the address normalizer, the address geocoder, and the reverse geocoder.  You saw the address normalizer at the end of the previous walkthrough.  Its sole purpose is to parse a user entered address and attempt to transform it into the normlized format that the geocoder is expecting.  The next component we are going to be using is the data loader.  While it can be intimidating at first, the data loader functions are soon to be your favorite things in the world.  Yes, really.  Trying to do by hand what they do automagically would be absolutely horrific.</p>
+
+<p>First, we’ll need to update a few records in the database so that the data loader knows where to put everything and what tools to use.  The first values we are going to edit are stored in the loader_variables table.  We’ll start out by just selecting everything to see what’s in there.</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ psql gistestdb
+</span><span class="line">gistestdb=# SELECT * FROM tiger.loader_variables;
+</span><span class="line">
+</span><span class="line">   tiger_year |               website_root                | staging_fold | data_schema | staging_schema
+</span><span class="line">   -----------+-------------------------------------------+--------------+-------------+----------------
+</span><span class="line">   2013       | ftp://ftp2.census.gov/geo/tiger/TIGER2013 | /gisdata     | tiger_data  | tiger_staging
+</span><span class="line">   (1 row)
+</span><span class="line">
+</span><span class="line">gistestdb=#</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>The only value we care about at this point is going to be the <code>staging_fold</code> variable.  We want to point at the directory we made in step one.  This is where all the datasets will be downloaded to and processed.  Keep in mind you will need to change the path to wherever it is on your system.  I will be using <code>/home/peter/tiger</code>:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">gistestdb=# UPDATE tiger.loader_variables SET staging_fold = '/home/peter/tiger';
+</span><span class="line">UPDATE 1
+</span><span class="line">gistestdb=# SELECT staging_fold FROM tiger.loader_variables;
+</span><span class="line">
+</span><span class="line">   staging_fold
+</span><span class="line">   -------------------
+</span><span class="line">   /home/peter/tiger
+</span><span class="line">   (1 row)
+</span><span class="line">
+</span><span class="line">gistestdb=#
+</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<h3>Step 3 – Create a Loader Profile</h3>
+
+<p>Next up we’ll be creating a Data Loader profile that matches our system.  You can read the PostGIS docs for the <a href="http://postgis.net/docs/postgis_installation.html#install_tiger_geocoder_extension">official instructions</a>a.  Essentially, all we are doing in this step is editing the shell variables Data Loader will be declaring at top of the shell scripts it will generate to load the TIGER/Line datasets into our database.  The shell scripts require the following variables:</p>
+
+<ul>
+<li>TMPDIR = the directory you created in step 1</li>
+<li>UNZIPTOOL = whatever tool you use to unzip files, we installed <code>unzip</code> in the previous tutorial</li>
+<li>WGETTOOL = whatever tool you use to download files, we’ll be using <code>wget</code></li>
+<li>PGBIN = the directory your posgtres binaries live, chances are it’s simply <code>/usr/bin</code> but you can test by checking where your psql binary lives:</li>
+</ul>
+
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ which psql
+</span><span class="line">/usr/bin/psql
+</span><span class="line">$</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<ul>
+<li>PGPORT = the port that PostgreSQL listens on</li>
+<li>PGHOST = the hostname of the PostgreSQL server</li>
+<li>PGUSER = this needs to be a database superuser, we’re using the account we setup for our OS level user account</li>
+<li>PGPASSWORD = the password for the PGUSER account</li>
+<li>PGDATABASE = the name of the database we’ll be loading all the data into, I’m using <code>gistestdb</code></li>
+<li>PSQL = the location of our psql binary</li>
+<li>SHP2PGSQL = the location of our shp2pgsql script</li>
+</ul>
+
+
+<p>First we’ll need to insert a new profile record for our user account.  We’ll use the pre-existing <code>sh</code> template as a starting point.  Remember, I’m using the account name <code>peter</code>, but you should change that to whatever matches your setup.</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ psql gistestdb
+</span><span class="line">gistestdb=# INSERT INTO tiger.loader_platform(os, declare_sect, pgbin, wget, unzip_command, psql, path_sep, loader, environ_set_command, county_process_command)
+</span><span class="line">gistestdb-# SELECT 'peter', declare_sect, pgbin, wget, unzip_command, psql, path_sep, loader, environ_set_command, county_process_command
+</span><span class="line">gistestdb-# FROM tiger.loader_platform
+</span><span class="line">gistestdb-# WHERE os = 'sh';
+</span><span class="line">INSERT 0 1
+</span><span class="line">gistestdb=#</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>Next lets take a look at the default values that were present in the <code>sh</code> profile:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ psql gistestdb
+</span><span class="line">gistestdb=# SELECT * FROM tiger.loader_platform WHERE os = 'peter';
+</span><span class="line">
+</span><span class="line">os    |            declare_sect            | pgbin | wget |                         unzip_command                         |  psql   | path_sep |    loader    | environ_set_command |                                                    county_process_command
+</span><span class="line">------+------------------------------------+-------+------+---------------------------------------------------------------+---------+----------+--------------+---------------------+-------------------------------------------------------------------------------------------------------------------------------
+</span><span class="line">peter | TMPDIR="${staging_fold}/temp/"    +|       | wget | rm -f ${TMPDIR}/*.*                                          +| ${PSQL} | /        | ${SHP2PGSQL} | export              | for z in *${table_name}.dbf; do                                                                                              +
+</span><span class="line">      | UNZIPTOOL=unzip                   +|       |      | ${PSQL} -c "DROP SCHEMA IF EXISTS ${staging_schema} CASCADE;"+|         |          |              |                     | ${loader} -D -s 4269 -g the_geom -W "latin1" $z ${staging_schema}.${state_abbrev}_${table_name} | ${psql}                    +
+</span><span class="line">      | WGETTOOL="/usr/bin/wget"          +|       |      | ${PSQL} -c "CREATE SCHEMA ${staging_schema};"                +|         |          |              |                     | ${PSQL} -c "SELECT loader_load_staged_data(lower('${state_abbrev}_${table_name}'), lower('${state_abbrev}_${lookup_name}'));"+
+</span><span class="line">      | export PGBIN=/usr/pgsql-9.0/bin   +|       |      | for z in *.zip; do $UNZIPTOOL -o -d $TMPDIR $z; done         +|         |          |              |                     | done
+</span><span class="line">      | export PGPORT=5432                +|       |      | for z in */*.zip; do $UNZIPTOOL -o -d $TMPDIR $z; done       +|         |          |              |                     |
+</span><span class="line">      | export PGHOST=localhost           +|       |      | cd $TMPDIR;                                                  +|         |          |              |                     |
+</span><span class="line">      | export PGUSER=postgres            +|       |      |                                                               |         |          |              |                     |
+</span><span class="line">      | export PGPASSWORD=yourpasswordhere+|       |      |                                                               |         |          |              |                     |
+</span><span class="line">      | export PGDATABASE=geocoder        +|       |      |                                                               |         |          |              |                     |
+</span><span class="line">      | PSQL=${PGBIN}/psql                +|       |      |                                                               |         |          |              |                     |
+</span><span class="line">      | SHP2PGSQL=${PGBIN}/shp2pgsql      +|       |      |                                                               |         |          |              |                     |
+</span><span class="line">      | cd ${staging_fold}                +|       |      |                                                               |         |          |              |                     |
+</span><span class="line">      |                                    |       |      |                                                               |         |          |              |                     |
+</span><span class="line">(1 row)
+</span><span class="line">
+</span><span class="line">gistestdb=#</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>As you can see, the values we need to edit are all contained within the <code>declare_sect</code> column.  So again, you’ll need to update this to match your system, but it should be pretty similar:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ psql gistestdb
+</span><span class="line">gistestdb=# UPDATE tiger.loader_platform
+</span><span class="line">gistestdb-#  SET declare_sect =
+</span><span class="line">gistestdb-#  'TMPDIR="${staging_fold}/temp/"
+</span><span class="line">gistestdb'#  UNZIPTOOL=unzip
+</span><span class="line">gistestdb'#  WGETTOOL="/usr/bin/wget"
+</span><span class="line">gistestdb'#  export PGBIN=/usr/bin
+</span><span class="line">gistestdb'#  export PGPORT=5432
+</span><span class="line">gistestdb'#  export PGHOST=localhost
+</span><span class="line">gistestdb'#  export PGUSER=peter
+</span><span class="line">gistestdb'#  export PGPASSWORD=MyAwesomePassword
+</span><span class="line">gistestdb'#  export PGDATABASE=gistestdb
+</span><span class="line">gistestdb'#  PSQL=${PGBIN}/psql
+</span><span class="line">gistestdb'#  SHP2PGSQL=${PGBIN}/shp2pgsql
+</span><span class="line">gistestdb'#  cd ${staging_fold}'
+</span><span class="line">gistestdb-#  WHERE os = 'peter';
+</span><span class="line">UPDATE 1
+</span><span class="line">gistestdb=# </span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>Lets check our values to make sure everything looks good:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">gistestdb=# SELECT declare_sect FROM tiger.loader_platform WHERE os='peter';
+</span><span class="line">
+</span><span class="line">              declare_sect
+</span><span class="line">-----------------------------------------
+</span><span class="line"> TMPDIR="${staging_fold}/temp/"         +
+</span><span class="line">  UNZIPTOOL=unzip                       +
+</span><span class="line">  WGETTOOL="/usr/bin/wget"              +
+</span><span class="line">  export PGBIN=/usr/bin                 +
+</span><span class="line">  export PGPORT=5432                    +
+</span><span class="line">  export PGHOST=localhost               +
+</span><span class="line">  export PGUSER=peter                   +
+</span><span class="line">  export PGPASSWORD=MyAwesomePassword   +
+</span><span class="line">  export PGDATABASE=gistestdb           +
+</span><span class="line">  PSQL=${PGBIN}/psql                    +
+</span><span class="line">  SHP2PGSQL=${PGBIN}/shp2pgsql          +
+</span><span class="line">  cd ${staging_fold}
+</span><span class="line">(1 row)
+</span><span class="line">
+</span><span class="line">gistestdb=#</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>If everything looks good and matches your system, the Data Loader should be all set to start generating scripts using your database profile.</p>
+
+<h3>Step 4 – Generate The Nation Loader Script</h3>
+
+<p>The first script we’ll be generating is the <a href="http://postgis.net/docs/Loader_Generate_Nation_Script.html">Loader_Generate_Nation_Script</a> which loads in the county and state lookup tables.  We’ll store it in our staging folder and execute it there.</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ psql gistestdb
+</span><span class="line">gistestdb=# \copy (select loader_generate_nation_script('peter')) to '/home/peter/tiger/tiger_nation.sh' with binary
+</span><span class="line">gistestdb=# \q
+</span><span class="line">$</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>Now, I highly suspect there is a better way to do this, but I have yet to take the time to figure it out.  Basically, what we are going to do is manually delete the first two lines and edit the third to remove the extraneous garbage that our \copy command added to the script.  So fire up your favorite text editor and change the first three lines from:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">PGCOPY
+</span><span class="line">ÿ^M
+</span><span class="line">^@^@^@^@^@^@^@^@^@^@^A^@^@^K¸TMPDIR="/home/peter/tiger/temp/"</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>to simply:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">TMPDIR="/home/peter/tiger/temp/"</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>Next, we just have to remove the two trailing bits of cruft the last command added to the end of our script.  So again, open the script in a text editor and change:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">${PSQL} -c "VACUUM ANALYZE tiger_data.county_all_lookup;" ÿÿ</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>to:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">${PSQL} -c "VACUUM ANALYZE tiger_data.county_all_lookup;"</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>If anyone knows or figures out a better way to export that script and skip the manual editing, please let me know.  But in the meantime, we are ready to run it:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ sh ~/tiger/tiger_nation.sh
+</span><span class="line">
+</span><span class="line">--2014-04-23 15:28:26--  ftp://ftp2.census.gov/geo/tiger/TIGER2013/STATE/
+</span><span class="line">           =&gt; ‘ftp2.census.gov/geo/tiger/TIGER2013/STATE/.listing’
+</span><span class="line">Resolving ftp2.census.gov (ftp2.census.gov)... 148.129.75.35, 2610:20:2010:a09:1000:0:9481:4b23
+</span><span class="line">Connecting to ftp2.census.gov (ftp2.census.gov)|148.129.75.35|:21... connected.
+</span><span class="line">Logging in as anonymous ... Logged in!
+</span><span class="line">==&gt; SYST ... done.    ==&gt; PWD ... done.
+</span><span class="line">blah
+</span><span class="line">blah
+</span><span class="line">blah
+</span><span class="line">INSERT 0 1
+</span><span class="line">INSERT 0 1
+</span><span class="line">etc
+</span><span class="line">etc
+</span><span class="line">etc
+</span><span class="line">INSERT 0 3234
+</span><span class="line">VACUUM
+</span><span class="line">$</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<h3>Step 5 – Generate The State Loader Script</h3>
+
+<p>Next up is the <a href="http://postgis.net/docs/Loader_Generate_Script.html">Loader_Generate_Script</a> to pull in our State data.  This one can take a <strong>VERY</strong> long time to run depending on how many states you are loading up.  Luckily it’s quite chatty, so you can be pretty sure it hasn’t locked up on you.  We’ll start by generating a script to download and create the tables for Delaware and Maryland, using the same data loader profile as before.</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ psql gistestdb
+</span><span class="line">gistestdb=# \copy (select loader_generate_script(ARRAY['DE', 'MD'], 'peter')) to '/home/peter/tiger/tiger_states.sh' with binary
+</span><span class="line">gistestdb=# \q
+</span><span class="line">$</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<h4>Clean out the junk</h4>
+
+<p>Open the <code>tiger_states.sh</code> script you just created in a text editor and clean up the file in exactly the same was as we did the nation script (delete the first two lines, clean up the third line, delete the last two characters).</p>
+
+<h4>Run the script</h4>
+
+<p>Once that’s been done, you should grab a coffee and a good book.  The script does not require any input once it’s been executed so unless you hit some sort of error, you’ll have nothing left to do but wait.  Go ahead and run it:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ sh ~/tiger/tiger_states.sh
+</span><span class="line">blah
+</span><span class="line">blah
+</span><span class="line">blah
+</span><span class="line">$</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<h3>Step 6 – Install the Missing Indexes</h3>
+
+<p>Once the script that installs the state TIGER/Line files has finished running, you’re ready to do a final bit of setup.  During the Load Data process, there are most likely going to be some missing indexes.  The <em>Missing_Indexes_Generate_Script</em> is a convenience method that checks to see if anything is missing.  If you run it and it produces no output, then all your tables have the key indexes in place.  The <em>Install_Missing_Indexes</em> script does exactly what you think it does:</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ psql gistestdb
+</span><span class="line">gistestdb=# SELECT missing_indexes_generate_script();
+</span><span class="line">gistestdb=# SELECT install_missing_indexes();
+</span><span class="line">
+</span><span class="line"> install_missing_indexes
+</span><span class="line">-------------------------
+</span><span class="line">  t
+</span><span class="line">(1 row)
+</span><span class="line">
+</span><span class="line">gistestdb=#</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<h3>Step 7 – Geocode Your First Address</h3>
+
+<p>If everything has worked properly up to this point, you can finally geocode your first address.  Since we installed the Delaware and Maryland TIGER/Line data sets, I’m going to geocode the location of the Delaware Art Museum.</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ psql gistestdb
+</span><span class="line">gistestdb=# SELECT g.rating,
+</span><span class="line">gistestdb-# ST_X(g.geomout) As lon,
+</span><span class="line">gistestdb-# ST_Y(g.geomout) As lat,
+</span><span class="line">gistestdb-# (addy).address As stno,
+</span><span class="line">gistestdb-# (addy).streetname As street,
+</span><span class="line">gistestdb-# (addy).streettypeabbrev As styp,
+</span><span class="line">gistestdb-# (addy).location As city,
+</span><span class="line">gistestdb-# (addy).stateabbrev As st,
+</span><span class="line">gistestdb-# (addy).zip
+</span><span class="line">gistestdb-# FROM geocode('2301 Kentmere Pkwy, Wilmington, DE 19806') As g;
+</span><span class="line">
+</span><span class="line"> rating |        lon        |       lat        | stno |  street  | styp |    city    | st |  zip
+</span><span class="line">--------+-------------------+------------------+------+----------+------+------------+----+-------
+</span><span class="line">      0 | -75.5648444934456 | 39.7649668311956 | 2301 | Kentmere | Pkwy | Wilmington | DE | 19806
+</span><span class="line">(1 row)
+</span><span class="line">
+</span><span class="line">gistestdb=#</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<p>We got a single hit, and it’s perfectly accurate!  If you’d like a sanity check, just enter the lat/long coordinates as our address into <a href="https://www.google.com/maps/place/39%C2%B045'53.9%22N+75%C2%B033'53.4%22W/@39.7649668,-75.5648445,15z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0">google maps</a>.</p>
+
+<h3>Step 8 – Reverse Geocode An Address</h3>
+
+<p>The other function we’d like to test is reverse geocoding, or, the ability to convert a set of coordinates into an address.  I don’t want Maryland to feel left out, so we’ll reverse geocode the Baltimore Museum of Art this time.</p>
+
+<figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ psql gistestdb
+</span><span class="line">gistestdb=# SELECT pprint_addy(r.addy[1]) As st1,
+</span><span class="line">gistestdb-# pprint_addy(r.addy[2]) As st2,
+</span><span class="line">gistestdb-# pprint_addy(r.addy[3]) As st3,
+</span><span class="line">gistestdb-# array_to_string(r.street, ',') As cross_streets
+</span><span class="line">gistestdb-# FROM reverse_geocode(ST_GeomFromText('POINT(-76.6177879 39.3262418)',4269),true) As r;
+</span><span class="line">
+</span><span class="line">                st1                 |               st2               |                  st3                  | cross_streets
+</span><span class="line">------------------------------------+---------------------------------+---------------------------------------+---------------
+</span><span class="line"> Art Museum Dr, Baltimore, MD 21218 | Charles St, Baltimore, MD 21218 | 16 Art Museum Dr, Baltimore, MD 21218 |  N Charles St
+</span><span class="line">
+</span><span class="line">(1 row)
+</span><span class="line">gistestdb=#</span></code></pre></td></tr></tbody></table></div></figure>
+
+
+<h3>Conclusion</h3>
+
+<p>Congratulations, you’ve got a working geocoder of your very own.  We’ve barely scratched the surface of what you can do with PostGIS.  I highly recommend taking the time to read through the <a href="http://postgis.net/documentation">documentation</a>. Please shoot me an email or leave a comment below if you have any questions or suggestions for future tutorials.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Peter Stratton</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-23T09:40:51-04:00" pubdate="" data-updated="true">Apr 23<span>rd</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class="category" href="http://www.peterstratton.com/categories/gis/">GIS</a>, <a class="category" href="http://www.peterstratton.com/categories/postgis/">PostGIS</a>, <a class="category" href="http://www.peterstratton.com/categories/postgresql/">PostgreSQL</a>, <a class="category" href="http://www.peterstratton.com/categories/ubuntu/">Ubuntu</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/saved_resource.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 108px; height: 20px; display: none !important;"></iframe>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="http://www.peterstratton.com/2014/04/how-to-install-postgis-2-dot-1-and-postgresql-9-dot-3-on-ubuntu-servers/" title="Previous Post: How to install PostGIS 2.1 and PostgreSQL 9.3 on Ubuntu Servers">« How to install PostGIS 2.1 and PostgreSQL 9.3 on Ubuntu Servers</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/saved_resource(1).html" horizontalscrolling="no" verticalscrolling="no" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 962px !important;"></iframe></div>
+  </section>
+
+</div>
+
+<aside class="sidebar thirds">
+  
+    <section class="first odd">
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton.html">Your Own Private Geocoder using PostGIS and Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://www.peterstratton.com/2014/04/how-to-install-postgis-2-dot-1-and-postgresql-9-dot-3-on-ubuntu-servers/">How to install PostGIS 2.1 and PostgreSQL 9.3 on Ubuntu Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://www.peterstratton.com/2014/03/running-selenium-on-a-headless-vps/">Running Selenium on a Headless VPS</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://www.peterstratton.com/2014/03/python-3-and-django-on-debian-or-ubuntu-servers/">Python 3 and Django on Debian or Ubuntu Servers</a>
+      </li>
+    
+      <li class="post">
+        <a href="http://www.peterstratton.com/2014/03/hello-world/">Hello World</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section class="even">
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos"><li><a href="https://github.com/peter-stratton/setupScripts">setupScripts</a><p>Personal setup files for new debian based systems.</p></li><li><a href="https://github.com/peter-stratton/dotfiles">dotfiles</a><p>config files</p></li></ul>
+  
+  <a href="https://github.com/peter-stratton">@peter-stratton</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'peter-stratton',
+            count: 2,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="./Your Own Private Geocoder using PostGIS and Ubuntu - Peter Stratton_files/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="odd" data-twttr-id="twttr-sandbox-0">
+  <h1>Latest Tweets</h1>
+  <iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-timeline twitter-timeline-rendered" allowfullscreen="" style="width: 1px; height: 0px; border: none; position: absolute; visibility: hidden;"></iframe><a class="twitter-timeline" href="https://twitter.com/Halescode" data-widget-id="444974273912791040" data-twttr-rendered="true">Tweets by @Halescode</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    <span class="toggle-sidebar"></span></div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright © 2014 - Peter Stratton -
+  <span class="credit">Powered by <a href="http://octopress.org/">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'peterstratton';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.peterstratton.com/2014/04/your-own-private-geocoder-using-postgis-and-ubuntu/';
+        var disqus_url = 'http://www.peterstratton.com/2014/04/your-own-private-geocoder-using-postgis-and-ubuntu/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+
+<iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" style="display: none;"></iframe><script src="https://cdn.syndication.twimg.com/widgets/timelines/444974273912791040?domain=www.peterstratton.com&lang=en&t=1577977&callback=twttr.tfw.callbacks.tl_444974273912791040_1&suppress_response_codes=true" async=""></script></body></html>

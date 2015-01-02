@@ -1,0 +1,3 @@
+select id, hike_title, lat, lng, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(-122.517349) ) + sin( radians(37.780182) ) * sin( radians( lat ) ) ) ) AS distance FROM my_awesome_table HAVING distance < 10000 ORDER BY distance LIMIT 0 , 50
+
+

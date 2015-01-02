@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/ -->
+<html lang="en-US"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+
+<title>How to install PostGIS on Ubuntu 14.04 with remote connections enabled | Necip Enes Gengec</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://www.negengec.com/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="http://www.negengec.com/wp-content/themes/discovery/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.7.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Installation of Postgresql with PostGIS and running with remote connection support on Ubuntu 14.04">
+<link rel="canonical" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec.html">
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="dns-prefetch" href="http://connect.facebook.net/">
+<link rel="alternate" type="application/rss+xml" title="Necip Enes Gengec » Feed" href="http://www.negengec.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Necip Enes Gengec » Comments Feed" href="http://www.negengec.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Necip Enes Gengec » How to install PostGIS on Ubuntu 14.04 with remote connections enabled Comments Feed" href="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/feed/">
+<link rel="stylesheet" id="ssbaFont-css" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="style-css" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="animate-css" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/animate.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-linkedin-css" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/jetpack.css" type="text/css" media="all">
+<script id="facebook-jssdk" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/all.js"></script><script id="twitter-wjs" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/widgets.js"></script><script type="text/javascript" async="" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/ga.js"></script><script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/jquery.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/keyboard-image-navigation.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/Inview.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/animate.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/flexslider-init.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/69ddc6941bef3f468403d0933f88c44ea6553693.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.negengec.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.negengec.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.1">
+<link rel="shortlink" href="http://wp.me/p4XeoZ-2X">
+<style type="text/css">#widget-collapsarch-2-top span.collapsing.archives {
+        border:0;
+        padding:0; 
+        margin:0; 
+        cursor:pointer;
+} 
+
+#widget-collapsarch-2-top li.widget_collapspage h2 span.sym {float:right;padding:0 .5em}
+#widget-collapsarch-2-top li.collapsing.archives a.self {font-weight:bold}
+#widget-collapsarch-2-top:before {content:'';} 
+#widget-collapsarch-2-top  li.collapsing.archives:before {content:'';} 
+#widget-collapsarch-2-top  li.collapsing.archives {list-style-type:none}
+#widget-collapsarch-2-top  li.collapsing.archives{
+       padding:0 0 0 1em;
+       text-indent:-1em;
+}
+#widget-collapsarch-2-top li.collapsing.archives.item:before {content: '\00BB \00A0' !important;} 
+#widget-collapsarch-2-top li.collapsing.archives .sym {
+   cursor:pointer;
+   font-size:1.2em;
+   font-family:Arial, Helvetica, sans-serif;
+    padding-right:5px;}</style>
+
+<!-- BEGIN License added by Creative-Commons-Configurator plugin for WordPress -->
+<style type="text/css">
+p.cc-block { clear: both; width: 90%; margin: 8px auto; padding: 4px; text-align: center; border: 1px solid #cccccc; color: #000000; background-color: #eef6e6; }
+p.cc-block a:link, p.cc-block a:visited, p.cc-block a:hover, p.cc-block a:active { text-decoration: underline; color: #000000; }
+.cc-button { border-width: 0; }
+</style>
+
+<!-- END License added by Creative-Commons-Configurator plugin for WordPress -->
+
+<script>
+	var lightbox_transition = 'elastic';
+	var lightbox_speed = 800;
+	var lightbox_fadeOut = 300;
+	var lightbox_title = false;
+	var lightbox_scalePhotos = true;
+	var lightbox_scrolling = false;
+	var lightbox_opacity = 0.201;
+	var lightbox_open = false;
+	var lightbox_returnFocus = true;
+	var lightbox_trapFocus = true;
+	var lightbox_fastIframe = true;
+	var lightbox_preloading = true;
+	var lightbox_overlayClose = true;
+	var lightbox_escKey = false;
+	var lightbox_arrowKey = false;
+	var lightbox_loop = true;
+	var lightbox_closeButton = false;
+	var lightbox_previous = "previous";
+	var lightbox_next = "next";
+	var lightbox_close = "close";
+	var lightbox_html = false;
+	var lightbox_photo = false;
+	var lightbox_width = '';
+	var lightbox_height = '';
+	var lightbox_innerWidth = 'false';
+	var lightbox_innerHeight = 'false';
+	var lightbox_initialWidth = '300';
+	var lightbox_initialHeight = '100';
+	
+        var maxwidth=jQuery(window).width();
+        if(maxwidth>768){maxwidth=768;}
+        var lightbox_maxWidth = maxwidth;
+        var lightbox_maxHeight = 500;
+	
+        var lightbox_slideshow = false;
+	var lightbox_slideshowSpeed = 2500;
+	var lightbox_slideshowAuto = true;
+	var lightbox_slideshowStart = "start slideshow";
+	var lightbox_slideshowStop = "stop slideshow";
+	var lightbox_fixed = true;
+	
+	
+			var lightbox_top = false;
+		var lightbox_bottom = false;
+		var lightbox_left = false;
+		var lightbox_right = false;
+		
+	var lightbox_reposition = false;
+	var lightbox_retinaImage = true;
+	var lightbox_retinaUrl = false;
+	var lightbox_retinaSuffix = "@2x.$1";
+</script>
+<style type="text/css">	.ssba {
+											
+											
+											
+											
+										}
+										.ssba img		
+										{ 	
+											width: 35px !important;
+											padding: 6px;
+											border:  0;
+											box-shadow: none !important;
+											display: inline !important;
+											vertical-align: middle;
+										}
+										.ssba, .ssba a		
+										{
+											text-decoration:none;
+											background: none;
+											font-family: Indie Flower;
+											font-size: 	20px;
+											
+											
+										}.ssba_sharecount:after, .ssba_sharecount:before {
+											right: 100%;
+											border: solid transparent;
+											content: " ";
+											height: 0;
+											width: 0;
+											position: absolute;
+											pointer-events: none;
+										}
+										.ssba_sharecount:after {
+											border-color: rgba(224, 221, 221, 0);
+											border-right-color: #f5f5f5;
+											border-width: 5px;
+											top: 50%;
+											margin-top: -5px;
+										}
+										.ssba_sharecount:before {
+											border-color: rgba(85, 94, 88, 0);
+											border-right-color: #e0dddd;
+											border-width: 6px;
+											top: 50%;
+											margin-top: -6px;
+										}
+										.ssba_sharecount {
+											font: 11px Arial, Helvetica, sans-serif;
+											
+											padding: 5px;
+											-khtml-border-radius: 6px;
+											-o-border-radius: 6px;
+											-webkit-border-radius: 6px;
+											-moz-border-radius: 6px;
+											border-radius: 6px;
+											position: relative;
+											border: 1px solid #e0dddd;color: #555e58;
+												background: #f5f5f5;
+											}
+											.ssba_sharecount:after {
+												border-right-color: #f5f5f5;
+											}</style><link rel="stylesheet" type="text/css" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/wp-code-highlight.css" media="screen">
+
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/jscripts.php"></script> 
+<meta name="google-site-verification" content="pVZtAmv1i0oJVesmYTjXvVQi4aKODk1FrrX9T38jS9g">	<style type="text/css">
+			.site-title a,
+		.site-description {
+			color: #33363b !important;
+		}
+		</style>
+	<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #33363b; }
+</style>
+<meta property="og:site_name" content="Necip Enes Gengec">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/">
+<meta property="og:title" content="How to install PostGIS on Ubuntu 14.04 with remote connections enabled | Necip Enes Gengec">
+<meta property="og:description" content="Installation of Postgresql with PostGIS and running with remote connection support on Ubuntu 14.04">
+<meta property="og:image" content="http://www.negengec.com/wp-content/uploads/2014/08/authentication_postgres.png">
+<meta property="og:image:width" content="642">
+<meta property="og:image:height" content="411">
+<meta property="og:image" content="http://www.negengec.com/wp-content/uploads/2014/08/listen_all_postgress.png">
+<meta property="og:image:width" content="642">
+<meta property="og:image:height" content="411">
+<meta property="og:image" content="http://www.negengec.com/wp-content/uploads/2014/08/postgresql_connection.png">
+<meta property="og:image:width" content="610">
+<meta property="og:image:height" content="603">
+<meta property="article:published_time" content="2014-08-28T13:33:48+00:00">
+<meta property="article:modified_time" content="2014-10-13T22:33:38+00:00">
+<meta property="article:author" content="http://www.negengec.com/author/nagellette/">
+<meta property="article:section" content="PostGIS">
+<meta property="article:tag" content="QGIS">
+<meta property="article:tag" content="pgAdmin">
+<meta property="article:tag" content="PostGIS">
+<meta property="article:tag" content="Postgresql">
+<meta property="article:tag" content="QGIS">
+<meta property="article:tag" content="Remote Connection">
+<script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script pagespeed_no_defer="" data-pso-version="20141210_220602">window.dynamicgoogletags={config:[]};dynamicgoogletags.config=["ca-pub-4900061257462963",[[[["DIV",,"primary",[]],["10px","10px",0],2,,"1735020332",0],[["ARTICLE",0,,[],-1],["10px","21px",0],3,,"2900574331",0]]],[[[[9653709,[[0,199]]],[9653710,[[500,699]]]],[[["BODY",0,,[]],["10px","10px",1],1,[2],,0],[["HEADER",0,,[]],["7.800000190734863px","10px",1],0,[1],,0],[["HEADER",0,,[]],["10px","10px",1],1,[1],,0],[["DIV",,"main",[]],["10px","10.399999618530273px",1],0,[1],,0],[["DIV",,"comments",[]],["19.5px","24.700000762939453px",0],0,[3],,0],[["DIV",,"respond",[]],["9.599199295043945px","15px",0],3,[1],,0],[["DIV",,"secondary",[]],["10px","10px",0],1,[1],,0],[["ASIDE",,"collapsarch-2",[]],["10px","10px",0],3,[1],,0],[["ASIDE",,"categories-2",[]],["10px","10px",0],3,[1],,0],[["ASIDE",,"blog_subscription-2",[]],["10px","10px",0],3,[1],,0],[["DIV",,"secondary",[]],["10px","10px",0],2,[1],,0],[["DIV",,"secondary",[]],["10px","10px",0],3,[1],,0],[["DIV",,"page",[]],["10px","10.399999618530273px",0],3,[1],,0],[["DIV",,"site-generator",[]],["10px","10px",0],0,[1],,0],[["ARTICLE",0,,[],0],["10px","10px",0],0,[0],,0],[["ARTICLE",0,,[],1],["10px","13px",0],0,[0],,0],[["ARTICLE",0,,[],2],["10px","13px",0],0,[0],,0],[["ARTICLE",0,,[],-1],["10px","13px",0],3,[0],,0]],["6923156730","8399889936","9876623137"],["ARTICLE",,,[]]]],"WordPressSinglePost","6841374332",,0.0];(function(){var g=function(a,c){function b(){}b.prototype=c.prototype;a.u=c.prototype;a.prototype=new b;a.t=function(a,b,f){for(var h=Array(arguments.length-2),k=2;k<arguments.length;k++)h[k-2]=arguments[k];return c.prototype[b].apply(a,h)}};var m=function(a){return-1!=l.indexOf(a)};var n=function(){},p=function(a,c,b){a.c={};c||(c=[]);a.r=void 0;a.h=-1;a.a=c;r:{if(a.a.length){c=a.a.length-1;var e=a.a[c];if(e&&"object"==typeof e&&"number"!=typeof e.length){a.j=c-a.h;a.i=e;break r}}a.j=Number.MAX_VALUE}if(b)for(c=0;c<b.length;c++)e=b[c],e<a.j?(e+=a.h,a.a[e]=a.a[e]||[]):a.i[e]=a.i[e]||[]},q=function(a,c){return c<a.j?a.a[c+a.h]:a.i[c]},t=function(a,c,b){c<a.j?a.a[c+a.h]=b:a.i[c]=b},u=function(a,c,b){if(!a.c[b]){var e=q(a,b);e&&(a.c[b]=new c(e))}return a.c[b]},v=function(a,c,b){if(!a.c[b]){for(var e=
+q(a,b),d=[],f=0;f<e.length;f++)d[f]=new c(e[f]);a.c[b]=d}return a.c[b]};n.prototype.toString=function(){return this.a.toString()};var w=function(a){p(this,a,[4])};g(w,n);var x=function(a){p(this,a,[])};g(x,n);var y=function(a){p(this,a,[])};g(y,n);y.prototype.l=function(){return q(this,1)};var z=function(a){p(this,a,[])};g(z,n);z.prototype.l=function(){return q(this,3)};var A=function(a){p(this,a,[1])};g(A,n);A.prototype.k=function(){return v(this,z,1)};var B=function(a){p(this,a,[2])};g(B,n);var C=function(a){p(this,a,[])};g(C,n);var D=function(a){p(this,a,[1,2,3])};g(D,n);D.prototype.k=function(){return v(this,z,2)};var E=function(a){p(this,a,[3])};g(E,n);var aa=function(a){var c=window;c.google_image_requests||(c.google_image_requests=[]);var b=c.document.createElement("img");b.src=a;c.google_image_requests.push(b)};var F=function(){var a=window.dynamicgoogletags.s.e,c=window.dynamicgoogletags.s.b;if(null!=a&&q(a,7)&&!(q(a,7)<Math.random())){var b="https://pagead2.googlesyndication.com/pagead/gen_204?",e=function(a,c){c&&(c="function"==typeof encodeURIComponent?encodeURIComponent(c):escape(c),b+="&"+a+"="+c)},b=b+"id=pso_failure";e("wpc",q(a,1));e("sv",ba());e("tn",q(a,4));e("eid",c);e("w",window.innerWidth);e("h",window.innerHeight);e("m","");aa(b)}},ba=function(){for(var a=document.getElementsByTagName("script"),
+c=0;c<a.length;++c){var b=a[c].getAttribute("data-pso-version");if(b)return b}return""};var ca=function(a){var c=document,b=null;if(a.id)if(b=c.getElementById(a.id))b=[b];else return[];if(a.tagName)if(b){for(var e=a.tagName,d=[],f=0;f<b.length;++f)b[f].tagName&&b[f].tagName.toUpperCase()==e.toUpperCase()&&d.push(b[f]);b=d}else{b=c.getElementsByTagName(a.tagName);e=[];for(d=0;d<b.length;++d)e.push(b[d]);b=e}if(a.classNames&&0<a.classNames.length)if(b){c=b;b=a.classNames;e=[];for(d=0;d<c.length;++d)G(c[d],b)&&e.push(c[d]);b=e}else{if(!c.body)return[];b=H(a.classNames,c.body)}if("number"==
+typeof a.occurrenceIndex&&b)if(b.length>a.occurrenceIndex)b=[b[a.occurrenceIndex]];else return[];if("number"==typeof a.paragraphIndex&&b){c=[];for(e=0;e<b.length;e++){for(var d=[],f=b[e].getElementsByTagName("p"),h=0;h<f.length;++h)100<=I(f[h])&&d.push(f[h]);f=a.paragraphIndex;0>f&&(f+=d.length);0<=f&&f<d.length&&c.push(d[f])}b=c}if(void 0!==a.ignoreMode&&b)switch(a.ignoreMode){case "ignoreFirst":return b.slice(1);case "ignoreLast":return b.slice(0,b.length-1);case "ignoreFirstAndLast":return b.slice(1,
+b.length-1)}return b?b:[]},I=function(a){if(3==a.nodeType)return a.length;if(1!=a.nodeType||"SCRIPT"==a.tagName)return 0;for(var c=0,b=0;b<a.childNodes.length;++b)c+=I(a.childNodes[b]);return c},H=function(a,c){if(c.getElementsByClassName){for(var b=c.getElementsByClassName(a.join(" ")),e=[],d=0;d<b.length;++d)e.push(b[d]);return e}b=[];G(c,a)&&b.push(c);for(d=0;d<c.childNodes.length;++d)1==c.childNodes[d].nodeType&&(b=b.concat(H(a,c.childNodes[d])));return b},G=function(a,c){for(var b=a.className?
+a.className.split(/\s+/):[],e={},d=0;d<b.length;++d)e[b[d]]=!0;for(d=0;d<c.length;++d)if(!e[c[d]])return!1;return!0};var J=function(a){return!!a.nextSibling||!!a.parentNode&&J(a.parentNode)};var K=function(a,c,b,e){var d=u(a,w,1);if(null==d)return null;var f={};q(d,1)&&(f.tagName=q(d,1));q(d,3)&&(f.id=q(d,3));q(d,4)&&0<q(d,4).length&&(f.classNames=q(d,4).slice(0));null!=q(d,2)&&(f.occurrenceIndex=q(d,2));null!=q(d,5)&&(f.paragraphIndex=q(d,5));if(null!=q(d,6))switch(q(d,6)){case 0:f.ignoreMode="ignoreFirst";break;case 1:f.ignoreMode="ignoreLast";break;case 2:f.ignoreMode="ignoreFirstAndLast";break;default:throw"Unhandled ignore mode.";}if(d=u(a,x,2))null!=q(d,1)&&(f.marginTop=q(d,1)),
+null!=q(d,2)&&(f.marginBottom=q(d,2)),null!=q(d,3)&&(f.clearBoth=q(d,3));d=da(a.l());if(null==d)return null;f.position=d;if(null==q(a,5))return null;f.adSlot=q(a,5);f.adFormat=ea(q(a,6));if(null==c)return null;f.adClient=c;null!=b&&(f.eid=b);null!=e&&(f.adChannel=e);return f},da=function(a){switch(a){case 0:return"before";case 3:return"after";case 1:return"firstChild";case 2:return"lastChild";default:return null}},ea=function(a){if(a)switch(a){case 1:return"horizontal";case 2:return"vertical";case 3:return"rectangle"}return"auto"};var l;r:{var L=this.navigator;if(L){var M=L.userAgent;if(M){l=M;break r}}l=""};var N=function(){return!(m("iPad")||m("Android")&&!m("Mobile")||m("Silk"))&&(m("iPod")||m("iPhone")||m("Android")||m("IEMobile"))};var O=function(){fa(!0)},fa=function(a){var c=window.dynamicgoogletags.defs;if(c)for(var b=0;b<c.length;b++){var e=c[b];e.placed||P(window,e,a)}},P=function(a,c,b,e){var d=null,f=ca(c);0<f.length&&(d=f[0]);if(!d||"lastChild"==c.position&&!b&&!J(d))return!1;if(e)return!0;e=document;b=e.createElement("div");b.className="googlepublisherpluginad";b.style.textAlign="center";b.style.width="100%";b.style.height="auto";b.style.clear=c.clearBoth?"both":"none";e=e.createElement("ins");e.className="adsbygoogle";
+e.setAttribute("data-ad-client",c.adClient);e.setAttribute("data-ad-slot",c.adSlot);e.setAttribute("data-ad-format",c.adFormat);e.setAttribute("data-tag-origin","pso");e.style.display="block";e.style.margin="auto";e.style.backgroundColor="transparent";c.marginTop&&(e.style.marginTop=c.marginTop);c.marginBottom&&(e.style.marginBottom=c.marginBottom);b.appendChild(e);switch(c.position){case "before":d.parentNode&&d.parentNode.insertBefore(b,d);break;case "after":d.parentNode&&d.parentNode.insertBefore(b,
+d.nextSibling);break;case "firstChild":d.insertBefore(b,d.firstChild);break;case "lastChild":d.appendChild(b)}"INS"==d.tagName&&G(d,["adsbygoogle-placeholder"])&&(d.style.display="block");a.dynamicgoogletags.s&&N()&&(e=document,d=e.documentElement.clientHeight||e.body.clientHeight,e=e.documentElement.getBoundingClientRect(),f=b.getBoundingClientRect(),(e&&f?f.top-e.top:0)<=d&&b.firstChild&&"INS"==b.firstChild.tagName&&(b=b.firstChild,"auto"==b.getAttribute("data-ad-format")&&b.setAttribute("data-ad-format",
+"horizontal")));c.placed=!0;b=c.eid;c=c.adChannel;d={};if(b||c)d.params={},b&&(d.params.google_eids=[b]),c&&(d.params.google_ad_channel=c);a.adsbygoogle||(a.adsbygoogle=[]);a.adsbygoogle.push(d);return!0};window.dynamicgoogletags=window.dynamicgoogletags||{};window.dynamicgoogletags.update=fa;window.attachEvent&&window.attachEvent("onload",O);window.addEventListener&&(window.addEventListener("load",O,!1),window.addEventListener("DOMContentLoaded",O,!1));var Q=function(a,c){this.d=a;this.n=c};var R=function(a,c){Q.call(this,a,c)};g(R,Q);R.prototype.apply=function(a){var c=this.d.dynamicgoogletags.s,b=c.e,c=c.b?c.b.toString():void 0,e=q(b,4)||void 0,d=q(b,1),f=u(b,A,2);if(!f)return!1;for(var b=!0,f=f.k(),h=this.o();h<f.length;h++){var k=f[h];if(!q(k,7)){var r=K(k,d,c,e);r&&P(this.d,r,a,this.n)?t(k,7,!0):b=!1}}return b};R.prototype.o=function(){return 0};var S=function(a,c){Q.call(this,a,c)};g(S,R);S.prototype.o=function(){return this.d.dynamicgoogletags.s.q?1:0};var T=function(a,c){Q.call(this,a,c);this.f=this.g=!1};g(T,Q);T.prototype.apply=function(a){if(this.g&&this.f)return!0;var c=this.d.dynamicgoogletags.s,b=c.e,c=c.b?c.b.toString():void 0,e=q(b,1)||"",d=q(b,4)||void 0,b=v(b,D,3)[0];if(!b||2>q(b,3).length)return!1;for(var f=b.k(),h=0;h<f.length;h++){var k=f[h],r=u(k,y,4);r&&(r=r.l(),this.g||2!=r||(this.g=ga(this,k,q(b,3)[0],e,c,d,a)),this.f||3!=r||(this.f=ga(this,k,q(b,3)[1],e,c,d,a)))}return this.g&&this.f};
+var ga=function(a,c,b,e,d,f,h){t(c,5,b);return(b=K(c,e,d,f))&&P(a.d,b,h,a.n)?(t(c,7,!0),!0):!1};var U={9653709:R,9653710:T,9653715:R,9653716:S};var ia=function(){ha(!0)},ja=function(){var a=window.dynamicgoogletags.s.m;a?a.apply(!0)||F():F()},ha=function(a){var c=window.dynamicgoogletags.s.m;c&&c.apply(a)};var ka=function(){var a=window;try{return"localStorage"in a&&a.localStorage?a.localStorage:null}catch(c){return null}},la=function(){var a=window.dynamicgoogletags.s.p,c=window.dynamicgoogletags.s.e;if(null==a||!c)return null;for(var c=v(c,D,3)[0],c=v(c,B,1),b=0;b<c.length;b++)for(var e=c[b],d=v(e,C,2),f=0;f<d.length;f++){var h=d[f],k=q(h,1),h=q(h,2);if(null!=k&&null!=h&&a>=k&&a<=h)return e}return null};window.dynamicgoogletags=window.dynamicgoogletags||{};
+window.dynamicgoogletags.s={e:null,p:null,b:null,m:null,q:null};var ma=window.dynamicgoogletags.config;ma&&(window.dynamicgoogletags.s.e=new E(ma));var V=null;
+if(N()){var W=window.document.location.hash.split("#");if(2!=W.length||0==W[1].length)V=null;else var na=Number(W[1]),V=isNaN(na)?null:na;if(!V||!U[V]){var X=null,oa=!1,Y=ka();Y&&(X=parseInt(Y.getItem("PSO_EXP0"),10));if(null==X||isNaN(X))X=Math.floor(1E3*Math.random()),Y&&(Y.setItem("PSO_EXP0",X.toString()),oa=!0);window.dynamicgoogletags.s.p=X;window.dynamicgoogletags.s.q=oa;var pa=la();if(pa){var Z;Z=q(pa,1);null!=ka()&&(window.dynamicgoogletags.s.b=Z);V=Z}else V=null}}
+window.dynamicgoogletags.s.m=V&&U[V]?new U[V](window,!1):new R(window,!1);window.dynamicgoogletags.update=ha;window.addEventListener?(window.addEventListener("DOMContentLoaded",ia,!1),window.addEventListener("load",ja,!1)):window.attachEvent&&window.attachEvent("onload",ja);})();
+</script><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/services.css"><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+
+<body class="single single-post postid-183 single-format-aside custom-background" data-twttr-rendered="true">
+<div id="wrap">
+<div id="page" class="hfeed site">
+	    <div id="masthead-wrap">
+    <div id="topbar_container">
+    <div class="topbar">
+    <div class="topbar_content_left">Contact me</div>
+    <div class="topbar_content_right">
+	<ul class="social-media">
+					<li><a href="https://twitter.com/negengec" class="genericon genericon-twitter" target="_blank"></a></li>
+				
+					<li><a href="https://www.facebook.com/necipenesgengec" class="genericon genericon-facebook-alt" target="_blank"></a></li>
+				
+				
+					<li><a href="http://www.linkedin.com/profile/view?id=54843688&trk=nav_responsive_tab_profile" class="genericon genericon-linkedin" target="_blank"></a></li>
+				
+				
+				
+				
+				
+			
+		
+		
+					<li><a href="https://github.com/nagellette" class="genericon genericon-github" target="_blank"></a></li>
+			
+        
+        		
+
+	</ul><!-- #social-icons--></div>
+    </div>
+    </div>
+<header id="masthead" class="site-header header_container" role="banner">
+    
+		<div class="site-introduction">
+			<h1 class="site-title"><a href="http://www.negengec.com/" title="Necip Enes Gengec" rel="home">Necip Enes Gengec</a></h1>
+			<p class="site-description">About spatial analysis and GIS</p> 
+		</div>
+
+		<nav role="navigation" class="site-navigation main-navigation">
+			<h1 class="assistive-text">Menu</h1>
+			<div class="assistive-text skip-link"><a href="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/#content" title="Skip to content">Skip to content</a></div>
+
+			<div class="menu-menu-1-container"><ul id="menu-menu-1" class="menu"><li id="menu-item-243" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-243"><a href="http://www.negengec.com/">Home</a></li>
+<li id="menu-item-246" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-246"><a href="http://www.negengec.com/category/qgis/">QGIS</a></li>
+<li id="menu-item-247" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-247"><a href="http://www.negengec.com/category/postgis/">PostGIS</a></li>
+<li id="menu-item-346" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-346"><a href="http://www.negengec.com/category/geoserver/">Geoserver</a></li>
+<li id="menu-item-244" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-244"><a href="http://www.negengec.com/about-me/">About me</a></li>
+</ul></div>            <form role="search" method="get" class="search-form" action="http://www.negengec.com/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search..." value="" name="s" title="Search for:">
+	</label>
+	<input type="submit" class="search-submit" value="Search">
+</form>
+		</nav><!-- .site-navigation .main-navigation -->
+	</header><!-- #masthead .site-header -->
+	</div><!-- #masthead-wrap -->
+    <div class="header-image">
+		</div>
+	<div id="main" class="site-main">	<header class="entry-header">
+		<h1 class="page-title">How to install PostGIS on Ubuntu 14.04 with remote connections enabled</h1><span class="breadcrumbs"><div class="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#"><a href="http://www.negengec.com/" rel="v:url" property="v:title">Home</a> / <span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="http://www.negengec.com/category/postgis/">PostGIS</a></span> / <span class="current">How to install PostGIS on Ubuntu 14.04 with remote connections enabled</span></div><!-- .breadcrumbs --></span>
+		</header><!-- .entry-header -->
+		<div id="primary_wrap">
+		<div id="primary" class="content-area">
+			<div id="content" class="site-content" role="main">
+
+			
+				<article id="post-183" class="post-183 post type-post status-publish format-aside hentry category-postgis category-qgis tag-pgadmin tag-postgis tag-postgresql tag-qgis tag-remote-connection">
+     <div class="blog-image">
+				    </div>
+    <div class="entry-meta">
+			 <a href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec.html" title="16:33" rel="bookmark"><time class="entry-date" datetime="2014-08-28T16:33:48+00:00" pubdate="">28/08/2014</time></a><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://www.negengec.com/author/nagellette/" title="View all posts by Necip" rel="author">Necip</a></span></span>		</div><!-- .entry-meta -->
+	<div class="entry-content">
+		<script><!--
+dynamicgoogletags.update();
+//--></script><p style="text-align: justify;"><span style="color: #000000;">I know this sounds simple. As a mapping engineer with too few IT and programming background, this kind of applications may be too difficult to handle. I know this, because it was really hard for me to figure out these. So that I thought documenting the all process can be helpful for me and for others.</span></p>
+<p style="text-align: justify;"><span style="color: #000000;">Firstly I’d like to introduce my motivation and I will try to share the rest:</span></p>
+<p style="text-align: justify;"><span style="color: #000000;">I am trying to setup a web server which I will</span></p>
+<ul style="text-align: justify;">
+<li><span style="color: #000000;">have a spatial database that I can connect remotely,</span></li>
+<li><span style="color: #000000;">have a map server (Geoserver in my case),</span></li>
+<li><span style="color: #000000;">and develop a web application to serve and manipulate mapping data.</span></li>
+</ul>
+<p style="text-align: justify;"><span style="color: #000000;">This is more or less the same as in the <span style="text-decoration: underline; color: #0000ff;"><span style="text-decoration: underline;"><a title="Opengeo suite" href="http://boundlessgeo.com/solutions/opengeo-suite/" target="_blank"><span style="color: #0000ff; text-decoration: underline;">opengeo suite</span></a></span></span> (refer to below diagram in the link). So the one can connect to the remote database and upload and manage data and database (PostGIS/Postgresql), manipulate data and use the data with connecting to this remote database with applications (QGIS) and develop web applications and serve maps (Geoserver/Openlayers).</span></p>
+<p style="text-align: justify;"><span style="color: #000000;">In this article I will explain how to setup a Postgresql database in a remote Ubuntu 14.04 server with PostGIS and how to connect this database using pgAdmin and QGIS.</span></p>
+<p style="text-align: justify;"><span style="color: #000000;">First I bought a host over <span style="text-decoration: underline; color: #0000ff;"><a title="Digitalocean" href="https://www.digitalocean.com/" target="_blank"><span style="color: #0000ff; text-decoration: underline;">Digitalocean</span></a></span> with the 1GB memory and 30GB disk space with Ubuntu 14.04 LAMP installation. I would suggest you to use at least 1GB memory options in your host provider since Geoserver crashes frequently with less memory.</span></p>
+<p style="text-align: justify;"><span style="color: #000000;">After you need to connect to your host and add Postgreql repository to your source list, update and install necessary packages. (Sound crazy right?) Run the following commands in your ssh command line:</span></p>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln">sudo sh </span><span class="pun">-</span><span class="pln">c </span><span class="str">'echo "deb http://apt.postgresql.org/pub/repos/apt trusty-pgdg main" &gt;&gt; /etc/apt/sources.list'</span><span class="pln">
+sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> update
+sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install postgresql</span><span class="pun">-</span><span class="lit">9.3</span><span class="pln"> pgadmin3 postgresql</span><span class="pun">-</span><span class="pln">contrib
+sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install postgresql</span><span class="pun">-</span><span class="lit">9.3</span><span class="pun">-</span><span class="pln">postgis</span><span class="pun">-</span><span class="lit">2.1</span><span class="pln"> pgadmin3 postgresql</span><span class="pun">-</span><span class="pln">contrib</span></pre>
+<p style="text-align: justify;"><span style="color: #000000;">These will install the Postgresql 9.3 with the PostGIS extension. Please change the version numbers in the commands if you try to install a newer version.</span></p>
+<p style="text-align: justify;"><span style="color: #000000;">After installing the Postgresql and PostGIS without an error, you need to connect to Postgresql database and create some extensions. These are Adminpack (needed for some functions of pgAdmin), PostGIS, PostGIS topology and PostGIS Tiger geocoder. The fuzzystrmatch seems not required in the references but I had and error about it, so I also added to the below code. Please follow the below commands. These will connect to Posgresql with postgres user and creates above mentioned extensions.</span></p>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln">sudo su </span><span class="pun">-</span><span class="pln"> postgres</span></pre>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln">CREATE EXTENSION adminpack</span><span class="pun">;</span><span class="pln">
+CREATE EXTENSION fuzzystrmatch</span><span class="pun">;</span><span class="pln">
+CREATE EXTENSION postgis</span><span class="pun">;</span><span class="pln">
+CREATE EXTENSION postgis_topology</span><span class="pun">;</span><span class="pln">
+CREATE EXTENSION postgis_tiger_geocoder</span><span class="pun">;</span></pre>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln">\q</span></pre>
+<p style="text-align: justify;"><span style="color: #000000;">At this point I will explain how to create a Postgresql database user. I am sure this may be unnecessary and there may be other solutions but I am suggesting you to have another user that <em>postgres. </em>Please follow below commands. Change “<em>yourUserName</em>” part into your user name and it will ask you for your password and second time again for confirmation. In my case I created a user called “<em>necipgisserver</em>” use this in the further examples.</span></p>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln">sudo su </span><span class="pun">-</span><span class="pln"> postgres</span></pre>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln">createuser </span><span class="pun">-</span><span class="pln">d </span><span class="pun">-</span><span class="pln">E </span><span class="pun">-</span><span class="pln">i </span><span class="pun">-</span><span class="pln">l </span><span class="pun">-</span><span class="pln">P </span><span class="pun">-</span><span class="pln">r </span><span class="pun">-</span><span class="pln">s yourUserName</span></pre>
+<p style="text-align: justify;"><span style="color: #000000;">You can leave the <em>postgres</em> user with typing “<em>exit</em>“. We will use this user name and password for connection.</span></p>
+<p style="text-align: justify;"><span style="color: #000000;">We are coming to the last part which is enabling the postgresql service to the remote connections. For enabling your database service to the remote connections you need to modify two files:</span></p>
+<ul style="text-align: justify;">
+<li><span style="color: #000000;">pg_hba.conf file: client authentication</span></li>
+<li><span style="color: #000000;">postgresql.conf file: postgresql service configuration</span></li>
+</ul>
+<p style="text-align: justify;"><span style="color: #000000;"><em><strong>In&nbsp;authentication file</strong></em> run the below code. This will open the authentication in <em>nano</em> text editor:</span></p>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln">sudo nano </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">postgresql</span><span class="pun">/</span><span class="lit">9.3</span><span class="pun">/</span><span class="pln">main</span><span class="pun">/</span><span class="pln">pg_hba</span><span class="pun">.</span><span class="pln">conf</span></pre>
+<p style="text-align: justify;"><span style="color: #000000;">Be careful with the Postgresql version and change it into your installed version. When you get in to the file ad the below line to the end of the file. The file will look like the below image. By adding this line you are enabling all users to connect over any IP with the user/password pair.</span></p>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln">host   all     all </span><span class="lit">0.0</span><span class="pun">.</span><span class="lit">0.0</span><span class="pun">/</span><span class="lit">0</span><span class="pln">   md5</span></pre>
+<p style="text-align: justify;"><span style="color: #000000;"><a href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/authentication_postgres.png" class="group1 cboxElement"><span style="color: #000000;"><img class="aligncenter wp-image-208 size-full" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/authentication_postgres.png" alt="authentication_postgres" width="642" height="411"></span></a></span></p>
+<p style="text-align: justify;"><span style="color: #000000;">You can leave the nano with <em>Ctrl + x. </em>Follow the instructions and save the file.</span></p>
+<p style="text-align: justify;"><span style="color: #000000;"><em><strong>In Postgresql service configuration file </strong></em>we need to let the service listen to all connections in order to connect over any IP. So we will reach the file using <em>nano</em> and add the below line to the end of the file. Again be careful with the postgresql version.</span></p>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln">sudo nano </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">postgresql</span><span class="pun">/</span><span class="lit">9.3</span><span class="pun">/</span><span class="pln">main</span><span class="pun">/</span><span class="pln">postgresql</span><span class="pun">.</span><span class="pln">conf</span></pre>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln">listen_addresses </span><span class="pun">=</span><span class="pln"> </span><span class="str">'*'</span></pre>
+<p style="text-align: justify;"><span style="color: #000000;"><a href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/listen_all_postgress.png" class="group1 cboxElement"><span style="color: #000000;"><img class="aligncenter wp-image-209 size-full" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/listen_all_postgress.png" alt="listen_all_postgress" width="642" height="411"></span></a>This is all we need to do with the configuration and authentication files. Please note that this opens everything if someone knows your user name and password can connect easily. You can comment these lines out by adding “#” without to quotes.</span></p>
+<p style="text-align: justify;"><span style="color: #000000;">All the hard part ended. Now you can connect to your remote server using pgAdmin and QGIS. I will only share the connection screen examples for both platforms. You can easily apply your own configuration reviewing these examples. Using these configurations you can now connect to your remote server like you are connecting on your PC and you can deploy your data using QGIS and pgAdmin and you can run all database tasks.<br>
+</span></p><div class="googlepublisherpluginad" style="text-align: center; width: 100%; height: auto; clear: none;"><ins class="adsbygoogle" data-ad-client="ca-pub-4900061257462963" data-ad-slot="2900574331" data-ad-format="auto" data-tag-origin="pso" style="display: block; margin: 10px auto 21px; background-color: transparent;"></ins></div>
+<p><span style="color: #000000;"><a href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/postgresql_connection.png" class="group1 cboxElement"><span style="color: #000000;"><img class="aligncenter wp-image-212 size-full" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/postgresql_connection.png" alt="postgresql_connection" width="610" height="603"></span></a></span></p>
+<p style="text-align: center;"><span style="color: #000000;"><em><strong>Postgresql Remote Server Connection Configuration</strong></em></span></p>
+<p><span style="color: #000000;"><a href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/qgis_connection.png" class="group1 cboxElement"><span style="color: #000000;"><img class="aligncenter wp-image-213 size-full" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/qgis_connection.png" alt="qgis_connection" width="431" height="631"></span></a></span></p>
+<p style="text-align: center;"><span style="color: #000000;"><em><strong>QGIS Remote Server Connection Configuration</strong></em></span></p>
+<p style="text-align: left;"><span style="text-decoration: underline; color: #000000;"><strong>References:</strong></span></p>
+<ul>
+<li><span style="text-decoration: underline;"><span style="color: #0000ff; text-decoration: underline;"><a style="color: #0000ff; text-decoration: underline;" href="http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt">http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt</a></span></span></li>
+<li><span style="text-decoration: underline;"><span style="color: #0000ff; text-decoration: underline;"><a style="color: #0000ff; text-decoration: underline;" href="https://help.ubuntu.com/community/PostgreSQL">https://help.ubuntu.com/community/PostgreSQL</a></span></span></li>
+<li><span style="text-decoration: underline;"><span style="color: #0000ff; text-decoration: underline;"><a style="color: #0000ff; text-decoration: underline;" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04">https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04</a></span></span></li>
+<li><span style="text-decoration: underline;"><span style="color: #0000ff; text-decoration: underline;"><a style="color: #0000ff; text-decoration: underline;" href="https://www.digitalocean.com/pricing/">https://www.digitalocean.com/pricing/</a></span></span></li>
+<li><span style="text-decoration: underline;"><span style="color: #0000ff; text-decoration: underline;"><a style="color: #0000ff; text-decoration: underline;" href="http://www.nano-editor.org/">http://www.nano-editor.org/</a></span></span></li>
+<li><span style="text-decoration: underline;"><span style="color: #0000ff; text-decoration: underline;"><a style="color: #0000ff; text-decoration: underline;" href="http://boundlessgeo.com/solutions/opengeo-suite/">http://boundlessgeo.com/solutions/opengeo-suite/</a></span></span></li>
+</ul>
+<div class="linkedin">
+<div class="card">
+<div id="cartouche">
+<div><a href="https://www.linkedin.com/in/negengec"><img class="picture alignleft" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/0_xrBNYAQCSc8DYY9TxBNbYtBTDnnuyjbTgc_IYtQt-PCg_MK319bZr--yi49t0VQSY1vElzZoafXN" width="50px"></a></div>
+<div class="name"><a href="https://www.linkedin.com/in/negengec">Necip Enes Gengeç</a></div>
+<div class="headline">Site Research Statistic Analist at Tesco Kipa</div>
+</div>
+</div>
+</div>
+<!-- Simple Share Buttons Adder (5.1) simplesharebuttons.com --><div class="ssba"><div style="text-align:left">Share<a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/" target="_blank"><img src="http://www.negengec.com/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook" style="display: none !important;"></a><span class="ssba_sharecount">0</span><a class="ssba_linkedin_share ssba_share_link" href="http://www.linkedin.com/shareArticle?mini=true&url=http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/" target="_blank"><img src="http://www.negengec.com/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/linkedin.png" title="Linkedin" class="ssba" alt="Share on LinkedIn" style="display: none !important;"></a><span class="ssba_sharecount">12</span><a class="ssba_google_share" href="https://plus.google.com/share?url=http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/" target="_blank"><img src="http://www.negengec.com/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+" style="display: none !important;"></a><span class="ssba_sharecount">1</span><a class="ssba_twitter_share" href="http://twitter.com/share?url=http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/&text=How+to+install+PostGIS+on+Ubuntu+14.04+with+remote+connections+enabled+" target="_blank"><img src="http://www.negengec.com/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter" style="display: none !important;"></a><span class="ssba_sharecount">1</span><a class="ssba_email_share" href="mailto:?Subject=How%20to%20install%20PostGIS%20on%20Ubuntu%2014.04%20with%20remote%20connections%20enabled&Body=%20http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/"><img src="http://www.negengec.com/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/email.png" title="Email" class="ssba" alt="Email this to someone" style="display: none !important;"></a></div></div>
+<!-- BEGIN License added by Creative-Commons-Configurator plugin for WordPress -->
+<p class="cc-block">Copyright © 2014 - All Rights Reserved</p>
+<!-- END License added by Creative-Commons-Configurator plugin for WordPress -->
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="http://www.negengec.com/category/postgis/" rel="category tag">PostGIS</a>, <a href="http://www.negengec.com/category/qgis/" rel="category tag">QGIS</a> and tagged <a href="http://www.negengec.com/tag/pgadmin/" rel="tag">pgAdmin</a>, <a href="http://www.negengec.com/tag/postgis/" rel="tag">PostGIS</a>, <a href="http://www.negengec.com/tag/postgresql/" rel="tag">Postgresql</a>, <a href="http://www.negengec.com/tag/qgis/" rel="tag">QGIS</a>, <a href="http://www.negengec.com/tag/remote-connection/" rel="tag">Remote Connection</a>. Bookmark the <a href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec.html" title="Permalink to How to install PostGIS on Ubuntu 14.04 with remote connections enabled" rel="bookmark">permalink</a>.
+			</footer><!-- .entry-meta -->
+</article><!-- #post-183 -->
+
+					<nav role="navigation" id="nav-below" class="site-navigation post-navigation">
+		<h1 class="assistive-text">Post navigation</h1>
+
+	
+		<div class="nav-previous"><a href="http://www.negengec.com/2014/06/get-involved-with-the-qgis-comunity-with-testing-the-new-2-4-release/" rel="prev"><span class="meta-nav">←</span> Get involved with the QGIS community with testing the new 2.4 Release</a></div>		<div class="nav-next"><a href="http://www.negengec.com/2014/09/postgis-2-1-4-released/" rel="next">PostGIS 2.1.4 Released <span class="meta-nav">→</span></a></div>
+	
+	</nav><!-- #nav-below -->
+	
+				
+
+	<div id="comments" class="comments-area">
+
+	
+			<h2 class="comments-title">
+			3 thoughts on “<span>How to install PostGIS on Ubuntu 14.04 with remote connections enabled</span>”		</h2>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1" id="li-comment-1">
+		<article id="comment-1" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/dab343bc846a8ee12ca4a0c100487162" class="avatar avatar-40 photo grav-hashed grav-hijack" height="40" width="40" id="grav-dab343bc846a8ee12ca4a0c100487162-0">					<cite class="fn"><a href="http://www.xloof.nl/" rel="external nofollow" class="url">Rinuxl</a></cite> <span class="says">says:</span>				</div><!-- .comment-author .vcard -->
+				
+				<div class="comment-meta commentmetadata">
+					<a href="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/#comment-1"><time pubdate="" datetime="2014-11-26T21:42:37+00:00">
+					26/11/2014 at 21:42					</time></a>
+									</div><!-- .comment-meta .commentmetadata -->
+			</footer>
+
+			<div class="comment-content"><p>great job, helps me a lot!<br>
+2 remarks<br>
+you wrote:<br>
+<code>sudo apt-get install postgresql-9.3 pgadmin3 postgresql-contrib<br>
+sudo apt-get install postgresql-9.3-postgis-2.1 pgadmin3 postgresql-contrib </code><code><br>
+imho pgadmin3 and postgresql-contrib in te second line are obsolete.<br>
+you wrote twice:<br>
+</code><code>sudo su - postgres</code><br>
+This should be <code>sudo su - postgres psql postgrs</code><br>
+Thanks a lot</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/?replytocom=1#respond" onclick="return addComment.moveForm( &quot;comment-1&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;183&quot; )" aria-label="Reply to Rinuxl">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-2">
+		<article id="comment-2" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/dab343bc846a8ee12ca4a0c100487162" class="avatar avatar-40 photo grav-hashed grav-hijack" height="40" width="40" id="grav-dab343bc846a8ee12ca4a0c100487162-1">					<cite class="fn"><a href="http://www.xloof.nl/" rel="external nofollow" class="url">Rinuxl</a></cite> <span class="says">says:</span>				</div><!-- .comment-author .vcard -->
+				
+				<div class="comment-meta commentmetadata">
+					<a href="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/#comment-2"><time pubdate="" datetime="2014-11-26T21:44:00+00:00">
+					26/11/2014 at 21:44					</time></a>
+									</div><!-- .comment-meta .commentmetadata -->
+			</footer>
+
+			<div class="comment-content"><p>of course I meant : sudo su – postgres psql postgres</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/?replytocom=2#respond" onclick="return addComment.moveForm( &quot;comment-2&quot;, &quot;2&quot;, &quot;respond&quot;, &quot;183&quot; )" aria-label="Reply to Rinuxl">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-nagellette bypostauthor even thread-odd thread-alt depth-1" id="li-comment-3">
+		<article id="comment-3" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/62258b129b15c7e3fc604700c9ed9b91" class="avatar avatar-40 photo grav-hashed grav-hijack" height="40" width="40" id="grav-62258b129b15c7e3fc604700c9ed9b91-0">					<cite class="fn"><a href="http://negengec.com/" rel="external nofollow" class="url">Necip</a></cite> <span class="says">says:</span>				</div><!-- .comment-author .vcard -->
+				
+				<div class="comment-meta commentmetadata">
+					<a href="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/#comment-3"><time pubdate="" datetime="2014-11-27T11:24:42+00:00">
+					27/11/2014 at 11:24					</time></a>
+									</div><!-- .comment-meta .commentmetadata -->
+			</footer>
+
+			<div class="comment-content"><p>Thank you I am glad that this helped someone. I’ll leave it as is since it has no harm.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/?replytocom=3#respond" onclick="return addComment.moveForm( &quot;comment-3&quot;, &quot;3&quot;, &quot;respond&quot;, &quot;183&quot; )" aria-label="Reply to Necip">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+		</ol><!-- .commentlist -->
+
+		
+	
+	
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://www.negengec.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-describedby="email-notes" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30"></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-describedby="form-allowed-tags" aria-required="true"></textarea></p>						<p class="form-allowed-tags" id="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="183" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						
+<script type="text/javascript">
+// <![CDATA[
+ref2xJS=escape(document['referrer']);
+hf1N='51c2997fe9de0f2e6c038c554985edee';
+hf1V='797e4df0e6a12c3056a6458ef1d5f40f';
+document.write("<input type='hidden' name='ref2xJS' value='"+ref2xJS+"'><input type='hidden' name='"+hf1N+"' value='"+hf1V+"'>");
+// ]]>
+</script><input type="hidden" name="ref2xJS" value="https%3A//duckduckgo.com/"><input type="hidden" name="51c2997fe9de0f2e6c038c554985edee" value="797e4df0e6a12c3056a6458ef1d5f40f"><noscript>&lt;input type="hidden" name="JSONST" value="NS1"&gt;</noscript>
+<noscript>&lt;p&gt;&lt;strong&gt;Currently you have JavaScript disabled. In order to post comments, please make sure JavaScript and Cookies are enabled, and reload the page.&lt;/strong&gt; &lt;a href="http://enable-javascript.com/" rel="nofollow external" &gt;Click here for instructions on how to enable JavaScript in your browser.&lt;/a&gt;&lt;/p&gt;</noscript>
+<p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p>					</form>
+							</div><!-- #respond -->
+			
+</div><!-- #comments .comments-area -->
+
+			
+			</div><!-- #content .site-content -->
+		<div class="googlepublisherpluginad" style="text-align: center; width: 100%; height: auto; clear: none;"><ins class="adsbygoogle" data-ad-client="ca-pub-4900061257462963" data-ad-slot="1735020332" data-ad-format="auto" data-tag-origin="pso" style="display: block; margin: 10px auto; background-color: transparent;"></ins></div></div><!-- #primary .content-area -->
+
+		<div id="secondary" class="widget-area" role="complementary">
+						<aside id="collapsarch-2" class="widget widget_collapsarch"><h1 class="widget-title">Archives</h1><ul id="widget-collapsarch-2-top" class="collapsing archives list">
+  <li class="collapsing archives expand"><span title="click to expand" class="collapsing archives expand"><span class="sym">►</span></span><a href="http://www.negengec.com/2014/">2014  <span class="yearCount">(7)</span>
+</a>
+    <div style="display:none" id="collapsArch-2014:2">
+    <ul>
+      <li class="collapsing archives expand"><span title="click to expand" class="collapsing archives expand"><span class="sym">►</span></span><a href="http://www.negengec.com/2014/10/" title="October">October  <span class="monthCount">(1)</span>
+</a>
+        <div style="display:none" id="collapsArch-2014-10:2">
+       </div>
+      </li> <!-- close expanded month --> 
+      <li class="collapsing archives expand"><span title="click to expand" class="collapsing archives expand"><span class="sym">►</span></span><a href="http://www.negengec.com/2014/09/" title="September">September  <span class="monthCount">(3)</span>
+</a>
+        <div style="display:none" id="collapsArch-2014-9:2">
+       </div>
+      </li> <!-- close expanded month --> 
+      <li class="collapsing archives expand"><span title="click to expand" class="collapsing archives expand"><span class="sym">►</span></span><a href="http://www.negengec.com/2014/08/" title="August">August  <span class="monthCount">(1)</span>
+</a>
+        <div style="display:none" id="collapsArch-2014-8:2">
+       </div>
+      </li> <!-- close expanded month --> 
+      <li class="collapsing archives expand"><span title="click to expand" class="collapsing archives expand"><span class="sym">►</span></span><a href="http://www.negengec.com/2014/06/" title="June">June  <span class="monthCount">(1)</span>
+</a>
+        <div style="display:none" id="collapsArch-2014-6:2">
+       </div>
+      </li> <!-- close expanded month --> 
+      <li class="collapsing archives expand"><span title="click to expand" class="collapsing archives expand"><span class="sym">►</span></span><a href="http://www.negengec.com/2014/05/" title="May">May  <span class="monthCount">(1)</span>
+</a>
+        <div style="display:none" id="collapsArch-2014-5:2">
+        </div>
+    </li> <!-- close month -->
+  </ul></div></li> <!-- end of collapsing archives --><li style="display:none"><script type="text/javascript">
+// <![CDATA[
+/* These variables are part of the Collapsing Archives Plugin
+   * version: 2.0.2
+   * revision: $Id: collapsArch.php 996279 2014-09-24 19:02:53Z robfelty $
+   * Copyright 2008 Robert Felty (robfelty.com)
+           */
+try { collapsItems['catTest'] = 'test'; } catch (err) { collapsItems = new Object(); }
+collapsItems['collapsArch-2014-10:2'] = '<ul>          <li class=\'collapsing archives item\'><a href=\'http://www.negengec.com/2014/10/yandex-geocoder/\' title=\'Yandex Geocoder\'>Yandex Geocoder</a></li></ul>';
+collapsItems['collapsArch-2014-9:2'] = '<ul>          <li class=\'collapsing archives item\'><a href=\'http://www.negengec.com/2014/09/run-geoserver-ubuntu-tomcat7/\' title=\'How to run Geoserver on Ubuntu with Tomcat7\'>How to run Geoserver on Ubuntu with Tomcat7</a></li>          <li class=\'collapsing archives item\'><a href=\'http://www.negengec.com/2014/09/creating-auto-incrementing-unique-field-postgresql/\' title=\'Creating an auto incrementing unique field in Postgresql\'>Creating an auto incrementing unique field in Postgresql</a></li>          <li class=\'collapsing archives item\'><a href=\'http://www.negengec.com/2014/09/postgis-2-1-4-released/\' title=\'PostGIS 2.1.4 Released\'>PostGIS 2.1.4 Released</a></li></ul>';
+collapsItems['collapsArch-2014-8:2'] = '<ul>          <li class=\'collapsing archives item\'><a href=\'http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/\' title=\'How to install PostGIS on Ubuntu 14.04 with remote connections enabled\'>How to install PostGIS on Ubuntu 14.04 with remote connections enabled</a></li></ul>';
+collapsItems['collapsArch-2014-6:2'] = '<ul>          <li class=\'collapsing archives item\'><a href=\'http://www.negengec.com/2014/06/get-involved-with-the-qgis-comunity-with-testing-the-new-2-4-release/\' title=\'Get involved with the QGIS community with testing the new 2.4 Release\'>Get involved with the QGIS community with testing the new 2.4 Release</a></li></ul>';
+collapsItems['collapsArch-2014-5:2'] = '<ul>          <li class=\'collapsing archives item\'><a href=\'http://www.negengec.com/2014/05/radial-band-tool-plugin-on-qgis/\' title=\'Radial Band Tool Plugin on QGIS\'>Radial Band Tool Plugin on QGIS</a></li></ul>';
+/*  Collapse Functions, version 2.0
+ *
+ *--------------------------------------------------------------------------*/
+String.prototype.trim = function() {
+  return this.replace(/^\s+|\s+$/g,"");
+}
+
+function createCookie(name,value,days) {
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    var expires = "; expires="+date.toGMTString();
+  } else {
+    var expires = "";
+  }
+  document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') {
+      c = c.substring(1,c.length);
+    }
+    if (c.indexOf(nameEQ) == 0) {
+      return c.substring(nameEQ.length,c.length);
+    }
+  }
+  return null;
+}
+
+function eraseCookie(name) {
+  createCookie(name,"",-1);
+}
+
+function addExpandCollapse(id, expandSym, collapseSym, accordion) {
+  jQuery('#' + id + ' span.expand').live('click', function() {
+    if (accordion==1) {
+      var theDiv = jQuery(this).parent().parent().find('span.collapse').parent().children('div');
+      jQuery(theDiv).hide('normal');
+      jQuery(this).parent().parent().find('span.collapse').removeClass('collapse').addClass('expand');
+      createCookie(theDiv.attr('id'), 0, 7);
+      jQuery(this).parent().parent().find('span.sym').html(expandSym);
+      //jQuery('#' + id + ' .expand .sym').html(expandSym);
+    }
+    expandArch(this, expandSym, collapseSym);
+    return false;
+  });
+  jQuery('#' + id + ' span.collapse').live('click', function() {
+    collapseArch(this, expandSym, collapseSym);
+    return false;
+  });
+}
+
+function expandArch(symbol, expandSym, collapseSym) {
+    var theDiv = jQuery(symbol).parent().children('div');
+    try {
+      if (collapsItems[jQuery(theDiv).attr('id')]!='') {
+        jQuery(theDiv).html(collapsItems[jQuery(theDiv).attr('id')]).show('normal');
+      } else {
+        jQuery(theDiv).show('normal');
+      }
+    } catch (err) {
+      jQuery(theDiv).show('normal');
+    }
+    jQuery(symbol).removeClass('expand').addClass('collapse');
+    jQuery(symbol).children('.sym').html(collapseSym);
+  createCookie(theDiv.attr('id'), 1, 7);
+}
+function collapseArch(symbol, expandSym, collapseSym) {
+    var theDiv = jQuery(symbol).parent().children('div');
+    jQuery(theDiv).hide('normal');
+    jQuery(symbol).removeClass('collapse').addClass('expand');
+    jQuery(symbol).children('.sym').html(expandSym);
+  createCookie(theDiv.attr('id'), 0, 7);
+}
+addExpandCollapse('widget-collapsarch-2-top','&#x25BA;', '&#x25BC;', 0)// ]]>
+</script></li>
+</ul>
+</aside><aside id="categories-2" class="widget widget_categories"><h1 class="widget-title">Categories</h1>		<ul>
+	<li class="cat-item cat-item-31"><a href="http://www.negengec.com/category/datatools/">Data&amp;Tools</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="http://www.negengec.com/category/geoserver/">Geoserver</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="http://www.negengec.com/category/postgis/">PostGIS</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="http://www.negengec.com/category/qgis/">QGIS</a>
+</li>
+		</ul>
+</aside><aside id="blog_subscription-2" class="widget jetpack_subscription_widget"><h1 class="widget-title"><label for="subscribe-field">Subscribe to Blog via Email</label></h1>
+		<form action="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-2">
+			<div id="subscribe-text"><p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+</div><p>Join 1 other subscriber</p>
+
+			<p id="subscribe-email">
+				<label id="jetpack-subscribe-label" for="subscribe-field" style="clip: rect(1px 1px 1px 1px); position: absolute; height: 1px; width: 1px; overflow: hidden;">
+					Email Address				</label>
+				<input type="email" name="email" value="Email Address" id="subscribe-field" placeholder="Email Address">
+			</p>
+
+			<p id="subscribe-submit">
+				<input type="hidden" name="action" value="subscribe">
+				<input type="hidden" name="source" value="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/">
+				<input type="hidden" name="sub-type" value="widget">
+				<input type="hidden" name="redirect_fragment" value="blog_subscription-2">
+								<input type="submit" value="Subscribe" name="jetpack_subscriptions_widget">
+			</p>
+		</form>
+
+		<script>
+			( function( d ) {
+				if ( ( 'placeholder' in d.createElement( 'input' ) ) ) {
+					var label = d.getElementById( 'jetpack-subscribe-label' );
+ 					label.style.clip 	 = 'rect(1px, 1px, 1px, 1px)';
+ 					label.style.position = 'absolute';
+ 					label.style.height   = '1px';
+ 					label.style.width    = '1px';
+ 					label.style.overflow = 'hidden';
+				}
+			} ) ( document );
+		</script>
+
+		
+</aside><aside id="twitter_timeline-2" class="widget widget_twitter_timeline"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-timeline twitter-timeline-rendered" allowfullscreen="" style="width: 1px; height: 0px; border: none; position: absolute; visibility: hidden;"></iframe><a class="twitter-timeline" data-widget-id="510044881859784704" data-theme="light" data-link-color="#f96e5b" data-border-color="#e8e8e8" data-tweet-limit="3" width="225" height="300" lang="EN" data-twttr-rendered="true">My Tweets</a></aside>		</div><!-- #secondary .widget-area -->
+
+		<div id="tertiary" class="widget-area" role="supplementary">
+				<aside id="tag_cloud-4" class="widget widget_tag_cloud"><h1 class="widget-title">Tags</h1><div class="tagcloud"><a href="http://www.negengec.com/tag/buffer-analysis/" class="tag-link-22" title="1 topic" style="font-size: 8pt;">Buffer analysis</a>
+<a href="http://www.negengec.com/tag/geocode/" class="tag-link-32" title="1 topic" style="font-size: 8pt;">geocode</a>
+<a href="http://www.negengec.com/tag/geoserver/" class="tag-link-30" title="1 topic" style="font-size: 8pt;">Geoserver</a>
+<a href="http://www.negengec.com/tag/json/" class="tag-link-35" title="1 topic" style="font-size: 8pt;">json</a>
+<a href="http://www.negengec.com/tag/pgadmin/" class="tag-link-26" title="1 topic" style="font-size: 8pt;">pgAdmin</a>
+<a href="http://www.negengec.com/tag/plugin/" class="tag-link-17" title="1 topic" style="font-size: 8pt;">Plugin</a>
+<a href="http://www.negengec.com/tag/postgis/" class="tag-link-25" title="3 topics" style="font-size: 18.5pt;">PostGIS</a>
+<a href="http://www.negengec.com/tag/postgresql/" class="tag-link-24" title="2 topics" style="font-size: 14.3pt;">Postgresql</a>
+<a href="http://www.negengec.com/tag/pyqgis/" class="tag-link-18" title="1 topic" style="font-size: 8pt;">pyqgis</a>
+<a href="http://www.negengec.com/tag/python/" class="tag-link-34" title="1 topic" style="font-size: 8pt;">Python</a>
+<a href="http://www.negengec.com/tag/qgis/" class="tag-link-16" title="4 topics" style="font-size: 22pt;">QGIS</a>
+<a href="http://www.negengec.com/tag/qgis-rc/" class="tag-link-23" title="1 topic" style="font-size: 8pt;">QGIS-RC</a>
+<a href="http://www.negengec.com/tag/remote-connection/" class="tag-link-27" title="1 topic" style="font-size: 8pt;">Remote Connection</a>
+<a href="http://www.negengec.com/tag/tomcat/" class="tag-link-29" title="1 topic" style="font-size: 8pt;">Tomcat</a>
+<a href="http://www.negengec.com/tag/yandex-api/" class="tag-link-33" title="1 topic" style="font-size: 8pt;">yandex API</a></div>
+</aside>		</div><!-- #tertiary .widget-area -->	</div>
+	<!--WP Code Highlight_start-->
+	<script type="text/javascript">
+		window.onload = function(){prettyPrint();};
+	</script>
+	<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/wp-code-highlight.js"></script>
+	<!--WP Code Highlight_end-->
+
+	</div><!-- #main .site-main -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="footer_container">
+    <div class="section group">
+    
+	<div class="col span_1_of_3">
+    <div id="categorizedtagcloudwidget-2" class="widget widget_categorizedtagcloudwidget"><h4>Categorized Tag Cloud</h4>
+    <div id="categorized-tag-cloud"><span id="categorized-tag-cloud-el-1"><a href="http://www.negengec.com/tag/geocode/" class="tag-link-32" title="1 topic" style="font-size: 7pt;">geocode</a></span> <span id="categorized-tag-cloud-el-2"><a href="http://www.negengec.com/tag/postgis/" class="tag-link-25" title="3 topics" style="font-size: 12.25pt;">PostGIS</a></span> <span id="categorized-tag-cloud-el-3"><a href="http://www.negengec.com/tag/pyqgis/" class="tag-link-18" title="1 topic" style="font-size: 7pt;">pyqgis</a></span> <span id="categorized-tag-cloud-el-4"><a href="http://www.negengec.com/tag/qgis/" class="tag-link-16" title="4 topics" style="font-size: 14pt;">QGIS</a></span> <span id="categorized-tag-cloud-el-5"><a href="http://www.negengec.com/tag/postgresql/" class="tag-link-24" title="2 topics" style="font-size: 10.15pt;">Postgresql</a></span> <span id="categorized-tag-cloud-el-6"><a href="http://www.negengec.com/tag/geoserver/" class="tag-link-30" title="1 topic" style="font-size: 7pt;">Geoserver</a></span> <span id="categorized-tag-cloud-el-7"><a href="http://www.negengec.com/tag/python/" class="tag-link-34" title="1 topic" style="font-size: 7pt;">Python</a></span> <span id="categorized-tag-cloud-el-8"><a href="http://www.negengec.com/tag/qgis-rc/" class="tag-link-23" title="1 topic" style="font-size: 7pt;">QGIS-RC</a></span> <span id="categorized-tag-cloud-el-9"><a href="http://www.negengec.com/tag/tomcat/" class="tag-link-29" title="1 topic" style="font-size: 7pt;">Tomcat</a></span> <span id="categorized-tag-cloud-el-10"><a href="http://www.negengec.com/tag/plugin/" class="tag-link-17" title="1 topic" style="font-size: 7pt;">Plugin</a></span> <span id="categorized-tag-cloud-el-11"><a href="http://www.negengec.com/tag/remote-connection/" class="tag-link-27" title="1 topic" style="font-size: 7pt;">Remote Connection</a></span> <span id="categorized-tag-cloud-el-12"><a href="http://www.negengec.com/tag/json/" class="tag-link-35" title="1 topic" style="font-size: 7pt;">json</a></span> <span id="categorized-tag-cloud-el-13"><a href="http://www.negengec.com/tag/buffer-analysis/" class="tag-link-22" title="1 topic" style="font-size: 7pt;">Buffer analysis</a></span> <span id="categorized-tag-cloud-el-14"><a href="http://www.negengec.com/tag/pgadmin/" class="tag-link-26" title="1 topic" style="font-size: 7pt;">pgAdmin</a></span> <span id="categorized-tag-cloud-el-15"><a href="http://www.negengec.com/tag/yandex-api/" class="tag-link-33" title="1 topic" style="font-size: 7pt;">yandex API</a></span> </div>
+  	<style>
+  	
+  		#categorized-tag-cloud a, #categorized-tag-cloud a:visited { text-decoration:none; }
+      #categorized-tag-cloud a:hover { text-decoration:none; color:black; }
+  		#categorized-tag-cloud-el-1 a, #categorized-tag-cloud-el-1 a:visited { color:#e06; }
+  		#categorized-tag-cloud-el-2 a, #categorized-tag-cloud-el-2 a:visited { color:#433; }
+  		#categorized-tag-cloud-el-3 a, #categorized-tag-cloud-el-3 a:visited { color:#6be; }
+  		#categorized-tag-cloud-el-4 a, #categorized-tag-cloud-el-4 a:visited { color:#22b; }
+  		#categorized-tag-cloud-el-5 a, #categorized-tag-cloud-el-5 a:visited { color:#f26; }
+  		#categorized-tag-cloud-el-6 a, #categorized-tag-cloud-el-6 a:visited { color:#ef8; }
+  		#categorized-tag-cloud-el-7 a, #categorized-tag-cloud-el-7 a:visited { color:#719; }
+  		#categorized-tag-cloud-el-8 a, #categorized-tag-cloud-el-8 a:visited { color:#1000; }
+  		#categorized-tag-cloud-el-9 a, #categorized-tag-cloud-el-9 a:visited { color:#dad; }
+  		#categorized-tag-cloud-el-10 a, #categorized-tag-cloud-el-10 a:visited { color:#bd3; }
+  		#categorized-tag-cloud-el-11 a, #categorized-tag-cloud-el-11 a:visited { color:#83d; }
+  		#categorized-tag-cloud-el-12 a, #categorized-tag-cloud-el-12 a:visited { color:#e87; }
+  		#categorized-tag-cloud-el-13 a, #categorized-tag-cloud-el-13 a:visited { color:#f76; }
+  		#categorized-tag-cloud-el-14 a, #categorized-tag-cloud-el-14 a:visited { color:#fd3; }
+  		#categorized-tag-cloud-el-15 a, #categorized-tag-cloud-el-15 a:visited { color:#e82; }
+  	</style></div>  
+		</div>
+        
+	<div class="col span_1_of_3">
+	<div id="search-2" class="widget widget_search"><h4>Search</h4>	<form method="get" id="searchform" action="http://www.negengec.com/" role="search">
+		<label for="s" class="assistive-text">Search</label>
+		<input type="text" class="field" name="s" value="" id="s" placeholder="Search …">
+		<input type="submit" class="submit" name="submit" id="searchsubmit" value="Search">
+	</form>
+</div> 
+
+	</div>
+    
+	<div class="col span_1_of_3">
+	<div id="meta-2" class="widget widget_meta"><h4>Meta</h4>			<ul>
+			<li><a rel="nofollow" href="http://www.negengec.com/wp-login.php?action=register">Register</a></li>			<li><a rel="nofollow" href="http://www.negengec.com/wp-login.php">Log in</a></li>
+			<li><a href="http://www.negengec.com/feed/">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://www.negengec.com/comments/feed/">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>			</ul>
+</div> 
+	</div>
+	</div>
+        </div><!-- footer container -->
+        <div class="site-info">
+            <a href="http://www.templateexpress.com/discovery-theme/">
+            Discovery WordPress Theme</a>
+            Powered By WordPress 		</div><!-- .site-info -->
+	</footer><!-- #colophon .site-footer -->
+    <a href="http://www.negengec.com/2014/08/how-to-install-postgis-on-ubuntu-14-04-with-remote-connections-enabled/#top" id="smoothup" style="display: inline;"></a>
+</div><!-- #page .hfeed .site -->
+</div><!-- end of wrapper -->
+<script><!--
+dynamicgoogletags.update();
+//--></script>	<div style="display:none">
+	<div class="grofile-hash-map-dab343bc846a8ee12ca4a0c100487162">
+	</div>
+	<div class="grofile-hash-map-62258b129b15c7e3fc604700c9ed9b91">
+	</div>
+	</div>
+		<script type="text/javascript">
+			!function(d,s,id){
+				var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+				if(!d.getElementById(id)){
+					js=d.createElement(s);
+					js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+					fjs.parentNode.insertBefore(js,fjs);
+				}
+			}(document,"script","twitter-wjs");
+		</script>
+		<link rel="stylesheet" id="style-name-css" href="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/colorbox-1.css" type="text/css" media="all">
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/wpgroho.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/small-menu.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/smoothscroll.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var FB_WP=FB_WP||{};FB_WP.queue={_methods:[],flushed:false,add:function(fn){FB_WP.queue.flushed?fn():FB_WP.queue._methods.push(fn)},flush:function(){for(var fn;fn=FB_WP.queue._methods.shift();){fn()}FB_WP.queue.flushed=true}};window.fbAsyncInit=function(){FB.init({"xfbml":true});if(FB_WP && FB_WP.queue && FB_WP.queue.flush){FB_WP.queue.flush()}}
+/* ]]> */
+</script>
+<script type="text/javascript">(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="http:\/\/connect.facebook.net\/en_US\/all.js";fjs.parentNode.insertBefore(js,fjs)}(document,"script","facebook-jssdk"));</script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/custom.js"></script>
+<script type="text/javascript" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/jquery.colorbox.js"></script>
+
+	<script src="http://stats.wp.com/e-201501.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:3.3',blog:'73222061',post:'183',tz:'2'});
+	var load_cmc = function(){linktracker_init(73222061,183,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/7r8gQb8MIqE.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./How to install PostGIS on Ubuntu 14.04 with remote connections enabled   Necip Enes Gengec_files/7r8gQb8MIqE(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" style="display: none;"></iframe><script src="https://cdn.syndication.twimg.com/widgets/timelines/510044881859784704?domain=www.negengec.com&lang=en&t=1577991&callback=twttr.tfw.callbacks.tl_510044881859784704_1&suppress_response_codes=true" async=""></script><div id="infoLocalCookies" style="z-index:1000; border:1px solid black; opacity:0.9;background-color:#999999;width:100%;position:fixed;bottom:0px;color:#EEEEEE;">   <p style="text-align:center">This site uses cookies for anonymous statistics. These statistics are used for local use only. If you prefer, you may refuse these cookies. <input type="button" onclick="acceptLocalCookies()" value="Accept"> or <input type="button" onclick="refusLocalCookies()" value="Refuse"></p></div></body></html>
