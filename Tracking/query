@@ -9,3 +9,12 @@ order by ST_Distance(latlon_point, transform(GeomFromText('POINT(80.214921 6.050
 limit 50
 
 
+
+
+SELECT *
+FROM geoname
+WHERE 
+st_dwithin(latlon_point, transform(GeomFromText('POINT(80.234851 6.063425)',4326),2163),5000) 
+and fcode='PPLA'
+order by ST_Distance(latlon_point, transform(GeomFromText('POINT(80.234851 6.063425)',4326),2163)) 
+limit 1
