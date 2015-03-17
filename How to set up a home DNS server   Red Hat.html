@@ -1,0 +1,1047 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0076)http://www.redhat.com/magazine/025nov06/features/dns/?intcmp=bcm_edmsept_007 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>How to set up a home DNS server | Red Hat</title>
+<link rel="SHORTCUT ICON" href="http://www.redhat.com/favicon.ico">
+<link rel="stylesheet" type="text/css" media="screen" href="http://www.redhat.com/s/master.css">
+<link rel="stylesheet" type="text/css" media="print" href="http://www.redhat.com/s/print.css">
+<link rel="stylesheet" href="http://www.redhat.com/j/lib/jquery/plugins/fancybox/source/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen">
+
+		<link href="./How to set up a home DNS server   Red Hat_files/global.css" rel="stylesheet" media="screen" type="text/css">
+		<link rel="stylesheet" type="text/css" media="all" href="http://www.redhat.com/s/fonts/webfonts.css">
+		<script type="text/javascript" src="./How to set up a home DNS server   Red Hat_files/jquery-1.7.2.min.js"></script><style>[href^="http://www.faceporn.net/free?"],
+[href^="http://www.linkbucks.com/referral/"],
+#header + #content > #left > #rlblock_left,
+#content > #right > .dose > .dosesingle,
+#content > #center > .dose > .dosesingle
+{display:none !important;}</style>
+		<script type="text/javascript" src="./How to set up a home DNS server   Red Hat_files/jquery-ui-1.8.4.custom.min.js"></script>
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/jquery.cycle.min.js"></script>
+		<!-- <script type="text/javascript" src="/j/lib/jquery/plugins/jquery.hoverIntent.js"></script> -->
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/fancybox/source/jquery.fancybox.pack.js?v=2.1.0"></script>
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.3"></script>
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/jquery.vallenato.accordion.js"></script>
+		<link rel="stylesheet" href="./How to set up a home DNS server   Red Hat_files/style.css" type="text/css" media="screen">
+		<script type="text/javascript" src="./How to set up a home DNS server   Red Hat_files/projekktor-1.0.20r63.min.js"> </script>
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/jquery.lightbox_me.js"> </script>
+    	<script type="text/javascript" src="./How to set up a home DNS server   Red Hat_files/jquery.selectbox-0.5.js"></script>
+    	<script src="./How to set up a home DNS server   Red Hat_files/jquery.tools-1.2.7.min.js"></script>
+    	<script type="text/javascript" src="./How to set up a home DNS server   Red Hat_files/init.js"></script>
+		<script type="text/javascript">  
+		  $(document).ready(function(){
+		
+		  $('#showCountryLang_a').click(function(){
+			   $('#countryLanguage_OverLay').css("display","block");
+		  });
+		
+		  $('#hideCountryLang_a').click(function(){
+			   $('#countryLanguage_OverLay').css("display","none");
+		  });	 
+			 
+		   $('.source').click(function() {
+				   
+					$('.target').css("display","none");
+					 $(this).find('div.target').css("display","block");
+						$('countryLanguage_OverLay').css("display","block");
+			  });
+		 });
+		 
+//NOTE: tabberClassRename() and tabber() work together
+//tabberClassRename() gets all of the ids that are children of tab content and creates classes to setup tabber().  This setup is required so the page doesnt jump to anchors when the tabs are clicked but still shows the anchors in the url bar of the browser for deep linking.
+
+function tabberClassRename() {
+	var tabcontent=document.getElementById('tabcontent').getElementsByTagName('div');
+	for(i=0;i<tabcontent.length;i++) {
+		if (tabcontent[i].parentNode.id=='tabcontent') {
+			tabcontent[i].className=tabcontent[i].id;
+		}
+	}
+}
+
+function tabber(id) {
+	var tabber=document.getElementById('tabber').getElementsByTagName('a');
+	var tabcontent=document.getElementById('tabcontent').getElementsByTagName('div');
+	var tabid=new Array();
+	for (i=0;i<tabcontent.length;i++) {
+		if (tabcontent[i].parentNode.id=='tabcontent') {
+			tabid[i]=tabcontent[i].className;
+		}
+	}
+	if (!(id)) {
+		if (!(location.hash)) {
+			id=tabcontent[0].className;
+		} else {
+			id=location.hash.split('#');
+			id=id[1];
+			if (tabid.indexOf(id)==-1) {
+				id=tabcontent[0].className;
+			}
+		}
+	}
+	for (i=0;i<tabber.length;i++) {
+		selected=tabber[i].href.split('#');
+		if (selected[1]==id) {
+			tabber[i].className='selected';
+			tabber[i].parentNode.className='selected';
+		} else {
+			tabber[i].className='default';
+			tabber[i].parentNode.className='default';
+		}
+	}
+	for(i=0;i<tabcontent.length;i++) {
+		if (tabcontent[i].parentNode.id=='tabcontent') {
+			if(tabcontent[i].className!=id) {
+				tabcontent[i].style.display='none';
+				tabcontent[i].id==tabcontent[i].className;
+			} else {
+				tabcontent[i].style.display='block';
+				tabcontent[i].id='';
+			}
+		}
+	}
+}
+      </script>	
+
+<meta name="keywords" content="enterprise, open source, linux, virtualization, open source servers, open source desktop, open source systems management, security management, open source infrastructure, open source data center datacenter migration, red hat certification training, open source server operating systems, print servers, linux mail servers, database servers, file servers, java application software, linux and open source consulting services">
+
+<script type="text/javascript" src="http://www.redhat.com/j/jquery_rh/promoFlipper_cycle_jquery.js">
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="http://www.redhat.com/s/rhmag025.css">
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.redhat.com/magazine/rss20.xml">
+
+
+<script type="text/javascript" id="s_s:0:Integrate:s_2_Integrate_Demandbase_get_0" defer="" src="http://api.demandbase.com/api/v2/ip.js?key=b6b603b47ded9a3eff17c78423bbc773b9817cf6&var=s_2_Integrate_Demandbase_get_0&rnd=2650450589138"></script></head>
+
+
+	<body id="mainseven" class="en_US training ext bodyCloud">
+	<div id="container">
+		<div id="shell-top">
+			<div class="wrap">
+				<div id="header">
+					<div id="logo"><a href="http://www.redhat.com/">Redhat</a></div>
+					
+	    <script type="text/javascript">
+	    function submitLogin() {
+	    document.forms["loginForm_new"].submit();
+	    }
+	    function getCookie(NameOfCookie)
+	    { if (document.cookie.length > 0)
+	    { begin = document.cookie.indexOf(NameOfCookie+"=");
+	    if (begin != -1)
+	    { begin += NameOfCookie.length+1;
+	    end = document.cookie.indexOf(";", begin);
+	    if (end == -1) end = document.cookie.length;
+	    return unescape(document.cookie.substring(begin, end)); }
+	    }
+	    return null;
+	    }
+	    var userName = getCookie("rh_user");
+	    var foundCookie = false;
+	    if(userName != null){
+	    userName = userName.substring(userName.indexOf('|')+1,userName.length-1);
+	    userName = userName.substring(0,userName.indexOf('|'));
+	    foundCookie = true;
+	    }
+	    </script>  
+					
+        <script type="text/javascript">
+        if(foundCookie){
+        document.write("<div style='color: white; position: absolute; margin: -35px 0px 0px 0px; width: 800px; text-align:right;'>Welcome, " + userName + "&nbsp; | &nbsp; <a href='https://www.redhat.com/wapps/ugc' style='color: white'>Account Maintenance</a></div>");
+        }
+        </script><div style="color: white; position: absolute; margin: -35px 0px 0px 0px; width: 800px; text-align:right;">Welcome, oshan&nbsp; | &nbsp; <a href="https://www.redhat.com/wapps/ugc" style="color: white">Account Maintenance</a></div>
+			
+        <div id="login-pre">
+                <a id="loginhtml_a" href="https://www.redhat.com/wapps/sso/logout.html" title="Close login window" onmousedown="activateLogin()">Log out</a>
+                <script type="text/javascript">
+                        if(foundCookie){
+                                var d = document.getElementById('loginhtml_a');
+                                d.innerHTML = "Log out";
+                                d.title = "Close login window";
+                                d.href = "https://www.redhat.com/wapps/sso/logout.html"
+                                d.onmousedown = null;
+                }
+                </script>
+        </div> <!-- / Login Pre-State  --> 
+			
+					<div id="login-active">
+						<h2>Log in<span><a class="close-login" onmousedown="deactivateLogin()">X</a></span></h2>
+							<form id="loginForm_new" action="https://www.redhat.com/wapps/sso/login.html" method="post">
+							    <div>
+							    	<input value="Username" name="username" class="search-field" type="text">
+							    	<input value="Password" name="password" class="search-field" type="password">
+							    </div>
+							    <p>     
+								    <a href="http://www.redhat.com/wapps/ugc/register.html" class="arrow">Register</a><br>
+							        <a href="http://www.redhat.com/wapps/sso/lostPassword.html" class="arrow">Forgot Password</a>
+							        <!--<input type="submit" name="login-submit" value="Submit" class="login-submit"/>-->
+							        <input type="hidden" name="_flowId" value="legacy-login-flow">
+							        <input type="hidden" name="redirect" value="http://www.redhat.com/magazine/025nov06/features/dns/?intcmp=bcm_edmsept_007">
+							        <input type="hidden" name="failureRedirect" value="http://www.redhat.com/wapps/sso/login.html">
+							        <input type="hidden" name="_eventId_submit" value="Log In">
+									<input type="submit" name="login-submit" value="SUBMIT" onclick="submitLogin()">
+							        <!-- <a href="#" class="close-login">Submit</a> -->
+							    </p>
+								<div>
+									<input type="hidden" name="asp_charset" value="iso-8859-1"></div>
+							</form>
+							<script type="text/javascript">
+								document.getElementById("loginForm_new").redirect.value=window.location.href;   
+                            </script>
+							                
+					</div> <!-- / Login Active-State  -->
+				
+					<div id="masthead">
+						<div id="secondary-nav" class="second-nav-rh">
+							 <ul>
+							 	<li class="first">
+							 		<a href="http://www.redhat.com/magazine/025nov06/features/dns/?intcmp=bcm_edmsept_007#" id="showCountryLang_a">United States</a>
+							 		<div class="dropdown nav-countlang" id="countryLanguage_OverLay">
+										<div class="countryLanguage_Child1"></div>
+										<div class="countryLanguage_Child1_inner">
+											<h3>Sorry!</h3>
+											<p>This section of the site is only available in English.</p>
+											<a id="hideCountryLang_a" class="close">close</a>
+										</div>
+									</div>
+							 	</li>
+							 	<li><a href="https://access.redhat.com/home">Customer Portal</a></li>
+							 	<li><a href="http://www.redhat.com/resourcelibrary/results">Resource Library</a></li>
+							 	<li><a href="http://www.redhat.com/partners/">Find a partner</a></li>
+							 	<li><a href="http://www.redhat.com/wapps/store/catalog.html">Buy online</a></li>
+							 	<li><a href="http://www.redhat.com/contact/sales.html">Contact sales</a></li>
+							 </ul>
+						 
+						 	 <div id="search-wrap">
+							 	<div class="quick-links">
+								    <form id="quick_links_form" action="http://www.redhat.com/magazine/025nov06/features/dns/?intcmp=bcm_edmsept_007#">
+								        <input id="_input" type="text" class="selectbox" autocomplete="off" readonly="readonly" tabindex="0"><div id="_container" class="selectbox-wrapper" style="display: none; width: 151px;"><ul><li id="_input_" class="selected">I want to...</li><li id="_input_https://access.redhat.com/downloads/">Download evaluations</li><li id="_input_/about/work/">Work at Red Hat</li><li id="_input_https://access.redhat.com/wapps/support/protected/subscriptions.html">Manage my subscriptions</li><li id="_input_/about/events-webinars/">Find events and webinars</li><li id="_input_http://investors.redhat.com/">Get investor information</li><li id="_input_http://partner.redhat.com">Log in to Partner Center</li></ul></div><select name="quick_links" class="quick-links-select" style="display: none;">
+								            <option value="">I want to...</option>
+											<option value="https://access.redhat.com/downloads/">Download evaluations</option>
+											<option value="/about/work/">Work at Red Hat</option>
+											<option value="https://access.redhat.com/wapps/support/protected/subscriptions.html">Manage my subscriptions</option>
+											<option value="/about/events-webinars/">Find events and webinars</option>
+											<option value="http://investors.redhat.com/">Get investor information</option>
+											<option value="http://partner.redhat.com">Log in to Partner Center</option>
+								        </select>
+										<div><input type="hidden" name="asp_charset" value="iso-8859-1"></div>
+									</form>
+								</div>	 
+							 	<div class="search">
+								    <form id="search_form" action="http://www.redhat.com/search">
+								        <input value="Type to search" name="q" class="search-field" type="text" id="searchBox" onfocus="if (this.value==&#39;Type to search&#39;) this.value=&#39;&#39;;" onblur="if (this.value==&#39;&#39;) this.value=&#39;Type to search&#39;;">
+								        <input type="submit" name="search_submit" value="" class="search-submit">
+									    <input type="hidden" value="redhat" name="site">
+									    <input type="hidden" value="Search" name="btnG">
+									    <input type="hidden" value="external" name="client">
+									    <input type="hidden" value="xml_no_dtd" name="output">
+									    <input type="hidden" value="external" name="proxystylesheet">
+									    <input type="hidden" value="1" name="exclude_apps">
+								    	<div><input type="hidden" name="asp_charset" value="iso-8859-1"></div>
+									</form>
+								</div>
+							</div>
+						</div><!-- /secondary-nav -->
+						<div id="section-masthead"></div>	
+					    
+					
+						<div id="primary-nav">
+							<ul class="primary-nav-list">
+							
+		<li>
+			<div class="primaryNavItem with-js">
+				<a class="parent" href="http://www.redhat.com/products/">Products</a>
+				<div class="dropdown nav-products">
+					<div class="container4">
+						<div class="container3">
+							<div class="container2">
+								<div class="container1">
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/products/enterprise-linux/">Red Hat Enterprise Linux</a></h4>
+											<a href="http://www.redhat.com/products/enterprise-linux/desktop/">Desktop</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/server/">Server</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/scientific-computing/">For Scientific Computing</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/for-ibm-power/">For IBM POWER</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/for-ibm-system-z/">For IBM System z</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/for-sap/">For SAP Business Applications</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/rhn-satellite/">Red Hat Network Satellite</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/management/">Management</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/products/virtualization/">Red Hat Enterprise Virtualization</a></h4>
+											<a href="http://www.redhat.com/products/virtualization/server/">For Servers</a>
+											<a href="http://www.redhat.com/products/virtualization/desktop/">For Desktops</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/products/identity-management/">Identity Management</a></h4>
+											<a href="http://www.redhat.com/products/identity-management/certificate-system/">Red Hat Certificate System</a>
+											<a href="http://www.redhat.com/products/identity-management/directoryserver/">Red Hat Directory Server</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/products/enterprise-linux-add-ons/">Red Hat Enterprise Linux Add-Ons</a></h4>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/extended-update-support/">Extended Update Support</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/high-availability/">High Availability</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/high-performance-network/">High Performance Network</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/load-balancing/">Load Balancer</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/resilient-storage/">Resilient Storage</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/file-systems/">Scalable File System</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/smart-management/">Smart Management</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/extended-lifecycle-support/">Extended Lifecycle Support</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/products/cloud-computing/">Cloud Computing</a></h4>
+											<a href="http://www.redhat.com/products/cloud-computing/manageiq/">ManageIQ</a>
+											<a href="http://www.redhat.com/products/cloud-computing/openshift-enterprise/">OpenShift Enterprise</a>
+											<a href="http://www.redhat.com/products/cloud-computing/openstack/">OpenStack preview</a>
+											<a href="http://www.redhat.com/products/cloud-computing/cloudforms/">CloudForms</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/products/jbossenterprisemiddleware/">JBoss Enterprise Middleware</a></h4>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/web-server/">Web Server</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/developer-studio/">Developer Studio Portfolio Edition</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/operations-network/">JBoss Operations Network</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/fusesource/">FuseSource Integration Products</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/web-framework-kit/">Web Framework Kit</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/application-platform/">Application Platform</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/data-grid/">Data Grid</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/portal/">Portal Platform</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/soa/">SOA Platform</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/business-rules/">Business Rules Management System (BRMS)</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/data-services/">Data Services Platform</a>
+											
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/messaging/">Messaging</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/community-enterprise/">JBoss Community or JBoss enterprise</a>
+											
+											
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/products/mrg/">Red Hat Enterprise MRG</a></h4>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/messaging/">Messaging</a>
+											<a href="http://www.redhat.com/products/mrg/realtime/">Realtime</a>
+											<a href="http://www.redhat.com/products/mrg/grid/">Grid</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/products/storage/">Red Hat Storage Server</a></h4>
+											<a href="http://www.redhat.com/products/storage-server/on-premise/">For On-premise</a>
+											<a href="http://www.redhat.com/products/storage-server/public-cloud/">For Public Cloud</a>
+											<a href="http://www.redhat.com/products/storage-server/hybrid-cloud/">For Hybrid Cloud</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/products/allproducts.html">Products A to Z</a></h4>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		
+		<li>
+			<div class="primaryNavItem with-js">
+				<a class="parent" href="http://www.redhat.com/solutions/">Solutions</a>
+				<div class="dropdown nav-products">
+					<div class="container4">
+						<div class="container3">
+							<div class="container2">
+								<div class="container1">
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/solutions/it/">By IT challenge</a></h4>
+											<a href="http://www.redhat.com/solutions/it/application-development/">Application development</a>
+											<a href="http://www.redhat.com/solutions/it/business-process-management/">Business process management</a>
+											<a href="http://www.redhat.com/solutions/it/application-integration/">Enterprise application integration</a>
+											<a href="http://www.redhat.com/solutions/it/interoperability/">Interoperability</a>
+											<a href="http://www.redhat.com/solutions/it/operational-efficiency/">Operational efficiency</a>
+											<a href="http://www.redhat.com/solutions/it/security/">Security</a>
+											<a href="http://www.redhat.com/solutions/it/virtualization/">Virtualization</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/solutions/migration/">Migration Center</a></h4>
+											<a href="http://www.redhat.com/solutions/migration/enterprise-linux/">Migrate to Red Hat Enterprise Linux</a>
+											<a href="http://www.redhat.com/solutions/migration/systemsmanagement/">Systems management</a>
+											<a href="http://www.redhat.com/solutions/migration/olderversion/">Upgrading to Red Hat Enterprise Linux </a>
+											<a href="http://www.redhat.com/solutions/migration/jbossenterprisemiddleware/">JBoss Enterprise Middleware</a>
+											<a href="http://www.redhat.com/solutions/migration/aix-to-linux/">IBM AIX to Red Hat Enterprise Linux</a>
+											<a href="http://www.redhat.com/solutions/migration/hp-ux-to-linux/">HP-UX to Red Hat Enterprise Linux</a>
+											<a href="http://www.redhat.com/solutions/migration/solaris-to-linux/">Solaris to Red Hat Enterprise Linux</a>
+											<a href="http://www.redhat.com/solutions/migration/ux-to-linux/">UNIX to Red Hat Enterprise Linux</a>
+											<a href="http://www.redhat.com/solutions/migration/migrate-now/">Start a conversation with Red Hat</a>
+											<a href="http://www.redhat.com/solutions/migration/services/">Migration services</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/solutions/business/">By business need</a></h4>
+											<a href="http://www.redhat.com/solutions/business/enterprise-applications/">Enterprise applications</a>
+											<a href="http://www.redhat.com/solutions/business/infrastructure-consolidation/">Infrastructure consolidation</a>
+											<a href="http://www.redhat.com/solutions/business/security/">Security</a>
+											<a href="http://www.redhat.com/solutions/business/webapp/">Web applications</a>
+											<a href="http://www.redhat.com/solutions/business/storage/">Storage</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/solutions/industry/">By industry</a></h4>
+											<a href="http://www.redhat.com/solutions/industry/education/">Education</a>
+											<a href="http://www.redhat.com/solutions/industry/financial/">Financial services</a>
+											<a href="http://www.redhat.com/solutions/industry/government/">Government</a>
+											<a href="http://www.redhat.com/solutions/industry/healthcare/">Healthcare and life sciences</a>
+											<a href="http://www.redhat.com/solutions/industry/media/">Media and entertainment</a>
+											<a href="http://www.redhat.com/solutions/industry/telecom/">Telecommunications</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/solutions/cloud-computing/">Cloud Computing</a></h4>
+											<a href="http://www.redhat.com/solutions/cloud-computing/open-hybrid-cloud/">Red Hat Cloud</a>
+											<a href="http://www.redhat.com/solutions/cloud-computing/paas/">Enterprise PaaS</a>
+											<a href="http://www.redhat.com/solutions/cloud-computing/iaas/">Hybrid IaaS</a>
+											<a href="http://www.redhat.com/solutions/cloud-computing/cloud-virtualization/">Cloud with virtualization</a>
+											<a href="http://www.redhat.com/solutions/cloud-computing/public-cloud/">Find a public cloud provider</a>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+
+		<li>
+			<div class="primaryNavItem with-js">
+				<a class="parent" href="http://www.redhat.com/support/">Support</a>
+				<div class="dropdown nav-products">
+					<div class="container4">
+						<div class="container3">
+							<div class="container2">
+								<div class="container1">
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/support/subscription-benefits/">Benefits of a Red Hat subscription</a></h4>
+											<a href="http://www.redhat.com/support/subscription-benefits/open-assurance-faq/">Open Source Assurance FAQs</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/support/customer-portal.html">Red Hat Customer Portal</a></h4>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/support/technical-account-management/">Technical Account Management</a></h4>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/support/red-hat-support-partners.html">Red Hat Partner Support</a></h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+
+		<li>
+			<div class="primaryNavItem with-js">
+				<a class="parent" href="http://www.redhat.com/training/">Training</a>
+				<div class="dropdown nav-products">
+					<div class="container4">
+						<div class="container3">
+							<div class="container2">
+								<div class="container1">
+									<div class="col">	
+										<div class="row">
+											<h4><a href="http://www.redhat.com/training/guaranteedtorun.html">The value of Red Hat Training</a></h4>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/training/ways/">Ways to train</a></h4>
+											<a href="http://www.redhat.com/training/ways/classroom.html">Classroom training</a>
+											<a href="http://www.redhat.com/training/ways/role.html">Red Hat Online Learning</a>
+											<a href="http://www.redhat.com/training/ways/virtual.html">Virtual training</a>
+											<a href="http://www.redhat.com/training/ways/remote.html">Remote classroom training</a>
+											<a href="http://www.redhat.com/training/ways/onsite.html">On-site team training</a>
+											<a href="http://www.redhat.com/training/ways/livelabs.html">Live Access Labs</a>
+											
+										</div>
+										</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/training/paths">Courses and training paths</a></h4>
+											<a href="http://www.redhat.com/training/paths/popular-new.html">Popular and new courses</a>
+											<a href="http://www.redhat.com/training/paths/jboss-middleware-1.html">JBoss Middleware Administration curriculum</a>
+											<a href="http://www.redhat.com/training/paths/core-system-administration.html">Core System Administration curriculum</a>
+											<a href="http://www.redhat.com/training/paths/jboss-middleware-2.html">JBoss Middleware Development curriculum</a>
+											<a href="http://www.redhat.com/training/paths/advanced-systems-administration.html">Advanced System Administration curriculum</a>
+											<a href="http://www.redhat.com/training/paths/linux-development.html">Linux Development curriculum</a>
+											<a href="http://www.redhat.com/training/paths/cloud-virtualization.html">Cloud Computing and Virtualization curriculum</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/training/specials-na/">Ways to save</a></h4>
+											<a href="http://www.redhat.com/training/specials-na/successpack.html">Certification Success Packs</a>
+											<a href="http://www.redhat.com/training/specials-na/bundles.html">Create your own bundle</a>
+											<a href="http://www.redhat.com/training/specials-na/multistudentdiscount.html">Multi-student discount</a>
+											<a href="http://www.redhat.com/training/specials-na/certifiedhalfprice.html">Stay Current Certification Exam Discount</a>
+											<a href="http://www.redhat.com/training/specials-na/trainingunits.html">Training units</a>
+										</div>
+										</div>
+									
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/training/certifications/">Certifications</a></h4>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/training/guaranteedtorun.html">Guaranteed to Run classes</a></h4>
+										</div>
+
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/training/resources-na.html">Training resource center</a></h4>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/training/courses/">View all Red Hat Training courses</a></h4>
+										</div>
+										
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+
+		<li>
+			<div class="primaryNavItem with-js">
+				<a class="parent" href="http://www.redhat.com/consulting/">Consulting</a>
+				<div class="dropdown nav-products">
+					<div class="container4">
+						<div class="container3">
+							<div class="container2">
+								<div class="container1">
+									<div class="col">
+										<div class="row">	
+											<h4><a href="http://www.redhat.com/consulting/product-enablement/">Product Enablement</a></h4>
+											<a href="http://www.redhat.com/consulting/product-enablement/product-accelerators/">Product Accelerators</a>
+											<a href="http://www.redhat.com/consulting/product-enablement/product-architecture-services/">Product Architecture Services</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/consulting/platform/">Infrastructure services</a></h4>
+											<a href="http://www.redhat.com/consulting/platform/assessments/">Assessments</a>
+											<a href="http://www.redhat.com/consulting/platform/quickstart/">Quickstarts</a>
+											<a href="http://www.redhat.com/consulting/platform/implementation/">Implementations</a>
+											<a href="http://www.redhat.com/consulting/platform/healthchecks/">Healthchecks</a>
+											<a href="http://www.redhat.com/consulting/platform/migration-planning/">Migration Planning</a>
+											<a href="http://www.redhat.com/consulting/platform/resources/">Dedicated Resources</a>
+										</div>
+										</div>
+										<div class="col">
+											<div class="row">
+											<h4><a href="http://www.redhat.com/consulting/business/">Business solutions</a></h4>
+											<a href="http://www.redhat.com/consulting/business/consulting-pathways/">Red Hat Pathways</a>
+											</div>
+											<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/consulting/middleware/">Middleware and Application Services</a></h4>
+											<a href="http://www.redhat.com/consulting/middleware/assessments/">Assessments</a>
+											<a href="http://www.redhat.com/consulting/middleware/quickstarts/">Quickstarts</a>
+											<a href="http://www.redhat.com/consulting/middleware/implementations/">Implementations</a>
+											<a href="http://www.redhat.com/consulting/middleware/healthchecks/">Middleware Healthchecks</a>
+											<a href="http://www.redhat.com/consulting/middleware/migration-planning/">Middleware Migration Planning</a>
+											</div>
+										</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/consulting/technology/">IT Architecture and Design Services</a></h4>
+											<a href="http://www.redhat.com/consulting/technology/soe/">Standard Operating Environment (SOE)</a>
+											<a href="http://www.redhat.com/consulting/technology/migration/">Strategic Migration Planning</a>
+											<a href="http://www.redhat.com/consulting/technology/soa/">Service-oriented architecture (SOA)</a>
+											<a href="http://www.redhat.com/consulting/technology/data-services/">Enterprise Data Solutions</a>
+											<a href="http://www.redhat.com/consulting/technology/business-process-management/">Business Process Management</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/consulting/engagement/">Engagement Delivery Options</a></h4>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/consulting/cloud/">Cloud Services</a></h4>
+											<a href="http://www.redhat.com/consulting/cloud/middleware-cloud/">Middleware Cloud Services</a>
+											<a href="http://www.redhat.com/consulting/cloud/foundations-pathway/">Red Hat Cloud Pathway</a>
+											<a href="http://www.redhat.com/consulting/cloud/quickstart/">Red Hat Cloud Quickstart</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/consulting/resources.html">Consulting resource library</a></h4>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</li>
+		</ul>               
+						</div> <!-- / Primary Navigation -->
+					
+					</div><!-- /masthead -->
+				</div><!-- /header -->
+			
+			
+			<div id="content">
+
+<!-- MAIN CONTENT AREA -->
+<div id="wrapper">
+<style type="text/css">
+
+	#wrapper ol {margin-left:10px;}
+	#wrapper pre {margin-bottom:15px;}
+</style>
+
+<p id="issueDate">November 16, 2006</p>
+
+<div id="rhmagLeft">
+	<div id="nameplate">
+		<div class="inner">
+<a href="http://www.redhat.com/magazine/"><img src="./How to set up a home DNS server   Red Hat_files/rhmag_logo.gif" id="rhmagLogo" width="170" height="70" alt="Red Hat Magazine"></a>
+<h2 class="navCap">Subscribe</h2>
+<ul>
+	<li><a href="http://www.redhat.com/magazine/rss20.xml"><img src="./How to set up a home DNS server   Red Hat_files/rss-feed.gif" alt="[ RSS feed ]"></a></li>
+	<li><a href="http://www.redhat.com/magazine/podcast_ogg.xml"><img src="http://www.redhat.com/g/magazine/ogg_podcast_icon.gif" alt="[ Ogg podcast ]"></a></li>
+	<li><a href="http://www.redhat.com/magazine/podcast.xml"><img src="./How to set up a home DNS server   Red Hat_files/mp3_podcast_icon.gif" alt="[ MP3 podcast ]"></a></li>
+	<li>Join our email list:<br>
+		<form action="http://ebm.cheetahmail.com/r/regf2" method="post">
+                <input name="required" value="email" type="hidden">
+                        <input name="email" type="text" size="10pt" style="width: 120px;" value=" email address">
+                        <input id="subscribe" type="submit" style="font-size: 10pt; font-weight: bold; background: #ccc; border: 1px solid black; margin-top: .3em;" value="Join">
+                <input name="aid" value="155001677" type="hidden">
+                <input name="fsub" value="179302740" type="hidden">
+                <input name="n" value="1" type="hidden">
+                <input name="cm" value="%%cm%%" type="hidden">
+                <input name="nofill" value="cm" type="hidden">
+                <input name="ems" value="1" type="hidden">
+                <input name="re" value="http://www.redhat.com/apps/response/sub_thankyou.html" type="hidden">
+                
+		<div><input type="hidden" name="asp_charset" value="ISO-8859-1"></div></form>
+	</li>
+</ul>
+		<h2>Recent articles</h2>
+		<ul>
+			<li><a href="http://www.redhat.com/magazine/025nov06/features/gifts/?intcmp=bcm_edmsept_007">The geek gift guide (and giveaway)</a></li>
+			<li><a href="http://www.redhat.com/magazine/025nov06/features/email/?intcmp=bcm_edmsept_007">How to set up a home email server</a></li>
+			<li><a href="./How to set up a home DNS server   Red Hat_files/How to set up a home DNS server   Red Hat.html">How to set up a home DNS server</a></li>
+			<li><a href="http://www.redhat.com/magazine/025nov06/features/pjones/?intcmp=bcm_edmsept_007">The road to Tibet</a></li>
+			<li><a href="http://blogs.redhat.com/executive/archives/000274.html">Peace in our time</a></li>
+			<li><a href="http://www.redhat.com/magazine/025nov06/features/ask_shadowman/?intcmp=bcm_edmsept_007">Ask Shadowman</a></li>
+			<li><a href="http://www.redhat.com/magazine/025nov06/features/tips_tricks#parttwo">Tips &amp; tricks</a></li>
+
+
+			<!--
+			<li><a href="/magazine/025nov06/features/intellectual_india/?intcmp=bcm_edmsept_007">A society that shares: India's tradition of knowledge</a></li>
+			<li><a href="/magazine/025nov06/features/jones-moglen/?intcmp=bcm_edmsept_007">The road to Dehli with Eben Moglen and Paul Jones</a></li>
+			<li><a href="/magazine/025nov06/features/xkcd/?intcmp=bcm_edmsept_007">xkcd: A comic strip for the computer geek</a></li>
+			<li><a href="/magazine/025nov06/features/ruby/?intcmp=bcm_edmsept_007">Ruby on rails on Red Hat</a></li>
+			<li><a href="/magazine/025nov06/features/priceline/?intcmp=bcm_edmsept_007">Why Priceline.com went open source</a></li>
+			<li><a href="/magazine/025nov06/features/tips_tricks/?intcmp=bcm_edmsept_007">Tips &amp; tricks</a></li>
+			<li><a href="/magazine/025nov06/features/citistreet/?intcmp=bcm_edmsept_007">CitiStreet hits the road running with Red Hat</a></li>
+			-->
+
+			<li style="margin-top: 1em;"><a href="http://www.redhat.com/magazine/archive/?intcmp=bcm_edmsept_007">&gt;&gt;&nbsp;&nbsp;more</a></li>
+		</ul>
+		<h2>More info</h2>
+		<ul>
+			<li><a href="http://www.redhat.com/magazine/feedback/to_the_editor.html">Contact us</a></li>
+			<li><a href="http://www.redhat.com/magazine/feedback/call_for_writers.html">For writers</a></li>
+			<li><a href="http://www.redhat.com/magazine/staff.html">Editorial team</a></li>
+			<li><a href="http://www.creativecommons.org/">Creative Commons</a></li>
+		</ul>
+		</div>
+	</div>
+</div>
+
+<div id="rhmagCenter">
+<div class="article">
+
+<!-- article functions -->
+<div class="artFunct">
+<span class="artItem"><img src="./How to set up a home DNS server   Red Hat_files/star.gif"> <!-- div style="font-size:x-small;margin:0 0 0 4px;">Current rating:</div --><!-- IMG src=/apps/include/ratepage/star.jpg --><!-- IMG src=/apps/include/ratepage/star.jpg --><!-- IMG src=/apps/include/ratepage/half-star.jpg -->
+
+<script language="JavaScript">
+<!--
+function openwindow()
+{
+	var new_win = window.open("/apps/ratepage/giverating_article.html?url=/magazine/025nov06/features/dns/","mywindow","menubar=1,resizable=1,width=350,height=350");	
+}
+-->
+</script>
+
+
+<a href="javascript: openwindow()">Rate this page</a>
+</span>
+
+<span class="artItem"><a href="http://del.icio.us/post" onclick="window.open(&#39;http://del.icio.us/post?v=4&amp;noui&amp;jump=close&amp;url=&#39;+encodeURIComponent(location.href)+&#39;&amp;title=&#39;+encodeURIComponent(document.title), &#39;delicious&#39;,&#39;toolbar=no,width=700,height=400&#39;); return false;"><img src="./How to set up a home DNS server   Red Hat_files/delicious.gif"></a> <a href="http://del.icio.us/post" onclick="window.open(&#39;http://del.icio.us/post?v=4&amp;noui&amp;jump=close&amp;url=&#39;+encodeURIComponent(location.href)+&#39;&amp;title=&#39;+encodeURIComponent(document.title), &#39;delicious&#39;,&#39;toolbar=no,width=700,height=400&#39;); return false;">del.icio.us</a></span>
+
+<span class="artItem"><a href="http://digg.com/submit" onclick="window.open(&#39;http://digg.com/submit?phase=2&amp;partner=fb&amp;url=&#39;+encodeURIComponent(location.href)+&#39;&amp;title=&#39;+encodeURIComponent(document.title)); return false;"><img src="./How to set up a home DNS server   Red Hat_files/digg.gif" width="10" height="10"></a>&nbsp;<a href="http://digg.com/submit" onclick="window.open(&#39;http://digg.com/submit?phase=2&amp;partner=fb&amp;url=&#39;+encodeURIComponent(location.href)+&#39;&amp;title=&#39;+encodeURIComponent(document.title)); return false;">Digg</a></span>
+
+<span class="artItem"><a href="javascript:location.href='http://slashdot.org/bookmark.pl?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)"><img src="./How to set up a home DNS server   Red Hat_files/slashdot.gif"></a> <a href="javascript:location.href='http://slashdot.org/bookmark.pl?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)">slashdot</a></span>
+
+<span class="artItem"><a href="javascript:location.href='http://www.stumbleupon.com/submit?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)"><img src="./How to set up a home DNS server   Red Hat_files/stumble.png"></a> <a href="javascript:location.href='http://www.stumbleupon.com/submit?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)">StumbleUpon</a></span>
+</div><!-- artFunct -->
+
+<p><em>Not everybody's a Linux hacker straight out of the womb. For those who need a solid example or just want a little advice--no heckling involved--here's another how-to to get you going. We've helped you set up your <a href="http://www.redhat.com/magazine/022aug06/features/webserver/">home web server</a>, so now let's get DNS working so you can have your very own domain.</em></p>
+
+<h1 id="content">How to set up a home DNS server</h1>
+<h4 id="byline">by Shannon Hughes</h4>
+<br>
+
+<h2>Domain Name System</h2>
+<p>The Domain Name System (DNS) is the crucial glue that keeps
+computer networks in harmony by converting human-friendly hostnames
+to the numerical IP addresses computers require to communicate with
+each other. DNS is one of the largest and most important distributed
+databases the world depends on by serving billions of DNS requests
+daily for public IP addresses. Most public DNS servers today are run
+by larger ISPs and commercial companies but private DNS servers can
+also be useful for private home networks. This article will
+explore some advantages of setting up various types of DNS servers in the
+home network. 
+</p>
+<h2>Why set up a private DNS server? 
+</h2>
+<p>This question is valid and the answer may vary depending on your
+home network environment. Maintaining a host file on each client with
+IP/hostname mappings in a home network that contains a router and a
+few machines may be sufficient for most users. If your network
+contains more than a few machines, then adding a private DNS server
+may be more attractive and worth the setup effort. Some advantages
+may include: 
+</p>
+<ul style="margin-left:18px;">
+	<li><p style="margin-bottom: 0in">Maintenance: keeping track of the
+	host file for every client in your network can be tedious. In fact,
+	it may not even be feasible for roaming DHCP laptops or your
+	occasional LAN party guests. Maintaining host information in one
+	central area and allowing DNS to manage host names is more
+	efficient. 
+	</p>
+	</li><li><p style="margin-bottom: 0in">Cache performance: DNS servers can
+	cache DNS information, allowing your clients to acquire DNS
+	information internally without the need to access public
+	nameservers. This performance improvement can add up for tasks such
+	as web browsing. 
+	</p>
+	</li><li><p style="margin-bottom: 0in">Prototyping: A private internal
+	DNS server is an excellent first step to eventually setting up a
+	public accessible DNS server to access a web server or other
+	services hosted on your internal network. Learning from mistakes on
+	an internal network can help prevent duplicate errors on a public
+	DNS server that could result in loss of service for external users.
+	Note: Some ISPs require customers to have a static IP or business
+	subscription when hosting services in a home network environment. 
+	</p>
+
+	</li><li><p>Cool factor: Ok, I may be stretching it, but the "cool"
+	factor did have some influence when I set up my first home network
+	DNS server. Creating an internal domain that reflects an individual's
+	personality without paying a domain registrar and issuing hostnames
+	to your clients is cool. The cool factor doubles when your
+	customized hostname glows from your friend's laptop screen. 
+	</p>
+</li></ul>
+<p>Let's start out simply by setting up a caching-only nameserver to
+handle client DNS requests. A caching-only nameserver won't allow
+references to internal clients by hostname, but it does allow clients
+to take advantage of frequently requested domains that are cached. 
+</p>
+<h2>Caching nameserver</h2>
+<p>Fortunately, setting up a caching nameserver is easy using RHEL
+(Red Hat Enterprise Linux) or Fedora RPMs. The following RPMs need to
+be installed on the machine acting as the nameserver (use <code>rpm
+-q</code> to determine if these packages are installed): 
+</p>
+
+<ul style="margin-left:18px;">
+	<li><p style="margin-bottom: 0in"><code>bind</code> (includes DNS server, named) 
+	</p>
+	</li><li><p style="margin-bottom: 0in"><code>bind-utils</code> (utilities for querying
+	DNS servers about host information) 
+	</p>
+	</li><li><p style="margin-bottom: 0in"><code>bind-libs</code> (libraries used by the
+	bind server and utils package) 
+	</p>
+	</li><li><p style="margin-bottom: 0in"><code>bind-chroot</code> (tree of files which
+	can be used as a chroot jail for bind) 
+	</p>
+	</li><li><p><code>caching-nameserver</code> (config files for a simple caching
+	nameserver) 
+	</p>
+</li></ul>
+
+<p>A caching nameserver forwards queries to an upstream nameserver
+and caches the results. Open the file
+<code>/var/named/chroot/etc/named.conf</code> and add the following
+lines to the global options section: 
+</p>
+<pre>     forwarders { xxx.xxx.xxx.xxx; xxx.xxx.xxx.xxx; }; #IP of upstream ISP nameserver(s)
+     forward only; #rely completely on our upstream nameservers</pre><p>
+The block above will cause the caching name server to forward DNS
+requests it can't resolve to your ISP nameserver. Save the <code>named.conf</code>
+file and then assign 644 permissions: <br><code>chmod 644 named.conf</code>
+<br>Check the syntax using the <code>named-checkconf</code> utility
+provided by the bind RPM: <br><code>named-checkconf named.conf</code>
+
+<br>Correct any syntax errors (watch those semicolons)
+<code>named-checkconf</code> reports. Monitoring the <code>/var/log/messages</code>
+file may also be helpful in debugging any errors. <br>We now need to
+set the local resolver to point to itself for DNS resolution. Modify
+the <code>/etc/resolv.conf</code> file to the following: <br><code>nameserver
+127.0.0.1</code> <br>If you are running a DHCP server on your router
+make sure your <code>/etc/resolv.conf</code> file does not get
+overwritten whenever your DHCP lease is renewed. To prevent this from
+happening, modify <code>/etc/sysconfig/network-scripts/ifcfg-eth0</code>
+(replace eth0 with your network interface if different) and make sure
+the following settings are set: 
+
+</p>
+<pre>BOOTPROTO=dhcp
+PEERDNS=no
+TYPE=Ethernet</pre><p>
+Go ahead and start the nameserver as root and configure to start in
+runlevels 2-5: <br><code>service named start</code> <br><code>chkconfig
+named on</code> 
+</p>
+<h2>Testing</h2>
+<p>The <code>bind-utils</code> RPM contains tools we can use to test our caching
+nameserver. Test your nameserver using <code>host</code> or <code>dig</code>
+
+and querying <code>redhat.com</code>: 
+</p>
+<pre>dig redhat.com
+.
+.
+;; Query time: 42 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1)</pre><p>
+From the above dig query you can see it took 42 msec to receive the
+DNS request. Now test out the caching ability of your nameserver by
+running dig again on the redhat.com domain: 
+</p>
+<pre>dig redhat.com
+.
+.
+;; Query time: 1 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1)</pre><p>
+We dropped from 42 msec to 1 msec after the previous DNS query was
+cached. Caching is working! Let's now put the cache to work by
+configuring the clients to use the new caching nameserver. 
+</p>
+<h2>Client Configuration</h2>
+<p>For Linux and Windows clients you may have a couple of options for
+your resolver configuration depending on your network environment: 
+</p>
+<ol>
+
+	<li><p style="margin-bottom: 0in">If you have a router and your
+	client's IP address is assigned via DHCP from the router, then you
+	can use the router to assign the primary nameserver during the DHCP
+	lease requested from the client. Log in to your router and make sure
+	your primary nameserver points to your caching nameserver IP address
+	in the router DHCP settings. 
+	</p>
+	</li><li><p>For Linux clients, you can set up the resolver in the same
+	procedure as the nameserver by modifying the <code>/etc/resolv.conf</code>
+	file. For Windows clients you will need to set the nameserver IP
+	address in the Control Panel -&gt; Network Connections -&gt; TCP/IP
+	-&gt; Properties -&gt; Use the DNS Server Address option. NOTE: The
+	Windows DNS server option may vary depending on your version. 
+	</p>
+
+</li></ol>
+<p>Test your new client configuration(s) using <code>dig</code>. You
+can use the <code>nslookup</code> command for Windows clients. Your
+DNS requests should have similar response times as we saw earlier
+when testing the nameserver directly. 
+</p>
+<p>NOTE: If you are running a firewall on the nameserver system, make
+sure clients have access to port 53. An example iptables rule for the
+192.168.15.0/24 subnet would be: <br><code>iptables -A INPUT -s
+192.168.15.0/24 -p udp --dport 53 -j ACCEPT</code> <br><code>service
+iptables save</code> 
+</p>
+<h2>Summary</h2>
+<p>Your new caching nameserver offers a performance improvement with
+a minimal amount of set up effort. Clients can now ask the caching
+nameserver for DNS information, and it only needs to ask the upstream
+ISP nameserver for cache misses. In the next issue we will setup a
+master nameserver that is responsible for the authoritative
+information for our internal client hostnames. An authoritative
+nameserver also caches by default but additionally allows managing
+both static and DHCP clients using personalized hostnames set up in
+zone files. In the meantime, enjoy your new caching nameserver and be
+thinking about a creative domain and hostname theme for your future
+authoritative nameserver. 
+</p>
+
+<h2>About the author</h2>
+<p class="authorblurb">Shannon Hughes is a Red Hat Network (RHN) engineer who enjoys using open source software to solve the most demanding software projects. When he is not cranking out code, tweaking servers, or coming up with new RHN projects, you can find him trying to squeeze in yet another plant in the yard/garden with his wife, watching Scooby Doo reruns with his two kids and dog, or incorporating the latest open source projects for his <a href="http://www.fvbaptist.org/">church</a>.</p>
+</div>
+</div>
+
+<br style="clear: both;">
+</div>
+			</div><!-- /content -->
+		</div><!-- /wrap -->
+		</div><!-- /shell-top -->
+		
+		<div id="shell-bottom">
+			<div class="wrap">
+					
+				<div id="footer">
+				
+				<script type="text/javascript" src="./How to set up a home DNS server   Red Hat_files/s_code.js"></script> 
+				<script type="text/javascript" src="./How to set up a home DNS server   Red Hat_files/rh_omni_footer.js"></script>
+				
+    <script type="text/javascript">
+
+            omni_array = new Array
+
+            var url_split = document.URL.split(/\//)
+            var channel = document.URL.split(".com")[1] || ""
+            var cname = document.body.classList[0].split("_")[1].toLowerCase() || ""
+            if (url_split[url_split.length-1].search(/\?/) >= 0)
+            {
+                url_split.splice(url_split.length-1,1)
+            }
+            omni_array[0]= "rh|" + url_split.slice(3,-1).join("|")
+            omni_array[1]="redhat.com"
+            omni_array[2]= channel.split("/")[1] || ""
+            omni_array[3]= url_split.slice(3,url_split.length).join(",") || ""
+            omni_array[4]=url_split[4] || "" 
+            omni_array[5]=url_split[4] || ""
+            omni_array[6]=url_split[5] || ""
+            omni_array[7]=url_split[5] || ""
+            omni_array[8]=url_split[6] || ""
+            omni_array[9]=url_split[6] || ""
+            omni_array[10]=document.documentElement.lang
+            omni_array[11]=document.documentElement.lang
+            omni_array[12]=cname || ""
+            omni_array[13]=cname || ""
+            omni_array[14]=""
+            omni_array[15]=""
+            omni_array[16]="rh|" + cname + "|" + url_split.slice(3,-1).join("|")
+            omni_array[17]="rh|" + cname + "|" + url_split.slice(3,-1).join("|")
+            omni_array[18]=document.URL
+            omni_array[19]=document.URL
+            omni_array[20]=''
+
+            setOmnitureVariables(omni_array);
+    </script>
+    <script type="text/javascript">
+            <!-- if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-') -->
+    </script>
+    <noscript>
+            &lt;p&gt;&lt;img src="https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.21&amp;#45;&amp;#45;NS/0?[AQB]&amp;amp;cdp=3&amp;amp;[AQE]" height="1" width="1" alt=""/&gt;&lt;/p&gt;
+    </noscript>
+           
+		    	<!-- Call Out Boxes -->
+		   		<div class="call-out-boxes">
+					
+					<div class="call-out-box">
+		
+					    <div class="about">
+					        <a href="http://www.redhat.com/about/">About Red Hat</a>
+					    </div>
+					</div>
+					
+					<div class="call-out-box">
+					     <div class="partner">
+					        <a href="http://www.redhat.com/partners/">Engage With Partners</a>
+					    </div>
+		
+					</div>
+					
+					<div class="call-out-box">
+					    <div class="community">
+					        <a href="http://www.redhat.com/community/">Explore Communities</a>
+					    </div>
+					</div>
+					
+					<div class="call-out-box last">
+					    <div class="myredhat">
+		
+					        <a href="https://access.redhat.com/home">Access My Account</a>
+					    </div>
+					</div>
+					
+					<br class="clear">                
+					</div> <!-- / Call Out Boxes -->
+					                
+					<div id="footer-nav">
+					                    
+					<ul class="social-icons">
+					    <li><span>Connect:</span></li>
+					    <li><a href="http://www.twitter.com/redhatnews" target="_blank"><img src="./How to set up a home DNS server   Red Hat_files/twitter.png" alt="Twitter"></a></li>
+					    <li><a href="http://www.facebook.com/redhatinc" target="_blank"><img src="./How to set up a home DNS server   Red Hat_files/facebook.png" alt="Facebook"></a></li>
+					    <li><a href="http://www.youtube.com/user/RedHatVideos" target="_blank"><img src="./How to set up a home DNS server   Red Hat_files/youtube.png" alt="YouTube"></a></li>
+					    <li><a href="http://www.linkedin.com/groups?home=&gid=2525539&trk=anet_ug_hm" target="_blank"><img src="./How to set up a home DNS server   Red Hat_files/linkedin.png" alt="LinkedIn"></a></li>
+					    <li><a href="http://www.flickr.com/photos/49549965@N04/" target="_blank"><img title="Check out Red Hat photos on Flickr." alt="Flickr" src="./How to set up a home DNS server   Red Hat_files/flickr.png"></a></li>
+					</ul>
+					
+					<ul class="footer-nav-list">
+					    <li>Copyright ©2013 Red Hat, Inc.</li>
+					    <li>|</li>
+		
+					    <li><a href="http://www.redhat.com/footer/privacy-policy.html">Privacy Policy</a></li>
+					    <li><a href="http://www.redhat.com/footer/terms-of-use.html">Terms of Use</a></li>
+					    <li><a href="http://www.redhat.com/footer/patent-promise.html">Patent Promise</a></li>
+					    <li><a href="http://www.redhat.com/about/work/">Careers</a></li>
+					    <li><a href="http://www.redhat.com/about/mediarelations/trademark.html">Trademark guidelines</a></li>
+					    <li><a href="http://www.redhat.com/about/">About Red Hat</a></li>
+					</ul>
+					
+					<ul class="footer-nav-list">
+						<li><a href="http://www.redhat.com/contact/">Contact Us</a></li>
+					    <li><a href="http://www.redhat.com/footer/site-map.html">Site Map</a></li>
+					    <li><a href="http://www.redhat.com/footer/faq.html">FAQs</a></li>
+					    <li><a href="http://www.redhat.com/about/company/supplier.html">Supplier requirements</a></li>
+					    <li><a href="http://www.redhat.com/about/">Company</a></li>
+					</ul>                
+					</div>  <!-- Legal Nav -->
+		
+		    	
+				</div><!-- / Footer -->
+			</div><!-- /wrap -->
+		</div><!-- /shell-bottom -->
+		</div><!-- /container -->
+		<script type="text/javascript">
+					//$(document).ready(function() {
+					//	$('.quick-links-select').selectbox( {
+					//		debug : false
+					//	});
+					//});
+		</script>
+		<!-- begin eloqua tracking -->
+		<script type="text/javascript" language="JavaScript" src="http://www.redhat.com/j/elqNow/elqCfg.js"></script> 
+		<script type="text/javascript" language="JavaScript" src="http://www.redhat.com/j/elqNow/elqImg.js"></script>
+		<!-- end eloqua tracking -->
+	
+</body></html>
