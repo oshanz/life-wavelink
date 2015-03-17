@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<!-- saved from url=(0143)http://discourse.codinghorror.com/embed/comments?embed_url=http%3A%2F%2Fblog.codinghorror.com%2Fso-youd-like-to-send-some-email-through-code%2F -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="http://discourse-cdn.codinghorror.com/assets/embed-60cc26e7dd6ba7334985e23711a891bd.css" media="screen" rel="stylesheet">
+    <script src="break_string-acd906f9185938240ab8b1b796f21d89.js"></script><style>div[style="margin-bottom:10px"],
+.welovecodinghorror,
+#hireme
+{display:none !important;}</style>
+
+    <script>
+      (function() {
+
+        function postUp(msg) {
+          if (parent) {
+            parent.postMessage(msg, 'http://blog.codinghorror.com/so-youd-like-to-send-some-email-through-code/');
+          }
+        }
+
+        function clickPostLink(e) {
+          var postId = e.target.getAttribute('data-link-to-post');
+          if (postId) {
+            var postElement = document.getElementById('post-' + postId);
+            if (postElement) {
+              var rect = postElement.getBoundingClientRect();
+              if (rect && rect.top) {
+                postUp({type: 'discourse-scroll', top: rect.top});
+                e.preventDefault();
+                return false;
+              }
+            }
+          }
+        }
+
+        window.onload = function() {
+          // Send a post message with our loaded height
+          postUp({type: 'discourse-resize', height: document['body'].offsetHeight});
+
+          var postLinks = document.querySelectorAll("a[data-link-to-post]"),
+              i;
+
+          for (i=0; i<postLinks.length; i++) {
+            postLinks[i].onclick = clickPostLink;
+          }
+
+          // Make sure all links in the iframe point to _blank
+          var cookedLinks = document.querySelectorAll('.cooked a');
+          for (i=0; i<cookedLinks.length; i++) {
+            cookedLinks[i].target = "_blank";
+          }
+
+          // Adjust all names
+          var names = document.querySelectorAll('.username a');
+          for (i=0; i<names.length; i++) {
+            var username = names[i].innerHTML;
+            if (username) {
+              names[i].innerHTML = new BreakString(username).break();
+            }
+          }
+
+        };
+
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="embedded">
+    <a class="button" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/2" target="_blank">Continue Discussion</a>
+  <span class="replies">63 replies</span>
+</header>
+
+    <article class="post" id="post-7744">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/2" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Jasoncartwright" target="_blank"><img src="2.png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Jasoncartwright" target="_blank" class="new-user">Jasoncartwright</a>
+        </h3>
+        <p>Or just use an app that's done most of that for you - <a href="http://postmarkapp.com/" rel="nofollow" target="_blank">http://postmarkapp.com</a></p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7746">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/4" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Nberardi" target="_blank"><img src="2(1).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Nberardi" target="_blank" class="new-user">Nberardi</a>
+        </h3>
+        <p>You should check out some of the cloud based email providers.  They manage this headache for you.  A good one is <a href="http://www.socketlabs.com/" rel="nofollow" target="_blank">http://www.socketlabs.com</a></p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7747">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/5" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Vermorel" target="_blank"><img src="2(2).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Vermorel" target="_blank" class="new-user">Vermorel</a>
+        </h3>
+        <p>+1 to both comments above. 3rd party SaaS is the way to go. Then, if pricing appears to be an issue, then you're probably sending too many emails anyway.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7748">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/6" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Ovidiu" target="_blank"><img src="2(3).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Ovidiu" target="_blank" class="new-user">Ovidiu</a>
+        </h3>
+        <p>The most important thing: make sure the SMTP server is not listed in one of the many DNS-based blacklists.</p>
+
+<p><a href="http://www.mxtoolbox.com/blacklists.aspx" rel="nofollow" target="_blank">http://www.mxtoolbox.com/blacklists.aspx</a></p>
+
+<p>Also, you should have your SMTP server do the DKIM stuff. That way <em>every</em> email message (not just the ones sent by your application) will be signed.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7749">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/7" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Fowl2" target="_blank"><img src="2(4).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Fowl2" target="_blank" class="new-user">Fowl<wbr>​2</a>
+        </h3>
+        <p>That doesn't seem that onerous.</p>
+
+<p>Sure email is crap but all you are saying here is "oh noes I have to follow the standards involved". At least there <em>are</em> fairly universal standards.</p>
+
+<p>idno, maybe I'm missing something</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7750">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/8" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Apreche" target="_blank"><img src="2(5).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Apreche" target="_blank" class="new-user">Apreche</a>
+        </h3>
+        <p>I just configure exim on the server to use GMail as a smart host. Using my Google apps account I'm able to keep my domain on there, instead of gmail.com. I trust Google to do all the wacky SMTP stuff properly. It seems to work, because everyone gets the e-mails my apps send out. </p>
+
+<p>Why go through all this complicated mess, which I'll probably screw up, when I can just have someone else do it for me?</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7751">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/9" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/JonasE" target="_blank"><img src="2(6).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/JonasE" target="_blank" class="new-user">JonasE</a>
+        </h3>
+        <p>Also be sure not to use anything that could even resemble the language used in spam, down to the name of your company. <a href="http://news.bbc.co.uk/2/hi/technology/8528672.stm" rel="nofollow" target="_blank"></a><a href="http://news.bbc.co.uk/2/hi/technology/8528672.stm" rel="nofollow" target="_blank">http://news.bbc.co.uk/2/hi/technology/8528672.stm</a> - "After 90 years, one of Canada's oldest magazines, The Beaver, is changing its name."</p>
+
+<p>Another nightmare is the state of HTML rendering of mails. <a href="http://litmusapp.com/" rel="nofollow" target="_blank"></a><a href="http://litmusapp.com/" rel="nofollow" target="_blank">http://litmusapp.com/</a> can help you to check out how your mails looks in most of clients in use.</p>
+
+<p>On a completely different note I wish there will be a more high level mail implementation included in the stdlib for Ruby in the future.</p>
+
+<pre><code>require 'mail' # &lt;a href="http://github.com/mikel/mail"&gt;http://github.com/mikel/mail&lt;/a&gt;
+
+Mail.deliver do
+     from 'j@plea.se'
+       to 'j@codinghorror.com'
+  subject 'Send Some Email'
+     body 'Thanks for a great post!'
+  end
+end</code></pre>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7752">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/10" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/RicardoS" target="_blank"><img src="2(7).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/RicardoS" target="_blank" class="new-user">RicardoS</a>
+        </h3>
+        <p>Email is great, it is the best communication tool nowadays. It is also used as the primary way to log on to your blog so we can post comments <img src="wink.png" title=":wink:" class="emoji" alt="wink" width="64" height="64"></p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7753">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/11" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/InsomniacG" target="_blank"><img src="2(8).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/InsomniacG" target="_blank" class="new-user">InsomniacG</a>
+        </h3>
+        <p><a class="mention" href="http://discourse.codinghorror.com/users/dejan" target="_blank">@Dejan</a>, yes, you should put your public key there. See my post:<br><a href="http://insomniacgeek.com/blog/how-to-setup-dkim-and-domainkeys-with-smartermail/" rel="nofollow" target="_blank">How to setup DKIM and DomainKeys with SmarterMail</a></p>
+
+<p>Magnus</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7754">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/12" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Alex" target="_blank"><img src="2(9).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Alex" target="_blank" class="new-user">Alex</a>
+        </h3>
+        <p>Ironically, my e-mail server rejected port25's automated e-mail because it was not sent from a valid address:</p>
+
+<pre><code>sender verify fail for &lt;auth-results@verifier.port25.com&gt;:
+  response to "RCPT TO:&lt;auth-results@verifier.port25.com&gt;" from
+  verifier.port25.com [207.36.201.235] was:
+  550 5.1.1 no such local recipient</code></pre>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7755">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/13" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/EthanT" target="_blank"><img src="2(10).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/EthanT" target="_blank" class="new-user">EthanT</a>
+        </h3>
+        <p>Hmm, as Ovidiu suggests having your local SMTP server do this stuff for you... I'm pretty sure most individual email clients don't have personalized DNS records with public/private keys.  (But I'd love to see S/MIME get mainstream!)</p>
+
+<p>I'd be more curious about how to get through authentication mechanisms on the SMTP server, and then let it do the heavy lifting.  For my organization, it looks like that's just a matter of piping everything through an SSL connection with a username and password.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7756">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/14" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Blog" target="_blank"><img src="2(11).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Blog" target="_blank" class="new-user">Blog</a>
+        </h3>
+        <p>Wow, is that you're only beef with sending email?  You didn't touch on the nightmare of the various authentication methods, using SSL or setting up SMTP relay hubs.  There's the minor annoyance of attaching "HTML" email bits to a message, but that's a minor barb.  </p>
+
+<p>Hell, even if you do this dance right, the mail will often get stuck in a spam trap or not get to the addressee for a long time due the way ISPs batch SMTP traffic.  </p>
+
+<p>And what if your ISP gets on some stupid spammer black list?  You may not have done anything wrong, but some idiot on your domain did once and now you get to pay the price.</p>
+
+<p>Seriously, I cringe every time I'm asked to add "email notification" to an app.  It's a disaster.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7757">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/15" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/KeithW" target="_blank"><img src="2(12).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/KeithW" target="_blank" class="new-user">KeithW</a>
+        </h3>
+        <p>Ha, you're a mind-reader Jeff - we were fighting with this very issue just this morning. Thanks for the post, it was just what we needed.</p>
+
+<p>One thing I would add: if you're sending significant amounts of important emails, make sure to check bounce-backs, because there are also issues of customers having mis-configured mail servers, bad email addresses, etc etc - there's no substitute for a human checking these issues (sadly).</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7758">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/16" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/PoweredB" target="_blank"><img src="2(13).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/PoweredB" target="_blank" class="new-user">PoweredB</a>
+        </h3>
+        <p>Jeff,</p>
+
+<p>It's good to see someone talking about this. This is one of the points I wanted to get around to once I got my blog set up.</p>
+
+<p>Another few things that are important:</p>
+
+<ol>
+<li><p>Either VERPs or Queue ID headers so you know who you sent the email to when it bounces (and they /will/ bounce.) VERPs and Queue ID headers make life very simple for knocking out bouncing email.</p></li>
+<li><p>Sign up for feedback loops with the main providers (at least AOL, Hotmail and Yahoo).</p></li>
+<li><p>Add a list-unsubscribe header that has an email address that also routes through to your feedback loop email.</p></li>
+</ol>
+
+<p>By the way, as a long time reader and first time commenter, thank you so much for all the work you put into your blog. I know from my own experience trying to maintain one that the motivation can be difficult. Hopefully I'll get there soon.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7759">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/17" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Nathan_Long" target="_blank"><img src="2(14).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Nathan_Long" target="_blank" class="new-user">Nathan_<wbr>​<wbr>​Long</a>
+        </h3>
+        <p>Those are serious headaches. But I've always been mystified by your hatred for email. <b>Can you propose a better system</b>? It has to meet the following requirements</p>
+
+<ol>
+<li>Your address can be public, so anybody can send to you without having an explicit prior relationship. This opens the door for spammers, but also job applicants, customers, etc.</li>
+<li>A message can be private - readable only by recipients</li>
+<li>A message can have multiple, explicit recipients - not 'whoever happens to read it'</li>
+<li>Receivers are notified when they receive messages and can respond to the sender, other recipients, etc</li>
+<li>Receivers are able to archive and search their sent and received messages</li>
+<li>Message storage can be in the cloud or on a local machine, whichever suits your purposes</li>
+</ol>
+
+<p>I'm sure there are other advantages of email.</p>
+
+<p>Yes, young people are using text messages and whatnot. But what's good for 'hey whos brylie dating today lol' isn't necessarily good for serious communications. And I bet those same kids use email when they start their careers.</p>
+
+<p>Email encryption on both ends would help with identification and privacy. And I'm not that familiar with Google Wave; maybe it's a better system. But your suggestions like "use Twitter instead!" are just not practical for many use cases.</p>
+
+<p><b>So here's a post I'd love to see: Jeff's detailed proposal to replace email with something better.</b></p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7760">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/18" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Jeff_Davis" target="_blank"><img src="2(15).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Jeff_Davis" target="_blank" class="new-user">Jeff_<wbr>​<wbr>​Davis</a>
+        </h3>
+        <p>That's ruby code? It looks like Pascal. <img src="smile.png" title=":smile:" class="emoji" alt="smile" width="64" height="64"></p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7761">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/19" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Albertwenger" target="_blank"><img src="2(16).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Albertwenger" target="_blank" class="new-user">Albertwenger</a>
+        </h3>
+        <p>And that's just the beginning!  To really improve your deliverability you have to do bounce processing right.  Which is a total pain.  I therefore would strongly encourage folks to check out providers.  I particularly like <a href="http://sendgrid.com/" rel="nofollow" target="_blank">http://sendgrid.com</a></p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7762">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/20" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Mike_Watts" target="_blank"><img src="2(17).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Mike_Watts" target="_blank" class="new-user">Mike_<wbr>​<wbr>​Watts</a>
+        </h3>
+        <p>I have to say that I share your feelings about e-mail, but what are the alternatives?</p>
+
+<p>I suppose there are a few situations where emails are sent <em>that you actually care about</em>:</p>
+
+<ol>
+<li><p>Someone else performs some action that you want to know about, so you can respond - posts an answer, turn, whatever.</p></li>
+<li><p>You have forgotten your password and need a new one.</p></li>
+</ol>
+
+<p>And actually, that's about it. #2 can be circumvented by using a system like OpenID - essentially "make it someone else's problem".</p>
+
+<p>#1 is nebulous and difficult - you could argue that RSS feeds are a solution, but to take a system like Stack Overflow as an example, I don't want to have to subscribe to a feed for every question I ask/answer to get updates for it. Maybe you could have a 'personal' feed that updates only things relevant for me. Actually, I quite like that as a solution, not something I've seen (noticed?) implemented. Not quite so useful in situations where you might use a service once or twice though.</p>
+
+<p>My Inbox is almost exclusively used as a notification area - things happen on one of the various websites I use, my iPhone beeps to tell me I have an email. I respond when I have a moment - all the while being reminded by my unread count that I have some action to take at some point. Often though, an email arrives that is just some boring marketing thing or a spam that got through or a chain letter from my mum, resulting in a false-positive beep from my iPhone.</p>
+
+<p>RSS doesn't quite cut this mustard - although some of that may be down to the way most RSS clients are implemented. It also doesn't help for the idiots and old people who <em>only</em> have e-mail, but maybe we should start treating them like IE 6 users - just pretend they don't exist and hope they go away?</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7763">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/21" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/wwwp" target="_blank"><img src="2(18).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/wwwp" target="_blank" class="new-user">wwwp</a>
+        </h3>
+        <blockquote><p>Sure email is crap but all you are saying here is "oh noes I have to follow the standards involved". At least there <em>are</em> fairly universal standards.</p></blockquote>
+
+<p>Easy to say that when Jeff’s just laid them out for us. I suspect many, many hours of painful trial and error went into this blog post.</p>
+
+<blockquote>
+<p>Can you propose a better system? It has to meet the following requirements</p>
+<p>1) Your address can be public, so anybody can send to you without having an explicit prior relationship. This opens the door for spammers, but also job applicants, customers, etc.</p>
+</blockquote>
+
+<p>Does your address have to be public? Everyone I know who isn’t into computers like we are (which, remember, is likely 95–99% of the people in the world, and is therefore the kind of person that matters) uses Facebook instead of e-mail. There’s no real concept of a public address for messages there. You have to explicitly allow people to send you messages by becoming their friend.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7764">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/22" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/wwwp" target="_blank"><img src="2(18).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/wwwp" target="_blank" class="new-user">wwwp</a>
+        </h3>
+        <p>Oh, and here’s what I meant to say: vintage Coding Horror right here. A smart, useful article, with smart, useful comments and discussion.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7765">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/23" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Mr_rcollins" target="_blank"><img src="2(19).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Mr_rcollins" target="_blank" class="new-user">Mr_<wbr>​rcollins</a>
+        </h3>
+        <p>Are these mitigated if you just send the email through your email provider (such as Google Apps for Domains)? Granted, if you're sending a lot of messages you'll want to go with a provider, but for all of my little projects I've just passed all the heavy lifting to Google.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7766">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/24" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Fchristant" target="_blank"><img src="2(20).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Fchristant" target="_blank" class="new-user">Fchristant</a>
+        </h3>
+        <p><a class="mention" href="http://discourse.codinghorror.com/users/nathan" target="_blank">@Nathan</a>. Well said. I keep hearing these "I hate email" and "Email is dead" messages but they are bogus, because as far as I know, there is no alternative that has the characteristics that email has.</p>
+
+<p>What are we going to do? Post messages on forums, twitters, blogs and hope that somebody reads it? How will you be notified though? Wouldn't that be exactly the same as email? Instead of one source of communication and distraction we will have a dozen? How about not ignoring the fact that email is much more than communication, it is also legal proof, used as a todo, planning and scheduling application (when combined with a calendar). Some even use it as their main document management system.</p>
+
+<p>There are major issues in email I admit. Spam is one and is solved mostly. Misuse and overuse is one but you will keep that in every tool, because it is about culture, not technology.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7767">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/25" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Fchristant" target="_blank"><img src="2(20).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Fchristant" target="_blank" class="new-user">Fchristant</a>
+        </h3>
+        <p><a class="mention" href="http://discourse.codinghorror.com/users/paul" target="_blank">@paul</a>: "Does your address have to be public? Everyone I know who isn’t into computers like we are (which, remember, is likely 95–99% of the people in the world, and is therefore the kind of person that matters) uses Facebook instead of e-mail. There’s no real concept of a public address for messages there. You have to explicitly allow people to send you messages by becoming their friend."</p>
+
+<p>Well, that is your context. Here in the Netherlands, those people do use email, MSN and this local social network called Hyves. Your context is not universal. Guess what your group and mine have in common? Email.</p>
+
+<p>The other part about context is that you are talking about the consumer space. Friending people before you can send them anything will obviously not work in an enterprise.</p>
+
+<p>I can understand that Jeff and people of a similar background who use email as a consumer, not in an enterprise context, see email as annoying and outdated, but now put yourself in my shoes:</p>
+
+<p>I'm currently working on 4 projects at the same time. In total it concerns a group of nearly a 100 people that I need to report to or instruct. I also need to manage and structure tasks associated with it. I need to handover stuff to newcomers. I need to archive documents. I need to be able to search through all this crap and find things fast. I need to be able to discuss things electronically and I need a record of proof for new assignments. I work with people both old and young, from various backgrounds. As far as I know, only a rich email client can do all of this. </p>
+
+<p>The situation I am painting is much different from three developers in the same room working on a consumer product. Email is imperfect but often a neccessity. The alternatives are much worse.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7768">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/26" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Kevinkenny" target="_blank"><img src="2(21).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Kevinkenny" target="_blank" class="new-user">Kevinkenny</a>
+        </h3>
+        <p>Nice article spoiled by the <i>'aren't I so alternative/idiosyncratic/eccentric by declaring my hate for email'</i> attention seeking.</p>
+
+<p>Makes as much sense as me declaring my dislike for light switches, return-keys and cups with bottoms to keep the drink from falling out.</p>
+
+<p>I really don't see what the problem is with email. 99% of the time it just works. </p>
+
+<p>How about proposing alternatives?</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7769">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/27" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/DanielB" target="_blank"><img src="2(22).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/DanielB" target="_blank" class="new-user">DanielB</a>
+        </h3>
+        <p>Hey, I'm 16, and I want to learn a programming language. I'm already somewhat familiar with autoit(its basically a simpler version of visual basic, so I'm not very advanced lol) but I'd learn to learn something more mainstream and more powerful. I was thinking between C++ or Java. </p>
+
+<p>People say Java is easier, but I don't want to spoil myself with it and not be able to learn complex languages. On the other hand, I want to be able to understand the concepts of programming and not have it so complicated to where I just memorize a bunch of commands and not really understand it. </p>
+
+<p>Is there a book or a website you can recommend for a first programming language? Thanks! </p>
+
+<p>BTW, I also enjoy reading your blog, even though most of it is over my head.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7770">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/28" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Matt_Stith" target="_blank"><img src="2(23).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Matt_Stith" target="_blank" class="new-user">Matt_<wbr>​<wbr>​Stith</a>
+        </h3>
+        <p>Daniel, check out Carl H's programming lessons on Reddit.</p>
+
+<p><a href="http://www.reddit.com/r/carlhprogramming/" rel="nofollow" target="_blank">http://www.reddit.com/r/carlhprogramming/</a></p>
+
+<p>Start at lesson 1!</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7771">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/29" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Kju" target="_blank"><img src="2(24).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Kju" target="_blank" class="new-user">Kju</a>
+        </h3>
+        <p>The biggest bug in the code is that you insert to and subject into the mail header without any filtering. This is a source for many spam abuses, when spammers manage to control e.g. the subject and insert a newline into it, thus allowing them to insert own header lines and change the body.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7772">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/30" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/MichaelM" target="_blank"><img src="2(25).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/MichaelM" target="_blank" class="new-user">MichaelM</a>
+        </h3>
+        <p>If you use squirrelmail, you can send messages with wget.  This avoids many anti-spam and configuration issues.</p>
+
+<pre><code>wget --save-cookies cookies.txt --keep-session-cookies --post-data 'login_username=username&amp;secretkey=password' &lt;a href="http://webmail.server.com/src/redirect.php"&gt;http://webmail.server.com/src/redirect.php&lt;/a&gt;
+
+wget --load-cookies cookies.txt --post-data 'body=body here&amp;send_to=recipient%40wherever.com&amp;subject=subject here&amp;send=1' &lt;a href="http://webmail.server.com/src/compose.php"&gt;http://webmail.server.com/src/compose.php&lt;/a&gt;</code></pre>
+
+<p>For a bit more, see:</p>
+
+<p><a href="http://mikemccabe.wordpress.com/2007/08/07/sending-email-with-squirrelmail-via-wget/" rel="nofollow" target="_blank"></a><a href="http://mikemccabe.wordpress.com/2007/08/07/sending-email-with-squirrelmail-via-wget/" rel="nofollow" target="_blank">http://mikemccabe.wordpress.com/2007/08/07/sending-email-with-squirrelmail-via-wget/</a></p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7773">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/31" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Amouat" target="_blank"><img src="2(26).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Amouat" target="_blank" class="new-user">Amouat</a>
+        </h3>
+        <p>Hmmm, seems to me that e-mail as a <b>concept</b> is still a good idea, it's just e-mail as an <b>implementation</b> is broken.</p>
+
+<p>I feel something more akin to Google Wave is the way forward - we need to be able to easily move between slower e-mail based communication to faster chat based communication and improve sharing of documents and other resources.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7774">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/32" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Andrew_Hyde" target="_blank"><img src="2(27).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Andrew_Hyde" target="_blank" class="new-user">Andrew_<wbr>​<wbr>​Hyde</a>
+        </h3>
+        <p>Thoughts on using sendgrid.com for transactional email?  I've used them for a few projects and love how much they do (spam, tracking, truncation).</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7775">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/33" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/BjornP" target="_blank"><img src="2(28).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/BjornP" target="_blank" class="new-user">BjornP</a>
+        </h3>
+        <p>Good article if you're only sending a single email to a single recipient.  If you're going to send email to a bunch of people, e.g. if the exam they signed up for on your website had to be canceled, you have to think about issues like rate-limiting per domain and other such headaches...</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7776">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/34" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Ruchitgarg" target="_blank"><img src="2(29).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Ruchitgarg" target="_blank" class="new-user">Ruchitgarg</a>
+        </h3>
+        <p>I believe, if you move your emails to google app, you are good!</p>
+
+<p>Also, as someone already pointed out here, if we need to mass email marketing, then we need professional email software support anyways because of throttling etc.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7777">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/35" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Howie_Camp" target="_blank"><img src="2(30).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Howie_Camp" target="_blank" class="new-user">Howie_<wbr>​<wbr>​Camp</a>
+        </h3>
+        <p>Hi jeff why not outsource this to any one of a number of providers? They address deliverability issues which as you wrote about are the biggest hassle in the process.  CPM costs are so low nowadays too. Curious why you'd want to (or have to) manage all this complexity yourself?</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7778">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/36" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Brad_Davis" target="_blank"><img src="2(31).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Brad_Davis" target="_blank" class="new-user">Brad_<wbr>​<wbr>​Davis</a>
+        </h3>
+        <p>This post basically boils down to "If you're going to programatically plug into a global message sending service, there are some hoops you have to jump through to ensure that you're not sending a torrent of sewage."  But this isn't a coding problem.  This is an infrastructure problem.  And like most such problems, you push it off to someone else.  4/5 times your upstream ISP will have a mechanism for your network to push mail to theirs (without all these hoops) so that they become responsible for all the extra work involved in sending email.  In that 5th case where they don't, there are some pretty cheap providers who will allow you to send mail to them for a small annual fee.  Then your infrastructure barrier reduces to learning to set up postfix or sendmail or whatever to use a smarthost for all outbound email.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7779">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/37" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Brad_Davis" target="_blank"><img src="2(31).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Brad_Davis" target="_blank" class="new-user">Brad_<wbr>​<wbr>​Davis</a>
+        </h3>
+        <blockquote> Don't even bother reading any further until you've verified that your ISP has correctly configured the reverse PTR record for the server that will be sending email.</blockquote>
+
+<p>Do mail servers configured to check PTR records actually black hole email, or do they just refuse to accept it?  In my opinion an MTA either accepts an email and then does its best to deliver it, or it doesn't accept the email and produces an error message.  Anything less is heinously out of spec.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7780">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/38" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Ape_Inago" target="_blank"><img src="2(32).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Ape_Inago" target="_blank" class="new-user">Ape_<wbr>​<wbr>​Inago</a>
+        </h3>
+        <p>Below is an enlightening video about internet communication in general.</p>
+
+<aside class="onebox whitelistedgeneric">
+  <header class="source">
+    <a href="http://www.ted.com/talks/stefana_broadbent_how_the_internet_enables_intimacy.html" target="_blank">
+      www.ted.com
+    </a>
+  </header>
+  <article class="onebox-body">
+    <img src="ea3bcfa595433f7859fa0c3d3d9cabe457a653ab_2880x1620.jpg" class="thumbnail" width="102" height="57">
+
+<h3><a href="http://www.ted.com/talks/stefana_broadbent_how_the_internet_enables_intimacy.html" target="_blank">How the Internet enables intimacy</a></h3>
+
+<p>We worry that IM, texting, Facebook are spoiling human intimacy, but Stefana Broadbent's research shows how communication tech is capable of cultivating deeper relationships, bringing love across barriers like distance and workplace rules.</p>
+
+  </article>
+  <div style="clear: both"></div>
+</aside>
+
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7781">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/39" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Meyerweb" target="_blank"><img src="2(33).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Meyerweb" target="_blank" class="new-user">Meyerweb</a>
+        </h3>
+        <p>I may just be thick, but I don't understand how a PTR relates to SPF.  And the Googling I've done, let alone the reading of articles linked from here, hasn't made it any more clear.  Anyone have a pointer to something which (relatively) clearly explains them and their relation to each other?</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7782">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/40" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/JeffM" target="_blank"><img src="2(34).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/JeffM" target="_blank" class="new-user">JeffM</a>
+        </h3>
+        <p>So, the error in the "code", is the lack of a  queuing mechanism. Perhaps Ruby's Net::SMTP does this, but somehow I doubt it. The proper way to do this is to submit the message to a local queue on the machine. That machine then relays the message through a smart host, which has the proper configurations outlined by Jeff.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7783">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/41" target="_blank" title="April 21, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/JD_Conley" target="_blank"><img src="2(35).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/JD_Conley" target="_blank" class="new-user">JD_<wbr>​<wbr>​Conley</a>
+        </h3>
+        <p>We send hundreds of thousands to millions of emails per day, depending on the day. You left out one important/annoying bit. You also have to contact all the major email providers ONE BY ONE to make your emails get through. Microsoft, Yahoo!, and AOL all had specific methods of getting massive amounts of e-mailing to work. Luckily they all included links in the error messages, if you read your SMTP logs.</p>
+
+<p>Then you have to make sure your include all the CAN SPAM stuff (send from an address that can be replied to, double opt-in, include an unsubscribe link, etc) and also constantly monitor the common black lists. After all that, you have a decent chance of getting your emails through... It sucks.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7784">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/42" target="_blank" title="April 22, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Jaskirat" target="_blank"><img src="2(36).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Jaskirat" target="_blank" class="new-user">Jaskirat</a>
+        </h3>
+        <p><a class="mention" href="http://discourse.codinghorror.com/users/ruchitgarg" target="_blank">@ruchitgarg</a></p>
+
+<p>Using a google apps account with your domain doesnt mean it will pass. google does not sign your emails. more likely to end up in spam because google will use its own mx.google smtp servers to send emails for yourdomain.com unless ofcourse you send to people with a google address i guess.</p>
+
+<p>I ran a verification by emailing check-auth@verifier.port25.com from my google apps account and got this:</p>
+
+<pre><code>The Port25 Solutions, Inc. team
+
+==========================================================
+Summary of Results
+==========================================================
+SPF check:          neutral
+DomainKeys check:   neutral
+DKIM check:         neutral
+Sender-ID check:    neutral
+SpamAssassin check: ham
+
+
+----
+"neutral"
+       the authentication method completed without errors, but was unable
+       to reach either a positive or a negative result about the message.</code></pre>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7785">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/43" target="_blank" title="April 22, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Martin_Doms" target="_blank"><img src="2(37).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Martin_Doms" target="_blank" class="new-user">Martin_<wbr>​<wbr>​Doms</a>
+        </h3>
+        <p>You harp on about Twitter and you criticize email for being a poor communication modality? Give me a break, Jeff.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7786">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/44" target="_blank" title="April 22, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/eeeeaaii" target="_blank"><img src="2(38).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/eeeeaaii" target="_blank" class="new-user">eeeeaaii</a>
+        </h3>
+        <p>This is my first post on this blog, and I hate to start off sounding like a hater, but I get the sense that Jeff Atwood doesn't appreciate email because he doesn't have what some people call a "real job."  He spends his days sitting around at home with his cats and blogging (to be fair, it appears he did have a "real job" for three years, so I guess he has a little experience).  Right now, in Jeff's world, it makes sense to get rid of email.  But we don't all live in that world.  In railing against email, he is definitely not putting himself in the shoes of us "working folks."</p>
+
+<p>Here's what's in my inbox:<br>- a message to me from a visual designer (i.e. artist) telling me where the jpgs are (I need to know this so I can put them on the site).</p>
+
+<p>Okay, so obviously the designer is not going to twitter or FB this.  So why don't they IM me?  Well, for one thing, once I close the IM window the information is gone, so I have to dig through some IM logs to find it.  Here's another reason: if I'm logged off, she CAN'T send it, so what is she supposed to do, wait around and not move on to other tasks until I return to my desk?  She (understandably) wants to fire off a message and forget about it.  Finally, here's another reason (probably the most important one).  Follow along with this: I put the wrong assets on the site, I push the site live, the client yells at us or fires us for putting the wrong assets up, and then I blame the designer for not sending me the right info (I personally wouldn't do this, but many would).  If she's not logging that IM conversation, then it's my word against hers.  But if she has an email that she can point to, then I get in trouble, not her.  And since we use Exchange, our emails are archived on a server that only IT has access to, so even if she has a tech-savvy friend outside the company, if she didn't send it then there's no way she can fake an email.</p>
+
+<p>Oh, and another thing -- the people CCed on this email are carefully selected to be the exact people that need to know this info.  Me, two producers, the QA person, technical project manager, another designer.  Account managers not CCed -- they don't deal with this stuff, ever.  Random other programmers and team members not working on this project are not CCed.  If she sent an IM, two producers and the tech project manager and maybe QA are all going to be going to her desk or IMming her and saying "Hey, did you send that image to Jason?"  And she's going to be saying "yes" like 3 or 4 times.  And again, more importantly, when the producer forgets to tell the client that the image is live, and then later comes to the visual designer and says "you never told me it was ready", this designer can point to the email and say "Yes I did, here it is -- I CCed you."  Believe me, this happens all the time, even on the less backstabbing accounts.</p>
+
+<p>Anyway I could go on but the TL/DR is that it's really about accountability.  Email is used nowadays in much the same way that good-old on-paper MAIL used to be used.  If somebody wants to send you an official communication, they send you an email.  It's no accident that when you register for "e-billing" by your utility company, there's no option to register for "facebook billing" or IM billing or twitter billing.  Email is for official business.  I guess Jeff must not have much official business to conduct, which makes sense, since from what I understand he's mostly about blogging -- which is fine, that's what you do, but don't make the mistake of assuming everyone's life is just like yours.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7787">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/45" target="_blank" title="April 22, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/TheSpotter" target="_blank"><img src="2(39).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/TheSpotter" target="_blank" class="new-user">The<wbr>​Spotter</a>
+        </h3>
+        <p>Great tutorial but I have found that moving all my email functionality to something like gmail proves to be a simpler solution.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7788">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/46" target="_blank" title="April 22, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/AndreiR1" target="_blank"><img src="2(40).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/AndreiR1" target="_blank" class="new-user">AndreiR<wbr>​1</a>
+        </h3>
+        <p>The last phrase made it all! <img src="smile.png" title=":smile:" class="emoji" alt="smile" width="64" height="64">)</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7789">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/47" target="_blank" title="April 22, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/TonyB" target="_blank"><img src="2(41).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/TonyB" target="_blank" class="new-user">TonyB</a>
+        </h3>
+        <p>Sorry Jeff but you got this one wrong.</p>
+
+<p>None of this code belongs in your applications code.  DKIM, rDNS, SFP, etc. should all be handled by your SMTP server, not your application.  Your application is nothing more than an email client, like Outlook, Thunderbird, etc.  Outlook isn't adding any DKIM info and individual users don't worry about DNS records, that is all taken care of by the SMTP server.</p>
+
+<p>And I would say SPF (what you call Sender ID) is just as if not more important than DKIM. It is not Microsoft centric at all, almost all mail systems and spam filters check SPF records.  DKIM is almost exclusively used/enforced by Yahoo.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7790">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/48" target="_blank" title="April 23, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Iztok_Kacin" target="_blank"><img src="2(42).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Iztok_Kacin" target="_blank" class="new-user">Iztok_<wbr>​<wbr>​Kacin</a>
+        </h3>
+        <p>I agree with TonyB. This is not a responsibility of your app. It just does not belong there. SMTP servers are build to handle such matters so you don't have to. </p>
+
+<p>Every serious company has an own SMTP server and an admin that manages it. And you have a lot of choices online if you don't have you own SMTP.<br>What will you do if you mail gets greylisted, bounced etc... Will you mimic the mail server and try again later? Will you roll out your own mail server? Tha application should just pass the mail with basic info to the SMTP server. It is important however that you have a mean of processing the rejected or undeliverable mails. But this is commonly achieved by adding custom header entries so that the mail server is in a way aware of the sender.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7791">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/49" target="_blank" title="April 23, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Iztok_Kacin" target="_blank"><img src="2(42).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Iztok_Kacin" target="_blank" class="new-user">Iztok_<wbr>​<wbr>​Kacin</a>
+        </h3>
+        <p>Oh and about e-mail. It is by far the most reliable and wide spread medium of communication over the web. And It is not bad at all. I has one very big advantage. Everybody knows what it is and how to use it. Furthermore I can easily have my mails locally or on a server and have them archived. </p>
+
+<p>Good luck archiving all other means of communication. And yes, to me it is very important that I can look back to see what my coworker wanted me to do one year back.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7792">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/50" target="_blank" title="April 23, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Screwey" target="_blank"><img src="2(43).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Screwey" target="_blank" class="new-user">Screwey</a>
+        </h3>
+        <p>So email has it's flaws, I agree with that. (Calling it 'broken' is a little overstated, though). </p>
+
+<p>But advocating Twitter as an alternative? Seriously! The only reason I won't call twitter 'broken' is that it was never whole to begin with.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7793">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/51" target="_blank" title="April 23, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Alexander" target="_blank"><img src="2(44).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Alexander" target="_blank" class="new-user">Alexander</a>
+        </h3>
+        <p>That's interesting, if Google's App Engine (which has built-in mail API) provides all this stuff.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7794">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/52" target="_blank" title="April 23, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Jim_Butts" target="_blank"><img src="2(45).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Jim_Butts" target="_blank" class="new-user">Jim_<wbr>​<wbr>​Butts</a>
+        </h3>
+        <p>I have to concur with TonyB.  Your application should be a mail client.  One of the problems that most apps that send mail directly fail to deal with properly is greylisting.  A real SMTP server knows how to handle the SMTP responses, many of the libraries do not.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7795">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/53" target="_blank" title="April 23, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/ErickS" target="_blank"><img src="2(46).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/ErickS" target="_blank" class="new-user">ErickS</a>
+        </h3>
+        <p>/agree with all the people mentioning this all belongs on the smtp server, not the code level.</p>
+
+<p>While the things you listed in your blog post are all good to do, they really are the minimum.  Lots of people have mentioned more things to take into consideration.</p>
+
+<p>One thing i haven't seen mentioned yet is proper use of mime in email messages.   And this is something that you would control at the client level. </p>
+
+<p>Basically if you are going to be sending HTML in your email, you need to provide a plain text version as well, don't just send the HTML.</p>
+
+<p>If you  browse the asp.net forums you will see hundreds of posts where people are suggesting to do something like MailMessage.IsBodyHtml = true;   </p>
+
+<p>That is incorrect, the body should be text/plain and the html version should be added as an alternate view.</p>
+
+<p>When you do this, the recievers email client will automatically pick the right version, and the recievers email server will be less likely to reject your message to begin with.</p>
+
+<p><a class="mention" href="http://discourse.codinghorror.com/users/meyerweb" target="_blank">@Meyerweb</a> in regards to how ptr relates to spf records.</p>
+
+<p>spf records are basically a listing of ip addresses that are authorized to send email from a domain.   When you see the ptr token in the spf record it is basically a short cut for saying "the ip address indicated in the ptr record is allowed to send email for this domain"</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7796">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/54" target="_blank" title="April 26, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/RossB" target="_blank"><img src="2(47).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/RossB" target="_blank" class="new-user">RossB</a>
+        </h3>
+        <p><a class="mention" href="http://discourse.codinghorror.com/users/erick" target="_blank">@Erick</a> Stubbs:</p>
+
+<p>Including ptr in an SPF record doesn't seem like a good idea to me.</p>
+
+<p>Simply put, if I have control over my own DNS, I can add a PTR record of 1.2.3.4 to mxa.mail.google.com (or whatever Google's first SMTP server is).</p>
+
+<p>It's A records that are <em>generally</em> safe, as they map DNS names to IPs.  The A record for mydomain.com is under my control, unless the root server for .com gets tricked or the receiver has had their DNS hacked (and then it's their problem, not mine).</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7797">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/55" target="_blank" title="April 26, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Morglum" target="_blank"><img src="2(48).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Morglum" target="_blank" class="new-user">Morglum</a>
+        </h3>
+        <p>I haven't tried this to send mail to external parties as I work on internal ERP (Accounting) systems, but primarily you really just have to change how you think about it.</p>
+
+<p>On everything I design email is an "optional", "Under ideal circumstances" tool. For example we have an internal licensing application that we use to generate licenses for our customers. I could notify the licensing department using email - but what happens if it goes wrong? Instead I write to an actual table and have an application sit over it.</p>
+
+<p>Lets face it - email is and will always probably be a crapshoot. It just wasn't designed to be terribly reliable and the problem with spam has only compounded that.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7798">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/56" target="_blank" title="April 27, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/John_Moss" target="_blank"><img src="2(49).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/John_Moss" target="_blank" class="new-user">John_<wbr>​<wbr>​Moss</a>
+        </h3>
+        <p>I just want to say, this blog post inspired me to add an email error-reporting feature to one of my tools my support department uses.  Thank you for that.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7799">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/57" target="_blank" title="April 27, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/RichardD" target="_blank"><img src="2(50).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/RichardD" target="_blank" class="new-user">RichardD</a>
+        </h3>
+        <p>I love the post but the whole sentiment about email being the cockroach of communications is one I hadn't considered!! Our business ( <a href="http://www.yreceipts.com/" rel="nofollow" target="_blank">http://www.yreceipts.com</a> ) depends on automated emails! We send email receipts from retail shops as an alternative to paper and I'd be very interested to hear of other options for doing this if people have any. Thanks.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7800">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/58" target="_blank" title="April 28, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/jasonjwwilliams" target="_blank"><img src="2(51).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/jasonjwwilliams" target="_blank" class="new-user">jasonjwwilliams</a>
+        </h3>
+        <p>Of the items you listed...you missed the most basic one...and the one most frequently screwed up: include a Date header.</p>
+
+<p>It's required by RFC2822, and it's absence is a key indicator of spam.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7801">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/59" target="_blank" title="April 30, 2010 12:00am">Apr '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Andrew_Low" target="_blank"><img src="2(52).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Andrew_Low" target="_blank" class="new-user">Andrew_<wbr>​<wbr>​Low</a>
+        </h3>
+        <p>I wrote up something similar with a hands on Ubuntu slant.</p>
+
+<p><a href="http://www.lowtek.ca/roo/2009/earning-trust-for-your-email-server/" rel="nofollow" target="_blank">http://www.lowtek.ca/roo/2009/earning-trust-for-your-email-server/</a></p>
+
+<p>Others in the comments have mentioned Yahoo, but that was a particularly problematic step for me.  I did succeed - but it took some perseverance.  Yahoo hosts Rogers email, meaning that many local people were having spam issues with my server.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7802">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/60" target="_blank" title="May  3, 2010 12:00am">May '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/thomasrutter" target="_blank"><img src="2(53).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/thomasrutter" target="_blank" class="new-user">thomasrutter</a>
+        </h3>
+        <p>It's a good article, except that in the Gmail section you incorrectly conflate "Reverse PTR" and "SPF" - these are two separate things.  Gmail and port25.com aren't actually reporting on whether Reverse PTR checked out.</p>
+
+<p>You're right to say that SPF is a nice-to-have these days, and DKIM is more important.  Lots of other articles on the web say the reverse, primarily because a few years ago, SPF appeared to have taken the lead.</p>
+
+<p>SPF is actually badly thought out - it's debatable as to whether it is even a good idea to use it.  Certainly you should never reject any email that fails an SPF check, because there are just too many normal, legitimate situations in which it may report a failure.</p>
+
+<p>SPF makes the false assumption that if the recipient server isn't getting the mail delivered directly from the sender's MTA with no hops in between, then the mail is illegitimate.  It's not hard to see where this fails: if the recipient has set up his mail account to redirect mail to another, that adds an intermediate server that the sender has no control over.  If the final receiving server does an SPF check, it sees that the mail has come from an unrecognised server, which doesn't match the sender's server.  This happens even if the mail has not been altered in any way by that intermediate server.  The sender has no way of anticipating or avoiding this fail condition, except either to a) not use SPF at all or b) use SPF with "?all" at the end, ensuring mails that fail the check are not penalised.</p>
+
+<p>On the other hand, DKIM acknowledges that mail may pass through more than one server on its way to the destination, and even goes so far as to check that it hasn't been tampered with on its way.  There's far fewer situations where DKIM is likely to give a false fail, though there are a couple of edge cases.  One is where an intermediate server or proxy (such as a virus scanner) adds a footer to the bottom of mails.  Another is where a mailing list server alters some of the headers of the mail before sending the mail out.  In the first, you could argue that such tampering by intermediate servers /should/ cause a DKIM failure.  In the second, there are other options for mailing lists: they could verify and remove the DKIM header, possibly even re-signing the message with its own DKIM header matching the new Sender address and headers.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7803">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/61" target="_blank" title="May  3, 2010 12:00am">May '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/thomasrutter" target="_blank"><img src="2(53).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/thomasrutter" target="_blank" class="new-user">thomasrutter</a>
+        </h3>
+        <p>Another point that could be made is that not all these measures are about getting past spam filters.</p>
+
+<p>Having a reverse PTR that's not faked definitely will help you, and not just with email.  That's the most basic thing you should get working.</p>
+
+<p>DKIM and SPF can prove that you are the domain you claim to be, but they don't prove in their entirety that you're not a spammer.  There's nothing that says a spammer can't have an IP address and domain name, and due to incompetant or criminal hosting companies they often do.  In terms of beating spam filters, passing something like DKIM or SPF is going to be one of a number of factors that a filter may use in their decision, and content-based spam filters are certainly not becoming obsolete any time soon.  </p>
+
+<p>It's a simple point, but worth saying; there isn't a magic bullet to spam prevention not getting past spam filters.</p>
+
+<p>What DKIM and SPF can do, however, is cut down on a particular type of spam, where a spammer falsely poses as some reputable company.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7804">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/62" target="_blank" title="June 16, 2010 12:00am">Jun '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/ArthurC" target="_blank"><img src="2(54).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/ArthurC" target="_blank" class="new-user">ArthurC</a>
+        </h3>
+        <p>I had a major issue when I built my first website and had an email submission form with a major security vulnerability. Even though a good contact form is still the best way to go to avoid spam, you really need to know what you're doing.</p>
+
+<p><a href="http://wwww.firsttofold.com/" rel="nofollow" target="_blank"></a></p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7807">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/65" target="_blank" title="August  5, 2010 12:00am">Aug '10</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/ToreB" target="_blank"><img src="2(55).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/ToreB" target="_blank" class="new-user">ToreB</a>
+        </h3>
+        <p><a class="mention" href="http://discourse.codinghorror.com/users/brad" target="_blank">@Brad</a> Davis:<br>I'm not an expert on this, but when I looked into it several years ago, some mail servers operated as black holes to avoid email address harvesting/verification for spams.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7808">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/66" target="_blank" title="January 10, 2011 12:00am">Jan '11</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/AndyM" target="_blank"><img src="2(56).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/AndyM" target="_blank" class="new-user">AndyM</a>
+        </h3>
+        <p>I need expert help regarding SMTP...anyone, please! </p>
+
+<p><b>I'm trying to understand the safest way to use SMTP</b>. I am about to purchase a virtual server package, on which I will set up PHPlist (free open source mailing program), so we have the freedom to send unlimited newsletters (...10,000 per day at least, which requires a VPS).</p>
+
+<p>Here's my current setup with YMLP's software. I have a website - let's call it, <b>MyHostedDomain.com</b>. I send newsletters with the From / Reply To address as <b>alias@SomeoneElsesDomain.com</b>, which isn't being hosting by me but I have access to the email account.</p>
+
+<p>Can I do this with PHPList? i.e. send messages using <b>alias@SomeoneElsesDomain.com</b> as the visible address, but having it all go through my VPS SMTP? I cannot authenticate it, right? Is this a bad practice? Is my only hope to use an address with a domain on the VPS, i.e. <b>alias@MyHostedDomain.com</b>?</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+    <article class="post" id="post-7809">
+      <a class="post-date" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/67" target="_blank" title="March 25, 2011 12:00am">Mar '11</a>
+
+      <div class="author">
+        <a href="http://discourse.codinghorror.com/users/Vnekhai" target="_blank"><img src="2(57).png"></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://discourse.codinghorror.com/users/Vnekhai" target="_blank" class="new-user">Vnekhai</a>
+        </h3>
+        <p>Why don't use <a href="http://www.smtp.com/" rel="nofollow" target="_blank">http://www.smtp.com</a> ? This cloud email sending provider will do all this staff for you.</p>
+
+      </div>
+
+      <div style="clear: both"></div>
+    </article>
+
+    <footer>
+      <a class="button" href="http://discourse.codinghorror.com/t/so-youd-like-to-send-some-email-through-code/115/67" target="_blank">Continue Discussion</a>
+      <a href="http://discourse.codinghorror.com/" target="_blank"><img alt="D logo sketch" class="logo" src="d-logo-sketch.png"></a>
+    </footer>
+
+
+
+  
+
+</body></html>
