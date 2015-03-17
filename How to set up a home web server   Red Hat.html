@@ -1,0 +1,1031 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0059)http://www.redhat.com/magazine/022aug06/features/webserver/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>How to set up a home web server | Red Hat</title>
+<link rel="SHORTCUT ICON" href="http://www.redhat.com/favicon.ico">
+<link rel="stylesheet" type="text/css" media="screen" href="http://www.redhat.com/s/master.css">
+<link rel="stylesheet" type="text/css" media="print" href="http://www.redhat.com/s/print.css">
+<link rel="stylesheet" href="http://www.redhat.com/j/lib/jquery/plugins/fancybox/source/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen">
+
+		<link href="./How to set up a home web server   Red Hat_files/global.css" rel="stylesheet" media="screen" type="text/css">
+		<link rel="stylesheet" type="text/css" media="all" href="http://www.redhat.com/s/fonts/webfonts.css">
+		<script type="text/javascript" src="./How to set up a home web server   Red Hat_files/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="./How to set up a home web server   Red Hat_files/jquery-ui-1.8.4.custom.min.js"></script>
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/jquery.cycle.min.js"></script>
+		<!-- <script type="text/javascript" src="/j/lib/jquery/plugins/jquery.hoverIntent.js"></script> -->
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/fancybox/source/jquery.fancybox.pack.js?v=2.1.0"></script>
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.3"></script>
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/jquery.vallenato.accordion.js"></script>
+		<link rel="stylesheet" href="./How to set up a home web server   Red Hat_files/style.css" type="text/css" media="screen">
+		<script type="text/javascript" src="./How to set up a home web server   Red Hat_files/projekktor-1.0.20r63.min.js"> </script>
+		<script type="text/javascript" src="http://www.redhat.com/j/lib/jquery/plugins/jquery.lightbox_me.js"> </script>
+    	<script type="text/javascript" src="./How to set up a home web server   Red Hat_files/jquery.selectbox-0.5.js"></script>
+    	<script src="./How to set up a home web server   Red Hat_files/jquery.tools-1.2.7.min.js"></script>
+    	<script type="text/javascript" src="./How to set up a home web server   Red Hat_files/init.js"></script>
+		<script type="text/javascript">  
+		  $(document).ready(function(){
+		
+		  $('#showCountryLang_a').click(function(){
+			   $('#countryLanguage_OverLay').css("display","block");
+		  });
+		
+		  $('#hideCountryLang_a').click(function(){
+			   $('#countryLanguage_OverLay').css("display","none");
+		  });	 
+			 
+		   $('.source').click(function() {
+				   
+					$('.target').css("display","none");
+					 $(this).find('div.target').css("display","block");
+						$('countryLanguage_OverLay').css("display","block");
+			  });
+		 });
+		 
+//NOTE: tabberClassRename() and tabber() work together
+//tabberClassRename() gets all of the ids that are children of tab content and creates classes to setup tabber().  This setup is required so the page doesnt jump to anchors when the tabs are clicked but still shows the anchors in the url bar of the browser for deep linking.
+
+function tabberClassRename() {
+	var tabcontent=document.getElementById('tabcontent').getElementsByTagName('div');
+	for(i=0;i<tabcontent.length;i++) {
+		if (tabcontent[i].parentNode.id=='tabcontent') {
+			tabcontent[i].className=tabcontent[i].id;
+		}
+	}
+}
+
+function tabber(id) {
+	var tabber=document.getElementById('tabber').getElementsByTagName('a');
+	var tabcontent=document.getElementById('tabcontent').getElementsByTagName('div');
+	var tabid=new Array();
+	for (i=0;i<tabcontent.length;i++) {
+		if (tabcontent[i].parentNode.id=='tabcontent') {
+			tabid[i]=tabcontent[i].className;
+		}
+	}
+	if (!(id)) {
+		if (!(location.hash)) {
+			id=tabcontent[0].className;
+		} else {
+			id=location.hash.split('#');
+			id=id[1];
+			if (tabid.indexOf(id)==-1) {
+				id=tabcontent[0].className;
+			}
+		}
+	}
+	for (i=0;i<tabber.length;i++) {
+		selected=tabber[i].href.split('#');
+		if (selected[1]==id) {
+			tabber[i].className='selected';
+			tabber[i].parentNode.className='selected';
+		} else {
+			tabber[i].className='default';
+			tabber[i].parentNode.className='default';
+		}
+	}
+	for(i=0;i<tabcontent.length;i++) {
+		if (tabcontent[i].parentNode.id=='tabcontent') {
+			if(tabcontent[i].className!=id) {
+				tabcontent[i].style.display='none';
+				tabcontent[i].id==tabcontent[i].className;
+			} else {
+				tabcontent[i].style.display='block';
+				tabcontent[i].id='';
+			}
+		}
+	}
+}
+      </script>	
+
+<meta name="keywords" content="enterprise, open source, linux, virtualization, open source servers, open source desktop, open source systems management, security management, open source infrastructure, open source data center datacenter migration, red hat certification training, open source server operating systems, print servers, linux mail servers, database servers, file servers, java application software, linux and open source consulting services">
+
+<script type="text/javascript" src="http://www.redhat.com/j/jquery_rh/promoFlipper_cycle_jquery.js">
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="http://www.redhat.com/s/rhmag22.css">
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.redhat.com/magazine/rss20.xml">
+
+
+<script type="text/javascript" id="s_s:0:Integrate:s_2_Integrate_Demandbase_get_0" defer="" src="http://api.demandbase.com/api/v2/ip.js?key=b6b603b47ded9a3eff17c78423bbc773b9817cf6&var=s_2_Integrate_Demandbase_get_0&rnd=1238842909229"></script></head>
+
+
+	<body id="mainseven" class="en_US training ext bodyCloud">
+	<div id="container">
+		<div id="shell-top">
+			<div class="wrap">
+				<div id="header">
+					<div id="logo"><a href="http://www.redhat.com/">Redhat</a></div>
+					
+	    <script type="text/javascript">
+	    function submitLogin() {
+	    document.forms["loginForm_new"].submit();
+	    }
+	    function getCookie(NameOfCookie)
+	    { if (document.cookie.length > 0)
+	    { begin = document.cookie.indexOf(NameOfCookie+"=");
+	    if (begin != -1)
+	    { begin += NameOfCookie.length+1;
+	    end = document.cookie.indexOf(";", begin);
+	    if (end == -1) end = document.cookie.length;
+	    return unescape(document.cookie.substring(begin, end)); }
+	    }
+	    return null;
+	    }
+	    var userName = getCookie("rh_user");
+	    var foundCookie = false;
+	    if(userName != null){
+	    userName = userName.substring(userName.indexOf('|')+1,userName.length-1);
+	    userName = userName.substring(0,userName.indexOf('|'));
+	    foundCookie = true;
+	    }
+	    </script>  
+					
+        <script type="text/javascript">
+        if(foundCookie){
+        document.write("<div style='color: white; position: absolute; margin: -35px 0px 0px 0px; width: 800px; text-align:right;'>Welcome, " + userName + "&nbsp; | &nbsp; <a href='https://www.redhat.com/wapps/ugc' style='color: white'>Account Maintenance</a></div>");
+        }
+        </script><div style="color: white; position: absolute; margin: -35px 0px 0px 0px; width: 800px; text-align:right;">Welcome, oshan&nbsp; | &nbsp; <a href="https://www.redhat.com/wapps/ugc" style="color: white">Account Maintenance</a></div>
+			
+        <div id="login-pre">
+                <a id="loginhtml_a" href="https://www.redhat.com/wapps/sso/logout.html" title="Close login window" onmousedown="activateLogin()">Log out</a>
+                <script type="text/javascript">
+                        if(foundCookie){
+                                var d = document.getElementById('loginhtml_a');
+                                d.innerHTML = "Log out";
+                                d.title = "Close login window";
+                                d.href = "https://www.redhat.com/wapps/sso/logout.html"
+                                d.onmousedown = null;
+                }
+                </script>
+        </div> <!-- / Login Pre-State  --> 
+			
+					<div id="login-active">
+						<h2>Log in<span><a class="close-login" onmousedown="deactivateLogin()">X</a></span></h2>
+							<form id="loginForm_new" action="https://www.redhat.com/wapps/sso/login.html" method="post">
+							    <div>
+							    	<input value="Username" name="username" class="search-field" type="text">
+							    	<input value="Password" name="password" class="search-field" type="password">
+							    </div>
+							    <p>     
+								    <a href="http://www.redhat.com/wapps/ugc/register.html" class="arrow">Register</a><br>
+							        <a href="http://www.redhat.com/wapps/sso/lostPassword.html" class="arrow">Forgot Password</a>
+							        <!--<input type="submit" name="login-submit" value="Submit" class="login-submit"/>-->
+							        <input type="hidden" name="_flowId" value="legacy-login-flow">
+							        <input type="hidden" name="redirect" value="http://www.redhat.com/magazine/022aug06/features/webserver/">
+							        <input type="hidden" name="failureRedirect" value="http://www.redhat.com/wapps/sso/login.html">
+							        <input type="hidden" name="_eventId_submit" value="Log In">
+									<input type="submit" name="login-submit" value="SUBMIT" onclick="submitLogin()">
+							        <!-- <a href="#" class="close-login">Submit</a> -->
+							    </p>
+								<div>
+									<input type="hidden" name="asp_charset" value="iso-8859-1"></div>
+							</form>
+							<script type="text/javascript">
+								document.getElementById("loginForm_new").redirect.value=window.location.href;   
+                            </script>
+							                
+					</div> <!-- / Login Active-State  -->
+				
+					<div id="masthead">
+						<div id="secondary-nav" class="second-nav-rh">
+							 <ul>
+							 	<li class="first">
+							 		<a href="http://www.redhat.com/magazine/022aug06/features/webserver/#" id="showCountryLang_a">United States</a>
+							 		<div class="dropdown nav-countlang" id="countryLanguage_OverLay">
+										<div class="countryLanguage_Child1"></div>
+										<div class="countryLanguage_Child1_inner">
+											<h3>Sorry!</h3>
+											<p>This section of the site is only available in English.</p>
+											<a id="hideCountryLang_a" class="close">close</a>
+										</div>
+									</div>
+							 	</li>
+							 	<li><a href="https://access.redhat.com/home">Customer Portal</a></li>
+							 	<li><a href="http://www.redhat.com/resourcelibrary/results">Resource Library</a></li>
+							 	<li><a href="http://www.redhat.com/partners/">Find a partner</a></li>
+							 	<li><a href="http://www.redhat.com/wapps/store/catalog.html">Buy online</a></li>
+							 	<li><a href="http://www.redhat.com/contact/sales.html">Contact sales</a></li>
+							 </ul>
+						 
+						 	 <div id="search-wrap">
+							 	<div class="quick-links">
+								    <form id="quick_links_form" action="http://www.redhat.com/magazine/022aug06/features/webserver/#">
+								        <input id="_input" type="text" class="selectbox" autocomplete="off" readonly="readonly" tabindex="0"><div id="_container" class="selectbox-wrapper" style="display: none; width: 151px;"><ul><li id="_input_" class="selected">I want to...</li><li id="_input_https://access.redhat.com/downloads/">Download evaluations</li><li id="_input_/about/work/">Work at Red Hat</li><li id="_input_https://access.redhat.com/wapps/support/protected/subscriptions.html">Manage my subscriptions</li><li id="_input_/about/events-webinars/">Find events and webinars</li><li id="_input_http://investors.redhat.com/">Get investor information</li><li id="_input_http://partner.redhat.com">Log in to Partner Center</li></ul></div><select name="quick_links" class="quick-links-select" style="display: none;">
+								            <option value="">I want to...</option>
+											<option value="https://access.redhat.com/downloads/">Download evaluations</option>
+											<option value="/about/work/">Work at Red Hat</option>
+											<option value="https://access.redhat.com/wapps/support/protected/subscriptions.html">Manage my subscriptions</option>
+											<option value="/about/events-webinars/">Find events and webinars</option>
+											<option value="http://investors.redhat.com/">Get investor information</option>
+											<option value="http://partner.redhat.com">Log in to Partner Center</option>
+								        </select>
+										<div><input type="hidden" name="asp_charset" value="iso-8859-1"></div>
+									</form>
+								</div>	 
+							 	<div class="search">
+								    <form id="search_form" action="http://www.redhat.com/search">
+								        <input value="Type to search" name="q" class="search-field" type="text" id="searchBox" onfocus="if (this.value==&#39;Type to search&#39;) this.value=&#39;&#39;;" onblur="if (this.value==&#39;&#39;) this.value=&#39;Type to search&#39;;">
+								        <input type="submit" name="search_submit" value="" class="search-submit">
+									    <input type="hidden" value="redhat" name="site">
+									    <input type="hidden" value="Search" name="btnG">
+									    <input type="hidden" value="external" name="client">
+									    <input type="hidden" value="xml_no_dtd" name="output">
+									    <input type="hidden" value="external" name="proxystylesheet">
+									    <input type="hidden" value="1" name="exclude_apps">
+								    	<div><input type="hidden" name="asp_charset" value="iso-8859-1"></div>
+									</form>
+								</div>
+							</div>
+						</div><!-- /secondary-nav -->
+						<div id="section-masthead"></div>	
+					    
+					
+						<div id="primary-nav">
+							<ul class="primary-nav-list">
+							
+		<li>
+			<div class="primaryNavItem with-js">
+				<a class="parent" href="http://www.redhat.com/products/">Products</a>
+				<div class="dropdown nav-products">
+					<div class="container4">
+						<div class="container3">
+							<div class="container2">
+								<div class="container1">
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/products/enterprise-linux/">Red Hat Enterprise Linux</a></h4>
+											<a href="http://www.redhat.com/products/enterprise-linux/desktop/">Desktop</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/server/">Server</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/scientific-computing/">For Scientific Computing</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/for-ibm-power/">For IBM POWER</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/for-ibm-system-z/">For IBM System z</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/for-sap/">For SAP Business Applications</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/rhn-satellite/">Red Hat Network Satellite</a>
+											<a href="http://www.redhat.com/products/enterprise-linux/management/">Management</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/products/virtualization/">Red Hat Enterprise Virtualization</a></h4>
+											<a href="http://www.redhat.com/products/virtualization/server/">For Servers</a>
+											<a href="http://www.redhat.com/products/virtualization/desktop/">For Desktops</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/products/identity-management/">Identity Management</a></h4>
+											<a href="http://www.redhat.com/products/identity-management/certificate-system/">Red Hat Certificate System</a>
+											<a href="http://www.redhat.com/products/identity-management/directoryserver/">Red Hat Directory Server</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/products/enterprise-linux-add-ons/">Red Hat Enterprise Linux Add-Ons</a></h4>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/extended-update-support/">Extended Update Support</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/high-availability/">High Availability</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/high-performance-network/">High Performance Network</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/load-balancing/">Load Balancer</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/resilient-storage/">Resilient Storage</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/file-systems/">Scalable File System</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/smart-management/">Smart Management</a>
+											<a href="http://www.redhat.com/products/enterprise-linux-add-ons/extended-lifecycle-support/">Extended Lifecycle Support</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/products/cloud-computing/">Cloud Computing</a></h4>
+											<a href="http://www.redhat.com/products/cloud-computing/manageiq/">ManageIQ</a>
+											<a href="http://www.redhat.com/products/cloud-computing/openshift-enterprise/">OpenShift Enterprise</a>
+											<a href="http://www.redhat.com/products/cloud-computing/openstack/">OpenStack preview</a>
+											<a href="http://www.redhat.com/products/cloud-computing/cloudforms/">CloudForms</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/products/jbossenterprisemiddleware/">JBoss Enterprise Middleware</a></h4>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/web-server/">Web Server</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/developer-studio/">Developer Studio Portfolio Edition</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/operations-network/">JBoss Operations Network</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/fusesource/">FuseSource Integration Products</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/web-framework-kit/">Web Framework Kit</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/application-platform/">Application Platform</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/data-grid/">Data Grid</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/portal/">Portal Platform</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/soa/">SOA Platform</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/business-rules/">Business Rules Management System (BRMS)</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/data-services/">Data Services Platform</a>
+											
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/messaging/">Messaging</a>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/community-enterprise/">JBoss Community or JBoss enterprise</a>
+											
+											
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/products/mrg/">Red Hat Enterprise MRG</a></h4>
+											<a href="http://www.redhat.com/products/jbossenterprisemiddleware/messaging/">Messaging</a>
+											<a href="http://www.redhat.com/products/mrg/realtime/">Realtime</a>
+											<a href="http://www.redhat.com/products/mrg/grid/">Grid</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/products/storage/">Red Hat Storage Server</a></h4>
+											<a href="http://www.redhat.com/products/storage-server/on-premise/">For On-premise</a>
+											<a href="http://www.redhat.com/products/storage-server/public-cloud/">For Public Cloud</a>
+											<a href="http://www.redhat.com/products/storage-server/hybrid-cloud/">For Hybrid Cloud</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/products/allproducts.html">Products A to Z</a></h4>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		
+		<li>
+			<div class="primaryNavItem with-js">
+				<a class="parent" href="http://www.redhat.com/solutions/">Solutions</a>
+				<div class="dropdown nav-products">
+					<div class="container4">
+						<div class="container3">
+							<div class="container2">
+								<div class="container1">
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/solutions/it/">By IT challenge</a></h4>
+											<a href="http://www.redhat.com/solutions/it/application-development/">Application development</a>
+											<a href="http://www.redhat.com/solutions/it/business-process-management/">Business process management</a>
+											<a href="http://www.redhat.com/solutions/it/application-integration/">Enterprise application integration</a>
+											<a href="http://www.redhat.com/solutions/it/interoperability/">Interoperability</a>
+											<a href="http://www.redhat.com/solutions/it/operational-efficiency/">Operational efficiency</a>
+											<a href="http://www.redhat.com/solutions/it/security/">Security</a>
+											<a href="http://www.redhat.com/solutions/it/virtualization/">Virtualization</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/solutions/migration/">Migration Center</a></h4>
+											<a href="http://www.redhat.com/solutions/migration/enterprise-linux/">Migrate to Red Hat Enterprise Linux</a>
+											<a href="http://www.redhat.com/solutions/migration/systemsmanagement/">Systems management</a>
+											<a href="http://www.redhat.com/solutions/migration/olderversion/">Upgrading to Red Hat Enterprise Linux </a>
+											<a href="http://www.redhat.com/solutions/migration/jbossenterprisemiddleware/">JBoss Enterprise Middleware</a>
+											<a href="http://www.redhat.com/solutions/migration/aix-to-linux/">IBM AIX to Red Hat Enterprise Linux</a>
+											<a href="http://www.redhat.com/solutions/migration/hp-ux-to-linux/">HP-UX to Red Hat Enterprise Linux</a>
+											<a href="http://www.redhat.com/solutions/migration/solaris-to-linux/">Solaris to Red Hat Enterprise Linux</a>
+											<a href="http://www.redhat.com/solutions/migration/ux-to-linux/">UNIX to Red Hat Enterprise Linux</a>
+											<a href="http://www.redhat.com/solutions/migration/migrate-now/">Start a conversation with Red Hat</a>
+											<a href="http://www.redhat.com/solutions/migration/services/">Migration services</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/solutions/business/">By business need</a></h4>
+											<a href="http://www.redhat.com/solutions/business/enterprise-applications/">Enterprise applications</a>
+											<a href="http://www.redhat.com/solutions/business/infrastructure-consolidation/">Infrastructure consolidation</a>
+											<a href="http://www.redhat.com/solutions/business/security/">Security</a>
+											<a href="http://www.redhat.com/solutions/business/webapp/">Web applications</a>
+											<a href="http://www.redhat.com/solutions/business/storage/">Storage</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/solutions/industry/">By industry</a></h4>
+											<a href="http://www.redhat.com/solutions/industry/education/">Education</a>
+											<a href="http://www.redhat.com/solutions/industry/financial/">Financial services</a>
+											<a href="http://www.redhat.com/solutions/industry/government/">Government</a>
+											<a href="http://www.redhat.com/solutions/industry/healthcare/">Healthcare and life sciences</a>
+											<a href="http://www.redhat.com/solutions/industry/media/">Media and entertainment</a>
+											<a href="http://www.redhat.com/solutions/industry/telecom/">Telecommunications</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/solutions/cloud-computing/">Cloud Computing</a></h4>
+											<a href="http://www.redhat.com/solutions/cloud-computing/open-hybrid-cloud/">Red Hat Cloud</a>
+											<a href="http://www.redhat.com/solutions/cloud-computing/paas/">Enterprise PaaS</a>
+											<a href="http://www.redhat.com/solutions/cloud-computing/iaas/">Hybrid IaaS</a>
+											<a href="http://www.redhat.com/solutions/cloud-computing/cloud-virtualization/">Cloud with virtualization</a>
+											<a href="http://www.redhat.com/solutions/cloud-computing/public-cloud/">Find a public cloud provider</a>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+
+		<li>
+			<div class="primaryNavItem with-js">
+				<a class="parent" href="http://www.redhat.com/support/">Support</a>
+				<div class="dropdown nav-products">
+					<div class="container4">
+						<div class="container3">
+							<div class="container2">
+								<div class="container1">
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/support/subscription-benefits/">Benefits of a Red Hat subscription</a></h4>
+											<a href="http://www.redhat.com/support/subscription-benefits/open-assurance-faq/">Open Source Assurance FAQs</a>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/support/customer-portal.html">Red Hat Customer Portal</a></h4>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/support/technical-account-management/">Technical Account Management</a></h4>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/support/red-hat-support-partners.html">Red Hat Partner Support</a></h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+
+		<li>
+			<div class="primaryNavItem with-js">
+				<a class="parent" href="http://www.redhat.com/training/">Training</a>
+				<div class="dropdown nav-products">
+					<div class="container4">
+						<div class="container3">
+							<div class="container2">
+								<div class="container1">
+									<div class="col">	
+										<div class="row">
+											<h4><a href="http://www.redhat.com/training/guaranteedtorun.html">The value of Red Hat Training</a></h4>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/training/ways/">Ways to train</a></h4>
+											<a href="http://www.redhat.com/training/ways/classroom.html">Classroom training</a>
+											<a href="http://www.redhat.com/training/ways/role.html">Red Hat Online Learning</a>
+											<a href="http://www.redhat.com/training/ways/virtual.html">Virtual training</a>
+											<a href="http://www.redhat.com/training/ways/remote.html">Remote classroom training</a>
+											<a href="http://www.redhat.com/training/ways/onsite.html">On-site team training</a>
+											<a href="http://www.redhat.com/training/ways/livelabs.html">Live Access Labs</a>
+											
+										</div>
+										</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/training/paths">Courses and training paths</a></h4>
+											<a href="http://www.redhat.com/training/paths/popular-new.html">Popular and new courses</a>
+											<a href="http://www.redhat.com/training/paths/jboss-middleware-1.html">JBoss Middleware Administration curriculum</a>
+											<a href="http://www.redhat.com/training/paths/core-system-administration.html">Core System Administration curriculum</a>
+											<a href="http://www.redhat.com/training/paths/jboss-middleware-2.html">JBoss Middleware Development curriculum</a>
+											<a href="http://www.redhat.com/training/paths/advanced-systems-administration.html">Advanced System Administration curriculum</a>
+											<a href="http://www.redhat.com/training/paths/linux-development.html">Linux Development curriculum</a>
+											<a href="http://www.redhat.com/training/paths/cloud-virtualization.html">Cloud Computing and Virtualization curriculum</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/training/specials-na/">Ways to save</a></h4>
+											<a href="http://www.redhat.com/training/specials-na/successpack.html">Certification Success Packs</a>
+											<a href="http://www.redhat.com/training/specials-na/bundles.html">Create your own bundle</a>
+											<a href="http://www.redhat.com/training/specials-na/multistudentdiscount.html">Multi-student discount</a>
+											<a href="http://www.redhat.com/training/specials-na/certifiedhalfprice.html">Stay Current Certification Exam Discount</a>
+											<a href="http://www.redhat.com/training/specials-na/trainingunits.html">Training units</a>
+										</div>
+										</div>
+									
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/training/certifications/">Certifications</a></h4>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/training/guaranteedtorun.html">Guaranteed to Run classes</a></h4>
+										</div>
+
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/training/resources-na.html">Training resource center</a></h4>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/training/courses/">View all Red Hat Training courses</a></h4>
+										</div>
+										
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+
+		<li>
+			<div class="primaryNavItem with-js">
+				<a class="parent" href="http://www.redhat.com/consulting/">Consulting</a>
+				<div class="dropdown nav-products">
+					<div class="container4">
+						<div class="container3">
+							<div class="container2">
+								<div class="container1">
+									<div class="col">
+										<div class="row">	
+											<h4><a href="http://www.redhat.com/consulting/product-enablement/">Product Enablement</a></h4>
+											<a href="http://www.redhat.com/consulting/product-enablement/product-accelerators/">Product Accelerators</a>
+											<a href="http://www.redhat.com/consulting/product-enablement/product-architecture-services/">Product Architecture Services</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/consulting/platform/">Infrastructure services</a></h4>
+											<a href="http://www.redhat.com/consulting/platform/assessments/">Assessments</a>
+											<a href="http://www.redhat.com/consulting/platform/quickstart/">Quickstarts</a>
+											<a href="http://www.redhat.com/consulting/platform/implementation/">Implementations</a>
+											<a href="http://www.redhat.com/consulting/platform/healthchecks/">Healthchecks</a>
+											<a href="http://www.redhat.com/consulting/platform/migration-planning/">Migration Planning</a>
+											<a href="http://www.redhat.com/consulting/platform/resources/">Dedicated Resources</a>
+										</div>
+										</div>
+										<div class="col">
+											<div class="row">
+											<h4><a href="http://www.redhat.com/consulting/business/">Business solutions</a></h4>
+											<a href="http://www.redhat.com/consulting/business/consulting-pathways/">Red Hat Pathways</a>
+											</div>
+											<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/consulting/middleware/">Middleware and Application Services</a></h4>
+											<a href="http://www.redhat.com/consulting/middleware/assessments/">Assessments</a>
+											<a href="http://www.redhat.com/consulting/middleware/quickstarts/">Quickstarts</a>
+											<a href="http://www.redhat.com/consulting/middleware/implementations/">Implementations</a>
+											<a href="http://www.redhat.com/consulting/middleware/healthchecks/">Middleware Healthchecks</a>
+											<a href="http://www.redhat.com/consulting/middleware/migration-planning/">Middleware Migration Planning</a>
+											</div>
+										</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/consulting/technology/">IT Architecture and Design Services</a></h4>
+											<a href="http://www.redhat.com/consulting/technology/soe/">Standard Operating Environment (SOE)</a>
+											<a href="http://www.redhat.com/consulting/technology/migration/">Strategic Migration Planning</a>
+											<a href="http://www.redhat.com/consulting/technology/soa/">Service-oriented architecture (SOA)</a>
+											<a href="http://www.redhat.com/consulting/technology/data-services/">Enterprise Data Solutions</a>
+											<a href="http://www.redhat.com/consulting/technology/business-process-management/">Business Process Management</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/consulting/engagement/">Engagement Delivery Options</a></h4>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<h4><a href="http://www.redhat.com/consulting/cloud/">Cloud Services</a></h4>
+											<a href="http://www.redhat.com/consulting/cloud/middleware-cloud/">Middleware Cloud Services</a>
+											<a href="http://www.redhat.com/consulting/cloud/foundations-pathway/">Red Hat Cloud Pathway</a>
+											<a href="http://www.redhat.com/consulting/cloud/quickstart/">Red Hat Cloud Quickstart</a>
+										</div>
+										<div class="row topBorder">
+											<h4><a href="http://www.redhat.com/consulting/resources.html">Consulting resource library</a></h4>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</li>
+		</ul>               
+						</div> <!-- / Primary Navigation -->
+					
+					</div><!-- /masthead -->
+				</div><!-- /header -->
+			
+			
+			<div id="content">
+
+<!-- MAIN CONTENT AREA -->
+
+<p id="issueDate">Issue #22 August 2006</p>
+
+<div id="rhmagLeft">
+	<div id="nameplate">
+		<div class="inner">
+<a href="http://www.redhat.com/magazine/"><img src="./How to set up a home web server   Red Hat_files/rhmag_logo.gif" id="rhmagLogo" width="170" height="70" alt="Red Hat Magazine"></a>
+		<h2>Features</h2>
+		<ul>
+			<li><a href="http://www.redhat.com/magazine/022aug06/features/rhh/">The kids are alright</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/features/barcamp/">Belly up to the BarCamp</a></li>
+			<li><a href="./How to set up a home web server   Red Hat_files/How to set up a home web server   Red Hat.html">How to set up a home web server</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/features/olpc/">The little laptop that could</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/features/fc6_print/">Fedora Core 6 advances printing</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/features/dogtail/">Using Dogtail to automate Frysk GUI tests</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/features/webcast_berman/">Integrated virtualization lives</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/features/fedora_message/">The Fedora message</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/features/fedora_rhel_4/">The Fedora Project and Red Hat Enterprise Linux, part 4</a></li>
+		</ul>
+		<h2>From the Inside</h2>
+		<ul>
+			<li><a href="http://www.redhat.com/magazine/022aug06/departments/from_the_inside/index.html">News</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/departments/from_the_inside/index.html#wp">Whitepapers and case studies</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/departments/from_the_inside/index.html#events">Global events</a></li>
+		</ul>
+		<h2>In each Issue</h2>
+		<ul>
+			<li><a href="http://blogs.redhat.com/magazine/">Editor's blog</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/departments/red_hat_speaks/">Red Hat speaks</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/departments/ask_shadowman/">Ask Shadowman</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/departments/tips_tricks/">Tips &amp; tricks</a></li>
+			<li><a href="http://www.redhat.com/magazine/022aug06/departments/fedora_status/">Fedora status report</a></li>
+			<li><a href="http://www.redhat.com/magazine/podcast.xml">Podcast (XML)</a></li>
+			<li><a href="http://www.redhat.com/magazine/archive/">Magazine archive</a></li>
+		</ul>
+		<h2>Feedback</h2>
+		<ul>
+			<li><a href="http://www.redhat.com/magazine/feedback/to_the_editor.html">To the editor</a></li>
+			<li><a href="http://www.redhat.com/magazine/feedback/call_for_writers.html">Call for writers</a></li>
+			<li><a href="https://www.redhat.com/apps/webform.html?event_type=simple_form&eid=299">Interested in print?</a></li>
+			<li style="margin-top: 2em;"><a href="http://www.redhat.com/magazine/staff.html">Editorial team</a></li>
+		</ul>
+		</div>
+	</div>
+</div>
+
+<div id="rhmagCenter">
+<div class="article">
+
+
+<h1 id="content">How to set up a home web server</h1>
+<h4 id="byline">by Jeff "Crash" Goldin</h4>
+
+<p>It seems like everybody's blogging and sharing digital photos online. This booming hobby (and business) sends many people to paid hosting companies to share their thoughts and images. Though many companies are reliable and inexpensive, with a little work and some relatively cheap hardware you can host your own files, save some money, and have complete control over what services are available and how your content is displayed.</p>
+
+<h2>Services</h2>
+
+<p>You will need a high-speed connection capable of bringing information to your home (downloading) and sending information out to the Internet (uploading). Most DSL and cable connections allow this, but some limit the amount of information that users are allowed to upload. Check with your local provider to see if they have such limits.</p>
+
+<p>The next thing you should think about is a domain name. Your domain name is the name people will use to look up your web pages or to send you email. You will want to register this domain name. There are several services that can help do that. If you're using a dsl connection or a cable modem, you may not have a static network address, so you should look at services from sites like <a href="http://dyndns.org/">dyndns.org</a>, <a href="http://no-ip.com/">no-ip.com</a>, or <a href="http://zoneedit.com/">zoneedit.com</a>. Some of these services can also help with domain registration.</p>
+
+<h2>Hardware</h2>
+
+<p>Once you have an internet connection and have set up your domain name, the next step is to purchase and set up a home router.  This piece of equipment will allow you to share your network connection with several computers. And, importantly, it will also serve as a first line of defense for your home web server. Any good electronics store will have a selection of routers.</p>
+
+<p>Make sure that the model you select fits the following profile:</p>
+
+<ul>
+	<li>Choose a router with a couple of <strong>hardwired Ethernet ports,</strong> sometimes known as <a href="http://en.wikipedia.org/wiki/RJ45">RJ-45 LAN jacks</a>. It is not recommended to use a wireless connection for your web server.</li>
+	<li>Make sure that your router is capable of <strong>port forwarding</strong>, as this will be necessary to route the outside web traffic to your web server.  We will talk about configuration of this <a href="http://www.redhat.com/magazine/022aug06/features/webserver/#later">later in this article</a>.
+</li></ul>
+
+<p>The last piece of hardware you will need is the actual computer. There a few requirements for the machine:</p>
+
+<ul>
+	<li>Minimum processor speed of 1Ghz</li>
+	<li>At least 1 Gigabyte (GB) of RAM in system memory</li>
+	<li>A DVD burner</li>
+	<li>Adequate storage for your website's needs</li>
+</ul>
+
+<dl class="adnote">
+<dt>Note on storage</dt>
+
+<dd>It's advised to consider your web server's needs for long-term storage. What you plan on sharing will be the determining factor in the amount of storage you will need, and a little bit every few days really adds up. Most still digital pictures range in size from 2 Megabytes (MB) and up, varying widely due to size and resolution. Videos are even larger, with a full-length movie averaging around 1,000MB (or 1GB) in size. Music files and software packages are also pretty huge. An MP3 file averages around 4MB, while the same file, in .wav format, weighs in at a whopping 40MB. Realistically, the initial hard drive should be no less than 160GB.</dd>
+</dl>
+
+<p>Now for the details:</p>
+
+<ul>
+	<li>Make sure your new server has a <strong>10/100 Ethernet connection</strong>.</li>
+	<li>Have the right <strong>peripherals</strong>. You will need a keyboard, mouse, and monitor to complete your installation. Once your computer is up and running, you will not need the monitor plugged into your computer full time, so you can borrow a monitor from a computer you already have.</li>  
+	<li>If you plan on uploading photos to your server, you may want a compatible <strong>memory card reader</strong>. It will make uploading your pictures much easier and faster.</li>
+
+	<li>An <strong>uninterruptable power supply (UPS)</strong> will help protect your computer from power spikes and outages.</li>
+</ul>
+
+<p>Once all the pieces have been assembled, it's time to begin installation.</p>
+
+<h2>Installation</h2>
+
+<ol>
+	<li>Power on your computer and insert the Fedora™ Core or Red Hat® Enterprise Linux® installation disk into your DVD drive.</li>
+
+	<li>Select your language and keyboard setup.</li>
+	<li>You can select automatic partitioning for your hard drive space, but it may not be ideal for this kind of deployment. Here is a suggested breakdown of your partitions, based on a computer with 1GB of RAM and a 160GB hard drive:
+<pre>/boot 100MB
+/        10240MB
+swap 2048MB  (this should  be twice the system memory)
+/tmp  5120MB
+/var 133120MB  (this is where the majority of your web content will be stored)
+/var/log 10240MB
+</pre>
+	</li>
+	<li>Select the default settings for the boot loader and allow it to be installed in the master boot record (MBR).</li>
+	<li>When you get to <strong>network configuration</strong>:
+		<ul>
+
+			<li>Select <code>manual settings</code>.</li>
+			<li>Select <code>configure eth0</code>.</li>
+			<li>Turn off <code>configure using DHCP</code>.</li>
+			<li>Turn on <code>activate on boot</code>.</li>
+
+			<li>Set the IP address to a value in your network range. Make sure it is an address that is not being used by another computer or device on your network.</li>
+			<li>Set the network mask to your network settings.</li>
+		</ul>
+	</li>
+	<li>When you get to <strong>firewall configuration</strong>:
+		<ul>
+			<li>Enable firewall</li>
+
+			<li>Click on the web server <code>Set SELinux</code> to warn until the installation is complete and all applications have been installed.</li>
+		</ul>
+	</li>
+	<li>Continue through the next several install screens, making sure to note your <strong>root password</strong>.</li>
+</ol>
+
+<h3>Package selection</h3>
+
+<p>An "everything" install is not required or recommended for this type of application. You should perform a custom installation, making sure to select the editors, web server,  and MySQL (this is the database often used by blogging and photo-sharing applications) packages.</p>
+
+<p>Continue clicking through until the install finishes. The installer should then eject your install disk and automatically reboot your computer.</p>
+
+<dl class="adtip">
+<dt>Tip</dt>
+<dd>A handy trick at this point in the install is to enter your computer's BIOS--usually accessed by hitting the F1 or delete key during boot (check your computer's documentation for the correct command). In the BIOS, you can set your computer to reboot on power loss. Then, if your server suffers an extended power loss, when the power is returned it will automatically restart.</dd>
+
+</dl>
+
+<h2>Configuration</h2>
+
+<p>Once the computer reboots, login with your root password. Now would be a good time to check for updates to your operating system. You can set up a service like <a href="http://rhn.redhat.com/">RHN</a> to get automatic updates for Red Hat Enterprise Linux, or download Fedora Core package updates from any number of <a href="http://fedora.redhat.com/Download/mirrors.html">mirrors</a>.</p>
+
+<p>Once updated and rebooted, it's time to configure your services:</p>
+
+<ol>
+
+	<li>Start <code>system-config-services</code></li>
+	<li>Make sure that <code>httpd</code> and <code>mysqld</code> are started and selected to start on boot, then save the service configuration.</li>  
+	<li>Verify that your web server is working correctly by opening a browser and pointing it at <code>http://localhost/</code> (which always points to the web server on your computer).  You should see the test page for apache, the web server application.</li>
+</ol>
+
+<p>Your web server comes with a basic configuration, but some customization is suggested for optimal performance.  Open a terminal window and:
+
+</p><pre>cd /etc/httpd/conf
+cp httpd.conf httpd.conf.bak
+</pre>
+
+<p>You've made a backup of the stock httpd.conf file.  Now edit it with the text editor of your choosing. Make the following changes:</p>
+
+<pre>ServerAdmin &lt;add an email address not on this machine&gt;
+ServerName www.&lt;your domain name&gt;
+</pre>
+
+<p>Save and close the editor. Issue the command:</p>
+
+<pre>service httpd restart
+</pre>
+
+<p>This will restart the web server with your changes.</p>
+
+<h3>Dynamic IP</h3>
+
+<p>If your Internet provider uses dynamic addresses, then you will need to install an application to track and update your information with your domain provider. This is usually a matter of installing  and configuring the application. Doing this will add your router login information as well as your provider login information to the configuration file.</p>
+
+<p><a href="http://ddclient.sourceforge.net/">Ddclient</a> is a popular choice for this and works with <a href="http://www.dyndns.com/">Dynamic Network Services</a>.  You can get the RPM for ddclient via yum. To configure ddclient:</p>
+
+<ul>
+	<li>edit the <code>/etc/ddclient/ddclient.conf</code> file and uncomment the section for your router</li>
+	<li>add in the password you set for the admin user (ie use=linksys, fw=linksys, fw-login=admin, fw-password=admin)
+	</li><li>in the myserver section, add your login and password for <a href="http://dyndns.org/">dyndns.org</a>, along with your hostname.</li>
+</ul>
+
+<p>As an example:</p>
+
+<pre>server=members.dyndns.org
+login=mylogin
+password=mypassword
+myhost.dyndns.org
+</pre>
+
+<p>Finally make sure that the ddclient service is configure to run at start time by issuing the command:</p>
+
+<pre>chkconfig --add ddclient 345
+</pre>
+
+<h2>Security</h2>
+To increase the level of security on your webserver, you may want to add some of the following lines of code to <code>/etc/sysconfig/iptables</code>:<p></p>
+
+<pre>-A INPUT -s 192.168.0.0/255.255.255.0 -i eth0 -p tcp -m tcp --dport 22 -j ACCEPT (this line allows only machines on your local network to access the server)
+-A INPUT -m state --state ESTABLISHED -j ACCEPT (these lines allows existing connections to remain open while changing your firewall rules)
+-A RH-Firewall-1-INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 25 -j DROP (this line blocks unauthorized mail connections)
+-A FORWARD -j RH-Firewall-1-INPUT
+-A RH-Firewall-1-INPUT -i lo -j ACCEPT (this line allows local network in)
+-A RH-Firewall-1-INPUT -p icmp -m icmp --icmp-type 255 -j ACCEPT
+-A RH-Firewall-1-INPUT -p esp -j ACCEPT
+-A RH-Firewall-1-INPUT -p ah -j ACCEPT (these rules allow ipsec connections)
+-A RH-Firewall-1-INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT (this line allows website traffic to pass)
+-A RH-Firewall-1-INPUT -j REJECT --reject-with icmp-host-prohibited (this line blocks all other port connection to your computer)
+COMMIT
+</pre>
+
+<p>The above example assumes your network is on the 192.168 range. If yours is not, adjust the numbers according to your network information.  Remember to restart your iptable service afterwards for the change to take effect.</p>
+
+<h2>Content</h2>
+<p>You are finished with your server's installation and configuration. Now it is time to add your content. Perhaps this a photo gallery program, a blog application, or even some simple static web pages. Anything that is going to be available online should be stored in <code>/var/www/html</code>.</p>  
+
+<a name="later"></a>
+<h2>Open for business (port forwarding)</h2>
+<p>Once you have your content in place, the final step in the setup process is to reconfigure your router to allow network traffic access to your web sever. Open up a browser and go to your router's configuration page. Typically this is done by pointing your browser at the IP address of the router (example: 192.168.0.1). Look for the port forwarding section and make sure all http services or port 80 traffic is sent to the IP address of your web server. </p>
+
+<p>If all went well you should now be able to point your browser at <code>www.&lt;yourdomain&gt;</code>, where you should see your home page. You can confirm that things are working by contacting someone not on your local network to see if they can visit your new website.</p>
+
+<h2>Vigilance</h2>
+<p>Now that your web server is up and running, you will want to make sure it stays that way. Continue regularly checking for updates to keep it stable and secure. Because you are allowing outside access, you will want to pay close attention to the activity on your web server.</p> 
+
+<div class="rateButton">
+        <!-- div style="font-size:x-small;margin:0 0 0 4px;">Current rating:</div --><!-- IMG src=/apps/include/ratepage/star.jpg --><!-- IMG src=/apps/include/ratepage/star.jpg -->
+
+<script language="JavaScript">
+<!--
+function openwindow()
+{
+	var new_win = window.open("/apps/ratepage/giverating_article.html?url=/magazine/022aug06/features/webserver/","mywindow","menubar=1,resizable=1,width=350,height=350");	
+}
+-->
+</script>
+
+<input id="rateButtonStyle" type="image" src="./How to set up a home web server   Red Hat_files/ratepage1.png" name="rate this page" value="rate this page" alt="rate this page" onclick="openwindow()" onmouseover="this.src=&#39;/g/magazine/ratepage2.png&#39;" onmouseout="this.src=&#39;/g/magazine/ratepage1.png&#39;">
+
+<div class="rateText">No login required. Want to see your comments in print? Send a <a href="http://www.redhat.com/magazine/feedback/to_the_editor.html">letter to the editor</a>.</div>
+</div><!-- rateButton -->
+
+<p>A transaction record of your web activity is automatically saved in <code>/var/log/httpd</code>.  Here you will find four basic files; <code>access_log</code>, <code>error_log</code>, <code>ssl_access_log</code>, and <code>ssl_error_log</code>.</p>
+
+<p><code><strong>Access_log</strong></code> will show a log of all pages viewed, what type of browser viewed them and from what network address the requests came.</p>
+
+<p><code><strong>Error_log</strong></code> will show all errors encountered by your website, included pages not found and problems with starting the service.</p>
+
+<p><code><strong>Ssl_access_log</strong></code> and <code><strong>ssl_error_log</strong></code> record all secure pages, which were not covered in this setup guide.</p>
+
+<p>The numbers at the end of the files indicate older files that are stored as a temporary back-up. These back-up files are automatically overwritten over time.</p>
+
+<h2>More resources</h2>
+<ul>
+	<li>Routers</li>
+	  <ul>
+        	<li><a href="http://www.linksys.com/">Linksys Routers</a></li> 
+		<li><a href="http://www.netgear.com/">Netgear Routers</a></li>
+      	  </ul> 
+	<li><a href="http://www.dyndns.com/">DynDNS</a></li>
+
+	<li><a href="http://apache.org/">Apache Software Foundation</a></li>
+</ul>
+
+<h2>About the author</h2>
+<p class="authorblurb">Jeff "Crash" Goldin is a system administrator with many years experience. In his spare time he enjoys cooking gourmet meals, riding his mountain bike, and spending quality time with his wife Melissa, their two house-rabbits, and the world of <a href="http://www.cityofvillains.com/">Evil-doers</a>.</p>
+
+
+</div>
+</div>
+
+<br style="clear: both;">
+
+			</div><!-- /content -->
+		</div><!-- /wrap -->
+		</div><!-- /shell-top -->
+		
+		<div id="shell-bottom">
+			<div class="wrap">
+					
+				<div id="footer">
+				
+				<script type="text/javascript" src="./How to set up a home web server   Red Hat_files/s_code.js"></script> 
+				<script type="text/javascript" src="./How to set up a home web server   Red Hat_files/rh_omni_footer.js"></script>
+				
+    <script type="text/javascript">
+
+            omni_array = new Array
+
+            var url_split = document.URL.split(/\//)
+            var channel = document.URL.split(".com")[1] || ""
+            var cname = document.body.classList[0].split("_")[1].toLowerCase() || ""
+            if (url_split[url_split.length-1].search(/\?/) >= 0)
+            {
+                url_split.splice(url_split.length-1,1)
+            }
+            omni_array[0]= "rh|" + url_split.slice(3,-1).join("|")
+            omni_array[1]="redhat.com"
+            omni_array[2]= channel.split("/")[1] || ""
+            omni_array[3]= url_split.slice(3,url_split.length).join(",") || ""
+            omni_array[4]=url_split[4] || "" 
+            omni_array[5]=url_split[4] || ""
+            omni_array[6]=url_split[5] || ""
+            omni_array[7]=url_split[5] || ""
+            omni_array[8]=url_split[6] || ""
+            omni_array[9]=url_split[6] || ""
+            omni_array[10]=document.documentElement.lang
+            omni_array[11]=document.documentElement.lang
+            omni_array[12]=cname || ""
+            omni_array[13]=cname || ""
+            omni_array[14]=""
+            omni_array[15]=""
+            omni_array[16]="rh|" + cname + "|" + url_split.slice(3,-1).join("|")
+            omni_array[17]="rh|" + cname + "|" + url_split.slice(3,-1).join("|")
+            omni_array[18]=document.URL
+            omni_array[19]=document.URL
+            omni_array[20]=''
+
+            setOmnitureVariables(omni_array);
+    </script>
+    <script type="text/javascript">
+            <!-- if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-') -->
+    </script>
+    <noscript>
+            &lt;p&gt;&lt;img src="https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.21&amp;#45;&amp;#45;NS/0?[AQB]&amp;amp;cdp=3&amp;amp;[AQE]" height="1" width="1" alt=""/&gt;&lt;/p&gt;
+    </noscript>
+           
+		    	<!-- Call Out Boxes -->
+		   		<div class="call-out-boxes">
+					
+					<div class="call-out-box">
+		
+					    <div class="about">
+					        <a href="http://www.redhat.com/about/">About Red Hat</a>
+					    </div>
+					</div>
+					
+					<div class="call-out-box">
+					     <div class="partner">
+					        <a href="http://www.redhat.com/partners/">Engage With Partners</a>
+					    </div>
+		
+					</div>
+					
+					<div class="call-out-box">
+					    <div class="community">
+					        <a href="http://www.redhat.com/community/">Explore Communities</a>
+					    </div>
+					</div>
+					
+					<div class="call-out-box last">
+					    <div class="myredhat">
+		
+					        <a href="https://access.redhat.com/home">Access My Account</a>
+					    </div>
+					</div>
+					
+					<br class="clear">                
+					</div> <!-- / Call Out Boxes -->
+					                
+					<div id="footer-nav">
+					                    
+					<ul class="social-icons">
+					    <li><span>Connect:</span></li>
+					    <li><a href="http://www.twitter.com/redhatnews" target="_blank"><img src="./How to set up a home web server   Red Hat_files/twitter.png" alt="Twitter"></a></li>
+					    <li><a href="http://www.facebook.com/redhatinc" target="_blank"><img src="./How to set up a home web server   Red Hat_files/facebook.png" alt="Facebook"></a></li>
+					    <li><a href="http://www.youtube.com/user/RedHatVideos" target="_blank"><img src="./How to set up a home web server   Red Hat_files/youtube.png" alt="YouTube"></a></li>
+					    <li><a href="http://www.linkedin.com/groups?home=&gid=2525539&trk=anet_ug_hm" target="_blank"><img src="./How to set up a home web server   Red Hat_files/linkedin.png" alt="LinkedIn"></a></li>
+					    <li><a href="http://www.flickr.com/photos/49549965@N04/" target="_blank"><img title="Check out Red Hat photos on Flickr." alt="Flickr" src="./How to set up a home web server   Red Hat_files/flickr.png"></a></li>
+					</ul>
+					
+					<ul class="footer-nav-list">
+					    <li>Copyright ©2013 Red Hat, Inc.</li>
+					    <li>|</li>
+		
+					    <li><a href="http://www.redhat.com/footer/privacy-policy.html">Privacy Policy</a></li>
+					    <li><a href="http://www.redhat.com/footer/terms-of-use.html">Terms of Use</a></li>
+					    <li><a href="http://www.redhat.com/footer/patent-promise.html">Patent Promise</a></li>
+					    <li><a href="http://www.redhat.com/about/work/">Careers</a></li>
+					    <li><a href="http://www.redhat.com/about/mediarelations/trademark.html">Trademark guidelines</a></li>
+					    <li><a href="http://www.redhat.com/about/">About Red Hat</a></li>
+					</ul>
+					
+					<ul class="footer-nav-list">
+						<li><a href="http://www.redhat.com/contact/">Contact Us</a></li>
+					    <li><a href="http://www.redhat.com/footer/site-map.html">Site Map</a></li>
+					    <li><a href="http://www.redhat.com/footer/faq.html">FAQs</a></li>
+					    <li><a href="http://www.redhat.com/about/company/supplier.html">Supplier requirements</a></li>
+					    <li><a href="http://www.redhat.com/about/">Company</a></li>
+					</ul>                
+					</div>  <!-- Legal Nav -->
+		
+		    	
+				</div><!-- / Footer -->
+			</div><!-- /wrap -->
+		</div><!-- /shell-bottom -->
+		</div><!-- /container -->
+		<script type="text/javascript">
+					//$(document).ready(function() {
+					//	$('.quick-links-select').selectbox( {
+					//		debug : false
+					//	});
+					//});
+		</script>
+		<!-- begin eloqua tracking -->
+		<script type="text/javascript" language="JavaScript" src="http://www.redhat.com/j/elqNow/elqCfg.js"></script> 
+		<script type="text/javascript" language="JavaScript" src="http://www.redhat.com/j/elqNow/elqImg.js"></script>
+		<!-- end eloqua tracking -->
+	
+<style>#content > #center > .dose > .dosesingle,#content > #right > .dose > .dosesingle,#header + #content > #left > #rlblock_left,[href^="http://www.linkbucks.com/referral/"],[href^="http://www.faceporn.net/free?"]
+{display:none !important;}</style></body></html>
