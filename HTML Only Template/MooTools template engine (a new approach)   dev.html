@@ -1,0 +1,967 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0081)https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>MooTools template engine (a new approach) | dev</title>
+	<link rel="pingback" href="https://zealdev.wordpress.com/xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="dev » Feed" href="https://zealdev.wordpress.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="dev » Comments Feed" href="https://zealdev.wordpress.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="dev » MooTools template engine (a new approach) Comments Feed" href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" id="all-css-0" href="./MooTools template engine (a new approach)   dev_files/saved_resource" type="text/css" media="all">
+<link rel="stylesheet" id="print-css-0" href="./MooTools template engine (a new approach)   dev_files/global-print.css" type="text/css" media="print">
+<script type="text/javascript">
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script><style>#header + #content > #left > #rlblock_left,
+#content > #right > .dose > .dosesingle,
+#content > #center > .dose > .dosesingle
+{display:none !important;}</style>
+<script type="text/javascript" src="./MooTools template engine (a new approach)   dev_files/saved_resource(1)"></script>
+<link rel="stylesheet" id="all-css-0" href="./MooTools template engine (a new approach)   dev_files/style.css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://zealdev.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Update when user is idle" href="https://zealdev.wordpress.com/2008/02/21/update-when-user-is-idle/">
+<link rel="next" title="jQuery template engine" href="https://zealdev.wordpress.com/2008/04/15/jquery-template-engine/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="./MooTools template engine (a new approach)   dev_files/MooTools template engine (a new approach)   dev.html">
+<link rel="shortlink" href="http://wp.me/pckBx-7">
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=json&url=https%3A%2F%2Fzealdev.wordpress.com%2F2008%2F02%2F22%2Fmootools-template-engine-a-new-approach%2F&for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=xml&url=https%3A%2F%2Fzealdev.wordpress.com%2F2008%2F02%2F22%2Fmootools-template-engine-a-new-approach%2F&for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="MooTools template engine (a new approach)">
+<meta property="og:url" content="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/">
+<meta property="og:description" content="tmpl.jsThis is a template engine I created for MooTools v1.11. I am using this in a recent project or two and it seems to be a rather handy little beast. What does it do? It takes a set of template...">
+<meta property="article:published_time" content="2008-02-22T16:32:20+00:00">
+<meta property="article:modified_time" content="2008-04-21T11:09:28+00:00">
+<meta property="article:author" content="https://zealdev.wordpress.com/author/zvrana/">
+<meta property="og:site_name" content="dev">
+<meta property="og:image" content="me_jump.jpg">
+<meta property="og:image" content="me_ass.jpg">
+<meta property="og:image" content="me_fall_again.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:site" content="@wordpressdotcom">
+<meta name="twitter:image" content="me_jump.jpg?w=240">
+<meta name="twitter:card" content="summary">
+<meta property="fb:app_id" content="249643311490">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<link rel="shortcut icon" type="image/x-icon" href="https://s2.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="https://s2.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon-precomposed" href="https://s0.wp.com/i/webclip.png">
+<link rel="openid.server" href="https://zealdev.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="https://zealdev.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="https://zealdev.wordpress.com/osd.xml" title="dev">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+<meta name="application-name" content="dev"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="Zeal&#39;s dev blog"><meta name="msapplication-task" content="name=Subscribe;action-uri=https://zealdev.wordpress.com/feed/;icon-uri=https://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s2.wp.com/i/favicon.ico"><meta name="title" content="MooTools template engine (a new approach) | dev on WordPress.com">
+<meta name="description" content="tmpl.jsThis is a template engine I created for MooTools v1.11. I am using this in a recent project or two and it seems to be a rather handy little beast. What does it do? It takes a set of template elements, contained in the DOM tree of the current document decorated with marker classes, and…">
+
+<script type="text/javascript" src="https://partner.googleadservices.com/gampad/google_service.js">
+</script>
+<script type="text/javascript">
+if ( typeof GS_googleAddAdSenseService == 'function' ) { GS_googleAddAdSenseService("ca-pub-3443918307802676"); }
+if ( typeof GS_googleEnableAllServices == 'function' ) { GS_googleEnableAllServices() };
+</script>
+<script type="text/javascript" src="https://c.amazon-adsystem.com/aax2/amzn_ads.js"></script>
+<script type="text/javascript">
+try { amznads.getAds("3033","300x250"); } catch(e) { /* ignore */ }
+</script>
+<script type="text/javascript">
+var amznKeys = amznads.getKeys();
+if (typeof amznKeys != "undefined" && amznKeys != "") { for (var i =0; i < amznKeys.length; i++) { var key = amznKeys[i]; GA_googleAddAttr("amzn", key);} }
+document.close();
+</script>
+<script type="text/javascript">
+if ( typeof GA_googleAddSlot == 'function' ) { GA_googleAddSlot("ca-pub-3443918307802676", "wpcom_below_post"); }
+</script>
+<script type="text/javascript">
+if ( typeof GA_googleFetchAds == 'function' ) { GA_googleFetchAds(); }
+</script>
+
+<script type="text/javascript">
+var wpcom_ads = { bid: 2939143, pt: 'permalink', wa: 0, as: 0, domain: 'zealdev.wordpress.com', url: 'https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/', gid: '', };
+</script>
+<link rel="stylesheet" type="text/css" href="./MooTools template engine (a new approach)   dev_files/shCore.css"><link rel="stylesheet" type="text/css" href="./MooTools template engine (a new approach)   dev_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+<script type="text/javascript">
+	window.google_analytics_uacct = "UA-52447-2";
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'wordpress.com']);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script><script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script>
+<link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./MooTools template engine (a new approach)   dev_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./MooTools template engine (a new approach)   dev_files/services.css"></head>
+
+<body class="single single-post postid-7 single-format-standard mp6 customizer-styles-applied highlander-enabled highlander-light">
+<div id="rap">
+<h1 id="header"><a href="https://zealdev.wordpress.com/">dev</a></h1>
+
+<div id="content">
+<!-- end header -->
+
+
+<h2>February 22, 2008</h2>
+<div class="post-7 post type-post status-publish format-standard hentry category-html category-javascript category-mootools category-template tag-declarative tag-engine tag-flow-control tag-javascript tag-mootools tag-template tag-zebra-color" id="post-7">
+	 <h3 class="storytitle">
+			MooTools template engine (a new&nbsp;approach)		 </h3>
+	<div class="meta">Filed under:  <a href="https://zealdev.wordpress.com/category/html/" rel="category tag">HTML</a>, <a href="https://zealdev.wordpress.com/category/javascript/" rel="category tag">Javascript</a>, <a href="https://zealdev.wordpress.com/category/mootools/" rel="category tag">MooTools</a>, <a href="https://zealdev.wordpress.com/category/template/" rel="category tag">template</a> — Tags: <a href="https://zealdev.wordpress.com/tag/declarative/" rel="tag">declarative</a>, <a href="https://zealdev.wordpress.com/tag/engine/" rel="tag">engine</a>, <a href="https://zealdev.wordpress.com/tag/flow-control/" rel="tag">flow control</a>, <a href="https://zealdev.wordpress.com/tag/javascript/" rel="tag">Javascript</a>, <a href="https://zealdev.wordpress.com/tag/mootools/" rel="tag">MooTools</a>, <a href="https://zealdev.wordpress.com/tag/template/" rel="tag">template</a>, <a href="https://zealdev.wordpress.com/tag/zebra-color/" rel="tag">zebra color</a> —  Zeal_ @ 4:32 pm </div>
+
+	<div class="storycontent">
+		<p><a title="tmpl.js" href="https://zealdev.files.wordpress.com/2008/02/tmpljs.doc">tmpl.js</a>This is a template engine I created for MooTools v1.11. I am using this in a recent project or two and it seems to be a rather handy little beast.</p>
+<h2>What does it do?</h2>
+<p>It takes a set of template elements, contained in the DOM tree of the current document decorated with <strong>marker classes</strong>, and expands it with some data.</p>
+<p>The data is given as a combination of Javascript <strong>objects</strong> and <strong>arrays</strong>. An object’s <strong>key</strong> selects the DOM <strong>Element</strong> for which the corresponding <strong>value</strong> supplies the data.</p>
+<p>An <strong>array</strong> value means the selected elements should be repeated and expanded using the elements of the array.</p>
+<h2>How does it work?</h2>
+<p>The <strong>data</strong> object is processed recursively. If an associative array is found, the first element of the template with the <strong>marker class</strong> given as the <strong>key</strong> of the association is selected and both the template and the data are processed deeper from there.</p>
+<p>If the <strong>value</strong> of the association is an <strong>array</strong>, the elements selected by the <strong>key</strong> is repeated and filled with the elements of the array recursively.</p>
+<p>Whenever a primitive value (ie, a number, or a string) is found, the currently selected element’s text is set accordingly, and recursion stops.</p>
+<p>Examine the following example.</p>
+<div><div id="highlighter_94983" class="syntaxhighlighter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">style</code><code class="xml plain">=</code><code class="xml string">"display:none"</code> <code class="xml color1">id</code><code class="xml plain">=</code><code class="xml string">"testTemplate"</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">table</code> <code class="xml color1">border</code><code class="xml plain">=</code><code class="xml string">"1"</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">tr</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"header"</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">th</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"columnName"</code> <code class="xml plain">/&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">tr</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">tr</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"data"</code><code class="xml plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code> <code class="xml plain">/&gt;</code></div><div class="line number9 index8 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">tr</code><code class="xml plain">&gt;</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">tr</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"data alt"</code><code class="xml plain">&gt;</code></div><div class="line number12 index11 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code> <code class="xml plain">/&gt;</code></div><div class="line number13 index12 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">tr</code><code class="xml plain">&gt;</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">table</code><code class="xml plain">&gt;</code></div><div class="line number16 index15 alt1"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">id</code><code class="xml plain">=</code><code class="xml string">"testTarget"</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+<p>Here we have a HTML template described under the div ‘template’. We intend to place an expanded version of it into ‘testTarget’. See how it is done.</p>
+<div><div id="highlighter_671844" class="syntaxhighlighter  jscript"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="jscript keyword">var</code> <code class="jscript plain">data = {</code></div><div class="line number2 index1 alt1"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript string">'columnName'</code><code class="jscript plain">: [</code><code class="jscript string">'Name'</code><code class="jscript plain">, </code><code class="jscript string">'Price'</code><code class="jscript plain">, </code><code class="jscript string">'Qty'</code><code class="jscript plain">],</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript string">'data'</code><code class="jscript plain">: [</code></div><div class="line number5 index4 alt2"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">{</code><code class="jscript string">'item'</code><code class="jscript plain">: [</code><code class="jscript string">'1. Apple'</code><code class="jscript plain">, 125, 0.5]},</code></div><div class="line number6 index5 alt1"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">{</code><code class="jscript string">'item'</code><code class="jscript plain">: [</code><code class="jscript string">'2. Banana'</code><code class="jscript plain">, 210, 0.4]},</code></div><div class="line number7 index6 alt2"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">{</code><code class="jscript string">'item'</code><code class="jscript plain">: [</code><code class="jscript string">'3. Cat'</code><code class="jscript plain">, 300, 0.2]},</code></div><div class="line number8 index7 alt1"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">{</code><code class="jscript string">'item'</code><code class="jscript plain">: [</code><code class="jscript string">'4. Dog'</code><code class="jscript plain">, 200, 3]}</code></div><div class="line number9 index8 alt2"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">]</code></div><div class="line number10 index9 alt1"><code class="jscript plain">};</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="jscript plain">expandTemplate(</code><code class="jscript string">'testTemplate'</code><code class="jscript plain">, </code><code class="jscript string">'testTarget'</code><code class="jscript plain">, data);</code></div></div></td></tr></tbody></table></div></div>
+<p>Let’s se what we have here.</p>
+<ul>
+<li>the ‘columnName’ array is there to instruct the engine to repeat the &lt;th class=”columnName” /&gt; three times and set them up so they say ‘Name’, ‘Price’ and ‘Qty’.</li>
+<li>the ‘data’ array says we need four copies of the &lt;tr class=”data”&gt;…&lt;/tr&gt; and everything contained within</li>
+<li>each of the ‘item’ arrays says we need 3 instances of &lt;td class=”item” /&gt; in each &lt;tr class=”data”&gt; -s, and they should be filled with whatever is in the arrays.</li>
+</ul>
+<p>The resulting HTML looks like this:</p>
+<div><div id="highlighter_361887" class="syntaxhighlighter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">table</code> <code class="xml color1">border</code><code class="xml plain">=</code><code class="xml string">"1"</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">tr</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"header"</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">th</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"columnName"</code><code class="xml plain">&gt;Name&lt;/</code><code class="xml keyword">th</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">th</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"columnName"</code><code class="xml plain">&gt;Price&lt;/</code><code class="xml keyword">th</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">th</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"columnName"</code><code class="xml plain">&gt;Qty&lt;/</code><code class="xml keyword">th</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">tr</code><code class="xml plain">&gt;</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">tr</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"data"</code><code class="xml plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;1. Apple&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;125&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;0.5&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number12 index11 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">tr</code><code class="xml plain">&gt;</code></div><div class="line number13 index12 alt2">&nbsp;</div><div class="line number14 index13 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">tr</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"data alt"</code><code class="xml plain">&gt;</code></div><div class="line number15 index14 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;2. Banana&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number16 index15 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;210&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number17 index16 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;0.4&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number18 index17 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">tr</code><code class="xml plain">&gt;</code></div><div class="line number19 index18 alt2">&nbsp;</div><div class="line number20 index19 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">tr</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"data"</code><code class="xml plain">&gt;</code></div><div class="line number21 index20 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;3. Cat&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number22 index21 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;300&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number23 index22 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;0.2&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number24 index23 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">tr</code><code class="xml plain">&gt;</code></div><div class="line number25 index24 alt2">&nbsp;</div><div class="line number26 index25 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">tr</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"data alt"</code><code class="xml plain">&gt;</code></div><div class="line number27 index26 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;4. Dog&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number28 index27 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;200&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number29 index28 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">td</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;3&lt;/</code><code class="xml keyword">td</code><code class="xml plain">&gt;</code></div><div class="line number30 index29 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">tr</code><code class="xml plain">&gt;</code></div><div class="line number31 index30 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">table</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+<p>Note that there are multiple <strong>tr</strong>s having the marker class <strong>data</strong>. These are repeated in alternating succession, and this is the preferred way to expand table templates with that cool <strong>zebra look</strong>. ;)</p>
+<h2>AJAX</h2>
+<p>Yeah,  Ajax is supported in a rather trivial manner. We have the shortcut method <strong>tmpl</strong>, which performs an <strong>Ajax request</strong>, interprets the resulting text as the <strong>Json</strong> representation of a data object, and expands the given template using it. It even fires the <strong>onComplete</strong> event afterwards!</p>
+<p>E.g. the template</p>
+<div><div id="highlighter_773806" class="syntaxhighlighter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">id</code><code class="xml plain">=</code><code class="xml string">"template"</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"title"</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">ul</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">li</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code> <code class="xml plain">/&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">li</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item alt"</code> <code class="xml plain">/&gt;</code></div><div class="line number6 index5 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">ul</code><code class="xml plain">&gt;</code></div><div class="line number7 index6 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">id</code><code class="xml plain">=</code><code class="xml string">"target"</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+<p>And the js:</p>
+<div><div id="highlighter_816109" class="syntaxhighlighter  jscript"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="jscript plain">tmpl(</code><code class="jscript string">'template'</code><code class="jscript plain">, </code><code class="jscript string">'target'</code><code class="jscript plain">, </code><code class="jscript string">'primes.php'</code><code class="jscript plain">, {</code></div><div class="line number2 index1 alt1"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">data: {</code></div><div class="line number3 index2 alt2"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">from:2,</code></div><div class="line number4 index3 alt1"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">to:20</code></div><div class="line number5 index4 alt2"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">}</code></div><div class="line number6 index5 alt1"><code class="jscript plain">});</code></div></div></td></tr></tbody></table></div></div>
+<p>Imagine we have a primes.php that returns the primes between ‘<strong>from</strong>‘ and ‘<strong>to</strong>‘ as a Json object that looks like this:</p>
+<div><div id="highlighter_830682" class="syntaxhighlighter  jscript"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="jscript plain">{</code></div><div class="line number2 index1 alt1"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">title:</code><code class="jscript string">"List of some primes"</code><code class="jscript plain">,</code></div><div class="line number3 index2 alt2"><code class="jscript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="jscript plain">item:[2,3,5,7,11,13,17,19]</code></div><div class="line number4 index3 alt1"><code class="jscript plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Then we have the following result:</p>
+<div><div id="highlighter_119252" class="syntaxhighlighter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">id</code><code class="xml plain">=</code><code class="xml string">"template"</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"title"</code><code class="xml plain">&gt;List of some primes&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">ul</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">li</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;2&lt;/</code><code class="xml keyword">li</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">li</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item alt"</code><code class="xml plain">&gt;3&lt;/</code><code class="xml keyword">li</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">li</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;5&lt;/</code><code class="xml keyword">li</code><code class="xml plain">&gt;</code></div><div class="line number7 index6 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">li</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item alt"</code><code class="xml plain">&gt;7&lt;/</code><code class="xml keyword">li</code><code class="xml plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">li</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;11&lt;/</code><code class="xml keyword">li</code><code class="xml plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">li</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item alt"</code><code class="xml plain">&gt;13&lt;/</code><code class="xml keyword">li</code><code class="xml plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">li</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item"</code><code class="xml plain">&gt;17&lt;/</code><code class="xml keyword">li</code><code class="xml plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">li</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"item alt"</code><code class="xml plain">&gt;19&lt;/</code><code class="xml keyword">li</code><code class="xml plain">&gt;</code></div><div class="line number12 index11 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">ul</code><code class="xml plain">&gt;</code></div><div class="line number13 index12 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+<p>There you have it, a zebra colored list of primes. Just as advertised.</p>
+<h2>Known limitations</h2>
+<p>Plain old data is processed using <strong>Element.setText</strong>, and that means no attributes can be set currently. Take the following example.</p>
+<div><div id="highlighter_240035" class="syntaxhighlighter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">id</code><code class="xml plain">=</code><code class="xml string">"template"</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">img</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"image"</code> <code class="xml plain">/&gt;</code></div><div class="line number3 index2 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+<p>It would be nice if the src, alt and title attributes of the img -s could be expanded like this:</p>
+<div><div id="highlighter_932456" class="syntaxhighlighter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">id</code><code class="xml plain">=</code><code class="xml string">"target"</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">img</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"image"</code> <code class="xml color1">alt</code><code class="xml plain">=</code><code class="xml string">"Me jumping"</code> <code class="xml color1">title</code><code class="xml plain">=</code><code class="xml string">"I was jumping happily"</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"me_jump.jpg"</code> <code class="xml plain">/&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">img</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"image"</code> <code class="xml color1">alt</code><code class="xml plain">=</code><code class="xml string">"Me sitting"</code> <code class="xml color1">title</code><code class="xml plain">=</code><code class="xml string">"I fell on my a**"</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"me_ass.jpg"</code> <code class="xml plain">/&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">img</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">"image"</code> <code class="xml color1">alt</code><code class="xml plain">=</code><code class="xml string">"Me standing up"</code> <code class="xml color1">title</code><code class="xml plain">=</code><code class="xml string">"Then I tried to stand up"</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"me_fall_again.jpg"</code> <code class="xml plain">/&gt;</code></div><div class="line number5 index4 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+<p>But there is no way for such a thing right now. I have yet to figure out a solution. Comments are indeed welcome :)</p>
+<h2>Summary</h2>
+<ul>
+<li>as far as I know, the engine described above takes a rather novel approach, and one that meets my needs better than anything I have seen in this field to date</li>
+<li>first of all, there is no custom language with ifs and fors and whatnot. This also implies there is need for a costly parser for a tiny sublanguage. Besides, in my opinion a template is no place for any <strong>control logic</strong>. Or <strong>any logic</strong> for that matter. It is far too late to process the data when it finally comes to template expansion!</li>
+<li>the ‘language’ describing the template is highly <strong>declarative.</strong> Again, I don’t think a template language is for them <strong>imperative</strong> language constructs.</li>
+<li>I have yet to come up with a way to set attributes in a template. Something like having data objects like <em>{‘src':’image.jpg’, ‘alt':’An image…’, ‘styles': {‘height':’150px’, ‘border':’1px solid black’}}</em> and calling <strong>Element.setProperties</strong> on them might do the trick, dunno… :/</li>
+<li>There should be events before and after a leaf of the template is expanded, providing some means to prevent further expansion and there should be an event after expansion is complete.</li>
+<li> Stay tuned for a PHP and an ASP.NET version ;)</li>
+</ul>
+<h2>Obtaining</h2>
+<p>Download from here, change extension to js:  <a title="tmpl.js" href="https://zealdev.files.wordpress.com/2008/02/tmpljs.doc">tmpl.js</a></p>
+
+<div class="wpcnt">
+<div class="wpa">
+<a class="wpa-about" href="http://wordpress.com/about-these-ads/" rel="nofollow">About these ads</a>
+<script type="text/javascript">
+		var wpcom_adclk_hovering = false;
+		var wpcom_adclk_recorded = false;
+		var wpcom_adclk_theme = "Shocking Blue Green";
+		var wpcom_adclk_slot = "wpcom_below_post";
+		var wpcom_adclk_network = ( typeof wpcom_adclk_network === "undefined" ) ? "" : wpcom_adclk_network ;
+
+		jQuery(document).ready( function() {
+			function wpcom_adclk_hover_yes() { wpcom_adclk_hovering = true; }
+			function wpcom_adclk_hover_no() { wpcom_adclk_hovering = false; }
+			jQuery(".wpa").click(wpcom_adclk_click);
+			jQuery(".wpa iframe").hover( wpcom_adclk_hover_yes, wpcom_adclk_hover_no );
+			jQuery(".wpa object").hover( wpcom_adclk_hover_yes, wpcom_adclk_hover_no );
+
+			jQuery(window).blur( function() {
+				if ( wpcom_adclk_hovering ) { wpcom_adclk_click(); }
+			});
+		});
+
+		function wpcom_adclk_impression() {
+			var stat_gif = document.location.protocol + "//pixel.wp.com/g.gif?v=wpcom-no-pv";
+			stat_gif += "&x_ads_imp_theme=" + wpcom_adclk_theme;
+			stat_gif += "&x_ads_imp_placement="+wpcom_adclk_slot;
+			stat_gif += "&x_ads_imp_network=" + wpcom_adclk_network;
+			stat_gif += "&x_ads_imp_theme_network="+wpcom_adclk_theme+"_"+wpcom_adclk_network;
+			new Image().src = stat_gif + "&baba=" + Math.random();
+			return true;
+		}
+
+		function wpcom_adclk_click() {
+			if (wpcom_adclk_recorded) { return true; } // no double counting
+			var stat_gif = document.location.protocol + "//pixel.wp.com/g.gif?v=wpcom-no-pv";
+			stat_gif += "&x_ads_click_theme=" + wpcom_adclk_theme;
+			stat_gif += "&x_ads_click_placement="+wpcom_adclk_slot;
+			stat_gif += "&x_ads_click_network=" + wpcom_adclk_network;
+			stat_gif += "&x_ads_click_theme_network="+wpcom_adclk_theme+"_"+wpcom_adclk_network;
+
+			new Image().src = stat_gif + "&baba=" + Math.random();
+			wpcom_adclk_recorded = true;
+			var now=new Date(); var end=now.getTime()+250;
+			while(true){now=new Date();if(now.getTime()>end){break;}}
+			return true;
+		}
+	
+if ( typeof GA_googleAddAttr == 'function' ) {
+GA_googleAddAttr("AdOpt", "1");
+GA_googleAddAttr("Origin", "other");
+GA_googleAddAttr("LangId", "1");
+GA_googleAddAttr("Domain", "zealdev.wordpress.com");
+GA_googleAddAttr("BlogId", "2939143");
+GA_googleAddAttr("PageURL", "https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/");
+GA_googleAddAttr("Autotag", "technology");
+GA_googleAddAttr("Tag", "html");
+GA_googleAddAttr("Tag", "javascript");
+GA_googleAddAttr("Tag", "mootools");
+GA_googleAddAttr("Tag", "template");
+GA_googleAddAttr("Tag", "declarative");
+GA_googleAddAttr("Tag", "engine");
+GA_googleAddAttr("Tag", "flow-control");
+GA_googleAddAttr("Tag", "javascript");
+GA_googleAddAttr("Tag", "mootools");
+GA_googleAddAttr("Tag", "template");
+GA_googleAddAttr("Tag", "zebra-color");
+GA_googleAddAttr("theme_bg", "ffffff");
+GA_googleAddAttr("theme_text", "333333");
+GA_googleAddAttr("theme_link", "6699CC");
+GA_googleAddAttr("theme_border", "F3F6EC");
+GA_googleAddAttr("theme_url", "CEA353");
+GA_googleAddAdSensePageAttr("google_page_url", "https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/");
+GA_googleFillSlot("wpcom_below_post");
+}
+</script>
+</div>
+</div>
+
+<script type="text/javascript">
+jQuery( window ).load( function() {
+    if ( jQuery(".wpa script[src*='virool.com']").length > 0 || jQuery(".wpa script[src*='shareth.ru']").length > 0 || jQuery(".wpa iframe[src*='boomvideo.tv']").length > 0 || jQuery(".wpa iframe[src*='viewablemedia.net']").length > 0 || jQuery(".wpa .sharethrough-placement").length > 0 ) {
+        jQuery( '.wpa' ).css( 'width', '400px' );
+    }
+setTimeout(function(){if(typeof GS_googleAddAdSenseService !== 'function'){new Image().src=document.location.protocol+"//pixel.wp.com/g.gif?v=wpcom-no-pv&x_noads=adblock&baba="+Math.random()}},100);
+} );
+</script>
+
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled"><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-loaded" id="like-post-wrapper-2939143-7-552514029957e" data-src="//widgets.wp.com/likes/#blog_id=2939143&amp;post_id=7&amp;origin=zealdev.wordpress.com&amp;obj_id=2939143-7-552514029957e" data-name="like-post-frame-2939143-7-552514029957e"><h3 class="sd-title">Like this:</h3><div class="likes-widget-placeholder post-likes-widget-placeholder" style="height: 55px; display: none;"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></div><iframe class="post-likes-widget jetpack-likes-widget" name="like-post-frame-2939143-7-552514029957e" height="55px" width="100%" frameborder="0" src="./MooTools template engine (a new approach)   dev_files/saved_resource(7).html"></iframe><span class="sd-text-color"></span><a class="sd-link-color"></a></div></div>	</div>
+
+	<div class="feedback">
+                        <a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#comments" title="Comment on MooTools template engine (a new approach)">Comments (5)</a>	</div>
+
+</div>
+
+<h2 id="comments">5 Comments	<a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#postcomment" title="Leave a comment">»</a>
+</h2>
+
+<ol id="commentlist">
+<li id="comment-2" class="pingback even thread-even depth-1 highlander-comment">
+	<div id="div-comment-2" class="vcard">
+		<p>[…] dev wrote an interesting post today on MooTools template engine (a new approach)Here’s a quick excerpt‘data’: [ {’item’: [’1. Apple’, 125, 0. 5]}, {’item’:…Name Price Qty 1. Apple 125 0. 5 2. Banana 210 0…. […]</p>
+	<p><cite>Pingback by <span class="fn"><a href="http://apple.joejoeblogs.info/?p=26678" rel="external nofollow" class="url">Apple » MooTools template engine (a new approach)</a></span> — February 22, 2008 @ <a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#comment-2">5:07 pm</a></cite> </p>
+	<div class="reply">
+		<a class="comment-reply-link" href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/?replytocom=2#respond" onclick="return addComment.moveForm( &quot;div-comment-2&quot;, &quot;2&quot;, &quot;respond&quot;, &quot;7&quot; )" aria-label="Reply to Apple » MooTools template engine (a new approach)">Reply</a>	</div>
+	</div>
+</li><!-- #comment-## -->
+<li id="comment-10" class="comment odd alt thread-odd thread-alt depth-1 highlander-comment">
+	<div id="div-comment-10" class="vcard">
+	<img alt="" src="./MooTools template engine (a new approach)   dev_files/5f76bcd3260ebbba6414eae896c99b96" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-5f76bcd3260ebbba6414eae896c99b96-0">	<p>&gt;as far as I know, the engine described above takes a rather novel &gt;approach<br>
+&gt;</p>
+<p>Not really…</p>
+<p><a href="http://mv.asterisco.pt/cat.cgi?A%20Future%20Web%20Development%20Framework%20-%20Template%20View" rel="nofollow">http://mv.asterisco.pt/cat.cgi?A%20Future%20Web%20Development%20Framework%20-%20Template%20View</a></p>
+<p>… but great work, thanks. Any chance of jQuery instead of Mootools?</p>
+<p>— MV</p>
+	<p><cite>Comment by <span class="fn">MV</span> — March 30, 2008 @ <a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#comment-10">9:43 pm</a></cite> </p>
+	<div class="reply">
+		<a class="comment-reply-link" href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/?replytocom=10#respond" onclick="return addComment.moveForm( &quot;div-comment-10&quot;, &quot;10&quot;, &quot;respond&quot;, &quot;7&quot; )" aria-label="Reply to MV">Reply</a>	</div>
+	</div>
+</li><!-- #comment-## -->
+<li id="comment-11" class="pingback even thread-even depth-1 highlander-comment">
+	<div id="div-comment-11" class="vcard">
+		<p>[…] @ 7:58 pm   This is the jQuery version of the template engine described in my earlier post, titled MooTools template engine (a new approach). To see what it does and for some usage examples I recommend reading that post […]</p>
+	<p><cite>Pingback by <span class="fn"><a href="https://zealdev.wordpress.com/2008/04/15/jquery-template-engine/" rel="external nofollow" class="url">jQuery template engine « dev</a></span> — April 15, 2008 @ <a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#comment-11">7:58 pm</a></cite> </p>
+	<div class="reply">
+		<a class="comment-reply-link" href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/?replytocom=11#respond" onclick="return addComment.moveForm( &quot;div-comment-11&quot;, &quot;11&quot;, &quot;respond&quot;, &quot;7&quot; )" aria-label="Reply to jQuery template engine « dev">Reply</a>	</div>
+	</div>
+</li><!-- #comment-## -->
+<li id="comment-21" class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment">
+	<div id="div-comment-21" class="vcard">
+		<p>[…] the same week I saw a post about templating on Mootools by Zoltan Vrana. Then a comment drove me to Mario Valente’s blog. He was detailing other […]</p>
+	<p><cite>Pingback by <span class="fn"><a href="http://beebole.com/blog/2008/07/31/generate-html-from-a-json-without-any-template-but-html-and-javascript/" rel="external nofollow" class="url">Generate HTML from a JSON Without any Template but HTML and JavaScript | BeeBuzz</a></span> — July 31, 2008 @ <a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#comment-21">6:02 am</a></cite> </p>
+	<div class="reply">
+		<a class="comment-reply-link" href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/?replytocom=21#respond" onclick="return addComment.moveForm( &quot;div-comment-21&quot;, &quot;21&quot;, &quot;respond&quot;, &quot;7&quot; )" aria-label="Reply to Generate HTML from a JSON Without any Template but HTML and JavaScript | BeeBuzz">Reply</a>	</div>
+	</div>
+</li><!-- #comment-## -->
+<li id="comment-27" class="comment even thread-even depth-1 highlander-comment">
+	<div id="div-comment-27" class="vcard">
+	<img alt="" src="./MooTools template engine (a new approach)   dev_files/486ba41abaf81aefe5bfe12488d74573" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32" id="grav-486ba41abaf81aefe5bfe12488d74573-0">	<p>Hi! I was surfing and found your blog post… nice! I love your blog.  :) Cheers! Sandra. R.</p>
+	<p><cite>Comment by <span class="fn"><a href="http://google.com/uzkbs" rel="external nofollow" class="url">sandrar</a></span> — September 10, 2009 @ <a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#comment-27">1:55 pm</a></cite> </p>
+	<div class="reply">
+		<a class="comment-reply-link" href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/?replytocom=27#respond" onclick="return addComment.moveForm( &quot;div-comment-27&quot;, &quot;27&quot;, &quot;respond&quot;, &quot;7&quot; )" aria-label="Reply to sandrar">Reply</a>	</div>
+	</div>
+</li><!-- #comment-## -->
+</ol>
+
+<div class="navigation">
+	<div class="alignleft"></div>
+	<div class="alignright"></div>
+</div>
+<br>
+
+
+<p><a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/feed/"><abbr title="Really Simple Syndication">RSS</abbr> feed for comments on this post.</a>	<a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/trackback/" rel="trackback">TrackBack <abbr title="Uniform Resource Identifier">URI</abbr></a>
+</p>
+
+							<div id="respond" class="comment-respond js">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="https://zealdev.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										
+
+
+												<input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="f52adc6abc"><input type="hidden" name="_wp_http_referer" value="/2008/02/22/mootools-template-engine-a-new-approach/">
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest">
+
+<div class="comment-form-field comment-textarea">
+	
+	<div id="comment-form-comment"><textarea tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px; padding: 0px; box-sizing: content-box; word-wrap: break-word; overflow: hidden; -webkit-transition: none; transition: none; height: 0px !important; min-height: 0px !important; font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif; font-size: 14px; font-weight: 400; font-style: normal; letter-spacing: 0px; text-transform: none; text-decoration: none; word-spacing: 0px; text-indent: 0px; line-height: normal; width: 1064.453125px;" class="autosizejs "></textarea><textarea id="comment" name="comment" title="Enter your comment here..." placeholder="Enter your comment here..." style="height: 36px; overflow: hidden; word-wrap: break-word; resize: none;"></textarea></div>
+</div>
+
+<div id="comment-form-identity" style="display: none;">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#comment-form-guest" id="postas-guest" title="Guest">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook">
+					<span></span>
+				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="./MooTools template engine (a new approach)   dev_files/saved_resource.html" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="./MooTools template engine (a new approach)   dev_files/ad516503a11cd5ca435acc9bb6523536" alt="Gravatar" width="25" class="no-grav">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text" value=""></div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./MooTools template engine (a new approach)   dev_files/wplogo.png" alt="WordPress.com Logo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="">
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your WordPress.com account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./MooTools template engine (a new approach)   dev_files/ad516503a11cd5ca435acc9bb6523536" alt="Twitter picture" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="">
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./MooTools template engine (a new approach)   dev_files/ad516503a11cd5ca435acc9bb6523536" alt="Facebook photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="">
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./MooTools template engine (a new approach)   dev_files/ad516503a11cd5ca435acc9bb6523536" alt="Google+ photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="">
+				<p class="comment-form-posting-as pa-googleplus"><strong></strong> You are commenting using your Google+ account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div id="comment-form-subscribe" style="display: none;">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6"> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p></div>
+
+												<p class="form-submit" style="display: none;">
+							<input name="submit" type="submit" id="comment-submit" class="submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="7" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="a0303935ed"></p>
+<input type="hidden" name="genseq" value="1428493314">
+<p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1428494933144"></form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>
+
+
+<!-- begin footer -->
+</div>
+
+
+<!-- begin sidebar -->
+<div id="menu">
+
+<ul>
+
+	<li class="pagenav">Pages:<ul><li class="page_item page-item-2"><a href="https://zealdev.wordpress.com/about/">About</a></li>
+</ul></li>	<li id="linkcat-1356" class="linkcat">Blogroll
+	<ul class="xoxo blogroll">
+<li><a href="https://wordpress.com/?ref=footer_blog">Blog at WordPress.com</a>.</li>
+<li><a href="https://wordpress.com/?ref=footer_blog">Blog at WordPress.com</a>.</li>
+
+	</ul>
+</li>
+	<li class="categories">Categories:<ul>	<li class="cat-item cat-item-141"><a href="https://zealdev.wordpress.com/category/ajax/">AJAX</a>
+</li>
+	<li class="cat-item cat-item-647"><a href="https://zealdev.wordpress.com/category/html/">HTML</a>
+</li>
+	<li class="cat-item cat-item-457"><a href="https://zealdev.wordpress.com/category/javascript/">Javascript</a>
+</li>
+	<li class="cat-item cat-item-470500"><a href="https://zealdev.wordpress.com/category/mootools/">MooTools</a>
+</li>
+	<li class="cat-item cat-item-4826"><a href="https://zealdev.wordpress.com/category/oop/">OOP</a>
+</li>
+	<li class="cat-item cat-item-11867"><a href="https://zealdev.wordpress.com/category/template/">template</a>
+</li>
+</ul></li> <li id="search">
+   <label for="s">Search:</label>
+   <form id="searchform" method="get" action="https://zealdev.wordpress.com/">
+	<div>
+		<input type="text" name="s" id="s" size="15"><br>
+		<input type="submit" value="Search">
+	</div>
+	</form>
+ </li>
+ <li id="archives">Archives: 	<ul>
+	 	<li><a href="https://zealdev.wordpress.com/2008/04/">April 2008</a></li>
+	<li><a href="https://zealdev.wordpress.com/2008/02/">February 2008</a></li>
+ 	</ul>
+ </li>
+ <li id="meta">Meta: 	<ul>
+		<li><a href="https://en.wordpress.com/signup/?ref=wplogin">Register</a></li>		<li><a href="https://zealdev.wordpress.com/wp-login.php">Log in</a></li>
+		<li><a href="https://zealdev.wordpress.com/feed/" title="Syndicate this site using RSS"><abbr title="Really Simple Syndication">RSS</abbr></a></li>
+		<li><a href="https://zealdev.wordpress.com/comments/feed/" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+		<li><a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Transitional">Valid <abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a></li>
+		<li><a href="http://gmpg.org/xfn/"><abbr title="XHTML Friends Network">XFN</abbr></a></li>
+		<li><a href="https://wordpress.com/?ref=footer_blog">Blog at WordPress.com</a>.</li>
+			</ul>
+ </li>
+
+</ul>
+
+</div>
+<!-- end sidebar -->
+
+<p class="credit"><a href="https://wordpress.com/themes/blue-green/" title="Learn more about this theme">The Shocking Blue Green Theme</a>. <a href="https://wordpress.com/?ref=footer_blog">Blog at WordPress.com</a>.</p>
+
+</div>
+
+<!-- wpcom_wp_footer -->
+<script type="text/javascript" src="./MooTools template engine (a new approach)   dev_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./MooTools template engine (a new approach)   dev_files/wpgroho.js"></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+
+			if (typeof Gravatar === "undefined"){
+				return;
+			}
+
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-5f76bcd3260ebbba6414eae896c99b96">
+	</div>
+	<div class="grofile-hash-map-486ba41abaf81aefe5bfe12488d74573">
+	</div>
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/zealdev.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/zealdev.wordpress.com\/wp-login.php?action=logout&_wpnonce=19c69bebab","homeURL":"https:\/\/zealdev.wordpress.com\/","postID":"7","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"0","text_direction":"ltr"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./MooTools template engine (a new approach)   dev_files/saved_resource(2)"></script>
+
+	<div id="bit" class="loggedout-follow-normal" style="bottom: -224px;">
+		<a class="bsub" href="javascript:void(0)"><span id="bsub-text">Follow</span></a>
+		<div id="bitsubscribe">
+
+					<h3><label for="loggedout-follow-field">Follow “dev”</label></h3>
+
+			<form action="https://subscribe.wordpress.com/" method="post" accept-charset="utf-8" id="loggedout-follow">
+			<p>Get every new post delivered to your Inbox.</p>
+
+			<p id="loggedout-follow-error" style="display: none;"></p>
+
+			
+			<p><input type="email" name="email" value="Enter your email address" onfocus="this.value=(this.value==&quot;Enter your email address&quot;) ? &quot;&quot; : this.value;" onblur="this.value=(this.value==&quot;&quot;) ? &quot;Enter your email address&quot; : this.value;" id="loggedout-follow-field"></p>
+
+			<input type="hidden" name="action" value="subscribe">
+			<input type="hidden" name="blog_id" value="2939143">
+			<input type="hidden" name="source" value="https://zealdev.wordpress.com/2008/02/22/mootools-template-engine-a-new-approach/">
+			<input type="hidden" name="sub-type" value="loggedout-follow">
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="4c2e7e6e7a"><input type="hidden" name="_wp_http_referer" value="/2008/02/22/mootools-template-engine-a-new-approach/">
+			<p id="bsub-subscribe-button"><input type="submit" value="Sign me up"></p>
+			</form>
+					<div id="bsub-credit"><a href="https://wordpress.com/?ref=lof">Build a website with WordPress.com</a></div>
+		</div><!-- #bitsubscribe -->
+	</div><!-- #bit -->
+		<iframe src="./MooTools template engine (a new approach)   dev_files/master.html" scrolling="no" id="likes-master" name="likes-master" style="display:none;"></iframe>
+		<div id="likes-other-gravatars"><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+		<script type="text/javascript">
+		//<![CDATA[
+			var jetpackLikesWidgetQueue = [];
+			var jetpackLikesWidgetBatch = [];
+			var jetpackLikesMasterReady = false;
+
+			function JetpackLikespostMessage( message, target ) {
+				if ( "string" === typeof message ){
+					try{
+						message = JSON.parse( message );
+					}
+					catch(e) {
+						return;
+					}
+				}
+
+				pm( {
+					target: target,
+					type: 'likesMessage',
+					data: message,
+					origin: '*'
+				} );
+			}
+
+			function JetpackLikesBatchHandler() {
+				var requests = [];
+				jQuery( 'div.jetpack-likes-widget-unloaded' ).each( function( i ) {
+					if ( jetpackLikesWidgetBatch.indexOf( this.id ) > -1 )
+						return;
+					jetpackLikesWidgetBatch.push( this.id );
+					var regex = /like-(post|comment)-wrapper-(\d+)-(\d+)-(\w+)/;
+					var match = regex.exec( this.id );
+					if ( ! match || match.length != 5 )
+						return;
+
+					var info = {
+						blog_id: match[2],
+						width:   this.width
+					};
+
+					if ( 'post' == match[1] ) {
+						info.post_id = match[3];
+					} else if ( 'comment' == match[1] ) {
+						info.comment_id = match[3];
+					}
+
+					info.obj_id = match[4];
+
+					requests.push( info );
+				});
+
+				if ( requests.length > 0 ) {
+					JetpackLikespostMessage( { event: 'initialBatch', requests: requests }, window.frames['likes-master'] );
+				}
+			}
+
+			function JetpackLikesMessageListener( event ) {
+				if ( "undefined" == typeof event.event )
+					return;
+
+				if ( 'masterReady' == event.event ) {
+					jQuery( document ).ready( function() {
+						jetpackLikesMasterReady = true;
+
+						var stylesData = {
+								event: 'injectStyles'
+						};
+
+						if ( jQuery( 'iframe.admin-bar-likes-widget' ).length > 0 ) {
+							JetpackLikespostMessage( { event: 'adminBarEnabled' }, window.frames[ 'likes-master' ] );
+
+							stylesData.adminBarStyles = {
+								background: jQuery( '#wpadminbar .quicklinks li#wp-admin-bar-wpl-like > a' ).css( 'background' ),
+								isRtl: ( 'rtl' == jQuery( '#wpadminbar' ).css( 'direction' ) )
+							};
+						}
+
+						if ( !window.addEventListener )
+							jQuery( '#wp-admin-bar-admin-bar-likes-widget' ).hide();
+
+						stylesData.textStyles = {
+							color: jQuery( '.sd-text-color').css( 'color' ),
+							fontFamily: jQuery( '.sd-text-color' ).css( 'font-family' ),
+							fontSize: jQuery( '.sd-text-color' ).css( 'font-size' ),
+							direction: jQuery( '.sd-text-color' ).css( 'direction' ),
+							fontWeight: jQuery( '.sd-text-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-text-color' ).css( 'font-style' ),
+							textDecoration: jQuery( '.sd-text-color' ).css('text-decoration')
+						};
+
+						stylesData.linkStyles = {
+							color: jQuery( '.sd-link-color' ).css('color'),
+							fontFamily: jQuery( '.sd-link-color' ).css('font-family'),
+							fontSize: jQuery( '.sd-link-color' ).css('font-size'),
+							textDecoration: jQuery( '.sd-link-color' ).css('text-decoration'),
+							fontWeight: jQuery( '.sd-link-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-link-color' ).css( 'font-style' )
+						};
+
+						JetpackLikespostMessage( stylesData, window.frames[ 'likes-master' ] );
+
+						JetpackLikesBatchHandler();
+
+						jQuery( document ).on( 'inview', 'div.jetpack-likes-widget-unloaded', function() {
+							jetpackLikesWidgetQueue.push( this.id );
+						});
+					});
+				}
+
+				if ( 'showLikeWidget' == event.event ) {
+					jQuery( '#' + event.id + ' .post-likes-widget-placeholder'  ).fadeOut( 'fast', function() {
+						jQuery( '#' + event.id + ' .post-likes-widget' ).fadeIn( 'fast', function() {
+							JetpackLikespostMessage( { event: 'likeWidgetDisplayed', blog_id: event.blog_id, post_id: event.post_id, obj_id: event.obj_id }, window.frames['likes-master'] );
+						});
+					});
+				}
+
+				if ( 'clickReblogFlair' == event.event ) {
+					wpcom_reblog.toggle_reblog_box_flair( event.obj_id );
+				}
+
+				if ( 'showOtherGravatars' == event.event ) {
+					var $container = jQuery( '#likes-other-gravatars' );
+					var $list = $container.find( 'ul' );
+
+					$container.hide();
+					$list.html( '' );
+
+					$container.find( '.likes-text span' ).text( event.total );
+
+					jQuery.each( event.likers, function( i, liker ) {
+						$list.append( '<li class="' + liker.css_class + '"><a href="' + liker.profile_URL + '" class="wpl-liker" rel="nofollow" target="_parent"><img src="' + liker.avatar_URL + '" alt="' + liker.name + '" width="30" height="30" style="padding-right: 3px;" /></a></li>');
+					} );
+
+					var offset = jQuery( "[name='" + event.parent + "']" ).offset();
+
+					$container.css( 'left', offset.left + event.position.left - 10 + 'px' );
+					$container.css( 'top', offset.top + event.position.top - 33 + 'px' );
+
+					var rowLength = Math.floor( event.width / 37 );
+					var height = ( Math.ceil( event.likers.length / rowLength ) * 37 ) + 13;
+					if ( height > 204 ) {
+						height = 204;
+					}
+
+					$container.css( 'height', height + 'px' );
+					$container.css( 'width', rowLength * 37 - 7 + 'px' );
+
+					$list.css( 'width', rowLength * 37 + 'px' );
+
+					$container.fadeIn( 'slow' );
+
+					var scrollbarWidth = $list[0].offsetWidth - $list[0].clientWidth;
+					if ( scrollbarWidth > 0 ) {
+						$container.width( $container.width() + scrollbarWidth );
+						$list.width( $list.width() + scrollbarWidth );
+					}
+				}
+			}
+
+			pm.bind( 'likesMessage', function(e) { JetpackLikesMessageListener(e); } );
+
+			jQuery( document ).click( function( e ) {
+				var $container = jQuery( '#likes-other-gravatars' );
+
+				if ( $container.has( e.target ).length === 0 ) {
+					$container.fadeOut( 'slow' );
+				}
+			});
+
+			function JetpackLikesWidgetQueueHandler() {
+				var wrapperID;
+				if ( ! jetpackLikesMasterReady ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+					return;
+				}
+
+				if ( jetpackLikesWidgetQueue.length > 0 ) {
+					// We may have a widget that needs creating now
+					var found = false;
+					while( jetpackLikesWidgetQueue.length > 0 ) {
+						// Grab the first member of the queue that isn't already loading.
+						wrapperID = jetpackLikesWidgetQueue.splice( 0, 1 )[0];
+						if ( jQuery( '#' + wrapperID ).hasClass( 'jetpack-likes-widget-unloaded' ) ) {
+							found = true;
+							break;
+						}
+					}
+					if ( ! found ) {
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				} else if ( jQuery( 'div.jetpack-likes-widget-unloaded' ).length > 0 ) {
+					// Grab any unloaded widgets for a batch request
+					JetpackLikesBatchHandler();
+
+					// Get the next unloaded widget
+					wrapperID = jQuery( 'div.jetpack-likes-widget-unloaded' ).first()[0].id;
+					if ( ! wrapperID ) {
+						// Everything is currently loaded
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				}
+
+				if ( 'undefined' === typeof wrapperID ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+					return;
+				}
+
+				var $wrapper = jQuery( '#' + wrapperID );
+				$wrapper.find( 'iframe' ).remove();
+
+				if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='22px' width='68px' frameBorder='0' scrolling='no' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				} else {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='55px' width='100%' frameBorder='0' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				}
+
+				$wrapper.removeClass( 'jetpack-likes-widget-unloaded' ).addClass( 'jetpack-likes-widget-loading' );
+
+				$wrapper.find( 'iframe' ).load( function( e ) {
+					var $iframe = jQuery( e.target );
+					$wrapper.removeClass( 'jetpack-likes-widget-loading' ).addClass( 'jetpack-likes-widget-loaded' );
+
+					JetpackLikespostMessage( { event: 'loadLikeWidget', name: $iframe.attr( 'name' ), width: $iframe.width() }, window.frames[ 'likes-master' ] );
+
+					if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+						$wrapper.find( 'iframe' ).Jetpack( 'resizeable' );
+					}
+				});
+				setTimeout( JetpackLikesWidgetQueueHandler, 250 );
+			}
+			JetpackLikesWidgetQueueHandler();
+		//]]>
+		</script>
+<script type="text/javascript" src="./MooTools template engine (a new approach)   dev_files/form.js"></script>
+<script type="text/javascript" src="./MooTools template engine (a new approach)   dev_files/saved_resource(3)"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://s0.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "https://s0.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?m=1363304414g&amp;ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="./MooTools template engine (a new approach)   dev_files/saved_resource(4)"></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="https://stats.wp.com/w.js?44" type="text/javascript" async="" defer=""></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'2939143','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'2939143','v':'wpcom','tz':'0','user_id':'0','post':'7','subd':'zealdev'}]);
+_stq.push(['extra', {'crypt':'UE5XaGUuOTlwaD85flAmcm1mcmZsaDhkV11YdWFnNncxc1tjZG9XVXhRTS4tP1tuLkN1bEJ+fkp6VmxwQz1HcHBUSF02fHZXeFN5THM4fGtvMD9bMGNIZSZ3Jmp+PUFPX3ZtWnBsNDJzUTZkS1cwR0QvWWNaX1piQmNlWmJnd0tdc0lRdGdfSG9jSD1lQjE2SUlyOWRnTDk4WmNJVC9uX001V3pxd3NobnRfVTF6QkphJUktRHErVS5XNW9HXT9xNnFHZyxMc3FbXy1nfmpGdi4yUzNEMk1BSnhNcnk9ODR6bDRrfnFId014TE5SU25TbnVQUmFsb2wybHVxanZUVmw3PVZ0P2JWZkFMP2NkN0pNdXBWOWJzYlVFbGcwL3I/S3kl'}]);
+_stq.push([ 'clickTrackerInit', '2939143', '7' ]);
+	</script>
+<noscript>&lt;img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /&gt;</noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+
+</body></html>
