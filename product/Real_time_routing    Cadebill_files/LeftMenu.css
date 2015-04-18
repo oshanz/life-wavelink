@@ -1,0 +1,59 @@
+﻿body
+{
+}
+.arrowlistmenu
+{
+	width: 201px; /*width of menu*/
+}
+.arrowlistmenu .headerbar
+{
+	font: bold 14px Arial;
+	color: white;
+	background: black url(../Images/titlebar.png) repeat-x center left;
+	margin-bottom: 10px; /*bottom spacing between header and rest of content*/
+	text-transform: uppercase;
+	padding: 4px 0 5px 10px; /*header text is indented 10px*/
+}
+.arrowlistmenu ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 8px; /*bottom spacing between each UL and rest of content*/
+}
+.arrowlistmenu ul li
+{
+	padding-bottom: 5px;
+	 /*bottom spacing between menu items*/
+}
+.arrowlistmenu ul li a
+{
+	color:#0066CC;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	display: block;
+	padding-bottom: 5px;
+
+	padding-left: 19px; /*link text is indented 19px*/
+	text-decoration: none;
+	font-weight: bold;
+	border-bottom: 1px solid #dadada;
+	font-size: 12px;
+}
+.arrowlistmenu ul li a:visited
+{
+	color: #0066CC;
+}
+.arrowlistmenu ul li a:hover
+{
+	/*hover state CSS*/
+	color: Red;
+	background-color: #F3F3F3;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	display: block;
+	padding-bottom: 5px;
+	
+	/*link text is indented 19px*/
+
+	
+	
+}

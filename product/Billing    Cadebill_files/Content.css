@@ -1,0 +1,155 @@
+﻿body
+{
+}
+.fontailgn
+{
+	text-align: left;
+	line-height: 90%;
+	font-size: 8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	line-height: 14pt;
+	margin-right: 75px;
+}
+.Para
+{
+	font-size: 8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: justify;
+	line-height: 14pt;
+	margin-right: 75px;
+}
+
+
+.p1
+{
+	color: #0066CC;
+	text-align: justify;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	margin-right: 75px;
+}
+.p2
+{
+	color: #F59324;
+	text-align: justify;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	margin-right: 75px;
+}
+.p1contact
+{
+	color: Black;
+	text-align: justify;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	margin-right: 75px;
+	margin-left: 15px;
+}
+
+.linkHref
+{
+	color: Blue;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: italic;
+	text-decoration: underline;
+	margin-right: 75px;
+}
+.Navigation
+{
+	color: #F59324;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	text-decoration: underline;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+}
+
+
+.NonLeftmenupagehead
+{
+	color: #0066CC;
+	text-align: justify;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	margin-right: 75px;
+	margin-left: 15px;
+}
+.NonleftmenuPara
+{
+	font-size: 8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: justify;
+	line-height: 14pt;
+	margin-right: 75px;
+	margin-left: 15px;
+}
+
+.address
+{
+	font-size: 8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: justify;
+	line-height: 14pt;
+	margin-right: 75px;
+	margin-left: 15px;
+}
+html
+{
+	/*overflow-y: scroll;*/
+}
+.lnkButton
+{
+	color: #0066CC;
+	text-align: justify;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	margin-right: 75px;
+	font-weight: bold;
+}
+.Home
+{
+	font-size: 8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: justify;
+	line-height: 14pt;
+	margin-right: 75px;
+}
+.HomeColumn1
+{
+	font-size: 8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: justify;
+	line-height: 14pt;
+}
+
+.tablecontact
+{
+	font-size: 8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	line-height: 14pt;
+}
+.h1style
+{
+	color: Black;
+	text-align: justify;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+}
+.Table_Complaince
+{
+	font-size: 8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-right: 75px;
+}
+.p3
+{
+	color: #0066CC;
+	text-align: center ;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	margin-right: 75px;
+     
+}
