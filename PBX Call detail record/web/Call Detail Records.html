@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0097)http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Call Detail Records</title><link rel="stylesheet" type="text/css" href="./Call Detail Records_files/styles.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/index.html" title="Asterisk™: The Definitive Guide"><link rel="up" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-Monitoring.html" title="Chapter 24. System Monitoring and Logging"><link rel="prev" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/Monitoring_id264504.html" title="logger.conf"><link rel="next" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/Monitoring_id246945.html" title="CEL (Channel Event Logging)"></head><body>
+<div id="adsense_left">
+<script type="text/javascript"><!--
+// Text Ad: Skyscraper (120x600)
+google_ad_client = "pub-8316482144448761";
+google_ad_width = 120;
+google_ad_height = 600;
+google_ad_format = "120x600_as";
+google_ad_channel = "";
+google_color_border = "ffffff";
+google_color_bg = "ffffff";
+google_color_link = "0000ff";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+
+<div class="navheader"><table width="100%" summary="Navigation header"><tbody><tr><th colspan="3" align="center">Call Detail Records</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/Monitoring_id264504.html">Prev</a>&nbsp;</td><th width="60%" align="center">Chapter&nbsp;24.&nbsp;System Monitoring and Logging</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/Monitoring_id246945.html">Next</a></td></tr></tbody></table><hr></div><div class="sect1" title="Call Detail Records"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="asterisk-SysAdmin-SECT-1"></a>Call Detail Records</h2></div></div></div><p><a id="Monitoring_id262528"></a><a id="index-070J623RW7K" class="indexterm"></a><a id="index-458H106VR5R" class="indexterm"></a>The CDR system in Asterisk is used to log the history of
+    calls in the system. In some deployments, these records are used for
+    billing purposes. In others, call records are used for analyzing call
+    volumes over time. They can also be used as a debugging tool by Asterisk
+    administrators.</p><div class="sect2" title="CDR Contents"><div class="titlepage"><div><div><h3 class="title"><a id="Monitoring_id262533"></a>CDR Contents</h3></div></div></div><p><a id="Monitoring_id262539"></a><a id="I_indexterm24_d1e50586" class="indexterm"></a><a id="I_indexterm24_d1e50593" class="indexterm"></a>A CDR has a number of fields that are included by default.
+      <a class="xref" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html#default_cdr_fields" title="Table 24.2. Default CDR fields">Table&nbsp;24.2, “Default CDR fields”</a> lists them.<a id="I_indexterm24_d1e50601" class="indexterm"></a></p><div class="table"><a id="default_cdr_fields"></a><p class="title"><strong>Table&nbsp;24.2.&nbsp;Default CDR fields</strong></p><div class="table-contents"><table summary="Default CDR fields" border="1"><colgroup><col><col><col></colgroup><thead><tr><th align="center">Option</th><th align="center">Value/Example</th><th align="center">Notes</th></tr></thead><tbody><tr><td><code class="literal">accountcode</code></td><td><code class="literal"><a id="I_indexterm24_d1e50625" class="indexterm"></a>12345</code></td><td>An account ID. This field is user-defined and is empty by
+              default.</td></tr><tr><td><code class="literal">src</code></td><td><code class="literal"><a id="I_indexterm24_d1e50637" class="indexterm"></a>12565551212</code></td><td>The calling party’s caller ID number. It is set
+              automatically and is read-only.</td></tr><tr><td><code class="literal">dst</code></td><td><code class="literal"><a id="I_indexterm24_d1e50649" class="indexterm"></a>102</code></td><td>The destination extension for the call. This field is set
+              automatically and is read-only.</td></tr><tr><td><code class="literal">dcontext</code></td><td><code class="literal"><a id="I_indexterm24_d1e50661" class="indexterm"></a>PublicExtensions</code></td><td>The destination context for the call. This field is set
+              automatically and is read-only.</td></tr><tr><td><code class="literal">clid</code></td><td><code class="literal"><a id="I_indexterm24_d1e50673" class="indexterm"></a>"Big Bird" &lt;12565551212&gt;</code></td><td>The full caller ID, including the name, of the calling
+              party. This field is set automatically and is read-only.</td></tr><tr><td><code class="literal">channel</code></td><td><code class="literal"><a id="I_indexterm24_d1e50685" class="indexterm"></a>SIP/0004F2040808-a1bc23ef</code></td><td>The calling party’s channel. This field is set
+              automatically and is read-only.</td></tr><tr><td><code class="literal">dstchannel</code></td><td><code class="literal"><a id="I_indexterm24_d1e50697" class="indexterm"></a>SIP/0004F2046969-9786b0b0</code></td><td>The called party’s channel. This field is set
+              automatically and is read-only.</td></tr><tr><td><code class="literal">lastapp</code></td><td><code class="literal"><a id="I_indexterm24_d1e50709" class="indexterm"></a>Dial</code></td><td>The last dialplan application that was executed. This
+              field is set automatically and is read-only.</td></tr><tr><td><code class="literal">lastdata</code></td><td><code class="literal"><a id="I_indexterm24_d1e50721" class="indexterm"></a>SIP/0004F2046969,30,tT</code></td><td>The arguments passed to the <code class="literal">lastapp</code>. This field is set
+              automatically and is read-only.</td></tr><tr><td><code class="literal">start</code></td><td><code class="literal"><a id="I_indexterm24_d1e50736" class="indexterm"></a>2010-10-26 12:00:00</code></td><td>The start time of the call. This field is set
+              automatically and is read-only.</td></tr><tr><td><code class="literal">answer</code></td><td><code class="literal"><a id="I_indexterm24_d1e50748" class="indexterm"></a>2010-10-26 12:00:15</code></td><td>The answered time of the call. This field is set
+              automatically and is read-only.</td></tr><tr><td><code class="literal">end</code></td><td><code class="literal"><a id="I_indexterm24_d1e50761" class="indexterm"></a>2010-10-26 12:03:15</code></td><td>The end time of the call. This field is set automatically
+              and is read-only.</td></tr><tr><td><code class="literal">duration</code></td><td><code class="literal"><a id="I_indexterm24_d1e50773" class="indexterm"></a>195</code></td><td>The number of seconds between the <code class="literal">start</code> and <code class="literal">end</code> times for the call. This field is
+              set automatically and is read-only.</td></tr><tr><td><code class="literal">billsec</code></td><td><code class="literal"><a id="I_indexterm24_d1e50791" class="indexterm"></a>180</code></td><td>The number of seconds between the <code class="literal">answer</code> and <code class="literal">end</code> times for the call. This field is
+              set automatically and is read-only.</td></tr><tr><td><code class="literal">disposition</code></td><td><code class="literal"><a id="I_indexterm24_d1e50809" class="indexterm"></a>ANSWERED</code></td><td>An indication of what happened to the call. This may be
+              <code class="literal">NO ANSWER</code>, <code class="literal">FAILED</code>, <code class="literal">BUSY</code>, <code class="literal">ANSWERED</code>, or <code class="literal">UNKNOWN</code>.</td></tr><tr><td><code class="literal">amaflags</code></td><td><code class="literal"><a id="I_indexterm24_d1e50836" class="indexterm"></a>DOCUMENTATION</code></td><td>The Automatic Message Accounting (AMA) flag associated
+              with this call. This may be one of the following: <code class="literal">OMIT</code>, <code class="literal">BILLING</code>, <code class="literal">DOCUMENTATION</code>, or <code class="literal">Unknown</code>.</td></tr><tr><td><code class="literal">userfield</code></td><td><code class="literal"><a id="I_indexterm24_d1e50860" class="indexterm"></a>PerMinuteCharge:0.02</code></td><td>A general-purpose user field. This field is empty by
+              default and can be set to a user-defined string.<sup>[<a id="id685166" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html#ftn.id685166" class="footnote">a</a>]</sup></td></tr><tr><td><code class="literal">uniqueid</code></td><td><code class="literal"><a id="I_indexterm24_d1e50878" class="indexterm"></a>1288112400.1</code></td><td>The unique ID for the <code class="literal">src</code> channel. This field is set
+              automatically and is read-only.</td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><p><sup>[<a id="ftn.id685166" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html#id685166" class="para">a</a>] </sup>The <code class="literal">userfield</code> is not as relevant now
+                  as it used to be. Custom CDR variables are a more flexible
+                  way to get custom data into CDRs.</p></div></td></tr></tbody></table></div></div><br class="table-break"><p><a id="Monitoring_id250623"></a>All fields of the CDR record can be
+      accessed in the Asterisk dialplan by using the <code class="literal">CDR()</code> function. The <code class="literal">CDR()</code> function is also used to set the fields
+      of the CDR that are user-defined.</p><a id="Monitoring_id250635"></a><pre class="programlisting">exten =&gt; 115,1,Verbose(Call start time: ${CDR(start)})
+   same =&gt; n,Set(CDR(userfield)=zombie pancakes)</pre><p><a id="Monitoring_id250640"></a>In addition to the fields that are always
+      included in a CDR, it is possible to add custom fields. This is done in
+      the dialplan by using the <code class="literal">Set()</code>
+      application with the <code class="literal">CDR()</code> <span class="keep-together">function</span>:</p><p><a id="Monitoring_id250659"></a><a id="Monitoring_id250660"></a></p><pre class="programlisting">exten =&gt; 115,1,NoOp()
+   same =&gt; n,Set(CDR(mycustomfield)=coffee)
+   same =&gt; n,Verbose(I need some more ${CDR(mycustomfield)})
+</pre><p> </p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p><a id="Monitoring_id250653"></a>If you choose to use custom CDR
+          variables, make sure that the CDR backend that you choose is capable
+          of logging them.</p></div><p>To view the built-in documentation for
+      the <code class="literal">CDR()</code> function, run the following
+      command at the Asterisk console:</p><a id="Monitoring_id250670"></a><pre class="programlisting"><code class="computeroutput">*CLI&gt;</code> <strong class="userinput"><code>core show function CDR</code></strong></pre><p><a id="Monitoring_id250678"></a>In addition to the <code class="literal">CDR()</code> function, there are some dialplan
+      applications that may be used to influence CDR records. We’ll look at
+      these next.</p></div><div class="sect2" title="Dialplan Applications"><div class="titlepage"><div><div><h3 class="title"><a id="Monitoring_id250686"></a>Dialplan Applications</h3></div></div></div><p><a id="Monitoring_id250692"></a><a id="I_indexterm24_d1e50935" class="indexterm"></a><a id="I_indexterm24_d1e50942" class="indexterm"></a><a id="I_indexterm24_d1e50947" class="indexterm"></a><a id="I_indexterm24_d1e50952" class="indexterm"></a>There are a few dialplan applications that can be used to
+      influence CDRs for the current call. To get a list of the CDR
+      applications that are loaded into the current version of Asterisk, we
+      can use the following CLI command:</p><a id="Monitoring_id250697"></a><pre class="screen">*CLI&gt; <strong class="userinput"><code>core show applications like CDR</code></strong>
+    -= Matching Asterisk Applications =-
+               ForkCDR: Forks the Call Data Record. 
+                 NoCDR: Tell Asterisk to not maintain a CDR for the current call 
+              ResetCDR: Resets the Call Data Record. 
+    -= 3 Applications Matching =-
+</pre><p><a id="Monitoring_id250707"></a>Each application has documentation built
+      into the Asterisk application, which can be viewed using the following
+      command:</p><a id="Monitoring_id250711"></a><pre class="programlisting"><code class="computeroutput">*CLI&gt;</code> <strong class="userinput"><code>core show application <em class="replaceable"><code>&lt;application name&gt;</code></em></code></strong></pre></div><div class="sect2" title="cdr.conf"><div class="titlepage"><div><div><h3 class="title"><a id="Monitoring_id250722"></a>cdr.conf</h3></div></div></div><p><a id="Monitoring_id250728"></a><a id="I_indexterm24_d1e50977" class="indexterm"></a><a id="I_indexterm24_d1e50984" class="indexterm"></a><a id="I_indexterm24_d1e50989" class="indexterm"></a>The <code class="filename">cdr.conf</code> file has
+      a <code class="literal">[general]</code> section that contains
+      options that apply to the entire CDR system. Additional optional
+      sections may exist in this file that apply to specific CDR logging
+      backend modules. <a class="xref" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html#Monitoring_id250739" title="Table 24.3. cdr.conf [general] section">Table&nbsp;24.3, “cdr.conf [general] section”</a> lists the
+      options available in the <code class="literal">[general]</code> section.<a id="I_indexterm24_d1e51005" class="indexterm"></a></p><div class="table"><a id="Monitoring_id250739"></a><p class="title"><strong>Table&nbsp;24.3.&nbsp;cdr.conf [general] section</strong></p><div class="table-contents"><table summary="cdr.conf [general] section" border="1"><colgroup><col><col><col></colgroup><thead><tr><th align="center">Option</th><th align="center"><span class="keep-together">Value</span>/<span class="keep-together">Example</span></th><th align="center">Notes</th></tr></thead><tbody><tr><td><code class="literal">enable</code></td><td><code class="literal"><a id="I_indexterm24_d1e51033" class="indexterm"></a>yes</code></td><td>Enable CDR logging. The default is <code class="literal">yes</code>.</td></tr><tr><td><code class="literal">unanswered</code></td><td><code class="literal"><a id="I_indexterm24_d1e51048" class="indexterm"></a>no</code></td><td>Log unanswered calls. Normally, only answered calls
+              result in a CDR. Logging all call attempts can result in a large
+              number of extra call records that most people do not care about.
+              The default value is <code class="literal">no</code>.</td></tr><tr><td><code class="literal">end</code> <code class="literal">before</code> <code class="literal">hexten</code></td><td><code class="literal"><a id="I_indexterm24_d1e51067" class="indexterm"></a>no</code></td><td>Close out CDRs before running the <code class="literal">h</code> extension in the Asterisk dialplan.
+              Normally CDRs are not closed until the dialplan is completely
+              finished running. The default value is <code class="literal">no</code>.</td></tr><tr><td><code class="literal">initiated</code> <code class="literal">seconds</code></td><td><code class="literal"><a id="I_indexterm24_d1e51087" class="indexterm"></a>no</code></td><td>When calculating the <code class="literal">billsec</code> field, always round up. For
+              example, if the difference between when the call was answered
+              and when the call ended is 1 second and <span class="keep-together">1 microsecond</span>, <code class="literal">billsec</code> will be set to 2 seconds. This
+              helps ensure that Asterisk’s CDRs match the behavior used by
+              telcos. The default value is <code class="literal">no</code>.</td></tr><tr><td><code class="literal">batch</code></td><td><code class="literal"><a id="I_indexterm24_d1e51111" class="indexterm"></a>no</code></td><td>Queue up CDRs to be logged in batches instead of logging
+              synchronously at the end of every call. This prevents CDR
+              logging from blocking the completion of the call teardown
+              process within Asterisk. The default value is <code class="literal">no</code>, but we recommend turning it
+              on.<sup>[<a id="id685886" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html#ftn.id685886" class="footnote">a</a>]</sup></td></tr><tr><td><code class="literal">size</code></td><td><code class="literal"><a id="I_indexterm24_d1e51132" class="indexterm"></a>100</code></td><td>Set the number of CDRs to queue up before they are logged
+              during batch mode. The default value is <code class="literal">100</code>.</td></tr><tr><td><code class="literal">time</code></td><td><code class="literal"><a id="I_indexterm24_d1e51147" class="indexterm"></a>300</code></td><td>Set the maximum number of seconds that CDRs will wait in
+              the batch queue before being logged. The CDR batch logging
+              process will run at the end of this time period, even if
+              <code class="literal">size</code> has not been reached.
+              The default value is <code class="literal">300</code>
+              seconds.</td></tr><tr><td><code class="literal">scheduler</code> <code class="literal">only</code></td><td><code class="literal"><a id="I_indexterm24_d1e51167" class="indexterm"></a>no</code></td><td>Set whether CDR batch processing should be done by
+              spawning a new thread, or within the context of the CDR batch
+              scheduler. The default value is <code class="literal">no</code>, and we recommend not changing
+              it.</td></tr><tr><td><code class="literal">safe</code> <code class="literal">shutdown</code></td><td><code class="literal"><a id="I_indexterm24_d1e51184" class="indexterm"></a>yes</code></td><td>Block Asterisk shutdown to ensure that all queued CDR
+              records are logged. The default is <code class="literal">yes</code>, and we recommend leaving it that
+              way, as this option prevents important data loss.</td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><p><sup>[<a id="ftn.id685886" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html#id685886" class="para">a</a>] </sup>The disadvantage of enabling this option is that if
+                  Asterisk were to crash or die for some reason, the CDR
+                  records would be lost, as they are only stored in memory
+                  while the Asterisk process exists. See <code class="literal">safeshutdown</code> for more
+                  information.</p></div></td></tr></tbody></table></div></div><br class="table-break"></div><div class="sect2" title="Backends"><div class="titlepage"><div><div><h3 class="title"><a id="Monitoring_id263137"></a>Backends</h3></div></div></div><p><a id="Monitoring_id263142"></a><a id="index-423D263ON7M" class="indexterm"></a><a id="index-454E326OQ5F" class="indexterm"></a><a id="index-732O742UN4D" class="indexterm"></a>Asterisk CDR backend modules provide a way to log CDRs.
+      Most CDR backends require specific configuration to get them
+      going.</p><div class="sect3" title="cdr_adaptive_odbc"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id263146"></a>cdr_adaptive_odbc</h4></div></div></div><p><a id="Monitoring_id263152"></a><a id="I_indexterm24_d1e51217" class="indexterm"></a><a id="I_indexterm24_d1e51224" class="indexterm"></a><a id="I_indexterm24_d1e51231" class="indexterm"></a>As the name suggests, the <code class="literal">cdr_adaptive_odbc</code> module allows CDRs to be
+        stored in a database through ODBC. The “adaptive” part of the name
+        refers to the fact that it works to adapt to the table structure:
+        there is no static table structure that must be used with this module.
+        When the module is loaded (or reloaded), it reads the table structure.
+        When logging CDRs, it looks for a CDR variable that matches each
+        column name. This applies to both the built-in CDR variables and
+        custom variables. If you want to log the built-in <code class="literal">channel</code> CDR variable, just create a column
+        called <code class="literal">channel</code>.</p><p><a id="Monitoring_id263175"></a>Adding custom CDR content is as simple
+        as setting it in the dialplan. For example, if we wanted to log the
+        <code class="literal">User-Agent</code> that is provided by a
+        SIP device, we could add that as a custom CDR variable:</p><a id="Monitoring_id263180"></a><pre class="programlisting">exten =&gt; 105,n,Set(CDR(useragent)=${CHANNEL(useragent)})</pre><p><a id="Monitoring_id263184"></a>To have this custom CDR variable
+        inserted into the database by <code class="literal">cdr_adaptive_odbc</code>, all we have to do is
+        create a column called <code class="literal">useragent</code>.</p><p><a id="Monitoring_id263195"></a>Multiple tables may be configured in
+        the <code class="literal">cdr_adaptive_odbc</code> configuration
+        file. Each goes into its own configuration section. The name of the
+        section can be anything; the module does not use it. Here is an
+        example of a simple table configuration:</p><a id="Monitoring_id263203"></a><pre class="programlisting">[mytable]
+
+connection = asterisk
+table = asterisk_cdr</pre><p><a id="Monitoring_id263207"></a>A more detailed example of setting up a
+        database for logging CDRs can be found in <a class="xref" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/database_storing-cdr.html" title="Storing Call Detail Records (CDRs)">the section called “Storing Call Detail Records (CDRs)”</a>.</p><p><a id="Monitoring_id263318"></a><a class="xref" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html#Monitoring_id263326" title="Table 24.4. cdr_adaptive_odbc.conf table configuration options">Table&nbsp;24.4, “cdr_adaptive_odbc.conf table configuration options”</a>
+        lists the options that can be specified in a table configuration
+        section in the <code class="filename">cdr_adaptive_odbc.conf</code> file.<a id="I_indexterm24_d1e51276" class="indexterm"></a><a id="I_indexterm24_d1e51281" class="indexterm"></a></p><div class="table"><a id="Monitoring_id263326"></a><p class="title"><strong>Table&nbsp;24.4.&nbsp;cdr_adaptive_odbc.conf table configuration options</strong></p><div class="table-contents"><table summary="cdr_adaptive_odbc.conf table configuration options" border="1"><colgroup><col><col><col></colgroup><thead><tr><th align="center">Option</th><th align="center"><span class="keep-together"><span class="keep-together">Value</span>/<span class="keep-together">Example</span></span></th><th align="center">Notes</th></tr></thead><tbody><tr><td><code class="literal">connection</code></td><td><code class="literal">pgsql1</code></td><td>The database connection to be used. This is a reference
+                to the configured connection in <code class="filename">res_odbc.conf</code>. This field is
+                required.</td></tr><tr><td><code class="literal">table</code></td><td><code class="literal">asterisk_cdr</code></td><td>The table name. This field is required.</td></tr><tr><td><code class="literal">usegmtime</code></td><td><code class="literal">no</code></td><td>Indicates whether to log timestamps using GMT instead
+                of local time. The default value for this option is <code class="literal">no</code>.</td></tr></tbody></table></div></div><br class="table-break"><p><a id="Monitoring_id263413"></a>In addition to the key/value pair
+        fields that are shown in the previous table, <code class="filename">cdr_adaptive_odbc.conf</code> allows for a few
+        other configuration items. The first is a column alias. Normally, CDR
+        variables are logged to columns of the same name. An <code class="literal">alias</code> allows the variable name to be mapped
+        to a column with a different name. The syntax is:</p><a id="Monitoring_id263426"></a><pre class="programlisting">alias <em class="replaceable"><code>&lt;CDR variable&gt;</code></em> =&gt; <em class="replaceable"><code>&lt;column name&gt;</code></em></pre><p><a id="Monitoring_id263436"></a>Here is an example column mapping using
+        the <code class="literal">alias</code> option:</p><a id="Monitoring_id263442"></a><pre class="programlisting">alias src =&gt; source</pre><p><a id="Monitoring_id263446"></a>It is also possible to specify a
+        content filter. This allows you to specify criteria that must match
+        for records to be inserted into the table. The syntax is:</p><a id="Monitoring_id263451"></a><pre class="programlisting">filter <em class="replaceable"><code>&lt;CDR variable&gt;</code></em> =&gt; <em class="replaceable"><code>&lt;content&gt;</code></em></pre><p><a id="Monitoring_id263460"></a>Here is an example content
+        filter:</p><a id="Monitoring_id263464"></a><pre class="programlisting">filter accountcode =&gt; 123</pre><p><a id="Monitoring_id263467"></a>Finally, <code class="filename">cdr_adaptive_odbc.conf</code> allows static
+        content for a column to be defined. This can be useful when used along
+        with a set of <code class="literal">filter</code>s. This static
+        content can help differentiate records that were inserted into the
+        same table by different configuration sections. The syntax for static
+        content is:</p><a id="Monitoring_id263480"></a><pre class="programlisting">static <em class="replaceable"><code>&lt;"Static Content Goes Here"&gt;</code></em> =&gt; <em class="replaceable"><code>&lt;column name&gt;</code></em></pre><p><a id="Monitoring_id263490"></a>Here is an example of specifying static
+        content to be inserted with CDRs:</p><a id="Monitoring_id263494"></a><pre class="programlisting">static "My Content" =&gt; my_identifier</pre></div><div class="sect3" title="cdr_csv"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id263499"></a>cdr_csv</h4></div></div></div><p><a id="Monitoring_id263504"></a><a id="I_indexterm24_d1e51394" class="indexterm"></a><a id="I_indexterm24_d1e51401" class="indexterm"></a><a id="I_indexterm24_d1e51408" class="indexterm"></a>The <code class="literal">cdr_csv</code> module is
+        a very simple CDR backend that logs CDRs into a CSV (comma separated
+        values) file. The file is <code class="filename">/var/log/asterisk/cdr-csv/Master.csv</code>. As
+        long as CDR logging is enabled in <code class="filename">cdr.conf</code> and this module has been loaded,
+        CDRs will be logged to the <code class="filename">Master.csv</code> file.</p><p><a id="Monitoring_id263523"></a>While no options are required to get
+        this module working, there are some options that customize its
+        behavior. These options, listed in <a class="xref" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html#Monitoring_id263534" title="Table 24.5. cdr.conf [csv] section options">Table&nbsp;24.5, “cdr.conf [csv] section options”</a>, are placed in the <code class="literal">[csv]</code> section of <code class="filename">cdr.conf</code>.</p><div class="table"><a id="Monitoring_id263534"></a><p class="title"><strong>Table&nbsp;24.5.&nbsp;cdr.conf [csv] section options</strong></p><div class="table-contents"><table summary="cdr.conf [csv] section options" border="1"><colgroup><col><col><col></colgroup><thead><tr><th align="center">Option</th><th align="center"><span class="keep-together">Value/Example</span></th><th align="center">Notes</th></tr></thead><tbody><tr><td><code class="literal">usegmtime</code></td><td><code class="literal"><a id="I_indexterm24_d1e51454" class="indexterm"></a>no</code></td><td>Log timestamps using GMT instead of local time. The
+                default is <code class="literal">no</code>.</td></tr><tr><td><code class="literal">loguniqueid</code></td><td><code class="literal"><a id="I_indexterm24_d1e51469" class="indexterm"></a>no</code></td><td>Log the <code class="literal">uniqueid</code> CDR
+                variable. The default is <code class="literal">no</code>.</td></tr><tr><td><code class="literal">loguserfield</code></td><td><code class="literal"><a id="I_indexterm24_d1e51487" class="indexterm"></a>no</code></td><td>Log the <code class="literal">userfield</code>
+                CDR variable. The default is <code class="literal">no</code>.</td></tr><tr><td><code class="literal">accountlogs</code></td><td><code class="literal"><a id="I_indexterm24_d1e51505" class="indexterm"></a>yes</code></td><td>Create a separate CSV file for each different value of
+                the <code class="literal">accountcode</code> CDR
+                variable. The default is <code class="literal">yes</code>.</td></tr></tbody></table></div></div><br class="table-break"><p><a id="Monitoring_id249752"></a>The order of CDR variables in CSV files
+        created by the <code class="literal">cdr_csv</code> module
+        is:</p><a id="Monitoring_id249760"></a><pre class="programlisting">&lt;<em class="replaceable"><code>accountcode</code></em>&gt;,&lt;<em class="replaceable"><code>src</code></em>&gt;,&lt;<em class="replaceable"><code>dst</code></em>&gt;,&lt;<em class="replaceable"><code>dcontext</code></em>&gt;,&lt;<em class="replaceable"><code>clid</code></em>&gt;,&lt;<em class="replaceable"><code>channel</code></em>&gt;,&lt;<em class="replaceable"><code>dstchannel</code></em>&gt;,&lt;<em class="replaceable"><code>lastapp</code></em>&gt;, \
+    &lt;<em class="replaceable"><code>lastadata</code></em>&gt;,&lt;<em class="replaceable"><code>start</code></em>&gt;,&lt;<em class="replaceable"><code>answer</code></em>&gt;,&lt;<em class="replaceable"><code>end</code></em>&gt;,&lt;<em class="replaceable"><code>duration</code></em>&gt;,&lt;<em class="replaceable"><code>billsec</code></em>&gt;,&lt;<em class="replaceable"><code>disposition</code></em>&gt;, \
+    &lt;<em class="replaceable"><code>amaflags</code></em>&gt;[,&lt;<em class="replaceable"><code>uniqueid</code></em>&gt;][,&lt;<em class="replaceable"><code>userfield</code></em>&gt;]
+</pre></div><div class="sect3" title="cdr_custom"><div class="titlepage"><div><div><h4 class="title"><a id="cdr_custom"></a>cdr_custom</h4></div></div></div><p><a id="Monitoring_id249774"></a><a id="I_indexterm24_d1e51585" class="indexterm"></a><a id="I_indexterm24_d1e51592" class="indexterm"></a><a id="I_indexterm24_d1e51599" class="indexterm"></a>This CDR backend allows for custom formatting of CDR
+        records in a log file. This module is most commonly used for
+        customized CSV output. The configuration file used for this module is
+        <code class="filename">/etc/asterisk/cdr_custom.conf</code>. A
+        single section called <code class="literal">[mappings]</code> should exist in this file.
+        The <code class="literal">[mappings]</code> section contains
+        mappings between a filename and the custom template for a CDR. The
+        template is specified using Asterisk dialplan functions.</p><p><a id="Monitoring_id249791"></a>The following example shows a sample
+        configuration for <code class="literal">cdr_custom</code> that
+        enables a single CDR log file, <code class="filename">Master.csv</code>. This file will be created as
+        <code class="filename">/var/log/asterisk/cdr-custom/Master.csv</code>.
+        The template that has been defined uses both the <code class="literal">CDR()</code> and <code class="literal">CSV_QUOTE()</code> dialplan functions<a id="I_indexterm24_d1e51630" class="indexterm"></a><a id="I_indexterm24_d1e51633" class="indexterm"></a>. The <code class="literal">CDR()</code> function
+        retrieves values from the CDR being logged. The <code class="literal">CSV_QUOTE()</code> function ensures that the values
+        are properly escaped for the CSV file <span class="keep-together">format</span>:</p><a id="Monitoring_id249831"></a><pre class="programlisting">[mappings]
+
+Master.csv =&gt; ${CSV_QUOTE(${CDR(clid)})},${CSV_QUOTE(${CDR(src)})},
+   ${CSV_QUOTE(${CDR(dst)})},${CSV_QUOTE(${CDR(dcontext)})},
+   ${CSV_QUOTE(${CDR(channel)})},${CSV_QUOTE(${CDR(dstchannel)})},
+   ${CSV_QUOTE(${CDR(lastapp)})},${CSV_QUOTE(${CDR(lastdata)})},
+   ${CSV_QUOTE(${CDR(start)})},${CSV_QUOTE(${CDR(answer)})},
+   ${CSV_QUOTE(${CDR(end)})},${CSV_QUOTE(${CDR(duration)})},
+   ${CSV_QUOTE(${CDR(billsec)})},${CSV_QUOTE(${CDR(disposition)})},
+   ${CSV_QUOTE(${CDR(amaflags)})},${CSV_QUOTE(${CDR(accountcode)})},
+   ${CSV_QUOTE(${CDR(uniqueid)})},${CSV_QUOTE(${CDR(userfield)})}</pre><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p><a id="Monitoring_id249823"></a>In the actual configuration file, the
+          value in the <code class="filename">Master.csv</code> mapping
+          should be on a single line.</p></div></div><div class="sect3" title="cdr_manager"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id249846"></a>cdr_manager</h4></div></div></div><p><a id="Monitoring_id249851"></a><a id="I_indexterm24_d1e51660" class="indexterm"></a><a id="I_indexterm24_d1e51667" class="indexterm"></a><a id="I_indexterm24_d1e51674" class="indexterm"></a>The <code class="literal">cdr_manager</code>
+        backend emits CDRs as events on the Asterisk Manager Interface (AMI),
+        which we discussed in detail in <a class="xref" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-AMI.html" title="Chapter 20. Asterisk Manager Interface (AMI)">Chapter&nbsp;20, <em>Asterisk Manager Interface (AMI)</em></a>. This
+        module is configured in the <code class="filename">/etc/asterisk/cdr_manager.conf</code> file.
+        The first section in this file is the <code class="literal">[general]</code> section, which contains a single
+        option to enable this module (the default value is <code class="literal">no</code>):</p><a id="Monitoring_id249875"></a><pre class="programlisting">[general]
+
+enabled = yes</pre><p><a id="Monitoring_id249879"></a>The other section in <code class="filename">cdr_manager.conf</code> is the <code class="literal">[mappings]</code> section. This allows for adding
+        custom CDR variables to the manager event. The syntax is:</p><a id="Monitoring_id249890"></a><pre class="programlisting"><em class="replaceable"><code>&lt;CDR variable&gt;</code></em> =&gt; <em class="replaceable"><code>&lt;Header name&gt;</code></em></pre><p><a id="Monitoring_id249898"></a>Here is an example of adding two custom
+        CDR variables:</p><a id="Monitoring_id249902"></a><pre class="programlisting">[mappings]
+
+rate =&gt; Rate
+carrier =&gt; Carrier</pre><p><a id="Monitoring_id249906"></a>With this configuration in place, CDR
+        records will appear as events on the manager interface. To generate an
+        example manager event, we will use the following dialplan
+        example:</p><a id="Monitoring_id249911"></a><pre class="programlisting">exten =&gt; 110,1,Answer()
+    same =&gt; n,Set(CDR(rate)=0.02)
+    same =&gt; n,Set(CDR(carrier)=BS&amp;S)
+    same =&gt; n,Hangup()
+</pre><p><a id="Monitoring_id249916"></a>This is the command used to execute
+        this extension and generate a sample manager event:</p><a id="Monitoring_id249920"></a><pre class="programlisting"><code class="computeroutput">*CLI&gt;</code> <strong class="userinput"><code>console dial 110@testing</code></strong></pre><p><a id="Monitoring_id249928"></a>Finally, this is an example manager
+        event produced as a result of this test call:</p><a id="Monitoring_id249932"></a><pre class="programlisting">Event: Cdr
+Privilege: cdr,all
+AccountCode: 
+Source: 
+Destination: 110
+DestinationContext: testing
+CallerID: 
+Channel: Console/dsp
+DestinationChannel: 
+LastApplication: Hangup
+LastData: 
+StartTime: 2010-08-23 08:27:21
+AnswerTime: 2010-08-23 08:27:21
+EndTime: 2010-08-23 08:27:21
+Duration: 0
+BillableSeconds: 0
+Disposition: ANSWERED
+AMAFlags: DOCUMENTATION
+UniqueID: 1282570041.3
+UserField: 
+Rate: 0.02
+Carrier: BS&amp;S
+</pre></div><div class="sect3" title="cdr_mysql"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id249944"></a>cdr_mysql</h4></div></div></div><p><a id="Monitoring_id249949"></a><a id="I_indexterm24_d1e51734" class="indexterm"></a><a id="I_indexterm24_d1e51741" class="indexterm"></a><a id="I_indexterm24_d1e51748" class="indexterm"></a>This module allows posting of CDRs to a MySQL database.
+        We recommend that new installations use <code class="literal">cdr_adaptive_odbc</code> instead.</p></div><div class="sect3" title="cdr_odbc"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id249958"></a>cdr_odbc</h4></div></div></div><p><a id="Monitoring_id249963"></a><a id="I_indexterm24_d1e51759" class="indexterm"></a><a id="I_indexterm24_d1e51766" class="indexterm"></a><a id="I_indexterm24_d1e51773" class="indexterm"></a>This module enables the legacy ODBC interface for CDR
+        logging. New installations should use <code class="literal">cdr_adaptive_odbc</code> instead.</p></div><div class="sect3" title="cdr_pgsql"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id249972"></a>cdr_pgsql</h4></div></div></div><p><a id="Monitoring_id249977"></a><a id="I_indexterm24_d1e51784" class="indexterm"></a><a id="I_indexterm24_d1e51791" class="indexterm"></a><a id="I_indexterm24_d1e51798" class="indexterm"></a>This module allows posting of CDRs to a PostgreSQL
+        database. We recommend that new installations use <code class="literal">cdr_adaptive_odbc</code> instead.</p></div><div class="sect3" title="cdr_radius"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id249986"></a>cdr_radius</h4></div></div></div><p><a id="Monitoring_id249991"></a><a id="I_indexterm24_d1e51809" class="indexterm"></a><a id="I_indexterm24_d1e51816" class="indexterm"></a><a id="I_indexterm24_d1e51823" class="indexterm"></a>The <code class="literal">cdr_radius</code>
+        backend allows posting of CDRs to a RADIUS server. When using this
+        module, each CDR is reported to the RADIUS server as a single stop
+        event. This module is configured in the <code class="filename">/etc/asterisk/cdr.conf</code> file. Options for
+        this module are placed in a section called <code class="literal">[radius]</code>. The available options are listed
+        in <a class="xref" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html#Monitoring_id250007" title="Table 24.6. cdr.conf [radius] section options">Table&nbsp;24.6, “cdr.conf [radius] section options”</a>.<a id="I_indexterm24_d1e51839" class="indexterm"></a></p><div class="table"><a id="Monitoring_id250007"></a><p class="title"><strong>Table&nbsp;24.6.&nbsp;cdr.conf [radius] section options</strong></p><div class="table-contents"><table summary="cdr.conf [radius] section options" border="1"><colgroup><col><col><col></colgroup><thead><tr><th align="center">Option</th><th align="center">Value/Example</th><th align="center">Notes</th></tr></thead><tbody><tr><td><code class="literal">usegmtime</code></td><td><code class="literal"><a id="I_indexterm24_d1e51863" class="indexterm"></a>no</code></td><td>Enables logging of timestamps using GMT instead of
+                local time. The default is <code class="literal">yes</code>.</td></tr><tr><td><code class="literal">log</code> <code class="literal">unique</code> <code class="literal">id</code></td><td><code class="literal"><a id="I_indexterm24_d1e51882" class="indexterm"></a>no</code></td><td>Enables logging of the <code class="literal">uniqueid</code> CDR variable. The default
+                is yes.</td></tr><tr><td><code class="literal">loguserfield</code></td><td><code class="literal"><a id="I_indexterm24_d1e51897" class="indexterm"></a>no</code></td><td>Enables logging of the <code class="literal">userfield</code> CDR variable. The default
+                is <code class="literal">yes</code>.</td></tr><tr><td><code class="literal">radiuscfg</code></td><td><a id="I_indexterm24_d1e51914" class="indexterm"></a> <code class="literal">/etc/</code>
+                <code class="literal">radius</code>
+                <code class="literal">client</code>
+                <code class="literal">-ng/</code> <code class="literal">radius</code> <code class="literal">client</code> <code class="literal">.conf</code></td><td>Sets the location of the <code class="filename">radiusclient-ng</code> configuration file.
+                The default is <code class="filename">/etc/radiusclient-ng/radiusclient.conf</code>.</td></tr></tbody></table></div></div><br class="table-break"></div><div class="sect3" title="cdr_sqlite"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id250127"></a>cdr_sqlite</h4></div></div></div><p><a id="Monitoring_id250133"></a><a id="I_indexterm24_d1e51943" class="indexterm"></a><a id="I_indexterm24_d1e51950" class="indexterm"></a><a id="I_indexterm24_d1e51957" class="indexterm"></a>This module allows posting of CDRs to a <span class="application">SQLite</span> database using <span class="application">SQLite</span> version 2. Unless you have a
+        specific need for <span class="application">SQLite</span>
+        version 2 as opposed to version 3, we recommend that all new
+        installations use <code class="literal">cdr_sqlite3_custom</code>.</p><p><a id="Monitoring_id250151"></a>This module requires no configuration
+        to work. If the module has been compiled and loaded into Asterisk, it
+        will insert CDRs into a table called <code class="filename">cdr</code> in a database located at <code class="filename">/var/log/asterisk/cdr.db</code>.</p></div><div class="sect3" title="cdr_sqlite3_custom"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id250164"></a>cdr_sqlite3_custom</h4></div></div></div><p><a id="Monitoring_id250170"></a><a id="I_indexterm24_d1e51986" class="indexterm"></a><a id="I_indexterm24_d1e51993" class="indexterm"></a><a id="I_indexterm24_d1e52000" class="indexterm"></a>This CDR backend inserts CDRs into a <span class="application">SQLite</span> database using <span class="application">SQLite</span> version 3. The database created
+        by this module lives at <code class="filename">/var/log/asterisk/master.db</code>. This module
+        requires a configuration file, <code class="filename">/etc/asterisk/cdr_sqlite3_custom.conf</code>. The
+        configuration file identifies the table name, as well as customizes
+        which CDR variables will be inserted into the database:</p><a id="Monitoring_id250206"></a><pre class="programlisting">[master]
+
+table = cdr
+
+;
+; List the column names to use when inserting CDRs.
+;
+columns =&gt; calldate, clid, dcontext, channel, dstchannel, lastapp, lastdata,
+    duration, billsec, disposition, amaflags, accountcode, uniqueid, userfield, 
+    test
+
+
+;
+; Map CDR contents to the previously specified columns.
+;
+values =&gt; '${CDR(start)}','${CDR(clid)}','${CDR(dcontext)}','${CDR(channel)}',
+    '${CDR(dstchannel)}','${CDR(lastapp)}','${CDR(lastdata)}','${CDR(duration)}',
+    '${CDR(billsec)}','${CDR(disposition)}','${CDR(amaflags)}',
+    '${CDR(accountcode)}','${CDR(uniqueid)}','${CDR(userfield)}','${CDR(test)}'
+</pre><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p><a id="Monitoring_id250192"></a>In the <code class="filename">cdr_sqlite3_custom.conf</code> file, the
+          contents of the <code class="literal">columns</code> and
+          <code class="literal">values</code> options must each be on a
+          single line.</p></div></div><div class="sect3" title="cdr_syslog"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id250217"></a>cdr_syslog</h4></div></div></div><p><a id="Monitoring_id246750"></a><a id="I_indexterm24_d1e52034" class="indexterm"></a><a id="I_indexterm24_d1e52041" class="indexterm"></a><a id="I_indexterm24_d1e52048" class="indexterm"></a>This module allows logging of CDRs using <span class="application"><span class="emphasis"><em>syslog</em></span></span>. To enable
+        this, first add an entry to the system’s <span class="application"><span class="emphasis"><em>syslog</em></span></span>
+        configuration file, <code class="filename">/etc/syslog.conf</code>. For example:</p><a id="Monitoring_id246767"></a><pre class="programlisting">local4.*      /var/log/asterisk/asterisk-cdr.log</pre><p><a id="Monitoring_id246770"></a>The Asterisk module has a configuration
+        file, as well. Add the following section to <code class="filename">/etc/asterisk/cdr_syslog.conf</code>:</p><a id="Monitoring_id246778"></a><pre class="programlisting">[cdr]
+
+facility = local4
+priority = info
+template = "We received a call from ${CDR(src)}"
+</pre><p><a id="Monitoring_id246782"></a>Here is an example
+        <span class="emphasis"><em>syslog</em></span> entry using this configuration:</p><a id="Monitoring_id246786"></a><pre class="screen">$ <strong class="userinput"><code>cat /var/log/asterisk/asterisk-cdr.log</code></strong>
+
+Aug 12 19:17:36 pbx cdr: "We received a call from 2565551212"
+</pre></div><div class="sect3" title="cdr_tds"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id246794"></a>cdr_tds</h4></div></div></div><p><a id="Monitoring_id246800"></a><a id="I_indexterm24_d1e52087" class="indexterm"></a><a id="I_indexterm24_d1e52094" class="indexterm"></a><a id="I_indexterm24_d1e52101" class="indexterm"></a>The <code class="literal">cdr_tds</code> module
+        uses the <span class="application">FreeTDS</span> library to
+        post CDRs to a <span class="application">Microsoft SQL
+        Server</span> or <span class="application">Sybase</span> database. It is possible to use
+        <span class="application">FreeTDS</span> with <span class="application"><code class="filename">unixODBC</code></span>, so we recommend
+        using <code class="literal">cdr_adaptive_odbc</code> instead of
+        this module.<a id="I_indexterm24_d1e52128" class="indexterm"></a><a id="I_indexterm24_d1e52129" class="indexterm"></a><a id="I_indexterm24_d1e52130" class="indexterm"></a></p></div></div><div class="sect2" title="Example Call Detail Records"><div class="titlepage"><div><div><h3 class="title"><a id="cdr_examples"></a>Example Call Detail Records</h3></div></div></div><p><a id="Monitoring_id246838"></a><a id="I_indexterm24_d1e52135" class="indexterm"></a><a id="I_indexterm24_d1e52142" class="indexterm"></a>We will use the <code class="literal">cdr_custom</code> module to illustrate some example
+      CDR records for different call scenarios. The configuration used for
+      <code class="filename">/etc/asterisk/cdr_custom.conf</code> is
+      shown in <a class="xref" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-SysAdmin-SECT-1.html#cdr_custom" title="cdr_custom">the section called “cdr_custom”</a>.</p><div class="sect3" title="Single-party call"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id246856"></a>Single-party call</h4></div></div></div><p><a id="Monitoring_id246861"></a><a id="I_indexterm24_d1e52160" class="indexterm"></a>In this example, we’ll show what a CDR looks like for a
+        simple one-party call. Specifically, we will use the example of a user
+        calling in to check her voicemail. Here is the extension from
+        <code class="filename">/etc/asterisk/extensions.conf</code>:</p><a id="Monitoring_id246870"></a><pre class="programlisting">exten =&gt; *98,1,VoiceMailMain(@${GLOBAL(VOICEMAIL_CONTEXT)})</pre><p><a id="Monitoring_id246874"></a>This is the CDR from <code class="filename">/var/log/asterisk/cdr-custom/Master.csv</code>
+        that was created as a result of calling this extension:</p><a id="Monitoring_id246882"></a><pre class="programlisting">"""Console"" &lt;2565551212&gt;","2565551212","*98","UserServices","Console/dsp","",
+    "VoiceMailMain","@shifteight.org","2010-08-16 01:08:44","2010-08-16 01:08:44",
+    "2010-08-16 01:08:53","9","9","ANSWERED","DOCUMENTATION","","1281935324.0","",0
+</pre></div><div class="sect3" title="Two-party call"><div class="titlepage"><div><div><h4 class="title"><a id="Monitoring_id246891"></a>Two-party call</h4></div></div></div><p><a id="Monitoring_id246896"></a><a id="I_indexterm24_d1e52180" class="indexterm"></a>For this next example, we show what a CDR looks like for
+        a simple two-party call. We’ll have one SIP phone place a call to
+        another SIP phone. The call is answered and then hung up after a short
+        period of time. Here is the extension that was dialed:</p><a id="Monitoring_id246902"></a><pre class="programlisting">exten =&gt; 101,1,Dial(SIP/0000FFFF0002)</pre><p><a id="Monitoring_id246906"></a>Here is the CDR that was logged to
+        <code class="filename">Master.csv</code> as a result of this
+        call:</p><a id="Monitoring_id246912"></a><pre class="programlisting">"""Console"" &lt;2565551212&gt;","2565551212","101","LocalSets","Console/dsp",
+    "SIP/0000FFFF0002-00000000","Dial","SIP/0000FFFF0002","2010-08-16 01:16:10",
+    "2010-08-16 01:16:16","2010-08-16 01:16:29","19","13","ANSWERED",
+    "DOCUMENTATION","","1281935770.2","",2
+</pre></div></div><div class="sect2" title="Caveats"><div class="titlepage"><div><div><h3 class="title"><a id="Monitoring_id246923"></a>Caveats</h3></div></div></div><p><a id="Monitoring_id246928"></a><a id="I_indexterm24_d1e52198" class="indexterm"></a><a id="I_indexterm24_d1e52205" class="indexterm"></a>The CDR system in Asterisk works very well for fairly
+      simple call scenarios. However, as call scenarios get more complicated,
+      involving calls to multiple parties, transfers, parking, and other such
+      features, the CDR system starts to fall short. Many users report that
+      the records do not show all of the information that they expect. Many
+      bug fixes have been made to address some of the issues, but the cost of
+      regressions or changes in behavior when making changes in this area is
+      very high since these records are used for billing.</p><p><a id="Monitoring_id246936"></a>As a result, the Asterisk development
+      team has become increasingly resistant to making additional changes to
+      the CDR system. Instead, a new system, channel event logging (CEL), has
+      been developed that is intended to help address logging of more complex
+      call scenarios. Bear in mind that call detail records are simpler and
+      easier to consume, though, so we still recommend using CDRs if they suit
+      your needs.<a id="I_indexterm24_d1e52213" class="indexterm"></a><a id="I_indexterm24_d1e52214" class="indexterm"></a></p></div></div>
+<div id="adsense_bottom">
+<script type="text/javascript"><!--
+// Text Ad: Medium Rectangle (300x250)
+google_ad_client = "pub-8316482144448761";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_channel = "";
+google_color_border = "ffffff";
+google_color_bg = "ffffff";
+google_color_link = "0000ff";
+google_color_url = "000000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+
+<div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tbody><tr><td width="40%" align="left"><a accesskey="p" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/Monitoring_id264504.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/asterisk-Monitoring.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/Monitoring_id246945.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">logger.conf&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="http://www.asteriskdocs.org/en/3rd_Edition/asterisk-book-html-chunk/index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;CEL (Channel Event Logging)</td></tr></tbody></table></div><div xmlns="" id="svn-footer"><hr><p>You are reading <em>Asterisk: The Definitive Guide</em> (3nd Edition for Asterisk 1.8), by Leif Madsen, Jim Van Meggelen, and Russell Bryant.<br>
+       This work is licensed under the <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-Noncommercial-No Derivative Works License v3.0</a>.<br>
+       To submit comments, corrections, or other contributions to the text, please visit <a href="http://oreilly.com/catalog/errata.csp?isbn=9780596517342">http://oreilly.com/catalog/errata.csp?isbn=9780596517342</a>.</p></div>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+<script type="text/javascript">
+_uacct = "UA-2732771-1";
+urchinTracker();
+</script>
+
+</body></html>
