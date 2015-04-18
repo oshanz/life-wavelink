@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html -->
+<html lang="en-US" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>How to Run Cron Jobs in CodeIgniter | Web Development Learnings</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://stevethomas.com.au/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="http://stevethomas.com.au/wp-content/themes/twentythirteen/js/html5.js"></script>
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="Web Development Learnings » Feed" href="http://stevethomas.com.au/feed">
+<link rel="alternate" type="application/rss+xml" title="Web Development Learnings » Comments Feed" href="http://stevethomas.com.au/comments/feed">
+
+            <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.3 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-419825-10']);
+				            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<link rel="alternate" type="application/rss+xml" title="Web Development Learnings » How to Run Cron Jobs in CodeIgniter Comments Feed" href="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html/feed">
+<link rel="stylesheet" id="output-css" href="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/output.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentythirteen-fonts-css" href="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="genericons-css" href="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/genericons.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentythirteen-style-css" href="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/style.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentythirteen-ie-css'  href='http://stevethomas.com.au/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/jquery.js"></script>
+<script type="text/javascript" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/jquery-migrate.min.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://stevethomas.com.au/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://stevethomas.com.au/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Automatically Submit Google CSE" href="http://stevethomas.com.au/web-design/automatically-submit-google-cse.html">
+<link rel="next" title="CodeIgniter – One Year On" href="http://stevethomas.com.au/php/codeigniter-one-year-on.html">
+<meta name="generator" content="WordPress 3.8">
+<link rel="canonical" href="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/How to Run Cron Jobs in CodeIgniter   Web Development Learnings.html">
+<link rel="shortlink" href="http://stevethomas.com.au/?p=258">
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+	<style type="text/css" id="twentythirteen-header-css">
+			.site-header {
+			background: url(http://stevethomas.com.au/wp-content/uploads/2010/11/cropped-DSCN0254.jpg) no-repeat scroll top;
+			background-size: 1600px auto;
+		}
+			.site-title,
+		.site-description {
+			color: #ffffff;
+		}
+		</style>
+	<link rel="stylesheet" type="text/css" href="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/shCore.css"><link rel="stylesheet" type="text/css" href="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/shThemeRDark.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="single single-post postid-258 single-format-standard">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			<a class="home-link" href="http://stevethomas.com.au/" title="Web Development Learnings" rel="home">
+				<h1 class="site-title">Web Development Learnings</h1>
+				<h2 class="site-description">Musings from the wild</h2>
+			</a>
+
+			<div id="navbar" class="navbar">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<h3 class="menu-toggle" style="display: none;">Menu</h3>
+					<a class="screen-reader-text skip-link" href="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html#content" title="Skip to content">Skip to content</a>
+										<form role="search" method="get" class="search-form" action="http://stevethomas.com.au/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
+				</label>
+				<input type="submit" class="search-submit" value="Search">
+			</form>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+		</header><!-- #masthead -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+						
+				
+<article id="post-258" class="post-258 post type-post status-publish format-standard hentry category-php">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">How to Run Cron Jobs in CodeIgniter</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/How to Run Cron Jobs in CodeIgniter   Web Development Learnings.html" title="Permalink to How to Run Cron Jobs in CodeIgniter" rel="bookmark"><time class="entry-date" datetime="2012-01-04T17:33:07+00:00">January 4, 2012</time></a></span><span class="categories-links"><a href="http://stevethomas.com.au/cat/php" title="View all posts in PHP" rel="category tag">PHP</a></span><span class="author vcard"><a class="url fn n" href="http://stevethomas.com.au/author/admin" title="View all posts by Steve" rel="author">Steve</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html" addthis:title="How to Run Cron Jobs in CodeIgniter " style="display: none !important;"><a class="addthis_button_facebook"></a><a class="addthis_button_twitter"></a><a class="addthis_button_email"></a><a class="addthis_button_pinterest_share"></a><a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a></div><p>After a fair bit of <a href="http://www.google.com.au/#hl=en&cp=17&gs_id=1v&xhr=t&q=codeigniter+cron+job&fp=b37e0351d48c1ee9" target="_blank">trawling</a>&nbsp;Google, I got the impression that setting up a cron job in codeigniter was going to be a bit tricky.</p>
+<p>The two potential solutions I discovered were:</p>
+<ol>
+<li>execute the “wget” command to replicate a normal browser request, which then exposes my cron functionality to the big wide world and creates some additional unnecessary overheads, or</li>
+<li>Create a bespoke front controller a bit like the existing index.php but specifically for cron jobs</li>
+</ol>
+<p>Neither of these options sound particularly ideal to me, and <strong>thankfully, there is a better way</strong> (and it turned out to be a case of <a href="http://codeigniter.com/user_guide/general/cli.html" target="_blank">RTFM</a>).</p>
+<p>Firstly, just create a normal controller. I creatively called mine Cron.</p>
+<div><div id="highlighter_104349" class="syntaxhighlighter  php"><div class="toolbar"><span><a href="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php keyword">class</code> <code class="php plain">Cron </code><code class="php keyword">extends</code> <code class="php plain">CI_Controller {</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">function</code> <code class="php plain">__construct()</code></div><div class="line number4 index3 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">{</code></div><div class="line number5 index4 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">parent::__construct();</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php comments">// this controller can only be called from the command line</code></div><div class="line number8 index7 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">if</code> <code class="php plain">(!</code><code class="php variable">$this</code><code class="php plain">-&gt;input-&gt;is_cli_request()) show_error(</code><code class="php string">'Direct access is not allowed'</code><code class="php plain">);</code></div><div class="line number9 index8 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">function</code> <code class="php plain">foo(</code><code class="php variable">$bar</code> <code class="php plain">= </code><code class="php string">'bar'</code><code class="php plain">)</code></div><div class="line number12 index11 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">{</code></div><div class="line number13 index12 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php functions">echo</code> <code class="php string">"foo = $bar"</code><code class="php plain">;</code></div><div class="line number14 index13 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}</code></div><div class="line number15 index14 alt2"><code class="php plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Note the call to $this-&gt;input-&gt;is_cli_request() which ensures that <strong>this controller cannot be accessed directly from a url</strong>.</p>
+<p>Next we setup our cron job as you would any other, except that you provide the path in a special format.</p>
+<blockquote><p>php /path/to/index.php controller_name method_name ["params"]</p></blockquote>
+<p>The first part is either the command “php” or your server path to php.</p>
+<p>The second part is the absolute path to your CI front controller, eg. /path/to/index.php.</p>
+<p>The third part is the controller name, followed by the method name, followed by optional parameters.</p>
+<p>The CI manual gives the example:</p>
+<blockquote><p>php /path/to/index.php cron foo</p></blockquote>
+<p>If that doesn’t work, it probably means you don’t have the package php5-cli installed. On debian / ubuntu you can install this package as follows:</p>
+<blockquote><p>sudo apt-get install php5-cli</p></blockquote>
+<p>If you are not able to install packages, you can specify your path to php. I set mine as follows:</p>
+<blockquote><p>/usr/local/bin/php -f /home/clinic/public_html/index.php cron foo</p></blockquote>
+<p>You can even pass parameters in quotes, which have the same effect as parameters in regular url requests!</p>
+<blockquote><p>/usr/local/bin/php -f /home/clinic/public_html/index.php cron foo “beer”</p></blockquote>
+<p><img title="impressive" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/images.jpg" alt="" width="225" height="225"></p>
+<div class="addthis_toolbox addthis_default_style " addthis:url="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html" addthis:title="How to Run Cron Jobs in CodeIgniter " style="display: none !important;"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_button_pinterest_pinit"></a><a class="addthis_counter addthis_pill_style"></a></div>			</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+					<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+
+			<a href="http://stevethomas.com.au/web-design/automatically-submit-google-cse.html" rel="prev"><span class="meta-nav">←</span> Automatically Submit Google CSE</a>			<a href="http://stevethomas.com.au/php/codeigniter-one-year-on.html" rel="next">CodeIgniter – One Year On <span class="meta-nav">→</span></a>
+		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+					
+<div id="comments" class="comments-area">
+
+			<h2 class="comments-title">
+			6 thoughts on “<span>How to Run Cron Jobs in CodeIgniter</span>”		</h2>
+
+		<ol class="comment-list">
+					<li id="comment-2534" class="comment even thread-even depth-1">
+			<article id="div-comment-2534" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/5b0e667c8c179afe4e4b8dec55220a99" class="avatar avatar-74 photo" height="74" width="74">						<b class="fn">Jeff Walters</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html/comment-page-1#comment-2534">
+							<time datetime="2012-12-28T13:52:53+00:00">
+								December 28, 2012 at 1:52 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Nice article. Explained much better than the CI documentation (RTFM).</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply">
+									</div><!-- .reply -->
+			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-2599" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-2599" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/569e2e99a1de9e5d8a14b89eb7079128" class="avatar avatar-74 photo" height="74" width="74">						<b class="fn">Hengjie</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html/comment-page-1#comment-2599">
+							<time datetime="2013-01-05T09:32:37+00:00">
+								January 5, 2013 at 9:32 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>How would you debug this? As in, printing or echo’ing doesn’t appear to dump any information out to STDIN.</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply">
+									</div><!-- .reply -->
+			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-3215" class="comment even thread-even depth-1">
+			<article id="div-comment-3215" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/1d02a186d88ee0a44934e672fdd3f1a8" class="avatar avatar-74 photo" height="74" width="74">						<b class="fn"><a href="http://victorlava.com/" rel="external nofollow" class="url">Victor Lava</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html/comment-page-1#comment-3215">
+							<time datetime="2013-05-02T03:24:40+00:00">
+								May 2, 2013 at 3:24 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hey, thanks for useful article, however I can’t get my cron jobs to work. When I am trying to access the “/usr/bin/php -f home/my_site/index.php cron index” ,  I am receiving my main controller data. I can’t access the cron.php controller. Seems, like the parameters after the index.php isn’t going anywhere. What’s the problem?</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply">
+									</div><!-- .reply -->
+			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-3364" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-3364" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/d886a5accb1106d42e5db81521e6ffaa" class="avatar avatar-74 photo" height="74" width="74">						<b class="fn">Josh</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html/comment-page-1#comment-3364">
+							<time datetime="2013-05-20T14:14:31+00:00">
+								May 20, 2013 at 2:14 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Very helpful! Thanks for taking the time to write this.</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply">
+									</div><!-- .reply -->
+			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-4161" class="comment even thread-even depth-1">
+			<article id="div-comment-4161" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/303a9f809158d23ddb337ad4e4b3871a" class="avatar avatar-74 photo" height="74" width="74">						<b class="fn">antefire</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html/comment-page-1#comment-4161">
+							<time datetime="2013-08-05T17:06:35+00:00">
+								August 5, 2013 at 5:06 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>NICE;CONCISE</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply">
+									</div><!-- .reply -->
+			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-5319" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-5319" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/a036154a6cc5857308bd9037d8506954" class="avatar avatar-74 photo" height="74" width="74">						<b class="fn"><a href="http://solution.com/" rel="external nofollow" class="url">Neeraj</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html/comment-page-1#comment-5319">
+							<time datetime="2014-03-19T22:54:07+00:00">
+								March 19, 2014 at 10:54 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Very nice article, I have done with “/usr/local/bin/php -f /home/username/public_html/index.php croncontrollername cronfunctionname</p>
+<p>Keep posting good stuff dear…</p>
+<p>Thanks a lot</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply">
+									</div><!-- .reply -->
+			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+		
+		
+	
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://stevethomas.com.au/php/how-to-run-cron-jobs-in-codeigniter.html#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://stevethomas.com.au/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30"></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="258" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="85c29f2e88"></p>					</form>
+							</div><!-- #respond -->
+			        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('#commentform').submit(function () {
+                    _gaq.push(
+                            ['_setAccount', 'UA-419825-10'],
+                            ['_trackEvent', 'comment', 'submit']
+                    );
+                });
+            });
+        </script>
+		
+</div><!-- #comments -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+
+		</div><!-- #main -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+				<div id="secondary" class="sidebar-container" role="complementary">
+		<div class="widget-area masonry" style="position: relative; height: 451px;">
+			<aside id="categories-425231252" class="widget widget_categories masonry-brick" style="position: absolute; top: 0px; left: 0px;"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-21"><a href="http://stevethomas.com.au/cat/announcements" title="View all posts filed under Announcements">Announcements</a> (1)
+</li>
+	<li class="cat-item cat-item-20"><a href="http://stevethomas.com.au/cat/jquery" title="View all posts filed under jQuery">jQuery</a> (1)
+</li>
+	<li class="cat-item cat-item-19"><a href="http://stevethomas.com.au/cat/notes" title="Tid bits of info for me to remember - maybe someone else will find these useful as well.">Notes</a> (3)
+</li>
+	<li class="cat-item cat-item-3"><a href="http://stevethomas.com.au/cat/php" title="PHP is a programming language suited to a wide variety of tasks and widely supported by the web development community. Also in this category is PHP&#39;s most common database buddy, MySQL">PHP</a> (14)
+</li>
+	<li class="cat-item cat-item-11"><a href="http://stevethomas.com.au/cat/rants" title="For when things are fubar.">Rants</a> (2)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://stevethomas.com.au/cat/web-design" title="Practical tips on web design.">Web Design</a> (2)
+</li>
+	<li class="cat-item cat-item-18"><a href="http://stevethomas.com.au/cat/web-hosting" title="Practical tips on web hosting.">Web Hosting</a> (1)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://stevethomas.com.au/cat/web-marketing" title="Practical tips on web marketing.">Web Marketing</a> (1)
+</li>
+		</ul>
+</aside>		<aside id="recent-posts-3" class="widget widget_recent_entries masonry-brick" style="position: absolute; top: 0px; left: 265px;">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://stevethomas.com.au/php/paypal-ipn-codeigniter-and-encoding-a-recipe-for-disaster.html">PayPal IPN, CodeIgniter and Encoding – a recipe for disaster!</a>
+							<span class="post-date">June 2, 2014</span>
+						</li>
+					<li>
+				<a href="http://stevethomas.com.au/php/codeigniter-monolog-integration.html">CodeIgniter Monolog integration</a>
+							<span class="post-date">December 13, 2013</span>
+						</li>
+					<li>
+				<a href="http://stevethomas.com.au/php/codeigniter-thanks-for-the-ride.html">CodeIgniter – Thanks For The Ride</a>
+							<span class="post-date">November 14, 2013</span>
+						</li>
+					<li>
+				<a href="http://stevethomas.com.au/php/database-seeding-in-codeigniter.html">Database Seeding in CodeIgniter</a>
+							<span class="post-date">November 13, 2013</span>
+						</li>
+					<li>
+				<a href="http://stevethomas.com.au/php/how-to-build-an-ical-calendar-with-php-and-mysql.html">How to Build an iCal Calendar with PHP and MySQL</a>
+							<span class="post-date">June 8, 2012</span>
+						</li>
+					<li>
+				<a href="http://stevethomas.com.au/php/codeigniter-one-year-on.html">CodeIgniter – One Year On</a>
+							<span class="post-date">March 28, 2012</span>
+						</li>
+				</ul>
+		</aside><aside id="recent-comments-3" class="widget widget_recent_comments masonry-brick" style="position: absolute; top: 0px; left: 530px;"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments">Steve on <a href="http://stevethomas.com.au/php/how-to-build-an-ical-calendar-with-php-and-mysql.html/comment-page-1#comment-5419">How to Build an iCal Calendar with PHP and MySQL</a></li><li class="recentcomments">Matthieu on <a href="http://stevethomas.com.au/php/how-to-build-an-ical-calendar-with-php-and-mysql.html/comment-page-1#comment-5417">How to Build an iCal Calendar with PHP and MySQL</a></li><li class="recentcomments"><a href="http://none/" rel="external nofollow" class="url">Carole Kelly</a> on <a href="http://stevethomas.com.au/announcements/convict-records-of-australia.html/comment-page-1#comment-5410">Convict Records of Australia</a></li><li class="recentcomments">Tom on <a href="http://stevethomas.com.au/php/how-to-build-an-ical-calendar-with-php-and-mysql.html/comment-page-1#comment-5327">How to Build an iCal Calendar with PHP and MySQL</a></li><li class="recentcomments"><a href="http://jllsmvnnp/" rel="external nofollow" class="url">Ozzy</a> on <a href="http://stevethomas.com.au/php/database-seeding-in-codeigniter.html/comment-page-1#comment-5326">Database Seeding in CodeIgniter</a></li><li class="recentcomments">SamyR on <a href="http://stevethomas.com.au/php/codeigniter-thanks-for-the-ride.html/comment-page-1#comment-5321">CodeIgniter – Thanks For The Ride</a></li></ul></aside><aside id="nav_menu-2" class="widget widget_nav_menu masonry-brick" style="position: absolute; top: 0px; left: 795px;"><h3 class="widget-title">More</h3><div class="menu-more-stuff-container"><ul id="menu-more-stuff" class="menu"><li id="menu-item-357" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-357"><a href="http://stevethomas.com.au/about">About Steve Thomas</a></li>
+<li id="menu-item-356" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-356"><a href="http://www.thomasmultimedia.com.au/">Thomas Multimedia</a></li>
+<li id="menu-item-364" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-364"><a href="http://www.linkedin.com/pub/steve-thomas/4/ba4/897">LinkedIn</a></li>
+<li id="menu-item-365" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-365"><a href="https://github.com/stevethomas">GitHub</a></li>
+<li id="menu-item-212" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-212"><a href="http://www.convictrecords.com.au/">Convict Records</a></li>
+<li id="menu-item-213" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-213"><a href="http://www.cbr250rr.com.au/">CBR250RR Bikes</a></li>
+<li id="menu-item-366" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-366"><a href="http://stevethomas.com.au/feed">Entries RSS</a></li>
+</ul></div></aside>		</div><!-- .widget-area -->
+	</div><!-- #secondary -->
+
+			<div class="site-info">
+								<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	<script type="text/javascript">
+
+var addthis_config = {"data_track_clickback":false,"data_track_addressbar":false,"data_track_textcopy":false,"ui_atversion":"300"};
+var addthis_product = 'wpp-3.5.6';
+</script><script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4d9abe1c31e5ce41"></script><script type="text/javascript" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/shCore.js"></script>
+<script type="text/javascript" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/shBrushPhp.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://stevethomas.com.au/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://stevethomas.com.au/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeRDark.css?ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="./How to Run Cron Jobs in CodeIgniter   Web Development Learnings_files/functions.js"></script>
+<!--wp_footer-->
+<style>#content > #center > .dose > .dosesingle,#content > #right > .dose > .dosesingle,.addthis_toolbox,[href^="http://www.linkbucks.com/referral/"],[href^="http://www.google.com/aclk?"]
+{display:none !important;}</style></body></html>

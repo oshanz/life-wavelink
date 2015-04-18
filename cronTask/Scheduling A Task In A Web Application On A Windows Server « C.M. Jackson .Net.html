@@ -1,0 +1,755 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0095)http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Scheduling A Task In A Web Application On A Windows Server «  C.M. Jackson .Net</title>
+
+<link rel="alternate" type="application/rss+xml" title="C.M. Jackson .Net RSS Feed" href="http://www.cmjackson.net/feed/">
+<link rel="alternate" type="application/atom+xml" title="C.M. Jackson .Net Atom Feed" href="http://www.cmjackson.net/feed/atom/">
+<link rel="pingback" href="http://www.cmjackson.net/xmlrpc.php">
+<link rel="shortcut icon" href="http://www.cmjackson.net/wp-content/themes/mystique/favicon.ico">
+<meta name="designer" content="digitalnature.ro">
+
+<style type="text/css">
+@import "http://www.cmjackson.net/wp-content/themes/mystique/style.css";
+@import "http://www.cmjackson.net/wp-content/themes/mystique/color-red.css";
+#page{background-image:none;}
+body{background-image:url("http://www.cmjackson.net/wp-content/uploads/header.jpg");background-repeat:no-repeat;background-position:center top;}
+.post-info.with-thumbs{margin-left:94px;}
+/* Black navigation style */
+ul#navigation{background-position:left -464px;background-color:#000;}
+ul#navigation li{background-position:right bottom;}
+ul#navigation li a{text-shadow:none;color:#b3b3b3;}
+
+ul#navigation li.active a,
+ul#navigation li.current_page_item a,ul#navigation li.current_page_parent a,ul#navigation li.current_page_ancestor a,
+ul#navigation li.current-cat a,ul#navigation li.current-cat-parent a,ul#navigation li.current-cat-ancestor a{background-position:left -164px;color:#fff;}
+
+ul#navigation li a:hover,ul#navigation li:hover a,ul#navigation li a.fadeThis span.hover{background-color:rgba(255,255,255,0.1);}
+ul#navigation li:hover li a{background-color:transparent;}
+ul#navigation li li a:hover,ul#navigation li li a.fadeThis span.hover{background-color:#ed1e24 !important;}
+
+ul#navigation li.active a span.pointer,
+ul#navigation li.current_page_item a span.pointer,ul#navigation li.current_page_parent a span.pointer,ul#navigation li.current_page_ancestor a span.pointer,
+ul#navigation li.current-cat a span.pointer,ul#navigation li.current-cat-parent a span.pointer,ul#navigation li.current-cat-ancestor a span.pointer
+{background-position:center bottom;}
+
+ul#navigation ul{background-color:rgba(0,0,0,0.66);border-color:#000;}
+
+ul#navigation li.active ul,
+ul#navigation li.current_page_item ul,ul#navigation li.current_page_parent ul,ul#navigation li.current_page_ancestor ul,
+ul#navigation li.current-cat ul,ul#navigation li.current-cat-parent ul,ul#navigation li.current-cat-ancestor ul
+{background-color:#656565;border-color:#656565;}
+
+ul#navigation ul ul{border-top:1px solid rgba(255,255,255,0.5);}
+</style>
+<!--[if lte IE 6]><style type="text/css" media="screen">@import "http://www.cmjackson.net/wp-content/themes/mystique/ie6.css";</style><![endif]-->
+<!--[if IE 7]><style type="text/css" media="screen">@import "http://www.cmjackson.net/wp-content/themes/mystique/ie7.css";</style><![endif]-->
+ <link rel="alternate" type="application/rss+xml" title="C.M. Jackson .Net » Scheduling A Task In A Web Application On A Windows Server Comments Feed" href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/feed/">
+<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script type="text/javascript" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/jquery.js"></script>
+<script type="text/javascript" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/jquery-migrate.min.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.cmjackson.net/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.cmjackson.net/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="MVC and n-layer architecture" href="http://www.cmjackson.net/2010/01/18/mvc-and-n-layer-architecture/">
+<link rel="next" title="Clearing the Client Version from the Lotus Notes Directory" href="http://www.cmjackson.net/2010/01/20/clearing-the-client-version-from-the-lotus-notes-directory/">
+<meta name="generator" content="WordPress 4.0.1">
+<link rel="canonical" href="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net.html">
+<link rel="shortlink" href="http://www.cmjackson.net/?p=310">
+<link rel="stylesheet" type="text/css" href="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/shCore.css"><link rel="stylesheet" type="text/css" href="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17832667-1']);
+  _gaq.push(['_setDomainName', '.cmjackson.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- begin SI CAPTCHA Anti-Spam - comment form style --><style type="text/css">div#captchaImgDiv { display:block; }.captchaSizeDivSmall { width:175px; height:45px; padding-top:10px; }.captchaSizeDivLarge { width:250px; height:60px; padding-top:10px; }img#si_image_com,#si_image_reg,#si_image_log,#si_image_side_login { border-style:none; margin:0; padding-right:5px; float:left; }.captchaImgRefresh { border-style:none; margin:0; vertical-align:bottom; }div#captchaInputDiv { display:block; padding-top:15px; padding-bottom:5px; }label#captcha_code_label { margin:0; }input#captcha_code { width:65px; }</style><!-- end SI CAPTCHA Anti-Spam - comment form style --></head>
+<body class="single-post postid-310 category-programming tag-asp-net-mvc tag-how-to tag-scheduling tag-web-application author-admin col-2-right browser-chrome">
+ <div id="page">
+
+  <div class="shadow-left page-content header-wrapper">
+   <div class="shadow-right">
+
+    <div id="header" class="bubbleTrigger">
+      <div id="site-title">
+
+              <div id="logo"><a href="http://www.cmjackson.net/">C.M. Jackson .Net</a></div>
+       
+       <p class="headline">Web Design, Programming, Tutorials</p>
+      </div>
+
+      <a href="http://www.cmjackson.net/feed/" class="nav-extra rss" title="RSS Feeds"><span>RSS Feeds</span></a>
+            <a href="http://www.twitter.com/chrisjackson77" class="nav-extra twitter" title="Follow me on Twitter!"><span>Follow me on Twitter!</span></a>
+      
+      <a href="http://www.facebook.com/chrisjackson77" class="nav-extra facebook" title="My Facebook Profile."><span>My Facebook Profile.</span></a>
+      <a href="http://www.myspace.com/dragn1821" class="nav-extra myspace" title="My MySpace Profile."><span>My MySpace Profile.</span></a>
+      <a href="http://www.flickr.com/photos/26328474@N07/" class="nav-extra flickr" title="My Flickr Photos."><span>My Flickr Photos.</span></a>
+      <a href="http://www.linkedin.com/in/chrisjackson77" class="nav-extra linkedin" title="My LinkedIn Profile."><span>My LinkedIn Profile.</span></a>
+	  
+	  
+	  
+	  
+	  
+	  
+
+      <ul id="navigation" class="sf-js-enabled" role="navigation">
+
+                     <li id="nav-home"><a class="home fadeThis" href="http://www.cmjackson.net/" title="Click for Home"><span class="title">Home</span><span class="pointer"></span><span class="hover" style="opacity: 0;"></span></a></li>
+                   
+      </ul>
+    </div>
+
+   </div>
+  </div>
+
+  <!-- left+right bottom shadow -->
+  <div class="shadow-left page-content main-wrapper">
+   <div class="shadow-right">
+
+     
+  <!-- main content: primary + sidebar(s) -->
+  <div id="main">
+   <div id="main-inside" class="clearfix">
+    <!-- primary content -->
+    <div id="primary-content" role="main">
+
+              <div class="page-navigation clearfix">
+          <div class="alignleft">« <a href="http://www.cmjackson.net/2010/01/18/mvc-and-n-layer-architecture/" rel="prev">MVC and n-layer architecture</a></div>
+          <div class="alignright"><a href="http://www.cmjackson.net/2010/01/20/clearing-the-client-version-from-the-lotus-notes-directory/" rel="next">Clearing the Client Version from the Lotus Notes Directory</a> »</div>
+        </div>
+
+        <!-- post -->
+        <div id="post-310" class="post-310 post type-post status-publish format-standard hentry category-programming tag-asp-net-mvc tag-how-to tag-scheduling tag-web-application clearfix">
+
+          
+          <h1 class="title">Scheduling A Task In A Web Application On A Windows Server</h1>
+          <div class="post-content clearfix">
+                    <p>When writting web applications, there may be times when you would like to perform some task automatically at the same time or every X number of hours.&nbsp;Web applications only execute their code when a request is made from a client’s browser. Because of this, scheduled tasks within the web application will not work.</p>
+<p>There are a few different options:</p>
+<ol>
+<li>Build a separate Windows Service application that can connect to the assemblies your web application uses to execute the scheduled task.</li>
+<li>Build a separate Windows application that communicates with a web service that your web application also uses to perform the scheduled task.</li>
+<li>Use the Windows Scheduler to call the URL of the action to perform the task.</li>
+</ol>
+<p>The first option might sound good at first, but creating a separate program that talks to your web application’s library files is a bad idea. Maintenance will become a problem as you change your web application. Since the code is in two places, unit testing will not tell you that the class library you just changed has now broken your scheduled tasks in your windows service.&nbsp;</p>
+<p>The second option is slightly better, but you still may have issues with changing your class library.</p>
+<p>The third option is the one that I will show you how to configure. We will setup a VBS script that will perform a call to any web address we pass to it. Then, we’ll setup a batch file that calls the VBS script and passes in one or more URLs to execute.&nbsp;And finally, we’ll go through using the Windows Scheduler to create the scheduled task when the batch file should execute.</p>
+<p>The primary advantage to this method is that you get to keep all of your code together in your web application. You simply setup an action that performs whatever task you wish to schedule and make sure that action is callable from an anonymous user.</p>
+<p><strong>WebRequest.vbs</strong><br>
+You may copy the following code and paste into a text file. Then, rename the file to WebRequest.vbs.&nbsp;The script basically takes an argument that is passed into it as the URL. The HTTP object is setup and then the URL is called using a GET request. Then, the returned status is checked to see if the request was successful or not.</p>
+<div id="highlighter_784317" class="syntaxhighlighter  "><div class="bar               "><div class="toolbar"><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#viewSource" title="view source" class="item viewSource" style="width: 16px; height: 16px;">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_784317_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_784317" menu="false" src="http://www.cmjackson.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/scripts/clipboard.swf"></div><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#printSource" title="print" class="item printSource" style="width: 16px; height: 16px;">print</a><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">url = WScript.Arguments.Item(0)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content"><code class="comments">'WScript.echo url</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="plain">set WshShell = WScript.CreateObject(</code><code class="string">"WScript.Shell"</code><code class="plain">)</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>5</code></td><td class="content"><code class="plain">set http = CreateObject(</code><code class="string">"Microsoft.XmlHttp"</code><code class="plain">)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>6</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>7</code></td><td class="content"><code class="plain">http.open </code><code class="string">"GET"</code><code class="plain">, url, FALSE</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>8</code></td><td class="content"><code class="plain">http.send </code><code class="string">""</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>9</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="plain">if (http.Status = 200) then</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">WScript.echo </code><code class="string">"Request successful."</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="plain">else</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">WScript.echo </code><code class="string">"Error: "</code> <code class="plain">&amp; http.Status</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="plain">end if</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>19</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>20</code></td><td class="content"><code class="plain">set WshShell = nothing</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>21</code></td><td class="content"><code class="plain">set http = nothing</code></td></tr></tbody></table></div></div></div>
+<p><strong>The Batch File</strong><br>
+Calling the WebRequest.vbs file from a batch file is very easy. Simply create a new text file, calling it whatever you’d like, and paste in the following line of text. Rename the file to .BAT when finished.</p>
+<div id="highlighter_807285" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#viewSource" title="view source" class="item viewSource" style="width: 16px; height: 16px;">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_807285_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_807285" menu="false" src="http://www.cmjackson.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/scripts/clipboard.swf"></div><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#printSource" title="print" class="item printSource" style="width: 16px; height: 16px;">print</a><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">cscript WebRequest.vbs "<a href="http://www.domain.com/controller/action">http://www.domain.com/controller/action</a>"</code></td></tr></tbody></table></div></div></div>
+<p><strong>Scheduling The Task</strong><br>
+From your Windows server, open the Control Panel and then open the Scheduled Tasks item. Next, click on Add Scheduled Task. Choose any application to schedule.&nbsp; This will be changed later on. Configure how often you wish the schedule to run and enter a user name and password to run the schedule as. This users should have access to running the web browser from the server.</p>
+<p>After your new scheduled task has been created, open it. In the Run text box, type in the full path to your batch file. Then, in the Start In text box, type in the full path without the batch file name. You can also adjust your scheduled time from within here. Click OK to save the changes and your scheduled task should be ready.</p>
+<p>You can test the Windows Scheduler by setting the scheduled time to a minute or two in the future and then waiting for it to execute. If you just wish to test your action, or manually run it, you can simply run the batch file.</p>
+                    
+          </div>
+                              <div class="post-tags"> Tags: <a href="http://www.cmjackson.net/tag/asp-net-mvc/" rel="tag">ASP.NET MVC</a>, <a href="http://www.cmjackson.net/tag/how-to/" rel="tag">how to</a>, <a href="http://www.cmjackson.net/tag/scheduling/" rel="tag">scheduling</a>, <a href="http://www.cmjackson.net/tag/web-application/" rel="tag">web application</a></div>
+                    <div class="post-meta clearfix">
+                   <!-- socialize -->
+   <div class="shareThis clearfix">
+    <a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#" class="share">Share this post!</a>
+    <ul class="bubble">
+     <li><a href="http://twitter.com/home?status=Scheduling%20A%20Task%20In%20A%20Web%20Application%20On%20A%20Windows%20Server+-+http://tinyurl.com/y8t528p" class="twitter" title="Tweet This!"><span>Twitter</span></a></li>
+     <li><a href="http://digg.com/submit?phase=2&url=http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/&title=Scheduling%20A%20Task%20In%20A%20Web%20Application%20On%20A%20Windows%20Server" class="digg" title="Digg this!"><span>Digg</span></a></li>
+     <li><a href="http://www.facebook.com/share.php?u=http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/&t=Scheduling%20A%20Task%20In%20A%20Web%20Application%20On%20A%20Windows%20Server" class="facebook" title="Share this on Facebook"><span>Facebook</span></a></li>
+     <li><a href="http://del.icio.us/post?url=http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/&title=Scheduling%20A%20Task%20In%20A%20Web%20Application%20On%20A%20Windows%20Server" class="delicious" title="Share this on del.icio.us"><span>Delicious</span></a></li>
+     <li><a href="http://www.stumbleupon.com/submit?url=http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/&title=Scheduling%20A%20Task%20In%20A%20Web%20Application%20On%20A%20Windows%20Server" class="stumbleupon" title="Stumbled upon something good? Share it on StumbleUpon"><span>StumbleUpon</span></a></li>
+     <li><a href="http://www.google.com/bookmarks/mark?op=add&bkmk=http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/&title=Scheduling%20A%20Task%20In%20A%20Web%20Application%20On%20A%20Windows%20Server" class="google" title="Add this to Google Bookmarks"><span>Google Bookmarks</span></a></li>
+     <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/&title=Scheduling%20A%20Task%20In%20A%20Web%20Application%20On%20A%20Windows%20Server&summary=When%20writting%20web%20applications,%20there%20may%20be%20times%20when%20you%20would%20like%20to%20perform%20some%20task%20automatically%20at%20the%20same%20time%20or%20every%20X%20number%20of%20hours.%C2%A0Web%20applications%20only%20execute%20their%20code%20when%20a%20request%20is%20made%20from%20a%20client%E2%80%99s%20browser.%20Because%20of%20this,%20scheduled%20tasks%20within%20the%20web%20application%20will%20not%20work.%20There%20are%20[%E2%80%A6]&source=C.M.%20Jackson%20.Net" class="linkedin" title="Share this on Linkedin"><span>LinkedIn</span></a></li>
+     <li><a href="http://buzz.yahoo.com/buzz?targetUrl=http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/&headline=Scheduling%20A%20Task%20In%20A%20Web%20Application%20On%20A%20Windows%20Server&summary=When%20writting%20web%20applications,%20there%20may%20be%20times%20when%20you%20would%20like%20to%20perform%20some%20task%20automatically%20at%20the%20same%20time%20or%20every%20X%20number%20of%20hours.%C2%A0Web%20applications%20only%20execute%20their%20code%20when%20a%20request%20is%20made%20from%20a%20client%E2%80%99s%20browser.%20Because%20of%20this,%20scheduled%20tasks%20within%20the%20web%20application%20will%20not%20work.%20There%20are%20[%E2%80%A6]" class="yahoo" title="Buzz up!"><span>Yahoo Bookmarks</span></a></li>
+     <li><a href="http://technorati.com/faves?add=http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/" class="technorati" title="Share this on Technorati"><span>Technorati Favorites</span></a></li>
+    </ul>
+   </div>
+   <!-- /socialize -->
+                  <div class="details share">
+                This entry was posted by <a href="http://www.cmjackson.net/author/admin/" title="Posts by Chris Jackson ">Chris Jackson</a> on January 19, 2010 at 8:00 am, and is filled under <a href="http://www.cmjackson.net/category/programming/" rel="category tag">Programming</a>. Follow any responses to this post through <a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/feed/" title="RSS 2.0">RSS 2.0</a>. You can <a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#respond">leave a response</a> or <a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/trackback/" rel="trackback">trackback</a> from your own site.                                </div>
+		  </div>
+        </div>
+        <!-- /post -->
+
+       
+       
+
+<!-- tabbed content -->
+<div class="tabbed-content post-tabs clearfix" id="post-tabs">
+
+  <!-- tab navigation (items must be in reverse order because of the tab-design) -->
+ <div class="tabs-wrap clearfix">
+  <ul class="tabs">
+    <li class="related-posts"><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#section-relatedPosts"><span>Related Posts</span></a></li>        <li class="comments active"><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#section-comments"><span>Comments (4)</span></a></li>  </ul>
+ </div>
+ <!-- /tab nav -->
+ 
+ <!-- tab sections -->
+ <div class="sections">
+
+    <!-- comments -->
+  <div class="section clearfix" id="section-comments">
+
+         <div class="clearfix">
+      <ul id="comments" class="comments">
+      
+  <!-- comment entry -->
+  <li class="comment even thread-even depth-1 withAvatars" id="comment-2370">
+    <div class="comment odd alt thread-odd thread-alt depth-1 comment-head">
+
+      <div class="avatar-box"><img alt="" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/d32bc1f45567c54222ba3c8c0ae60ba0" class="avatar avatar-48 photo" height="48" width="48"></div>      <div class="author">
+       <span class="by"><a class="comment-id" href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#comment-2370">#1</a> written by <b class="comment-author" id="comment-author-2370">Brian B</b> </span><br>
+        about 4 years ago      </div>
+
+      <div class="controls bubble" style="display: none; opacity: 0; top: 12px;">
+                                         </div>
+    </div>
+    <div class="comment-body clearfix" id="comment-body-2370">
+            <div class="comment-text"><p>I needed this a couple years ago. I built a separate Windows app that the scheduler calls. But it’s on a server that is locked down and making even the smallest change is a headache. This is so much better! I’ll have to update my app right away. Thanks!</p>
+</div>
+      <a id="comment-reply-2370"></a>
+    </div>
+
+</li><!-- #comment-## -->
+
+  <!-- comment entry -->
+  <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 withAvatars" id="comment-2402">
+    <div class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1 comment-head">
+
+      <div class="avatar-box"><img alt="" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/1564d014c4484b74b2ec0a0b50e566c9" class="avatar avatar-48 photo" height="48" width="48"></div>      <div class="author">
+       <span class="by"><a class="comment-id" href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#comment-2402">#2</a> written by <a class="comment-author websnapr" id="comment-author-2402" href="http://www.cmjackson.net/" rel="nofollow">Chris Jackson</a> </span><br>
+        about 4 years ago      </div>
+
+      <div class="controls bubble">
+                                         </div>
+    </div>
+    <div class="comment-body clearfix" id="comment-body-2402">
+            <div class="comment-text"><p>I’m glad it has helped you.</p>
+</div>
+      <a id="comment-reply-2402"></a>
+    </div>
+
+</li><!-- #comment-## -->
+
+  <!-- comment entry -->
+  <li class="comment even thread-even depth-1 withAvatars" id="comment-7527">
+    <div class="comment odd alt thread-odd thread-alt depth-1 comment-head">
+
+      <div class="avatar-box"><img alt="" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/8d5b59f9830b62017afc21aca476718e" class="avatar avatar-48 photo" height="48" width="48"></div>      <div class="author">
+       <span class="by"><a class="comment-id" href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#comment-7527">#3</a> written by <b class="comment-author" id="comment-author-7527">tamilarasan</b> </span><br>
+        about 3 years ago      </div>
+
+      <div class="controls bubble">
+                                         </div>
+    </div>
+    <div class="comment-body clearfix" id="comment-body-7527">
+            <div class="comment-text"><p>first time it is running fine…… but for secontime it is not executing…..</p>
+</div>
+      <a id="comment-reply-7527"></a>
+    </div>
+
+</li><!-- #comment-## -->
+
+  <!-- comment entry -->
+  <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 withAvatars" id="comment-8042">
+    <div class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1 comment-head">
+
+      <div class="avatar-box"><img alt="" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/1564d014c4484b74b2ec0a0b50e566c9" class="avatar avatar-48 photo" height="48" width="48"></div>      <div class="author">
+       <span class="by"><a class="comment-id" href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#comment-8042">#4</a> written by <a class="comment-author websnapr" id="comment-author-8042" href="http://www.cmjackson.net/" rel="nofollow">Chris Jackson</a> </span><br>
+        about 3 years ago      </div>
+
+      <div class="controls bubble">
+                                         </div>
+    </div>
+    <div class="comment-body clearfix" id="comment-body-8042">
+            <div class="comment-text"><p>@tamilarasan<br>
+Sorry to hear it. I have ran this script to schedule a web task on both Windows 2003 and 2008 servers and have not had any issues.</p>
+</div>
+      <a id="comment-reply-8042"></a>
+    </div>
+
+</li><!-- #comment-## -->
+      </ul>
+     </div>
+     
+            <span class="hidden" id="cp_post_id">310</span>
+       
+    
+     <!-- comment form -->
+     <div class="comment-form clearfix" id="respond">
+            <script type="text/javascript">
+      /* <![CDATA[ */
+      function checkvalues(){
+       if(jQuery('#field-author').val()=='Name (required)') jQuery('#field-author').val('');
+       if(jQuery('#field-email').val()=='E-mail (required, will not be published)') jQuery('#field-email').val('');
+       if(jQuery('#field-url').val()==('Website' || 'http://')) jQuery('#field-url').val('');
+      }
+      /* ]]> */
+      </script>
+            <form action="http://www.cmjackson.net/wp-comments-post.php" method="post" id="commentform" onsubmit="checkvalues();">
+                  	                <div id="author-info">
+            <div class="row">
+                            <input type="text" name="author" id="field-author" class="validate required textfield clearField clearFieldBlurred" value="Name (required)" size="40" rel="Name (required)">
+            </div>
+            <div class="row">
+                            <input type="text" name="email" id="field-email" class="validate required textfield clearField clearFieldBlurred" value="E-mail (required, will not be published)" size="40" rel="E-mail (required, will not be published)">
+            </div>
+            <div class="row">
+                            <input type="text" name="url" id="field-url" class="textfield clearField clearFieldBlurred" value="Website" size="40" rel="Website">
+            </div>
+  		  </div>
+        
+        <!-- comment input -->
+        <div class="row">
+        	<textarea name="comment" id="comment" class="validate required" rows="8" cols="50"></textarea>
+        </div>
+        <!-- /comment input -->
+        <div class="clearfix">
+                    <input type="hidden" name="comment_post_ID" value="310" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+                   
+<div id="captchaImgDiv">
+
+<div class="captchaSizeDivLarge"><img id="si_image_com" class="si-captcha" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/securimage_show.php" width="175" height="60" alt="CAPTCHA Image" title="CAPTCHA Image">
+    <input id="si_code_com" name="si_code_com" type="hidden" value="ZnybDkTU5U0FkrCZ">
+    <div id="si_refresh_com">
+<a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#" rel="nofollow" title="Refresh Image" onclick="si_captcha_refresh(&#39;si_image_com&#39;,&#39;com&#39;,&#39;/wp-content/plugins/si-captcha-for-wordpress/captcha&#39;,&#39;http://www.cmjackson.net/wp-content/plugins/si-captcha-for-wordpress/captcha/securimage_show.php?si_form_id=com&amp;prefix=&#39;); return false;">
+      <img class="captchaImgRefresh" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/refresh.png" width="22" height="20" alt="Refresh Image" onclick="this.blur();"></a>
+  </div>
+  </div>
+<div id="captchaInputDiv"><input id="captcha_code" name="captcha_code" type="text" value="" tabindex="4">
+ <label id="captcha_code_label" for="captcha_code">CAPTCHA Code</label><span class="required"></span>
+ </div>
+</div>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="33a90d5228"></p><p style="display: none;"></p>        </div>
+        <br>
+        <!-- comment submit and rss -->
+        <div id="submitbox">
+		<input name="submit" type="submit" id="submit" class="button" value="Submit Comment">
+         <input type="hidden" name="formInput">
+        </div>
+
+      <input type="hidden" id="ak_js" name="ak_js" value="1429334513106"></form>
+
+     </div>
+     <!-- /comment form -->
+       </div>
+  <!-- /comments -->
+  
+    <!-- trackbacks -->
+	<div class="section" id="section-trackbacks" style="display: none;">
+         <h6 class="title">No trackbacks yet.</h6>
+      </div>
+  <!-- /trackbacks -->
+  
+
+    <!-- related posts -->
+  <div class="section" id="section-relatedPosts" style="display: none;">
+             <!-- short post -->
+         <div id="post-526" class="post-526 post type-post status-publish format-standard hentry category-programming category-website-development tag-asp-net-mvc tag-nuget">
+	   	   <h3 class="title"><a href="http://www.cmjackson.net/2013/10/23/updating-to-asp-net-mvc-5-via-nuget/" rel="bookmark" title="Permanent Link to Updating to ASP.NET MVC 5 via NuGet">Updating to ASP.NET MVC 5 via NuGet</a></h3>
+           <p class="post-short-info"><strong>about 1 year ago</strong> - <a href="http://www.cmjackson.net/2013/10/23/updating-to-asp-net-mvc-5-via-nuget/#comments" title="Comment on Updating to ASP.NET MVC 5 via NuGet">3 comments</a></p>
+           <div class="post-excerpt"><p>It appears the NuGet package for MVC 5 causes the web application to throw errors after updating. After updating, running the web application in debug mode causes the following error to be displayed: [A]System.Web.WebPages.Razor.Configuration.HostSection cannot be cast&nbsp; to [B]System.Web.WebPages.Razor.Configuration.HostSection. Type A&nbsp; originates from ‘System.Web.WebPages.Razor, Version=2.0.0.0,&nbsp; Culture=neutral, PublicKeyToken=31bf3856ad364e35′ in the context&nbsp; ‘Default’ at location&nbsp; ‘C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.WebPages.Razor\v4.0_2.0.0.0__31bf3856ad364e35\System.Web.WebPages.Razor.dll’.&nbsp; Type […]</p>
+</div>
+  	     </div>
+         <!-- /short post -->
+                 <!-- short post -->
+         <div id="post-490" class="post-490 post type-post status-publish format-standard hentry category-programming tag-asp-net-mvc tag-tutorial tag-unit-testing">
+	   	   <h3 class="title"><a href="http://www.cmjackson.net/2011/12/13/cricket-net-part-3-unit-testing/" rel="bookmark" title="Permanent Link to Cricket.Net: Part 3 – Unit Testing">Cricket.Net: Part 3 – Unit Testing</a></h3>
+           <p class="post-short-info"><strong>about 3 years ago</strong> - <a href="http://www.cmjackson.net/2011/12/13/cricket-net-part-3-unit-testing/#comments" title="Comment on Cricket.Net: Part 3 – Unit Testing">2 comments</a></p>
+           <div class="post-excerpt"><p>Summary Cricket.Net is a new open source project that I’ve started on Codeplex. It will be a web application that will be used for tracking software bugs. Cricket.Net will be written in C# using HTML5, ASP.NET MVC 3, Entity Framework 4.1 Code First, StructureMap, and the Onion Architecture. This project will be an example application […]</p>
+</div>
+  	     </div>
+         <!-- /short post -->
+                 <!-- short post -->
+         <div id="post-479" class="post-479 post type-post status-publish format-standard hentry category-programming category-tutorial category-website-development tag-asp-net-mvc tag-onion-architecture tag-tutorial">
+	   	   <h3 class="title"><a href="http://www.cmjackson.net/2011/10/13/cricket-net-part-2-design-discussion/" rel="bookmark" title="Permanent Link to Cricket.Net: Part 2 – Design Discussion">Cricket.Net: Part 2 – Design Discussion</a></h3>
+           <p class="post-short-info"><strong>about 3 years ago</strong> - <a href="http://www.cmjackson.net/2011/10/13/cricket-net-part-2-design-discussion/#respond" title="Comment on Cricket.Net: Part 2 – Design Discussion">No comments</a></p>
+           <div class="post-excerpt"><p>Summary Cricket.Net is a new open source project that I’ve started on Codeplex. It will be a web application that will be used for tracking software bugs. Cricket.Net will be written in C# using HTML5, ASP.NET MVC 3, Entity Framework 4.1 Code First, StructureMap, and the Onion Architecture. This project will be an example application […]</p>
+</div>
+  	     </div>
+         <!-- /short post -->
+                 <!-- short post -->
+         <div id="post-467" class="post-467 post type-post status-publish format-standard hentry category-programming category-tutorial category-website-development tag-asp-net-mvc tag-tutorial">
+	   	   <h3 class="title"><a href="http://www.cmjackson.net/2011/10/12/cricket-net-part-1-setting-up-the-initial-project/" rel="bookmark" title="Permanent Link to Cricket.Net: Part 1 – Setting up the initial project">Cricket.Net: Part 1 – Setting up the initial project</a></h3>
+           <p class="post-short-info"><strong>about 3 years ago</strong> - <a href="http://www.cmjackson.net/2011/10/12/cricket-net-part-1-setting-up-the-initial-project/#respond" title="Comment on Cricket.Net: Part 1 – Setting up the initial project">No comments</a></p>
+           <div class="post-excerpt"><p>Summary Cricket.Net is a new open source project that I’ve started on Codeplex.&nbsp;It will be a web application that will be used for tracking software bugs.&nbsp;Cricket.Net will be written in C# using HTML5, ASP.NET MVC 3, Entity Framework 4.1 Code First, StructureMap, and the Onion Architecture. This project will be an example application to demonstrate […]</p>
+</div>
+  	     </div>
+         <!-- /short post -->
+                 <!-- short post -->
+         <div id="post-438" class="post-438 post type-post status-publish format-standard hentry category-programming tag-asp-net-mvc tag-exceptions tag-routing">
+	   	   <h3 class="title"><a href="http://www.cmjackson.net/2011/03/02/unknown-exceptions/" rel="bookmark" title="Permanent Link to Unknown Exceptions">Unknown Exceptions</a></h3>
+           <p class="post-short-info"><strong>about 4 years ago</strong> - <a href="http://www.cmjackson.net/2011/03/02/unknown-exceptions/#respond" title="Comment on Unknown Exceptions">No comments</a></p>
+           <div class="post-excerpt"><p>When I build an ASP.NET MVC application, I like to add my own error handler and serve up some nicer error messages to the users of the systems.&nbsp; I allow for unknown exceptions to be emailed to me along with a stack trace so I can attempt to track them down and resolve unhandled issues. […]</p>
+</div>
+  	     </div>
+         <!-- /short post -->
+                 <!-- short post -->
+         <div id="post-433" class="post-433 post type-post status-publish format-standard hentry category-software category-tutorial tag-how-to tag-sharepoint tag-sharepoint-2010">
+	   	   <h3 class="title"><a href="http://www.cmjackson.net/2011/01/18/sharepoint-2010-verify-that-the-activity-feed-timer-job-is-enabled/" rel="bookmark" title="Permanent Link to SharePoint 2010: Verify that the Activity Feed Timer Job is enabled">SharePoint 2010: Verify that the Activity Feed Timer Job is enabled</a></h3>
+           <p class="post-short-info"><strong>about 4 years ago</strong> - <a href="http://www.cmjackson.net/2011/01/18/sharepoint-2010-verify-that-the-activity-feed-timer-job-is-enabled/#respond" title="Comment on SharePoint 2010: Verify that the Activity Feed Timer Job is enabled">No comments</a></p>
+           <div class="post-excerpt"><p>Here is another warning message that I received after installing SharePoint 2010.&nbsp; To fix this issue, follow these steps: Go to Central Administration. Click on “Monitoring.” Click on “Review job definitions” under “Timer Jobs.” Scroll down and click on “User profile service application – activity feed job.” Click “Enable.” Now, you can go back to […]</p>
+</div>
+  	     </div>
+         <!-- /short post -->
+                 <!-- short post -->
+         <div id="post-431" class="post-431 post type-post status-publish format-standard hentry category-software category-tutorial tag-how-to tag-sharepoint tag-sharepoint-2010">
+	   	   <h3 class="title"><a href="http://www.cmjackson.net/2011/01/18/sharepoint-2010-the-unattended-service-account-warning/" rel="bookmark" title="Permanent Link to SharePoint 2010: The Unattended Service Account Warning">SharePoint 2010: The Unattended Service Account Warning</a></h3>
+           <p class="post-short-info"><strong>about 4 years ago</strong> - <a href="http://www.cmjackson.net/2011/01/18/sharepoint-2010-the-unattended-service-account-warning/#respond" title="Comment on SharePoint 2010: The Unattended Service Account Warning">No comments</a></p>
+           <div class="post-excerpt"><p>After installing SharePoint 2010, you may notice warnings appear from the Health Analyzer after the system has been running for a while. “The Unattended Service Account Application ID is not specified or has an invalid value.” To fix this issue: Open the Central Administration page. Under “Application Management,” click on “Manage service applications.” Click on […]</p>
+</div>
+  	     </div>
+         <!-- /short post -->
+                 <!-- short post -->
+         <div id="post-423" class="post-423 post type-post status-publish format-standard hentry category-software category-tutorial tag-how-to tag-sharepoint tag-sharepoint-2010">
+	   	   <h3 class="title"><a href="http://www.cmjackson.net/2011/01/14/opening-pdf-files-in-sharepoint-2010/" rel="bookmark" title="Permanent Link to Opening PDF files in SharePoint 2010">Opening PDF files in SharePoint 2010</a></h3>
+           <p class="post-short-info"><strong>about 4 years ago</strong> - <a href="http://www.cmjackson.net/2011/01/14/opening-pdf-files-in-sharepoint-2010/#comments" title="Comment on Opening PDF files in SharePoint 2010">6 comments</a></p>
+           <div class="post-excerpt"><p>One problem you may be facing if you are new to SharePoint 2010 is how to open PDF files.&nbsp; There are a couple different problems you may have noticed.&nbsp; One: the PDF files do not show a file type icon like the Word or Excel files do, and Two: when you click on a PDF […]</p>
+</div>
+  	     </div>
+         <!-- /short post -->
+                 <!-- short post -->
+         <div id="post-412" class="post-412 post type-post status-publish format-standard hentry category-software category-tutorial tag-how-to tag-sharepoint tag-sharepoint-2010">
+	   	   <h3 class="title"><a href="http://www.cmjackson.net/2011/01/13/installing-sharepoint-2010/" rel="bookmark" title="Permanent Link to Installing SharePoint 2010">Installing SharePoint 2010</a></h3>
+           <p class="post-short-info"><strong>about 4 years ago</strong> - <a href="http://www.cmjackson.net/2011/01/13/installing-sharepoint-2010/#comments" title="Comment on Installing SharePoint 2010">1 comment</a></p>
+           <div class="post-excerpt"><p>Here is the installation process that I used for setting up SharePoint 2010 using MSSQL 2005 as the backend database. First, you must make sure&nbsp;if you are going to use SQL 2005 instead of 2008, that your SQL server is patched to a compatible level for SharePoint. Updating Microsoft SQL 2005 First thing you need […]</p>
+</div>
+  	     </div>
+         <!-- /short post -->
+                 <!-- short post -->
+         <div id="post-405" class="post-405 post type-post status-publish format-standard hentry category-programming category-tutorial tag-asp-net-mvc tag-remote-debugger tag-visual-studio-2010">
+	   	   <h3 class="title"><a href="http://www.cmjackson.net/2010/11/04/using-the-visual-studio-2010-remote-debugger-with-asp-net-mvc/" rel="bookmark" title="Permanent Link to Using the Visual Studio 2010 Remote Debugger with ASP.NET MVC">Using the Visual Studio 2010 Remote Debugger with ASP.NET MVC</a></h3>
+           <p class="post-short-info"><strong>about 4 years ago</strong> - <a href="http://www.cmjackson.net/2010/11/04/using-the-visual-studio-2010-remote-debugger-with-asp-net-mvc/#comments" title="Comment on Using the Visual Studio 2010 Remote Debugger with ASP.NET MVC">3 comments</a></p>
+           <div class="post-excerpt"><p>Visual Studio Remote Debugging Monitor To use the remote debugger with ASP.NET MVC applications, you first must run the Visual Studio Remote Debugger Monitor on the server or remote computer. There are two ways you can do this: – Copy the monitor’s files to the server or remote computer – Create a shared folder on […]</p>
+</div>
+  	     </div>
+         <!-- /short post -->
+           </div>
+  <!-- /related posts -->
+  
+ </div>
+ <!-- /tab sections -->
+
+</div>
+<!-- /tabbed content -->
+
+
+    </div>
+    <!-- /primary content -->
+
+    
+<div id="sidebar" role="complementary">
+ <ul class="sidebar-blocks">
+    <li class="block"><div class="block-widget_search clearfix" id="instance-search-3"><h3 class="title"><span>Search</span></h3><div class="block-div"></div><div class="block-div-arrow"></div>
+<!-- search form -->
+<div class="search-form">
+  <form method="get" id="searchform" action="http://www.cmjackson.net/" class="clearfix" role="search">
+    <fieldset>
+      <div id="searchfield">
+       <input type="text" name="s" id="searchbox" class="text clearField clearFieldBlurred" value="Search" rel="Search">
+      </div>
+      <input type="submit" value="" class="submit">
+     </fieldset>
+ </form>
+</div>
+<!-- /search form -->
+</div></li><li class="block"><div class="block-sidebar_tabs clearfix" id="instance-sidebartabswidget-3">            <!-- tabbed content -->
+      <div class="tabbed-content sidebar-tabs clearfix" id="sidebartabswidget-3">
+
+       <!-- tab navigation (items must be in reverse order because of the tab-design) -->
+       <ul class="box-tabs clearfix">
+          <li class="recentcomm"><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#sidebartabswidget-3-section-recentcomments" title="Recent comments"><span>Recent comments</span></a></li>          <li class="popular"><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#sidebartabswidget-3-section-popular" title="Popular posts"><span>Popular posts</span></a></li>          <li class="archives"><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#sidebartabswidget-3-section-archives" title="Archives"><span>Archives</span></a></li>          <li class="tags"><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#sidebartabswidget-3-section-tags" title="Tags"><span>Tags</span></a></li>          <li class="categories active"><a href="http://www.cmjackson.net/2010/01/19/scheduling-a-task-in-a-web-application-on-a-windows-server/#sidebartabswidget-3-section-categories" title="Categories"><span>Categories</span></a></li>       </ul>
+       <!-- /tab nav -->
+
+       <!-- tab sections -->
+       <div class="sections">
+
+                <!-- comments -->
+
+         <div class="box section" id="sidebartabswidget-3-section-categories" style="display: block;">
+          <div class="box-top-left"><div class="box-top-right"></div></div>
+          <div class="box-main">
+           <div class="box-content">
+            <ul class="menuList categories">
+             	<li class="cat-item cat-item-20"><a href="http://www.cmjackson.net/category/article/" class="fadeThis"><span class="entry">Article <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/article/feed/"></a>
+</li>
+	<li class="cat-item cat-item-76"><a href="http://www.cmjackson.net/category/entertainment/" class="fadeThis"><span class="entry">Entertainment <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/entertainment/feed/"></a>
+</li>
+	<li class="cat-item cat-item-39"><a href="http://www.cmjackson.net/category/gaming/" class="fadeThis"><span class="entry">Gaming <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/gaming/feed/"></a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.cmjackson.net/category/personal/" class="fadeThis"><span class="entry">Personal <span class="details inline">(4)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/personal/feed/"></a>
+</li>
+	<li class="cat-item cat-item-42"><a href="http://www.cmjackson.net/category/programming/" class="fadeThis"><span class="entry">Programming <span class="details inline">(28)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/programming/feed/"></a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.cmjackson.net/category/site-improvements/" class="fadeThis"><span class="entry">Site Improvements <span class="details inline">(6)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/site-improvements/feed/"></a>
+</li>
+	<li class="cat-item cat-item-24"><a href="http://www.cmjackson.net/category/software/" class="fadeThis"><span class="entry">Software <span class="details inline">(6)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/software/feed/"></a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://www.cmjackson.net/category/tutorial/" class="fadeThis"><span class="entry">Tutorial <span class="details inline">(12)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/tutorial/feed/"></a>
+</li>
+	<li class="cat-item cat-item-35"><a href="http://www.cmjackson.net/category/website-designs/" class="fadeThis"><span class="entry">Website Designs <span class="details inline">(2)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/website-designs/feed/"></a>
+</li>
+	<li class="cat-item cat-item-36"><a href="http://www.cmjackson.net/category/website-development/" class="fadeThis"><span class="entry">Website Development <span class="details inline">(5)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/website-development/feed/"></a>
+</li>
+	<li class="cat-item cat-item-23"><a href="http://www.cmjackson.net/category/writing/" class="fadeThis"><span class="entry">Writing <span class="details inline">(2)</span></span><span class="hover" style="opacity: 0;"></span></a><a class="rss bubble" href="http://www.cmjackson.net/category/writing/feed/"></a>
+</li>
+            </ul>
+           </div>
+          </div>
+         </div>
+
+        
+        
+         <div class="box section" id="sidebartabswidget-3-section-tags" style="display: none;">
+          <div class="box-top-left"><div class="box-top-right"></div></div>
+          <div class="box-main">
+           <div class="box-content">
+            <div class="tag-cloud">
+             <a href="http://www.cmjackson.net/tag/abstraction/" class="tag-link-61" title="1 topic" style="font-size: 8pt;">Abstraction</a>
+<a href="http://www.cmjackson.net/tag/asp-net-mvc/" class="tag-link-71" title="12 topics" style="font-size: 22pt;">ASP.NET MVC</a>
+<a href="http://www.cmjackson.net/tag/audiobook/" class="tag-link-34" title="1 topic" style="font-size: 8pt;">audiobook</a>
+<a href="http://www.cmjackson.net/tag/code/" class="tag-link-15" title="4 topics" style="font-size: 14.913580246914pt;">code</a>
+<a href="http://www.cmjackson.net/tag/codeigniter/" class="tag-link-48" title="2 topics" style="font-size: 11.111111111111pt;">CodeIgniter</a>
+<a href="http://www.cmjackson.net/tag/cs3/" class="tag-link-28" title="1 topic" style="font-size: 8pt;">cs3</a>
+<a href="http://www.cmjackson.net/tag/forget/" class="tag-link-3" title="2 topics" style="font-size: 11.111111111111pt;">Forget</a>
+<a href="http://www.cmjackson.net/tag/function/" class="tag-link-43" title="1 topic" style="font-size: 8pt;">function</a>
+<a href="http://www.cmjackson.net/tag/how-to/" class="tag-link-29" title="12 topics" style="font-size: 22pt;">how to</a>
+<a href="http://www.cmjackson.net/tag/inheritance/" class="tag-link-60" title="1 topic" style="font-size: 8pt;">Inheritance</a>
+<a href="http://www.cmjackson.net/tag/insurance/" class="tag-link-37" title="1 topic" style="font-size: 8pt;">insurance</a>
+<a href="http://www.cmjackson.net/tag/ipod/" class="tag-link-31" title="1 topic" style="font-size: 8pt;">IPod</a>
+<a href="http://www.cmjackson.net/tag/legend-of-zelda/" class="tag-link-56" title="1 topic" style="font-size: 8pt;">Legend of Zelda</a>
+<a href="http://www.cmjackson.net/tag/lotus-notes/" class="tag-link-12" title="2 topics" style="font-size: 11.111111111111pt;">Lotus Notes</a>
+<a href="http://www.cmjackson.net/tag/lotus-script/" class="tag-link-13" title="3 topics" style="font-size: 13.185185185185pt;">Lotus Script</a>
+<a href="http://www.cmjackson.net/tag/lucene/" class="tag-link-51" title="1 topic" style="font-size: 8pt;">Lucene</a>
+<a href="http://www.cmjackson.net/tag/m4p/" class="tag-link-33" title="1 topic" style="font-size: 8pt;">M4P</a>
+<a href="http://www.cmjackson.net/tag/movie-script/" class="tag-link-22" title="2 topics" style="font-size: 11.111111111111pt;">movie script</a>
+<a href="http://www.cmjackson.net/tag/mp3/" class="tag-link-32" title="1 topic" style="font-size: 8pt;">MP3</a>
+<a href="http://www.cmjackson.net/tag/mvc/" class="tag-link-50" title="7 topics" style="font-size: 18.37037037037pt;">MVC</a>
+<a href="http://www.cmjackson.net/tag/new-years-resolutions/" class="tag-link-41" title="2 topics" style="font-size: 11.111111111111pt;">New Year's resolutions</a>
+<a href="http://www.cmjackson.net/tag/nintendo/" class="tag-link-54" title="1 topic" style="font-size: 8pt;">Nintendo</a>
+<a href="http://www.cmjackson.net/tag/object/" class="tag-link-59" title="3 topics" style="font-size: 13.185185185185pt;">Object</a>
+<a href="http://www.cmjackson.net/tag/object-oriented-programming/" class="tag-link-57" title="5 topics" style="font-size: 16.296296296296pt;">Object Oriented Programming</a>
+<a href="http://www.cmjackson.net/tag/on-hold/" class="tag-link-30" title="1 topic" style="font-size: 8pt;">on hold</a>
+<a href="http://www.cmjackson.net/tag/oop/" class="tag-link-58" title="4 topics" style="font-size: 14.913580246914pt;">OOP</a>
+<a href="http://www.cmjackson.net/tag/photoshop/" class="tag-link-27" title="1 topic" style="font-size: 8pt;">photoshop</a>
+<a href="http://www.cmjackson.net/tag/php/" class="tag-link-47" title="2 topics" style="font-size: 11.111111111111pt;">PHP</a>
+<a href="http://www.cmjackson.net/tag/polymorphism/" class="tag-link-63" title="1 topic" style="font-size: 8pt;">Polymorphism</a>
+<a href="http://www.cmjackson.net/tag/problem/" class="tag-link-26" title="1 topic" style="font-size: 8pt;">problem</a>
+<a href="http://www.cmjackson.net/tag/rant/" class="tag-link-25" title="1 topic" style="font-size: 8pt;">rant</a>
+<a href="http://www.cmjackson.net/tag/search/" class="tag-link-52" title="1 topic" style="font-size: 8pt;">search</a>
+<a href="http://www.cmjackson.net/tag/search-engine/" class="tag-link-53" title="1 topic" style="font-size: 8pt;">search engine</a>
+<a href="http://www.cmjackson.net/tag/sharepoint/" class="tag-link-94" title="4 topics" style="font-size: 14.913580246914pt;">SharePoint</a>
+<a href="http://www.cmjackson.net/tag/sharepoint-2010/" class="tag-link-95" title="4 topics" style="font-size: 14.913580246914pt;">SharePoint 2010</a>
+<a href="http://www.cmjackson.net/tag/site-update/" class="tag-link-19" title="6 topics" style="font-size: 17.506172839506pt;">site update</a>
+<a href="http://www.cmjackson.net/tag/strreplace/" class="tag-link-14" title="1 topic" style="font-size: 8pt;">strreplace</a>
+<a href="http://www.cmjackson.net/tag/theme/" class="tag-link-38" title="4 topics" style="font-size: 14.913580246914pt;">theme</a>
+<a href="http://www.cmjackson.net/tag/tutorial/" class="tag-link-7" title="8 topics" style="font-size: 19.234567901235pt;">Tutorial</a>
+<a href="http://www.cmjackson.net/tag/vb/" class="tag-link-62" title="3 topics" style="font-size: 13.185185185185pt;">VB</a>
+<a href="http://www.cmjackson.net/tag/website-design/" class="tag-link-21" title="2 topics" style="font-size: 11.111111111111pt;">website design</a>
+<a href="http://www.cmjackson.net/tag/website-development/" class="tag-link-36" title="1 topic" style="font-size: 8pt;">Website Development</a>
+<a href="http://www.cmjackson.net/tag/wii/" class="tag-link-55" title="1 topic" style="font-size: 8pt;">Wii</a>
+<a href="http://www.cmjackson.net/tag/writing/" class="tag-link-23" title="2 topics" style="font-size: 11.111111111111pt;">Writing</a>
+<a href="http://www.cmjackson.net/tag/zend-framework/" class="tag-link-49" title="1 topic" style="font-size: 8pt;">Zend framework</a>            </div>
+           </div>
+          </div>
+         </div>
+
+       
+        
+         <div class="box section" id="sidebartabswidget-3-section-archives" style="display: none;">
+          <div class="box-top-left"><div class="box-top-right"></div></div>
+          <div class="box-main">
+           <div class="box-content">
+            <ul class="menuList">
+      	     	<li><a href="http://www.cmjackson.net/2013/10/" class="fadeThis"><span class="entry">October 2013 <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2013/09/" class="fadeThis"><span class="entry">September 2013 <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2011/12/" class="fadeThis"><span class="entry">December 2011 <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2011/10/" class="fadeThis"><span class="entry">October 2011 <span class="details inline">(2)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2011/03/" class="fadeThis"><span class="entry">March 2011 <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2011/01/" class="fadeThis"><span class="entry">January 2011 <span class="details inline">(4)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2010/11/" class="fadeThis"><span class="entry">November 2010 <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2010/05/" class="fadeThis"><span class="entry">May 2010 <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2010/02/" class="fadeThis"><span class="entry">February 2010 <span class="details inline">(4)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2010/01/" class="fadeThis"><span class="entry">January 2010 <span class="details inline">(15)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2009/10/" class="fadeThis"><span class="entry">October 2009 <span class="details inline">(2)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2009/09/" class="fadeThis"><span class="entry">September 2009 <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2009/06/" class="fadeThis"><span class="entry">June 2009 <span class="details inline">(5)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2009/02/" class="fadeThis"><span class="entry">February 2009 <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2009/01/" class="fadeThis"><span class="entry">January 2009 <span class="details inline">(4)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2008/08/" class="fadeThis"><span class="entry">August 2008 <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2008/01/" class="fadeThis"><span class="entry">January 2008 <span class="details inline">(2)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2007/12/" class="fadeThis"><span class="entry">December 2007 <span class="details inline">(2)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2007/09/" class="fadeThis"><span class="entry">September 2007 <span class="details inline">(1)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+	<li><a href="http://www.cmjackson.net/2007/08/" class="fadeThis"><span class="entry">August 2007 <span class="details inline">(3)</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+            </ul>
+           </div>
+          </div>
+         </div>
+
+       
+        
+         <div class="box section" id="sidebartabswidget-3-section-popular" style="display: none;">
+          <div class="box-top-left"><div class="box-top-right"></div></div>
+          <div class="box-main">
+           <div class="box-content">
+            <ul class="menuList"><li><a class="fadeThis" href="http://www.cmjackson.net/2009/06/30/how-to-setup-codeigniter/" title="How to setup CodeIgniter"><span class="entry">How to setup CodeIgniter <span class="details inline">(30)</span></span><span class="hover" style="opacity: 0;"></span></a></li><li><a class="fadeThis" href="http://www.cmjackson.net/2009/02/17/how-to-use-zend_search_lucene-with-the-php-framework-codeigniter/" title="How to use Zend_Search_Lucene with the PHP framework CodeIgniter"><span class="entry">How to use Zend_Search_Lucene with the PHP framework CodeIgniter <span class="details inline">(29)</span></span><span class="hover" style="opacity: 0;"></span></a></li><li><a class="fadeThis" href="http://www.cmjackson.net/2010/01/22/adding-social-media-icons-to-the-mystique-theme/" title="Adding social media icons to the Mystique theme"><span class="entry">Adding social media icons to the Mystique theme <span class="details inline">(29)</span></span><span class="hover" style="opacity: 0;"></span></a></li><li><a class="fadeThis" href="http://www.cmjackson.net/2009/10/23/asp-net-mvc-using-forms-authentication-with-ldap/" title="ASP.NET MVC Using Forms Authentication With LDAP"><span class="entry">ASP.NET MVC Using Forms Authentication With LDAP <span class="details inline">(20)</span></span><span class="hover" style="opacity: 0;"></span></a></li><li><a class="fadeThis" href="http://www.cmjackson.net/2009/10/16/asp-net-mvc-full-url-from-a-controller/" title="ASP.NET MVC Full URL From A Controller"><span class="entry">ASP.NET MVC Full URL From A Controller <span class="details inline">(8)</span></span><span class="hover" style="opacity: 0;"></span></a></li></ul>           </div>
+          </div>
+         </div>
+
+       
+       
+         <div class="box section" id="sidebartabswidget-3-section-recentcomments" style="display: none;">
+          <div class="box-top-left"><div class="box-top-right"></div></div>
+          <div class="box-main">
+           <div class="box-content">
+
+            <ul class="menuList recentcomm">
+                            <li><a class="fadeThis" href="http://www.cmjackson.net/2010/01/18/mvc-and-n-layer-architecture/comment-page-1/#comment-7752002282341852313"><span class="entry">Motivational app: <span class="details"> It's truly a nice and useful piece of information. I'm happy that you just shared this helpful...</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+                               <li><a class="fadeThis" href="http://www.cmjackson.net/2009/06/30/how-to-setup-codeigniter/comment-page-1/#comment-7752002282341852248"><span class="entry">Chris Jackson: <span class="details"> I am really not sure.  I have focused on .NET development and haven't had much chance to work with...</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+                               <li><a class="fadeThis" href="http://www.cmjackson.net/2009/06/30/how-to-setup-codeigniter/comment-page-1/#comment-7752002282341851478"><span class="entry">make a blog: <span class="details"> Hello! Do you know if they make any plugins to assist with Search Engine Optimization? 
+I'm trying...</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+                               <li><a class="fadeThis" href="http://www.cmjackson.net/2009/06/30/how-to-setup-codeigniter/comment-page-1/#comment-7752002282341847827"><span class="entry">Chris Jackson: <span class="details"> I have not used CodeIgniter since around the time of this article.  Maybe something with the...</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+                               <li><a class="fadeThis" href="http://www.cmjackson.net/2009/06/30/how-to-setup-codeigniter/comment-page-1/#comment-7752002282341847361"><span class="entry">Adil: <span class="details"> i am using the latest version of codeigniter 2.2.0</span></span><span class="hover" style="opacity: 0;"></span></a></li>
+                           </ul>
+
+           </div>
+          </div>
+         </div>
+
+       
+       </div>
+      </div>
+      <!-- tabbed content -->
+      
+      </div></li><li class="block"><div class="block-widget_links clearfix" id="linkcat-18"><h3 class="title"><span>Website Links</span></h3><div class="block-div"></div><div class="block-div-arrow"></div>
+	<ul class="xoxo blogroll">
+<li><a href="http://www.andrewmjackson.com/" title="Visit my brother’s personal web site." target="_blank">Andrew M. Jackson</a>
+Visit my brother’s personal web site.</li>
+<li><a href="http://www.stlouisins.com/" title="Visit my cousin’s insurance company and get an online quote!" target="_blank">St. Louis Insurance Exchange</a>
+Visit my cousin’s insurance company and get an online quote!</li>
+
+	</ul>
+</div></li>
+
+ </ul>
+</div>
+
+   </div>
+  </div>
+  <!-- /main content -->
+
+ <!-- foooter -->
+  <div id="footer">
+
+ 
+    <div class="page-content">
+    <div id="copyright">
+
+     <abbr title="Mystique/1.62">Mystique</abbr> theme by <a href="http://digitalnature.ro/">digitalnature</a> | Powered by <a href="http://wordpress.org/">WordPress</a> <br> <a class="rss-subscribe" href="http://www.cmjackson.net/feed/" title="RSS Feeds">RSS Feeds</a> 1 <a id="goTop" class="js-link">Top</a>     
+     <script type="text/javascript">
+     /* <![CDATA[ */
+      var isIE6 = false; /* <- do not change! */
+      var isIE = false; /* <- do not change! */
+      var lightbox = 1; /* <- do not change! */
+     /* ]]> */
+     </script>
+     <!--[if lte IE 6]> <script type="text/javascript"> isIE6 = true; isIE = true; </script> <![endif]-->
+     <!--[if gte IE 7]> <script type="text/javascript"> isIE = true; </script> <![endif]-->
+
+     <script type="text/javascript" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/si_captcha.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+var si_captcha_styles = "\
+<!-- begin SI CAPTCHA Anti-Spam - comment form style -->\
+<style type='text/css'>\
+div#captchaImgDiv { display:block; }\
+.captchaSizeDivSmall { width:175px; height:45px; padding-top:10px; }\
+.captchaSizeDivLarge { width:250px; height:60px; padding-top:10px; }\
+img#si_image_com,#si_image_reg,#si_image_log,#si_image_side_login { border-style:none; margin:0; padding-right:5px; float:left; }\
+.captchaImgRefresh { border-style:none; margin:0; vertical-align:bottom; }\
+div#captchaInputDiv { display:block; padding-top:15px; padding-bottom:5px; }\
+label#captcha_code_label { margin:0; }\
+input#captcha_code { width:65px; }\
+</style>\
+<!-- end SI CAPTCHA Anti-Spam - comment form style -->\
+";
+jQuery(document).ready(function($) {
+$('head').append(si_captcha_styles);
+});
+//]]>
+</script>
+<script type="text/javascript" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/form.js"></script>
+<script type="text/javascript" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/shCore.js"></script>
+<script type="text/javascript" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/shBrushVb.js"></script>
+<script type="text/javascript" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/shBrushPlain.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://www.cmjackson.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/styles/shCore.css?ver=2.1.364";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://www.cmjackson.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/styles/shThemeDefault.css?ver=2.1.364";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.clipboardSwf = 'http://www.cmjackson.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/scripts/clipboard.swf';
+	SyntaxHighlighter.config.strings.expandSource = 'show source';
+	SyntaxHighlighter.config.strings.viewSource = 'view source';
+	SyntaxHighlighter.config.strings.copyToClipboard = 'copy to clipboard';
+	SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'The code is in your clipboard now';
+	SyntaxHighlighter.config.strings.print = 'print';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/jquery.mystique.min.js"></script>
+
+    </div>
+
+   </div>
+  </div>
+  <!-- /footer -->
+
+ </div>
+</div>
+<!-- /shadow -->
+
+    <!-- page controls -->
+  <div id="pageControls"><a href="javascript:void(0);" class="fontSize bubble" title="Increase or decrease text size"></a><a href="javascript:void(0);" class="pageWidth bubble" title="switch from fixed to fluid page width"></a></div>
+  <!-- /page controls -->
+  
+  <!-- 45 queries. 1.764 seconds. -->
+
+ </div>
+
+
+<div id="fancyoverlay"></div><div id="fancywrap"><div class="fancyloading" id="fancyloading"><div></div></div><div id="fancyouter"><div id="fancyinner"><a href="javascript:;" id="fancyleft"><span class="fancyico" id="fancyleftico"></span></a><a href="javascript:;" id="fancyright"><span class="fancyico" id="fancyrightico"></span></a><div id="fancycontent"></div></div><div id="fancytitle"></div></div></div><div class="webshot" id="webshot0"><img src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/saved_resource"></div><div class="webshot" id="webshot1"><img src="./Scheduling A Task In A Web Application On A Windows Server « C.M. Jackson .Net_files/saved_resource"></div><style>#header + #content > #left > #rlblock_left,[href^="http://www.linkbucks.com/referral/"],[href^="http://www.google.com/aclk?"],[href^="http://www.faceporn.net/free?"]
+{display:none !important;}</style></body></html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)http://youku.io/questions/367387/cron-jobs-in-codeigniter -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Cron jobs in codeigniter</title>  
+<meta content="php codeigniter cron cpanel" name="keywords">
+<link href="http://youku.io/resources/front/favicon.ico" rel="shortcut icon">
+<link href="http://youku.io/resources/front/favicon.ico" rel="icon" type="image/x-icon">
+<link href="./Cron jobs in codeigniter_files/youku.css" rel="stylesheet" type="text/css">
+<link rel="Stylesheet" type="text/css" href="./Cron jobs in codeigniter_files/prettify.css">
+<script async="" src="http://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./Cron jobs in codeigniter_files/jquery.min.js"></script>
+</head>
+<body>
+<div id="header">
+	<div id="top_atitle">
+        <h1><a href="http://youku.io/" title="YouKu">YouKu</a></h1>
+        <ul>
+            <li><a href="http://youku.io/day/" class="color_day">Day</a></li>
+            <li><a href="http://youku.io/week/" class="color_week">Week</a></li>
+            <li><a href="http://youku.io/month/" class="color_month">Month</a></li>
+            <li><a href="http://youku.io/total/" class="color_total">Total</a></li>
+        </ul>   
+    </div> 
+</div>
+
+
+<div id="article_content">
+    <div id="a_right">
+<script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- right_1 -->
+<ins class="adsbygoogle" style="display: none !important; width: 336px; height: 280px;" data-ad-client="ca-pub-6315092990975291" data-ad-slot="4402426561"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div id="j_ad_scroll" style="position: fixed; top: 2px;">
+
+<script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- right_2 -->
+<ins class="adsbygoogle" style="display: none !important; width: 336px; height: 280px;" data-ad-client="ca-pub-6315092990975291" data-ad-slot="5879159764"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- right_3 -->
+<ins class="adsbygoogle" style="display: none !important; width: 336px; height: 280px;" data-ad-client="ca-pub-6315092990975291" data-ad-slot="7355892968"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>    </div>
+    <div id="a_left">
+    	<div>
+       		<script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- main_1 -->
+			<ins class="adsbygoogle" style="display: none !important; width: 970px; height: 90px;" data-ad-client="ca-pub-6315092990975291" data-ad-slot="8832626160"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+       	</div>
+        <div id="a_text" class="data_link">
+            <h1 id="title_h1"><a href="./Cron jobs in codeigniter_files/Cron jobs in codeigniter.html">Cron jobs in codeigniter</a></h1>
+            <div class="pub_info" style="font-size:12px;">
+               2014-10-08 18:30　<span class="pub_line">|</span>　19view　<span class="pub_line">|</span>　<a href="http://stackoverflow.com/questions/7322378/cron-jobs-in-codeigniter" target="_blank" rel="nofollow">from</a>
+            </div>
+            <p>I am trying to do a cron job with a site built in CodeIgniter - I've got access to the CPanel cron feature can anyone suggest the best way to setup a cron job using CPanel?</p> 
+<p>I am using CodIgniter so cannot be sure how to call a controller within a cron job?</p> 
+<p>E.g <code>http://admin.com/sites/publish/</code></p> 
+<p>How would I access this publish function within the sites controllers using a cron job? </p>
+            <div style="margin:20px 0 0 0;">
+            <script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- main_2 -->
+			<ins class="adsbygoogle" style="display: none !important; width: 970px; height: 90px;" data-ad-client="ca-pub-6315092990975291" data-ad-slot="1309359367"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			</div>
+        </div>
+        
+        <div class="answers">
+        	<h2>3 Answers</h2>
+			<div class="answers_list link_blue_14">
+				<div class="answered_time"><span class="left">answered 2011-09-06 15:38:42</span>  <span class="right">#1</span></div>
+	            <div class="answered_content"><p>Best way is to call from the command line in the cron job...</p> 
+<pre class="prettyprint prettyprinted"><code><span class="pln">php </span><span class="pun">/</span><span class="pln">path</span><span class="pun">/</span><span class="pln">to</span><span class="pun">/</span><span class="pln">index</span><span class="pun">.</span><span class="pln">php controller </span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="str">/dev/</span><span class="kwd">null</span></code></pre> 
+<p>You can run controllers via the command line in CI, see <a href="http://ellislab.com/codeigniter/user-guide/general/cli.html" rel="nofollow" target="_blank">here</a>.</p></div>
+	        </div>
+			<div class="answers_list link_blue_14">
+				<div class="answered_time"><span class="left">answered 2011-09-06 22:25:10</span>  <span class="right">#2</span></div>
+	            <div class="answered_content"><p>For me the easier way of doing this is using cURL and executing the url in the cron:</p> 
+<pre class="prettyprint prettyprinted"><code><span class="pln">curl http</span><span class="pun">:</span><span class="com">//admin.com/sites/publish/</span></code></pre> 
+<p>If you need to secure the url, you could send data via post using: </p> 
+<pre class="prettyprint prettyprinted"><code><span class="pln">curl </span><span class="pun">-</span><span class="pln">X POST </span><span class="pun">-</span><span class="pln">d </span><span class="str">"apikey=yourapikey&amp;another=variable"</span><span class="pln"> http</span><span class="pun">:</span><span class="com">//admin.com/sites/publish/</span></code></pre> 
+<p>This way you don't have to fight with php parameters and different configurations.</p></div>
+	        </div>
+			<div class="answers_list link_blue_14">
+				<div class="answered_time"><span class="left">answered 2013-03-11 08:28:00</span>  <span class="right">#3</span></div>
+	            <div class="answered_content"><p>I do this such way, create folder cron</p> 
+<pre class="prettyprint prettyprinted"><code><span class="pun">/</span><span class="pln">application
+</span><span class="pun">/</span><span class="pln">cron
+   my_task</span><span class="pun">.</span><span class="pln">php
+</span><span class="pun">/</span><span class="kwd">public</span></code></pre> 
+<p>make script for each cron job /cron/my_task.php with content </p> 
+<pre class="prettyprint prettyprinted"><code><span class="pun">&lt;?</span><span class="pln">  $_SERVER</span><span class="pun">[</span><span class="str">"SCRIPT_URL"</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/controllerName/MethodName"</span><span class="pun">;</span><span class="pln"> </span><span class="com">// you can set url in routes if you want</span><span class="pln">
+    $_SERVER</span><span class="pun">[</span><span class="str">"HTTP_HOST"</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">"your_site_address.com"</span><span class="pun">;</span><span class="pln"> </span><span class="com">// without http://www</span><span class="pln">
+    </span><span class="kwd">require</span><span class="pun">(</span><span class="pln">dirname</span><span class="pun">(</span><span class="pln">__FILE__</span><span class="pun">)</span><span class="pln"> </span><span class="pun">.</span><span class="pln"> </span><span class="str">"/../public/index.php"</span><span class="pun">);</span><span class="pln">  </span><span class="com">// path to index.php</span><span class="pln">
+ </span><span class="pun">?&gt;</span><span class="pln">  </span></code></pre> 
+<p>make controller Cron like others, but add validation on IP in __construct </p> 
+<p>and finaly run like </p> 
+<pre class="prettyprint prettyprinted"><code><span class="lit">1</span><span class="pln"> </span><span class="lit">10</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> cd </span><span class="pun">/</span><span class="pln">path_to_site_folder</span><span class="pun">/</span><span class="pln">cron</span><span class="pun">/</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> usr</span><span class="pun">/</span><span class="kwd">local</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">php </span><span class="pun">/</span><span class="pln">path_to_site_folder</span><span class="pun">/</span><span class="pln">cron</span><span class="pun">/</span><span class="pln">my_task</span><span class="pun">.</span><span class="pln">php </span><span class="pun">&gt;&gt;</span><span class="pln"> path_to_log</span><span class="pun">/</span><span class="pln">some</span><span class="pun">.</span><span class="pln">log</span></code></pre></div>
+	        </div>
+        </div>
+        
+        <div id="j_con_push" class="link_blue_14">
+			<p>Related Questions</p>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/508752/cron-jobs-in-a-zend-framework-1-8-application" target="_blank">Cron Jobs in a Zend Framework 1.8+ application?</a></h2>
+	            <div class="push_txt">I am using Zend Framework 1.9.6. I want to start using cron jobs. I am new to this so I'm not quite sure how to do this. I'm thinking it would be a good idea to store my crons in /myapp/scripts or /my</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/276621/cron-job-for-codeigniter" target="_blank">CRON job for codeigniter</a></h2>
+	            <div class="push_txt">I am using codeigniter. I want to know how to set up a cron job to check a table for expiring users and insert data in to another table with the list of expiring users. How to do that. When i tried to</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/30938/google-app-engine-task-queues-vs-cron-jobs" target="_blank">Google App Engine - Task Queues vs Cron Jobs</a></h2>
+	            <div class="push_txt">The latest Google App Engine release supports a new Task Queue API in Python. I was comparing the capabilities of this API vs the already existing Cron service. For background jobs that are not user-i</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/371935/what-does-the-q-flag-in-cron-jobs-do" target="_blank">what does the -q flag in cron jobs do?</a></h2>
+	            <div class="push_txt">I have a cron job on my host: /ramdisk/bin/php5 -q /home2/sharingi/public_html/scrape/copyV2.php  That is just plain not running. The 'support' is telling me that -q is quiet mode and that is why I am</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/56148/cron-jobs-on-google-appengine" target="_blank">cron jobs on google appengine</a></h2>
+	            <div class="push_txt">How can I use cron on Google Appengine?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/196637/how-does-cron-internally-schedule-jobs" target="_blank">How does cron internally schedule jobs?</a></h2>
+	            <div class="push_txt">How do modern cron daemons internally schedule their jobs? Some cronds used to schedule a run every so often via at. So after a crontab is written out, does crond:  Parse the crontab for all future </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/487018/cron-jobs-to-run-every-5-seconds" target="_blank">Cron jobs — to run every 5 seconds</a></h2>
+	            <div class="push_txt">I want to create cron job that runs a script every 5 seconds. Seeing that cron jobs only allows increments of minutes 0-59 and so on. I thought to create another script that calls my original script w</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/496619/can-php-cron-jobs-access-session-variables-cookies" target="_blank">can php cron jobs access session variables/cookies?</a></h2>
+	            <div class="push_txt">i am new to cron jobs and i have done much searching on this topic but i couldn't understand it fully. can cron jobs access cookies or session variables? thanks!</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/406010/solutions-for-cron-jobs-in-rails3" target="_blank">Solutions for cron jobs in rails3</a></h2>
+	            <div class="push_txt">I'm trying to log some data daily, automatically in my rails app. I was wonder if anyone knows a good solution for this? I found https://github.com/javan/whenever, but I wanted to make sure I knew of </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/56049/whenever-gem-running-cron-jobs-on-heroku" target="_blank">“Whenever” gem running cron jobs on Heroku</a></h2>
+	            <div class="push_txt">I created an app that uses the whenever gem. The gem creates cron jobs. I got it working locally but can't seem to get it working on heroku cedar. What's the command to do this? running: heroku run wh</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/159992/cron-jobs-and-random-times-within-giving-hours" target="_blank">Cron jobs and random times, within giving hours</a></h2>
+	            <div class="push_txt">I need the ability to run a php script 20 times a day at completely random times. I also want it to run only between 9am - 11pm. I'm familiar with creating cron jobs in linux. Although I'm not able to</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/161804/how-to-run-php-file-using-cron-jobs" target="_blank">how to run php file using cron jobs</a></h2>
+	            <div class="push_txt">I have a E-mail schedule runs everyday on php page using cron jobs. The php code workds fine when i run the page using a link. Now when I run the php script using cron jobs, it also works fine but whe</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/66399/php-running-scheduled-jobs-cron-jobs" target="_blank">PHP: running scheduled jobs (cron jobs)</a></h2>
+	            <div class="push_txt">I have a site on my webhotel I would like to run some scheduled tasks on. What methods of achieving this would you recommend? What I’ve thought out so far is having a script included in the top of eve</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/300642/how-to-set-cron-job-url-for-codeigniter" target="_blank">How to set cron job url for codeigniter?</a></h2>
+	            <div class="push_txt">I am using Codeigniter for my website. I have to use cron job to run one of controller function. I am using route in website. And also I am not using index.php in url.  e.g. http://my-domain.com/welco</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/1021/how-do-i-list-all-cron-jobs-for-all-users" target="_blank">How do I list all cron jobs for all users?</a></h2>
+	            <div class="push_txt">Is there a command or an existing script that will let me view all of a *NIX system's scheduled cron jobs at once? I'd like it to include all of the user crontabs, as well as /etc/crontab, and whateve</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/299623/securely-run-cron-jobs-with-zend-framework" target="_blank">Securely Run Cron Jobs with Zend Framework</a></h2>
+	            <div class="push_txt">I've seen plenty of posts about cron and ZF but most of the solutions leave the job to be run available to triggering by the public. What if you want to set up an action that can ONLY be run by cron? </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/235657/scheduling-dynamic-jobs-in-resque-scheduler" target="_blank">scheduling dynamic jobs in resque scheduler</a></h2>
+	            <div class="push_txt">I'm trying to test out scheduling jobs in future using rails 3 and resque scheduler: Following is the code I'm using but I'm getting NoMethodError set_schedule.   Resque.set_schedule(1, { :cron =&gt;</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/99438/should-linux-cron-jobs-be-specified-with-an-to-indicate-to-run-in-background" target="_blank">Should linux cron jobs be specified with an “&amp;” to indicate to run in background? [closed]</a></h2>
+	            <div class="push_txt">In a crontab file, should commands be specified with a trailing &amp;, or will the command run in the background anyway? I have: */20 * * * * /home/me/monitor/check.sh /home/me/monitor/check.propert</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/126699/how-to-run-a-codeigniter-file-through-cron" target="_blank">How to run a CodeIgniter file through CRON?</a></h2>
+	            <div class="push_txt">I've tried the following method in the past: &lt;?php set_time_limit(0); $_SERVER['PATH_INFO'] = 'cron/controller/index'; $_SERVER['REQUEST_URI'] = 'cron/controller/index'; require_once('index.php'); </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/103468/using-cron-jobs-to-visit-url" target="_blank">Using CRON jobs to visit url?</a></h2>
+	            <div class="push_txt">I have a web application that has to perform a repeated tasks, Sending messages and alerts, I, already, use a script page do those tasks when it loaded in the browser i.e http://example.com/tasks.php </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/301558/magento-cron-in-backend-configuration" target="_blank">magento cron in backend configuration</a></h2>
+	            <div class="push_txt">So I know how to setup a cron using the config.xml crontab stuff: &lt;crontab&gt; &lt;jobs&gt; &lt;millena_export_send_all&gt; &lt;schedule&gt;&lt;cron_expr&gt;* * * * *&lt;/cron_expr&gt;&lt;/schedule</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/208453/cron-jobs-calling-a-php-script-with-variables" target="_blank">Cron Jobs calling a PHP script with variables</a></h2>
+	            <div class="push_txt">Is it correct to use the following command in a cron job:  /usr/bin/php -q /home/**/public_html/scores.php?date=12/05/2009  I haven't found any supportive article / material to answer it, hence i am p</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/133372/cron-jobs-under-mac-os-10-6-snow-leopard" target="_blank">cron jobs under mac os 10.6 snow leopard</a></h2>
+	            <div class="push_txt">I'm trying to set up an automated svn commit to run semi-hourly under mac os 10.6, but the crontabs i'm adding to cron don't seem to be valid and/or don't seem to even be looked at by cron. For testin</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/206411/remember-me-login-in-codeigniter" target="_blank">‘Remember Me’ Login in CodeIgniter</a></h2>
+	            <div class="push_txt">How do you implement this in CodeIgniter?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/162126/how-to-emulate-cron-jobs-on-a-windows-server" target="_blank">How to emulate cron jobs on a Windows Server?</a></h2>
+	            <div class="push_txt">I'm running .NET on a windows box and I would like to have a function run every night at midnight. Of course since HTTP stateless and Windows doesn't have a cron job type function (that I know of), </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/322782/tasks-cron-jobs-or-backends-for-an-app" target="_blank">Tasks, Cron jobs or Backends for an app</a></h2>
+	            <div class="push_txt">I'm trying to construct a non-trivial GAE app and I'm not sure if a cron job, tasks, backends or a mix of all is what I need to use based on the request time-out limit that GAE has for HTTP requests. </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/175690/job-inheritance-in-jenkins-jobs" target="_blank">Job inheritance in Jenkins jobs</a></h2>
+	            <div class="push_txt">How do you handle mapping Jenkins jobs to your build process, and have you been able to build in cascading configurations on inheritance? For any given build I'll have at least three jobs (standard co</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/370523/running-jobs-parallely-in-hadoop" target="_blank">Running jobs parallely in hadoop</a></h2>
+	            <div class="push_txt">I am new to hadoop.  I have set up a 2 node cluster. How to run 2 jobs parallely in hadoop. When i submit jobs, they are running one by one in FIFO order. I have to run the jobs parallely. How to ache</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/491718/cron-job-in-play-framework-2-0" target="_blank">Cron Job in play framework 2.0 [closed]</a></h2>
+	            <div class="push_txt">How to schedule tasks by cron expressions in Play Framework 2.0? Equivalent to Play 1's @On(&lt;enter cron expression here&gt;) annotation</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/389603/cron-api-is-there-such-a-thing" target="_blank">Cron API: is there such a thing?</a></h2>
+	            <div class="push_txt">Is there such a thing as a Cron API? I mean, is there a programmatic way of adding/removing Cron jobs without stepping onto Cron's toes?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/171722/sidekiq-jobs-stuck-in-enqueue" target="_blank">Sidekiq jobs stuck in enqueue</a></h2>
+	            <div class="push_txt">Sidekiq has been working in development mode just perfectly. Now that I am trying to use it in production, all the jobs are just sitting in enqueue and aren't ever being run. Could anyone point me in </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/452416/runwithelevatedprivileges-in-sharepoint-timer-jobs" target="_blank">“RunWithElevatedPrivileges” in SharePoint Timer Jobs?</a></h2>
+	            <div class="push_txt">Can we use SPSecurity.RunWithElevatedPrivileges in SharePoint timer jobs? Under whose identity will the timer job run under elevated privilegs? Any gotcha's and must know facts regarding this will als</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/16057/export-import-jobs-in-jenkins" target="_blank">Export/import jobs in Jenkins</a></h2>
+	            <div class="push_txt">Is it possible to exchange jobs between 2 different Jenkins'? I'm searching for a way to export/import jobs.</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/426074/how-do-you-set-up-cron" target="_blank">How do you set up CRON? [closed]</a></h2>
+	            <div class="push_txt">I have never used CRON before but I want to use CRON in order to be able to perform schedule jobs for a php script. The php script is called inactivesession.php and in the php script is this code: &amp;</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/248274/cron-job-in-laravel-4" target="_blank">Cron job in Laravel 4</a></h2>
+	            <div class="push_txt">I'm trying to find out how to set up a cron job in Laravel 4, and the command I would need to run in artisan for it. In Laravel 3, there were 'Tasks' but these don't seem to be there anymore and there</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/252635/how-to-get-last-runned-cron-job-details-in-linux" target="_blank">How to get last runned cron job details in linux?</a></h2>
+	            <div class="push_txt">I want to get details of last runned cron job in my machine . Because if the cron is interrupted due to some internal problems . I want to rerun the cron job .  Note : I didn't have root user privileg</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/276780/jsonp-in-codeigniter" target="_blank">JSONP in CodeIgniter</a></h2>
+	            <div class="push_txt">I have a problem with using the jQuery JSONP method $.getJSON in CodeIgniter. The URL from which the JSON is grabbed from is the following:  http://spinly.000space.com/index.php/admin/isloggedin  The </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/289738/reports-in-codeigniter" target="_blank">Reports in Codeigniter</a></h2>
+	            <div class="push_txt">What is the most simplist way to generate reports in Codeigniter framework? Is there any library available to do this task? Except charting what are the other resources to do this.</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/300229/python-problem-executing-popen-in-cron" target="_blank">Python problem executing popen in cron</a></h2>
+	            <div class="push_txt">I use popen to execute commands in a Python script, and I call it via cron. Cron calls out this script but the behavior isn't the same if I call it by hand. Source: from subprocess import Popen, PIPE </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/77423/how-to-create-jobs-in-sql-server-express-edition" target="_blank">How to create jobs in SQL Server Express edition</a></h2>
+	            <div class="push_txt">Could any one please explain me how can I create jobs in SQL Server Express edition?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/194238/monitoring-gevent-exceptions-in-jobs" target="_blank">monitoring gevent exceptions in jobs</a></h2>
+	            <div class="push_txt">I'm building an application using gevent. My app is getting rather big now,there are a lot of jobs being spawned and destroyed. Many different kind of jobs. Now I've noticed that when one of these job</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/248384/how-to-detect-http-method-in-codeigniter" target="_blank">How to detect HTTP method in CodeIgniter</a></h2>
+	            <div class="push_txt">How can I detect HTTP method in CodeIgniter controller class? Edited: Is there any other way than using $_SERVER['REQUEST_METHOD'] in CodeIgniter?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/293536/cron-to-human-readable-string" target="_blank">Cron to human readable string</a></h2>
+	            <div class="push_txt">I am using Quartz with Java to schedule jobs. One thing is that i store cron expressions on a database and i would like to present them to a user but in a more readable form. So i was wondering if the</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/45081/subquery-in-codeigniter-active-record" target="_blank">subquery in codeigniter active record</a></h2>
+	            <div class="push_txt">SELECT * FROM certs WHERE id NOT IN(SELECT id_cer FROM revokace);  How I write this select in codeigniter active record?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/377243/routes-in-codeigniter" target="_blank">Routes in Codeigniter</a></h2>
+	            <div class="push_txt">I want to have a clean URL in CodeIgniter based application for User's Profile Information. Please Take a look at URL formats below. Actual URL : http://www.mydomain.com/index.php/users/profile/user1 </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/517898/how-to-set-up-a-cron-job-in-magento" target="_blank">How to set up a cron job in Magento [closed]</a></h2>
+	            <div class="push_txt">Can someone please explain me, what I have to do? I want Magento to clean logs, create a sitemap every day. Is this the right order:  Setup Cron in Server Setup Cron in Magento What will be next step?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/263620/codeigniter-php-framework-in-commercial-project" target="_blank">CodeIgniter PHP framework in commercial project</a></h2>
+	            <div class="push_txt">Is it possible to use CodeIgniter framework in commercial project and distribute it ?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/375459/access-model-from-view-in-codeigniter" target="_blank">access model from view in codeigniter?</a></h2>
+	            <div class="push_txt">can anyone tell me how do i access model from view in codeigniter?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/493018/play-framework-await-like-functionality-in-jobs" target="_blank">Play Framework: await-like functionality in Jobs</a></h2>
+	            <div class="push_txt">I am trying to run a long-running task (without blocking the HTTP request execution pool) using the Asynchronous Jobs in Play. Jobs in Play are fully managed by the framework so Play will take care of</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/252085/parallelization-of-recursive-jobs-in-gnu-make" target="_blank">Parallelization of recursive jobs in GNU make</a></h2>
+	            <div class="push_txt">I am looking for an elegant way for the parallelization of jobs in GNU make. Here is a sample of what I did so far. Make processes the directories dir-1, dir-2 and dir-3 in a serial fashion which is l</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/486424/how-can-i-disable-jobs-in-the-quartz-jdbcjobstore" target="_blank">How can I disable jobs in the Quartz JDBCJobStore?</a></h2>
+	            <div class="push_txt">What is the best way to disable a job in the JDBCJobStore without deleting it's job or trigger records and without wiping the cron expression?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/316094/ajax-form-validation-in-codeigniter" target="_blank">Ajax form validation in codeigniter</a></h2>
+	            <div class="push_txt">hellp guys, I've been working on ajax recently, and I have a problem in using it with codeigniter form validation library. I used the example that tool generate in the function http://formtorch.geekhu</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/479480/where-to-format-numbers-in-codeigniter" target="_blank">Where to format numbers in CodeIgniter?</a></h2>
+	            <div class="push_txt">shell i format my numbers 1234.20 =&gt; 1'234.20 in model or in view using php and codeigniter?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/448931/cron-job-not-working-in-whenever-gem" target="_blank">Cron job not working in Whenever gem</a></h2>
+	            <div class="push_txt">I have an application that contains a bunch of tasks, and every day I want to run a cron job that creates a DayTask for each Task in the database. A Task has_many DayTasks and these daytasks are what </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/115659/ruby-script-using-rbenv-in-cron" target="_blank">ruby script using rbenv in cron</a></h2>
+	            <div class="push_txt">I'm trying to run a ruby script using rbenv with cron. I know that I need to load rbenv in order to have the right ruby version loaded. I've tried options like this :  */10 * * * * /bin/bash -c 'sourc</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/157115/rails-cron-with-whenever-setting-the-environment" target="_blank">Rails cron with whenever, setting the environment</a></h2>
+	            <div class="push_txt">This question will probably only make sense if you know about the whenever gem for creating cron jobs. I have a task in my schedule.rb like  every 1.day, :at =&gt; '4am' do command cd #{RAILS_ROOT} &amp;</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/496044/wildcards-to-use-in-codeigniter-routing" target="_blank">wildcards to use in codeigniter routing?</a></h2>
+	            <div class="push_txt">in codeigniter you can use wildcard to reroute. i never heard the word wildcards before. is this a set of rules you can use like regexp? cause in codeigniter documentation they just gave some examples</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/421957/working-with-sqlite-in-codeigniter" target="_blank">Working with SQLite in codeigniter</a></h2>
+	            <div class="push_txt">I'm trying to get started with sqlite in the latest version of CodeIgniter. My database.php looks like this: $active_group = 'default'; $active_record = TRUE; $db ['default'] ['hostname'] =''; $db ['d</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/151440/upload-multiple-files-in-codeigniter" target="_blank">Upload multiple files in CodeIgniter</a></h2>
+	            <div class="push_txt">In my CodeIgniter project I'm uploading files during the project creation. Here's the uploading function: function uploadFiles(){ $this-&gt;load-&gt;library('upload'); $error = 0; $projectName = $_POS</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/397848/interfacing-with-mongodb-in-codeigniter" target="_blank">Interfacing with MongoDB in CodeIgniter</a></h2>
+	            <div class="push_txt">Is there function to throw query mongoDB like this $this-&gt;db-&gt;query($query) because I want to create mongoDB executor in codeigniter so if I type this query like this: db.users.find({age:33})  .</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/498214/minify-css-and-js-in-codeigniter-efficiently" target="_blank">Minify CSS and JS in CodeIgniter Efficiently</a></h2>
+	            <div class="push_txt">So I am working on a project using the PHP framework CodeIgniter (http://ellislab.com/codeigniter) and inside of it, we are using a lot of various CSS/JS files that are being called in our header incl</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/211003/remove-index-php-in-codeigniter-2-1-0" target="_blank">Remove index.php in codeigniter 2.1.0</a></h2>
+	            <div class="push_txt">I tried everything on google related to removing index.php from URL in codeigniter but no solution worked for me I am using codeigniter version 2.1.0 How I can remove index form my URL ? Thanks</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/418213/difference-between-jobs-and-maintenance-plan-in-sql-server" target="_blank">Difference between jobs and maintenance plan in sql server</a></h2>
+	            <div class="push_txt">What is the difference between jobs and maintenance plan in sql server? I am confused about where I should use job and where maintenance plan.</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/270079/execution-of-jobs-in-a-quartz-cluster" target="_blank">Execution of jobs in a quartz cluster</a></h2>
+	            <div class="push_txt">I have some questions about Quartz clustering, specifically about how triggers fire / jobs execute within the cluster.  Does quartz give any preference to nodes when executing jobs? Such as always or </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/449003/how-to-get-details-of-all-scheduled-jobs-and-triggers-in-quartz-net-c-sharp" target="_blank">How to get details of all scheduled jobs and triggers in Quartz.NET c#</a></h2>
+	            <div class="push_txt">I have to create administration page of all scheduled jobs and triggers. How can i get details of running jobs and triggers in Quartz.NET? Can I pause/stop or update jobs? Is there any sample code?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/472817/how-to-test-a-cron-job-in-local-server-like-wamp" target="_blank">How to test a cron job in Local Server like WAMP?</a></h2>
+	            <div class="push_txt">How to test a cron job in Local Server like WAMP?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/476794/custom-classes-in-codeigniter" target="_blank">Custom classes in CodeIgniter</a></h2>
+	            <div class="push_txt">Seems like this is a very common problem for beginners with CodeIgniter, but none of the solutions I've found so far seems very relevant to my problem. Like the topic says I'm trying to include a cust</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/511384/image-manipulation-in-codeigniter" target="_blank">Image Manipulation in CodeIgniter</a></h2>
+	            <div class="push_txt">I am having some trouble manipulating images using CodeIgniter 1.7. With the following code, the image is uploaded correctly. Alas, instead of a new image being made, and then modified; the existing i</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/70487/how-to-get-cron-to-call-in-the-correct-paths" target="_blank">How to get CRON to call in the correct paths</a></h2>
+	            <div class="push_txt">I'm trying to get cron to call in the correct path's. When I run a Python script from shell the script run's fine as it uses the path's set in bashrc but when I use cron all the path's are not used fr</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/411632/spring-quartz-cron-jobs-in-a-distributed-environment" target="_blank">Spring quartz/cron jobs in a distributed environment</a></h2>
+	            <div class="push_txt">I have a fleet of about 5 servers. I want to run an identical Spring/Tomcat app on each machine. I also need a particular task to be executed every ten minutes. It should only run on one of the machin</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/263569/current-uri-segment-in-codeigniter" target="_blank">Current URI Segment in CodeIgniter</a></h2>
+	            <div class="push_txt">What would be the best way to check for the current URI segment in a CodeIgniter view? What I am trying to do is use the current URI segment [i.e. $this-&gt;uri-&gt;segment(1)] in order to highlight t</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/502970/running-multiple-mapreduce-jobs-in-hadoop" target="_blank">running multiple MapReduce jobs in hadoop</a></h2>
+	            <div class="push_txt">I want to run a chain of map reduce jobs, so the easiest solution seems to be jobcontroller. say I have two jobs, job1 and job2. and I want to run job2 after job1. Well, it faced some problems. after </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/286770/using-slugs-in-codeigniter" target="_blank">Using slugs in codeigniter</a></h2>
+	            <div class="push_txt">I have heard of people using slugs for generating clean urls. I have no idea how it works. Currently i have a codeigniter site which generates url's like this www.site.com/index.php/blog/view/7  From </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/508821/ajax-in-codeigniter" target="_blank">AJAX in Codeigniter</a></h2>
+	            <div class="push_txt">I'm writing my first Codeigniter web app, and I'd like to use AJAX to pull some info for a modal box. Can somebody guide me through an easy way to incorporate ajax w/ CI? Specifically, the user will c</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/496012/use-classname-or-construct-as-constructor-in-codeigniter" target="_blank">use Classname() or __construct() as constructor in CodeIgniter?</a></h2>
+	            <div class="push_txt">should i use Classname() or __construct() as constructor in CodeIgniter? both work, which should i use?</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/104669/programmatically-get-the-number-of-jobs-in-a-resque-queue" target="_blank">Programmatically get the number of jobs in a Resque queue</a></h2>
+	            <div class="push_txt">I am interested in setting up a monitoring service that will page me whenever there are too many jobs in the Resque queue (I have about 6 queues, I'll have different numbers for each queue). I also wa</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/9242/suggestions-for-a-cron-like-scheduler-in-python" target="_blank">Suggestions for a Cron like scheduler in Python?</a></h2>
+	            <div class="push_txt">I'm looking for a library in Python which will provide at and cron like functionality. I'd quite like have a pure Python solution, rather than relying on tools installed on the box; this way I run on </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/120867/verifying-a-cron-expression-is-valid-in-java" target="_blank">Verifying a cron expression is valid in Java</a></h2>
+	            <div class="push_txt">I'm writing a scheduling application in Java using Quartz. I'm using the CronTrigger, but my cron expressions are entered into a database before they are scheduled and are based on user input. Is ther</div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/289794/running-two-commands-sequentially-in-a-cron-job" target="_blank">Running two commands sequentially in a cron job?</a></h2>
+	            <div class="push_txt">I have two commands in a cron job like this: mysql -xxxxxx -pyyyyyyyyyyv -hlocalhost -e call MyFunction1;wget -N http://mywebsite.net/path/AfterMyFunction1.php  but it seems to me that both of them </div>
+	        </div>
+			<div class="push_list">
+	            <h2><a href="http://youku.io/questions/515050/issues-running-cron-in-docker-on-different-hosts" target="_blank">Issues running cron in Docker on different hosts</a></h2>
+	            <div class="push_txt">Im trying to get a docker container running to mange my cronjobs  im running a very simple cron as a test in a docker container using centOS 6.5 base * * * * * /bin/echo it works! &gt;&gt; test.log </div>
+	        </div>
+		</div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+<div id="footer_art">
+    <span class="left link_blue">
+        © 2015 youku.io, all rights reserved  &nbsp; <a href="http://youku.io/" title="YouKu">YouKu</a>
+    </span>
+    <span class="right">
+    </span>
+</div>
+
+<script type="text/javascript">
+	jQuery(function() {
+		jQuery(window).scroll(function(){
+			if(jQuery.browser.msie && ((jQuery.browser.version|0)==6||(jQuery.browser.version|0)==7)) {
+	        	return;
+	      	}
+			if(jQuery(window).scrollTop() > 310){
+				jQuery("#j_ad_scroll").css({"position":"fixed","top":"2px"});
+				
+			}else if(jQuery(window).scrollTop() < 310){
+				jQuery("#j_ad_scroll").css({"position":"static","top":"340px"});
+			}
+		});
+	});
+</script>
+
+<script type="text/javascript" src="./Cron jobs in codeigniter_files/prettify.min.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+     $("pre").addClass("prettyprint");
+     prettyPrint();
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57415544-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style>#header + #content > #left > #rlblock_left,.adsbygoogle
+{display:none !important;}</style></body></html>
