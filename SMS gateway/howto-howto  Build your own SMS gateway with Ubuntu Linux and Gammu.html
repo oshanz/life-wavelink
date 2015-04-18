@@ -1,0 +1,915 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0086)http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html -->
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="s_Qqws_d6mBl8LifX6QE0O7-zSw" name="alexaVerifyID">
+<meta content="TEpyQuY3CIWlSgllv64-l8tLaOytoEG-DWwHwT67j_Y" name="google-site-verification">
+
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/cb=gapi.loaded_1" async=""></script><script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript">(function() { var b=window,f="chrome",g="tick",k="jstiming";(function(){function d(a){this.t={};this.tick=function(a,d,c){var e=void 0!=c?c:(new Date).getTime();this.t[a]=[e,d];if(void 0==c)try{b.console.timeStamp("CSI/"+a)}catch(h){}};this[g]("start",null,a)}var a;b.performance&&(a=b.performance.timing);var n=a?new d(a.responseStart):new d;b.jstiming={Timer:d,load:n};if(a){var c=a.navigationStart,h=a.responseStart;0<c&&h>=c&&(b[k].srt=h-c)}if(a){var e=b[k].load;0<c&&h>=c&&(e[g]("_wtsrt",void 0,c),e[g]("wtsrt_","_wtsrt",h),e[g]("tbsd_","wtsrt_"))}try{a=null,
+b[f]&&b[f].csi&&(a=Math.floor(b[f].csi().pageT),e&&0<c&&(e[g]("_tbnd",void 0,b[f].csi().startE),e[g]("tbnd_","_tbnd",c))),null==a&&b.gtbExternal&&(a=b.gtbExternal.pageT()),null==a&&b.external&&(a=b.external.pageT,e&&0<c&&(e[g]("_tbnd",void 0,b.external.startE),e[g]("tbnd_","_tbnd",c))),a&&(b[k].pt=a)}catch(p){}})();b.tickAboveFold=function(d){var a=0;if(d.offsetParent){do a+=d.offsetTop;while(d=d.offsetParent)}d=a;750>=d&&b[k].load[g]("aft")};var l=!1;function m(){l||(l=!0,b[k].load[g]("firstScrollTime"))}b.addEventListener?b.addEventListener("scroll",m,!1):b.attachEvent("onscroll",m);
+ })();</script>
+<meta content="blogger" name="generator">
+<link href="http://howto-to-howto.blogspot.com/favicon.ico" rel="icon" type="image/x-icon">
+<link href="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="howto-howto - Atom" href="http://howto-to-howto.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="howto-howto - RSS" href="http://howto-to-howto.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="howto-howto - Atom" href="http://www.blogger.com/feeds/5444200150292933345/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="howto-howto - Atom" href="http://howto-to-howto.blogspot.com/feeds/1802842330931986259/comments/default">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>howto-howto: Build your own SMS gateway with Ubuntu Linux and Gammu</title>
+<link type="text/css" rel="stylesheet" href="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/728935430-widget_css_bundle.css">
+<link type="text/css" rel="stylesheet" href="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/authorization.css">
+<style id="page-skin-1" type="text/css"><!--
+/*
+/* **************************
+Name: Templatr
+Designed by: http://blogandweb.com/ and http://btemplates.com/
+Ported by: http://btemplates.com/
+Date: Mar 2010
+License: http://creativecommons.org/licenses/by-nd/2.5/mx/deed.en
+Icons:
+- http://www.komodomedia.com/blog/2009/06/social-network-icon-pack/
+- http://somerandomdude.com/projects/iconic/
+*****************************
+*//* Variable definitions
+====================
+<Variable name="textcolor" description="Text Color"
+type="color" default="#666">
+<Variable name="linkcolor" description="Link Color"
+type="color" default="#039EC6">
+<Variable name="visitedlinkcolor" description="Hover Link Color"
+type="color" default="#f60">
+<Variable name="pagetitlecolor" description="Blog Title Color"
+type="color" default="#039EC6">
+<Variable name="descriptioncolor" description="Blog Description Color"
+type="color" default="#333333">
+<Variable name="titlecolor" description="Post Title Color"
+type="color" default="#f60">
+<Variable name="menucolor" description="Menu Link Color"
+type="color" default="#0A8490">
+<Variable name="sidebartextcolor" description="Sidebar Text Color"
+type="color" default="#FF6600">
+*/
+/* GENERAL STYLES - ESTILOS GENERALES */
+/* Hide top navbar - Oculta la navbar */
+#navbar-iframe {
+height:0px;
+visibility:hidden;
+display:none
+}
+/* RECETEAR ESTILOS	*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+ol,ul{list-style:none;}
+blockquote,q{font-size:15px;font-style:italic;background:url(http://1.bp.blogspot.com/_Zuzii37VUO4/S5CBpy3_hqI/AAAAAAAAEnY/JRAu_a_KYX0/s1600/blockquote.png) no-repeat 0 5px; padding:0 0 0 50px}
+acronym{border-bottom:1px dotted;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+:focus{outline:0;}
+/* GENERALES */
+.clear{clear:both;display:block;overflow:hidden;width:0;height:0;}
+.clearfix:after{clear:both;content:'.';display:block;visibility:hidden;height:0;}
+.clearfix{display:inline-block;}
+* html .clearfix{height:1%;}
+.clearfix{display:block;}
+.fr{float:right;}
+.fl{float:left;}
+h1{font-size:25px;}
+h2{font-size:20px;}
+h3{font-size:18px;}
+h4{font-size:14px;}
+h5{font-size:13px;}
+h6{font-size:12px;}
+p {margin:0 0 15px;}
+body{background:#021b2f url(http://1.bp.blogspot.com/_Zuzii37VUO4/S5BZmbjJIeI/AAAAAAAAEmw/5WQ72OaWoWw/s1600/back.jpg) repeat-x 0 0;font-size:13px;color:#666666;font-family:helvetica, arial, helvetica, verdana;}
+a:link,a{color:#039EC6;text-decoration:none;}
+a:hover{color:#ff6600;}
+a img{border:0;text-decoration:none;}
+.clear{clear:both;}
+.clearfix:after{clear:both;content:'.';display:block;visibility:hidden;height:0;}
+.clearfix{display:inline-block;}
+* html .clearfix{height:1%;}
+.clearfix{display:block;}
+/* WRAPPER */
+#outer-wrapper{width:980px;background:#fff;margin:20px auto;border-radius:10px;-moz-border-radius:10px;/* Firefox */-webkit-border-radius:10px;/* Safari y Chrome */}
+#main-wrapper{overflow:hidden;}
+/* HEADER */
+#header-wrapper{background:url(http://1.bp.blogspot.com/_Zuzii37VUO4/S5BlaO5us7I/AAAAAAAAEnA/ZUnfDQ0AJLY/s1600/header-back.jpg) repeat-x 0 bottom;padding:20px;margin:0 0 20px;}
+#header-wrapper h1,#header-wrapper h1 a{font-size:43px;color:#039EC6;margin:-10px 0 0;}
+p.description{color:#333333;font-size:16px;}
+#header{width:65%;float:left;}
+#social{float:right;width:34%;}
+#social li{float:right;margin:0 10px 0 0;}
+#social .cufon{overflow:hidden;}
+.subscribe{font-size:25px;}
+#pages{border-bottom:1px solid #cdcdcd;margin:0 0 20px;padding:0 0 20px;}
+#pages li{margin:0 10px 0 0;}
+#pages li a{float:left;display:block;padding:5px 10px;border-radius:3px;-moz-border-radius:3px;/* Firefox */-webkit-border-radius:3px;/* Safari y Chrome */font-size:16px;font-weight:bold;border:1px solid #056f7a;background-color:#fff;color:#0A8490;}
+#pages li a:hover,#pages li.selected a{color:#fff;background-color:#0a8490;}
+#page{float:left;width:600px;}
+#searchform{width:270px;float:right;font-size:16px;}
+#s{border:1px solid #056f7a;background-color:#fff;display:block;padding:6px 10px;border-radius:3px;-moz-border-radius:3px;/* Firefox */-webkit-border-radius:3px;/* Safari y Chrome */float:left;color:#999;width:170px;}
+.search_btn{float:right;background-color:#056f7a;color:#fff;padding:6px 10px;border-radius:3px;-moz-border-radius:3px;/* Firefox */-webkit-border-radius:3px;/* Safari y Chrome */border:0;width:60px;}
+/* CONTENT WRAPPER - CONTENEDOR DEL CONTENIDO */
+#content-wrapper{padding:0 20px 20px;}
+#main-wrapper{width:600px;float:left;padding:0 20px 0 0;border-right:1px solid #cdcdcd;}
+.post{border-bottom:1px solid #EEE;margin:0 0 40px;padding:0 0 40px;}
+.post a{color:#039ec6;text-decoration:underline;}
+.post a:hover{color:#f60;}
+.post-title,.post-title a{color:#ff6600!important;font-size:28px;margin:0 0 5px;text-decoration:none;}
+.single-post {margin-top:9px;}
+.postmetahd{float:left;margin:0 0 20px;width:560px;}
+.post-header-line-1{font-size:12px;color:#afafaf;}
+.post-header-line-1 a{color:#afafaf;text-decoration:underline;}
+.post-body{line-height:160%;}
+.socialbookmarks{clear:both;margin:20px 0 0;padding:20px 0 0;border-top:1px solid #efefef;}
+#bookmarks{float:left;width:350px;}
+#bookmarks li a{display:block;float:left;height:16px;margin:0 10px 0 0;width:16px;}
+#shorturl{float:right;width:227px;}
+#shorturl input{color:#999;border:1px solid #efefef;border-radius:3px;-moz-border-radius:3px;/* Firefox */-webkit-border-radius:3px;/* Safari y Chrome */padding:3px 5px;width:130px;}
+.post-author{background:url(http://2.bp.blogspot.com/_Zuzii37VUO4/S5B56jrtv9I/AAAAAAAAEnI/4pNf6Ei7HSI/s1600/author.png) no-repeat 0 0;padding:0 0 0 15px;margin:0 15px 0 0;}
+.date-header{padding:0 0 0 18px;background:url(http://1.bp.blogspot.com/_Zuzii37VUO4/S5B56gj4voI/AAAAAAAAEnM/535mNXdhPVA/s1600/date.png) no-repeat 0 0;margin:0 15px 0 0;}
+.post-labels{padding:0 0 0 18px;background:url(http://4.bp.blogspot.com/_Zuzii37VUO4/S5B56tonAoI/AAAAAAAAEnQ/-PPJ_gDN8Wk/s1600/tags.png) no-repeat 0 0;margin:0 15px 0 0;}
+a.comment-link{background:transparent url(http://2.bp.blogspot.com/_Zuzii37VUO4/S5GD6bXlbWI/AAAAAAAAEoI/rdx0c3WG_7w/s1600/comment.png) no-repeat scroll 0 0;color:#7F7F7F;display:block;float:right;font-size:12px;font-weight:bold;height:28px;margin:7px 0 0;overflow:hidden;padding:5px 6px 0 0;text-align:center;text-decoration:none;width:32px;}
+a.comment-link:hover{text-decoration:underline;}
+.post-body ul{list-style-type:circle;list-style-position:inside;margin:0 0 10px;}
+.post-body ol{list-style-type:decimal;list-style-position:inside;margin:0 0 10px;}
+.post-body li{padding:3px 0 3px 10px;}
+.post-body p, .post-body ul, .post-body h1, .post-body h2, .post-body h3, .post-body h4, .post-body h5, .post-body h6, .post-body code, .post-body blockquote  {margin:0 0 16px;}
+.post-body img {max-width:600px;}
+.post table{border-color:#CDCDCD;border-style:solid;border-width:1px 0;margin:10px 0 20px;width:100%;text-align:center;}
+.post table td,.post table th{border-bottom:1px solid #EFEFEF;padding:5px 15px 5px 0;}
+.post code{background:url(http://4.bp.blogspot.com/_Zuzii37VUO4/S5Fw3fRX4GI/AAAAAAAAEns/v_RbTFWoRac/s1600/code.png) no-repeat 0 5px;padding:0 35px 0 0;display:block;min-height:35px;padding:0 0 0 30px;}
+#blog-pager a{color:#111;text-decoration:underline;}
+.blog-pager-newer-link{background:url(http://2.bp.blogspot.com/_Zuzii37VUO4/S5Fzhv6gGoI/AAAAAAAAEn4/Ymm6WdfOko4/s1600/left.png) no-repeat 0 0;padding:0 0 0 20px;}
+.blog-pager-older-link{background:url(http://4.bp.blogspot.com/_Zuzii37VUO4/S5FzhhFaGiI/AAAAAAAAEn8/aTcYvH2VFUM/s1600/right.png) no-repeat right 0;padding:0 20px 0 0;}
+a.home-link{}
+.status-msg-wrap{width:100%;margin:0 0 20px;}
+.status-msg-border{-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;}
+.status-msg-bg{background:none;}
+/* SIDEBAR */
+#sidebar-wrapper{width:295px;float:right;}
+.sidebar{line-height:160%;overflow:hidden;}
+#sidebar-wrapper h2{font-size:18px;margin:0 0 10px;}
+#sidebar-wrapper a{color:#FF6600;}
+#sidebar-wrapper a:hover{color:#f06000;}
+ul#ads li{margin:0 20px 10px 0;float:left;}
+.sidebar li{border-bottom:1px solid #efefef;display:block;margin:1px 0;padding:3px 0;}
+.sidebar li:hover{background-color:#efefef;border-bottom:1px solid #cdcdcd;}
+#sidebar-wrapper .widget{margin:0 0 20px;}
+#sidebar0{width:100%;}
+#sidebar1{width:140px;float:left;padding:0 15px 0 0;}
+#sidebar2{width:140px;float:left;}
+#sidebar1 img, #sidebar2 img {max-width:140px;}
+#sidebar0 img {max-width:300px;}
+/* FOOTER - PIE DE PÁGINA */
+#footer-wrapper{padding:20px 0 20px 20px;color:#fff;background-color:#000;border-bottom-left-radius:10px;border-bottom-right-radius:10px;-moz-border-radius-bottomright:10px;/* Firefox */-moz-border-radius-bottomleft:10px;-webkit-border-bottom-right-radius:10px;/* Safari y Chrome */-webkit-border-bottom-left-radius:10px;line-height:160%;}
+#footer-wrapper a{color:#F60;}
+#footer-wrapper .fr a,#footer-wrapper .fl a{color:#039EC6;}
+#footer-wrapper .fr a:hover,#footer-wrapper .fl a:hover{color:#f60;}
+#footer-wrapper .fr{padding:0 20px 0 0;}
+.footer{width:300px;margin:0 20px 0 0;float:left;overflow:hidden;}
+.footer h2{font-size:15px;margin:0 0 10px;color:#fff;}
+.footer li{border-bottom:1px solid #333;display:block;padding:5px 0;margin:1px 0;}
+.footer li:hover{background-color:#111;border-bottom:1px solid #666;}
+.footer .widget{margin:0 0 20px;}
+.links{clear:both;}
+.footer img {max-width:300px;}
+/* COMMENTS - COMENTARIOS */
+#comments h4,h4.comment-post-message{font-size:23px;margin:0 0 20px;color:#f60;}
+#comments-block{margin-bottom:20px;}
+.comment{margin:0 0 10px;padding:0 0 10px;border-bottom:1px solid #efefef;line-height:160%;}
+.comment-author{font-weight:bold;margin:0 0 5px;}
+.comment-form{max-width:100%!important;}
+p.comment-footer{text-align:center;}
+dd.comment-footer,dd.comment-body{margin:0!important;}
+.comment-timestamp{font-size:90%;font-weight:normal;}
+/* Navigation - Navegación */#blog-pager-newer-link{float:left;}
+#blog-pager-older-link{float:right;}
+#blog-pager{text-align:center;}
+.feed-links,body#layout #social,body#layout #searchform,body#layout #ads{display:none;}
+/* Gadgets panel - Panel de gadgets */
+body#layout #content-wrapper {
+margin: 0px;
+}
+body#layout #footer-wrapper .links, body#layout #search {
+display:none;
+}
+
+--></style><style>div[id^="bannerfloat"]
+{display:none !important;}</style>
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/cufon-yui.js" type="text/javascript"></script>
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/Allerr.js" type="text/javascript"></script>
+<script charset="utf-8" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/javascript-api.js" type="text/javascript"></script>
+<script type="text/javascript">
+Cufon.replace('h2, h3, h4, .subscribe, p.description', {fontFamily:'Allerr'});
+Cufon.replace('h1', {fontFamily:'AllerrB'});
+BitlyClient.addPageLoadEvent(function(){ BitlyCB.myShortenCallback = function(data) {
+var result;for (var r in data.results) { 
+result = data.results[r];result['longUrl'] = r;	break;}
+document.getElementById("shorturl").innerHTML = "Twitter link: <input type='text' value='" + result['shortUrl'] + "' name='bitlyurl'/>";	}
+BitlyClient.shorten(document.location, 'BitlyCB.myShortenCallback');});
+</script>
+<script type="text/javascript">var a="indexOf",b="&m=1",e="(^|&)m=",f="?",g="?m=1";function h(){var c=window.location.href,d=c.split(f);switch(d.length){case 1:return c+g;case 2:return 0<=d[1].search(e)?null:c+b;default:return null}}var k=navigator.userAgent;if(-1!=k[a]("Mobile")&&-1!=k[a]("WebKit")&&-1==k[a]("iPad")||-1!=k[a]("Opera Mini")||-1!=k[a]("IEMobile")){var l=h();l&&window.location.replace(l)};
+</script><script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('headEnd');
+</script><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/js/google_top_exp.js"></script><style>.gc-bubbleDefault{background-color:transparent !important;text-align:left;padding:0 !important;margin:0 !important;border:0 !important;table-layout:auto !important}.gc-reset{background-color:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;text-align:left}.pls-bubbleTop{border-bottom:1px solid #ccc !important}.pls-topTail,.pls-vertShimLeft,.pls-contentLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif) !important}.pls-topTail{background-repeat:repeat-x !important;background-position:bottom !important}.pls-vertShim{background-color:#fff !important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5 !important}.pls-vertShimLeft{background-repeat:repeat-y !important;background-position:right !important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2 !important}.pls-contentWrap{background-color:#fff !important;position:relative !important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:right;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png) !important;background-repeat:repeat-y !important;vertical-align:top}.pls-vert,.pls-tailleft,.pls-dropTR .pls-dropBR,.pls-dropBL,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png) !important;background-repeat:repeat-x !important;width:100%;vertical-align:top}.pls-topLeft{background:inherit !important;text-align:right;vertical-align:bottom}.pls-topRight{background:inherit !important;text-align:left;vertical-align:bottom}.pls-bottomLeft{background:inherit !important;text-align:right}.pls-bottomRight{background:inherit !important;text-align:left;vertical-align:top}.pls-tailtop,.pls-tailright,.pls-tailbottom,.pls-tailleft{display:none;position:relative}.pls-tailbottom,.pls-tailtop,.pls-tailright,.pls-tailleft,.pls-dropTR,.pls-dropBR,.pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png) !important;background-repeat:no-repeat}.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailtop,.tbl-grey .pls-tailright,.tbl-grey .pls-tailleft,.tbl-grey .pls-dropTR,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png) !important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-topLeft img,.pls-topRight img,.pls-tailbottom{vertical-align:bottom}.pls-bottomLeft img,.bubbleDropTR,.pls-dropBottomL img,.pls-dropBottom img,.pls-dropBottomR img,.pls-bottomLeft{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacertop,.pls-spacerright,.pls-spacerbottom,.pls-spacerleft{position:static !important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0}</style></head>
+<body>
+<div class="navbar section" id="navbar"><div class="widget Navbar" id="Navbar1"><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="" tabindex="0" vspace="0" width="100%" id="navbar-iframe" name="navbar-iframe" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/navbar.html"></iframe></div>
+<script type="text/javascript" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript">
+        gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+          if (gapi.iframes && gapi.iframes.getContext) {
+            gapi.iframes.getContext().openChild({
+                url: 'https://www.blogger.com/navbar.g?targetBlogID\0755444200150292933345\46blogName\75howto-howto\46publishMode\75PUBLISH_MODE_BLOGSPOT\46navbarType\75BLUE\46layoutType\75LAYOUTS\46searchRoot\75http://howto-to-howto.blogspot.com/search\46blogLocale\75en\46v\0752\46homepageUrl\75http://howto-to-howto.blogspot.com/\46targetPostID\0751802842330931986259\46blogPostOrPageUrl\75http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html\46vt\75-5793859642526872507',
+                where: document.getElementById("navbar-iframe-container"),
+                id: "navbar-iframe"
+            });
+          }
+        });
+      </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id="outer-wrapper"><div id="wrap2">
+<!-- skip links for text browsers - saltar a contenido -->
+<span id="skiplinks" style="display:none;">
+<a href="http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html#main">skip to main (ir a principal) </a> |
+      <a href="http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html#sidebar">skip to sidebar (ir al sidebar)</a>
+</span>
+<!-- Header -->
+<div class="clearfix" id="header-wrapper">
+<div class="header section" id="header"><div class="widget Header" id="Header1">
+<div id="header-inner">
+<div class="titlewrapper">
+<h1 class="title">
+<a href="http://howto-to-howto.blogspot.com/">howto-howto</a>
+</h1>
+</div>
+<div class="descriptionwrapper">
+<p class="description"><span>
+</span></p>
+</div>
+</div>
+</div></div>
+<!-- Social -->
+<ul id="social">
+<!-- Flickr -->
+<li><a href="http://www.flickr.com/photos/username/" rel="nofollow"><img alt="" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/flickr_32.png"></a></li>
+<!-- /Flickr -->
+<!-- Facebook -->
+<li><a href="http://facebook.com/username" rel="nofollow"><img alt="" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/facebook_32.png"></a></li>
+<!-- /Facebook -->
+<!-- Twitter -->
+<li><a href="http://twitter.com/username" rel="nofollow"><img alt="" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/twitter_32.png"></a></li>
+<!-- /Twitter -->
+<!-- RSS -->
+<li><a href="http://howto-to-howto.blogspot.com/feeds/posts/default" rel="nofollow"><img alt="Feed RSS" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/rss_32.png"></a></li>
+<!-- /RSS -->
+<li class="subscribe">Subscribe:</li>
+</ul>
+<!-- /Social -->
+</div>
+<!-- /Header -->
+<div id="content-wrapper">
+<!-- Content-wrapper -->
+<!-- Pages -->
+<div class="clearfix" id="pages">
+<div class="crosscol section" id="page"><div class="widget PageList" id="PageList1">
+<h2>Pages</h2>
+<div class="widget-content">
+<ul>
+<li><a href="http://howto-to-howto.blogspot.com/">Home</a></li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=PageList&widgetId=PageList1&action=editWidget&sectionId=page" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;PageList1&quot;));" target="configPageList1" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+<form action="http://howto-to-howto.blogspot.com/search/" class="search" id="searchform" method="get">
+<input class="search_input" id="s" name="q" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search ...&#39;;}" onfocus="if (this.value == &#39;Search ...&#39;) {this.value =&#39;&#39;;}" type="text" value="Search ...">
+<input class="search_btn" type="submit" value="Search">
+</form>
+</div>
+<!-- /Pages -->
+<!-- Main content -->
+<div class="clearfix" id="main-wrapper">
+<div class="main section" id="main"><div class="widget Blog" id="Blog1">
+<div class="blog-posts hfeed">
+<!-- google_ad_section_start(name=default) -->
+<div class="post hentry uncustomized-post-template">
+<div class="clearfix">
+<div class="postmetahd">
+<a name="1802842330931986259"></a>
+<h2 class="post-title entry-title single-post">
+<a href="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu.html">Build your own SMS gateway with Ubuntu Linux and Gammu</a>
+</h2>
+<div class="post-header-line-1">
+<span class="post-author vcard">
+<span class="fn">forex</span>
+</span>
+<span class="post-labels">
+<a href="http://howto-to-howto.blogspot.com/search/label/SMS%20Gateway" rel="tag">SMS Gateway</a>
+</span>
+<span class="date-header">Tuesday, March 23, 2010</span>
+</div>
+</div>
+<div class="post-comment-link">
+</div>
+</div>
+<div class="post-body entry-content">
+Some time ago I went down the path of building a simple sms gateway.  At the time I wrote a basic blog entry but received numerous requests  for a more detailed "how-to"... so here it is.<br>
+I based my solution around a basic linux (Ubuntu) server - the  machine itself is nothing fancy but is more than capable of handling the  sort of load it's getting. The device being used to send/receive SMS  messages is an "old" Nokia mobile phone that I have since retired from  use as a handset.<br>
+The specs of all components I used are listed below - all up you  should be able to purchase these items for less than $50 (or you may  have the majority of them lying around).<br>
+<br>
+<a name="more"></a><br>
+<blockquote><b>Computer</b>: IBM GL300 - Celeron 366, 128Mb RAM, 30Gb  HDD<br>
+<b>Phone</b>: Nokia 7200<br>
+<b>Cable</b>: Nokia "Type CA-42" (this will vary depending  on your phone, basically it's a usb to phone cable)<br>
+<b>Software</b>: <a href="http://www.ubuntu.com/getubuntu" target="_blank">Ubuntu Server</a> (I used the "edgy" release) and <a href="http://www.gammu.org/" target="_blank">Gammu</a> (the part that  does all the work)<br>
+<b>Optional</b>: USB Phone charger - this makes things  easier than having to find somewhere to plug in another power adapter  and is also much more energy efficient :)</blockquote><i>Please note: I am assuming some basic linux familiarity with this  tutorial - if nothing else the ability to use a command-line editor  such as <a href="http://www.vim.org/" target="_blank">vim</a> to edit  text files is required. I have tried to keep all the language simplified  to make this tutorial suitable for people of all skill levels.</i><br>
+<h3>Step 1 - INSTALL UBUNTU</h3>The first step is to install ubuntu (server) on you machine. You can  install the desktop (client) release if you prefer - although if you're  doing so I woul recommend a higher-spec machine. As I am using this  machine strictly as a server (all access will be done remotely once the  initial install is complete) I had no need for a GUI or additional  applications.<br>
+Run through the setup and answer all the questions - they should all  be fairly straight-forward, and if you get stuck the defaults are  usually what are worth using.<br>
+The only point to ensure you do is select that you want to run it as a  LAMP (Linux, Apache, MySQL, PHP) server.<br>
+<h3>Step 2 - Remote Access</h3>Once the install is complete and the server rebooted, I like to  install ssh so that I can complete the process from the comfort of my  study (rather than coping with the noise from a rack full of machines).  This is done with the following command:<br>
+<blockquote><pre>sudo apt-get install ssh</pre></blockquote>Once this is done you can complete the process remotely using an ssh  client (in my case <a href="http://www.putty.nl/" target="_blank">PuTTY</a>)  - of course you can always sit with your server and do it all locally -  whatever you prefer.<br>
+<h3>Step 3 - Update and Upgrade/Patch the server</h3>I like to get things up to date and patch them before going any  further (much like I would do with any other Operating System). Before  running an update (to find out what is available) and an upgrade (to  implement the upgrades) using apt-get, the<b> /etc/apt/sources.list</b>  file needs to be modified to ensure that all universe and backport  repositries are made available (this will make sense when you see the  file).<br>
+Once you have made the changes to /etc/apt/sources.list, use the  following commands to update and upgrade your server:<br>
+<blockquote><pre>sudo apt-get update
+sudo apt-get upgrade</pre></blockquote><h3>Step 4 - Install Gammu</h3>Installing gammu is surprisingly easy (once again thanks to the  wonders of apt-get), just use the following command:<br>
+<pre>sudo apt-get install gammu</pre>Hard wasn't it? ;)<br>
+OK now it's time to plug your phone in and see if we can get things  talking. With the phone connected, type the following command:<br>
+<pre>lsusb</pre>you should now see your phone listed as a device - for example:<br>
+<blockquote><pre>Bus 001 Device 002: ID 0421:0802 Nokia Mobile Phones</pre></blockquote>if not - make sure your cables and power are all good and try again.<br>
+The gammu installation comes with some example configuration files  which are worth using as a starting point - if nothing else they help  you to understand how gammu can be configured so that you can tailor a  solution for your needs. These are located in<b>  /usr/share/doc/gammu/examples</b> (in gZip archives).<br>
+Copy the gammurc file to /etc/gammurc :<br>
+<blockquote><pre>sudo cp /usr/share/doc/gammu/examples/config/gammurc /etc/gammurc</pre></blockquote>Now edit /etc/gammurc to specify your port and connection type (this  will vary based upon where/how you have things plugged in and what sort  of cable/interface your phone is using). The settings for mine are:<br>
+<blockquote><pre>port = /dev/ttyACM0
+connection = dku5</pre></blockquote>Save this config and from the shell type:<br>
+<blockquote><pre>gammu --identify</pre></blockquote>you should now be presented with some information regaqrding your  phone such as:<br>
+<blockquote><pre>Manufacturer  : Nokia
+   Model         : 7200 (RH-23)
+   Firmware      : 3.110 T (18-03-04)
+   Hardware      : 0903
+   IMEI          : 353363000813894
+   Original IMEI : 353363/00/081389/4
+   Manufactured  : 04/2004
+   Product code  : 0514143
+   UEM           : 16</pre></blockquote>If this is the case then you have got gammu up and running and can  send yourself a test message with the following command:<br>
+<pre>echo "boo" | gammu --sendsms TEXT [recipient mobile number]</pre>That's it for the basic creation of your own private SMS gateway -  I'll post a followup article which details how to integrate gammu with  MySQL and also discuss creating a PHP front-end for it (these are the  reasons the LAMP components were installed).
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1">
+<div class="socialbookmarks">
+<ul id="bookmarks">
+<li rel="external nofollow"><a href="http://howto-to-howto.blogspot.com/feeds/posts/default"><img alt="" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/rss_16.png"></a></li>
+<li rel="external nofollow"><a href="http://twitter.com/home?status=Build%20your%20own%20SMS%20gateway%20with%20Ubuntu%20Linux%20and%20Gammu%20http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html"><img alt="" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/twitter_16.png"></a></li>
+<li rel="external nofollow"><a href="http://www.facebook.com/share.php?u=http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html"><img alt="" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/facebook_16.png"></a></li>
+<li rel="external nofollow"><a href="http://del.icio.us/post?url=http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html&title=Build%20your%20own%20SMS%20gateway%20with%20Ubuntu%20Linux%20and%20Gammu"><img alt="" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/delicious_16.png"></a></li>
+</ul>
+<form id="shorturl"></form>
+</div>
+<span class="reaction-buttons">
+</span>
+<span class="star-ratings">
+</span>
+<span class="post-icons">
+<span class="item-control blog-admin pid-1817457177">
+<a href="http://www.blogger.com/post-edit.g?blogID=5444200150292933345&postID=1802842330931986259&from=pencil" title="Edit Post">
+<img alt="" class="icon-action" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_edit_allbkg.gif" width="18">
+</a>
+</span>
+</span>
+</div>
+<div class="post-footer-line post-footer-line-2">
+</div>
+<div class="post-footer-line post-footer-line-3">
+<span class="post-location">
+</span>
+</div>
+</div>
+</div>
+<div class="comments clearfix" id="comments">
+<a name="comments"></a>
+<h4>
+0
+comments:
+        
+</h4>
+<ul class="avatar-comment-indent" id="comments-block">
+</ul>
+<p class="comment-footer">
+</p><div class="comment-form">
+<a name="comment-form"></a>
+<h4 id="comment-post-message">Post a Comment</h4>
+<p>
+</p>
+<a href="https://www.blogger.com/comment-iframe.g?blogID=5444200150292933345&postID=1802842330931986259&blogspotRpcToken=5167657" id="comment-editor-src"></a>
+<iframe allowtransparency="true" class="blogger-iframe-colorize blogger-comment-from-post" frameborder="0" height="258px" id="comment-editor" name="comment-editor" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/comment-iframe.html" width="100%"></iframe>
+<script type="text/javascript" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/666035058-comment_from_post_iframe.js"></script>
+<script type="text/javascript">
+      BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html', '11995137096949580397');
+    </script>
+</div>
+<p></p>
+<div id="backlinks-container">
+<div id="Blog1_backlinks-container">
+</div>
+</div>
+</div>
+<!-- google_ad_section_end(name=default) -->
+<div class="inline-ad" style="display: none !important;">
+<script type="text/javascript"><!--
+google_ad_client="pub-9462521878470730";
+google_ad_host="pub-1556223355139109";
+google_ad_width=728;
+google_ad_height=90;
+google_ad_format="728x90_as";
+google_ad_type="text_image";
+google_ad_host_channel="0001";
+google_color_border="FFFFFF";
+google_color_bg="FFFFFF";
+google_color_link="666666";
+google_color_url="FF6600";
+google_color_text="039EC6";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<!-- google_ad_section_start -->
+<!-- google_ad_section_end -->
+</div>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="http://howto-to-howto.blogspot.com/2010/03/how-to-create-ajax-contact-form.html" id="Blog1_blog-pager-older-link" title="Older Post">Older Post</a>
+</span>
+<a class="home-link" href="http://howto-to-howto.blogspot.com/">Home</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Subscribe to:
+<a class="feed-link" href="http://howto-to-howto.blogspot.com/feeds/1802842330931986259/comments/default" target="_blank" type="application/atom+xml">Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<!-- /Main content -->
+<div class="clearfix" id="sidebar-wrapper">
+<!-- Ads -->
+<div class="widget clearfix">
+<h2>Advertise</h2>
+<ul id="ads">
+<!-- Banners -->
+<li><a href="http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html#"><img alt="Advertise here" src="http://1.bp.blogspot.com/_Zuzii37VUO4/S5COoCcaHhI/AAAAAAAAEng/xrnWyOpxGOE/s1600/advertise-125.png" style="display: none !important;"></a></li>
+<li><a href="http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html#"><img alt="Advertise here" src="http://1.bp.blogspot.com/_Zuzii37VUO4/S5COoCcaHhI/AAAAAAAAEng/xrnWyOpxGOE/s1600/advertise-125.png" style="display: none !important;"></a></li>
+<li><a href="http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html#"><img alt="Advertise here" src="http://1.bp.blogspot.com/_Zuzii37VUO4/S5COoCcaHhI/AAAAAAAAEng/xrnWyOpxGOE/s1600/advertise-125.png" style="display: none !important;"></a></li>
+<li><a href="http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html#"><img alt="Advertise here" src="http://1.bp.blogspot.com/_Zuzii37VUO4/S5COoCcaHhI/AAAAAAAAEng/xrnWyOpxGOE/s1600/advertise-125.png" style="display: none !important;"></a></li>
+</ul>
+</div>
+<!-- /Ads -->
+<div class="sidebar clearfix section" id="sidebar0"><div class="widget HTML" id="HTML2">
+<div class="widget-content">
+<!-- Begin BidVertiser code -->
+<script language="JavaScript1.1" src="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=231546%26bid=760728" type="text/javascript"></script>
+<noscript>&lt;a href="http://www.bidvertiser.com"&gt;internet marketing&lt;/a&gt;</noscript>
+<!-- End BidVertiser code -->
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=HTML&widgetId=HTML2&action=editWidget&sectionId=sidebar0" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML2&quot;));" target="configHTML2" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget AdSense" id="AdSense1" style="display: none !important;">
+<div class="widget-content">
+<script type="text/javascript"><!--
+google_ad_client="pub-9462521878470730";
+google_ad_host="pub-1556223355139109";
+google_ad_width=336;
+google_ad_height=280;
+google_ad_format="336x280_as";
+google_ad_type="text_image";
+google_ad_host_channel="0001";
+google_color_border="FFFFFF";
+google_color_bg="FFFFFF";
+google_color_link="666666";
+google_color_url="FF6600";
+google_color_text="039EC6";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=AdSense&widgetId=AdSense1&action=editWidget&sectionId=sidebar0" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;AdSense1&quot;));" target="configAdSense1" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="sidebar section" id="sidebar1"><div class="widget HTML" id="HTML1">
+<div class="widget-content">
+<!-- Histats.com  START  (standard)-->
+<script type="text/javascript">document.write(unescape("%3Cscript src=%27http://s10.histats.com/js15.js%27 type=%27text/javascript%27%3E%3C/script%3E"));</script><script src="http://s10.histats.com/js15.js" type="text/javascript"></script>
+<a href="http://www.histats.com/" target="_blank" title="free hit counter"><script type="text/javascript">
+try {Histats.start(1,1056443,4,700,10,10,"00000000");
+Histats.track_hits();} catch(err){};
+</script></a>
+<noscript>&lt;a href="http://www.histats.com" target="_blank"&gt;&lt;img src="http://sstatic1.histats.com/0.gif?1056443&amp;amp;101" alt="free hit counter" border="0" /&gt;&lt;/a&gt;</noscript>
+<!-- Histats.com  END  -->
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=HTML&widgetId=HTML1&action=editWidget&sectionId=sidebar1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML1&quot;));" target="configHTML1" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget Label" id="Label1">
+<h2>Tags</h2>
+<div class="widget-content list-label-widget-content">
+<ul>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/Ajax">Ajax</a>
+<span dir="ltr">(1)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/AT%20Command">AT Command</a>
+<span dir="ltr">(22)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/D60">D60</a>
+<span dir="ltr">(1)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/facebook">facebook</a>
+<span dir="ltr">(2)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/Haiti%20quake">Haiti quake</a>
+<span dir="ltr">(1)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/How%20to">How to</a>
+<span dir="ltr">(6)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/Jquery">Jquery</a>
+<span dir="ltr">(1)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/News">News</a>
+<span dir="ltr">(5)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/Nikonian">Nikonian</a>
+<span dir="ltr">(1)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/Photography">Photography</a>
+<span dir="ltr">(1)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/SMS%20Gateway">SMS Gateway</a>
+<span dir="ltr">(9)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/themes">themes</a>
+<span dir="ltr">(1)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/twitter">twitter</a>
+<span dir="ltr">(2)</span>
+</li>
+<li>
+<a dir="ltr" href="http://howto-to-howto.blogspot.com/search/label/Wordpress">Wordpress</a>
+<span dir="ltr">(2)</span>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=Label&widgetId=Label1&action=editWidget&sectionId=sidebar1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Label1&quot;));" target="configLabel1" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+<div class="sidebar section" id="sidebar2"><div class="widget BlogArchive" id="BlogArchive1">
+<h2>Archive</h2>
+<div class="widget-content">
+<div id="ArchiveList">
+<div id="BlogArchive1_ArchiveList">
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">▼&nbsp;</span>
+</a>
+<a class="post-count-link" href="http://howto-to-howto.blogspot.com/search?updated-min=2010-01-01T00:00:00-08:00&updated-max=2011-01-01T00:00:00-08:00&max-results=39">2010</a>
+<span class="post-count" dir="ltr">(39)</span>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">▼&nbsp;</span>
+</a>
+<a class="post-count-link" href="http://howto-to-howto.blogspot.com/2010_03_01_archive.html">March</a>
+<span class="post-count" dir="ltr">(3)</span>
+<ul class="posts">
+<li><a href="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu.html">Build your own SMS gateway with Ubuntu Linux and G...</a></li>
+<li><a href="http://howto-to-howto.blogspot.com/2010/03/how-to-create-ajax-contact-form.html">How To Create  Ajax Contact Form</a></li>
+<li><a href="http://howto-to-howto.blogspot.com/2010/03/integrate-fb-and-wordpress.html">Integrate FB and Wordpress</a></li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://howto-to-howto.blogspot.com/2010_02_01_archive.html">February</a>
+<span class="post-count" dir="ltr">(9)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://howto-to-howto.blogspot.com/2010_01_01_archive.html">January</a>
+<span class="post-count" dir="ltr">(27)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=BlogArchive&widgetId=BlogArchive1&action=editWidget&sectionId=sidebar2" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;BlogArchive1&quot;));" target="configBlogArchive1" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget BlogList" id="BlogList1">
+<h2 class="title">Blogroll</h2>
+<div class="widget-content">
+<div class="blog-list-container" id="BlogList1_container">
+<ul id="BlogList1_blogs">
+<li style="display: block;">
+<div class="blog-icon">
+</div>
+<div class="blog-content">
+<div class="blog-title">
+<a href="http://anakberbakti.blogspot.com/" target="_blank">
+Anak berbakti</a>
+</div>
+<div class="item-content">
+</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li style="display: block;">
+<div class="blog-icon">
+</div>
+<div class="blog-content">
+<div class="blog-title">
+<a href="http://ipscann.iframe.web.id/" target="_blank">
+Check Your IPaddres And Location</a>
+</div>
+<div class="item-content">
+</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=BlogList&widgetId=BlogList1&action=editWidget&sectionId=sidebar2" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;BlogList1&quot;));" target="configBlogList1" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div>
+</div></div>
+</div>
+<!-- clear floats-->
+<div class="clear">&nbsp;</div>
+</div>
+<!-- /Content-wrapper -->
+<!-- Footer -->
+<!-- You use this template free of charge, please let our links to continue working for you. Thanks :) -->
+<!-- Você pode usar este modelo gratuito, por favor, deixe os nossos links para continuar a trabalhar para você. Obrigado! :) -->
+<!-- Usas esta plantilla sin costo, por favor, deja nuestro links para seguir trabajando para ti. Gracias :) -->
+<!-- Anda menggunakan template ini gratis, beritahukan link kami untuk terus bekerja untuk Anda. Terima kasih! -->
+<div class="clearfix" id="footer-wrapper">
+<div class="footer clearfix section" id="footer1"><div class="widget Feed" id="Feed6">
+<h2>Yahoo! News: World News</h2>
+<div class="widget-content" id="Feed6_feedItemListDisplay"><ul><li><span class="item-title"><a href="http://news.yahoo.com/images-show-rapid-chinese-progress-south-china-sea-004332923.html" target="_self">Images show rapid Chinese progress on new South China Sea airstrip</a></span></li><li><span class="item-title"><a href="http://news.yahoo.com/u-military-trainers-ukraine-may-destabilize-situation-kremlin-090108855.html" target="_self">U.S. military trainers in Ukraine may destabilize situation: Kremlin</a></span></li><li><span class="item-title"><a href="http://news.yahoo.com/islamic-state-security-forces-clash-iraqs-largest-refinery-013035615.html" target="_self">Islamic State, security forces clash in Iraq's largest refinery</a></span></li><li><span class="item-title"><a href="http://news.yahoo.com/former-yemen-president-saleh-says-not-leave-country-111139534.html" target="_self">Former Yemen president Saleh says will not leave country</a></span></li><li><span class="item-title"><a href="http://news.yahoo.com/south-african-police-disperse-immigrant-vigilante-group-074128342.html" target="_self">South Africa seeks diplomatic support to defeat anti-immigrant unrest</a></span></li></ul></div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=Feed&widgetId=Feed6&action=editWidget&sectionId=footer1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Feed6&quot;));" target="configFeed6" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget Feed" id="Feed5">
+<h2>Yahoo! News: Health News</h2>
+<div class="widget-content" id="Feed5_feedItemListDisplay"><ul><li><span class="item-title"><a href="http://news.yahoo.com/reneuron-stem-cell-therapy-shows-long-term-promise-125033885--finance.html" target="_self">ReNeuron stem cell therapy shows long-term promise for stroke</a></span></li><li><span class="item-title"><a href="http://news.yahoo.com/rolls-royce-wins-9-2-billion-engine-order-091545372--sector.html" target="_self">Rolls-Royce wins $9.2 billion order from Emirates for A380 engines</a></span></li><li><span class="item-title"><a href="http://news.yahoo.com/ge-posts-net-loss-finance-sale-industrial-profit-104344571--sector.html" target="_self">GE industrial first-quarter profit rises, revenue falls on stronger dollar</a></span></li><li><span class="item-title"><a href="http://news.yahoo.com/exhausted-liberia-struggles-long-ebola-list-trfn-123035321.html" target="_self">"Exhausted" Liberia struggles with long Ebola 'to do' list - TRFN</a></span></li><li><span class="item-title"><a href="http://news.yahoo.com/exhausted-liberia-struggles-long-ebola-list-115901552.html" target="_self">'Exhausted' Liberia struggles with long Ebola 'to do' list</a></span></li></ul></div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=Feed&widgetId=Feed5&action=editWidget&sectionId=footer1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Feed5&quot;));" target="configFeed5" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div>
+<div class="footer clearfix section" id="footer2"><div class="widget AdSense" id="AdSense2" style="display: none !important;">
+<div class="widget-content">
+<script type="text/javascript"><!--
+google_ad_client="pub-9462521878470730";
+google_ad_host="pub-1556223355139109";
+google_ad_width=250;
+google_ad_height=250;
+google_ad_format="250x250_as";
+google_ad_type="text_image";
+google_ad_host_channel="0001";
+google_color_border="FFFFFF";
+google_color_bg="FFFFFF";
+google_color_link="666666";
+google_color_url="FF6600";
+google_color_text="039EC6";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=AdSense&widgetId=AdSense2&action=editWidget&sectionId=footer2" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;AdSense2&quot;));" target="configAdSense2" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget Feed" id="Feed7">
+<h2>detikcom: situs warta era digital</h2>
+<div class="widget-content" id="Feed7_feedItemListDisplay"><ul></ul></div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=Feed&widgetId=Feed7&action=editWidget&sectionId=footer2" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Feed7&quot;));" target="configFeed7" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div>
+<div class="footer clearfix section" id="footer3"><div class="widget Feed" id="Feed8">
+<h2>Viva News</h2>
+<div class="widget-content" id="Feed8_feedItemListDisplay"><ul><li><span class="item-title"><a href="http://metro.vivanews.com/news/read/615294-sebelum-meninggal--juragan-batu-akik-sempat-mencari-udara#xtor=AL-19" target="_blank">Sebelum Meninggal, Juragan Batu Akik Sempat Mencari Udara</a></span></li><li><span class="item-title"><a href="http://sport.vivanews.com/news/read/615288-kimi-tercepat--duo-mercedes-jeblok-di-fp1-f1-gp-bahrain#xtor=AL-19" target="_blank">Kimi Tercepat, Duo Mercedes Jeblok di FP1 F1 GP Bahrain</a></span></li><li><span class="item-title"><a href="http://life.vivanews.com/news/read/615287-siapkan-album-religi--natasha-gandeng-banyak-musisi-kondang#xtor=AL-19" target="_blank">Siapkan Album Religi, Natasha Gandeng Banyak Musisi Kondang</a></span></li><li><span class="item-title"><a href="http://bisnis.vivanews.com/news/read/615283-menteri-esdm--sudah-jadi-net-importir--tapi-kita-boros-bbm#xtor=AL-19" target="_blank">Menteri ESDM: Sudah Jadi Net Importir, Tapi Kita Boros BBM</a></span></li><li><span class="item-title"><a href="http://nasional.vivanews.com/news/read/615282-batu-permata-rp20-miliar-dilelang-di-madiun#xtor=AL-19" target="_blank">Batu Permata Rp20 Miliar Dilelang di Madiun</a></span></li></ul></div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=5444200150292933345&widgetType=Feed&widgetId=Feed8&action=editWidget&sectionId=footer3" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Feed8&quot;));" target="configFeed8" title="Edit">
+<img alt="" height="18" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div>
+<div class="links clearfix"><span class="fl">Copyright © 2010 <a href="http://howto-to-howto.blogspot.com/">howto-howto</a></span>
+<span class="fr">Designed by <a href="http://blogandweb.com/" title="Plantillas Blogger">Blog and Web</a> and <a href="http://btemplates.com/" title="Blogger templates">Blogger Templates</a></span>
+</div>
+</div>
+<!-- /Footer -->
+</div></div>
+<!-- /Outer-wrapper -->
+<!-- START OF SyntaxHighlighter -->
+<link href="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/SyntaxHighlighter.css" rel="stylesheet" type="text/css">
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/shCore.js" type="text/javascript"></script>
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/shBrushJava.js" type="text/javascript"></script>
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/shBrushJScript.js" type="text/javascript"></script>
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/shBrushPhp.js" type="text/javascript"></script>
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/shBrushSql.js" type="text/javascript"></script>
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/shBrushVb.js" type="text/javascript"></script>
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/shBrushXml.js" type="text/javascript"></script>
+<script src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/shBrushhtml.js" type="text/javascript"></script>
+<script class="javascript">
+//<![CDATA[
+function FindTagsByName(container, name, Tag)
+{
+var elements = document.getElementsByTagName(Tag);
+for (var i = 0; i < elements.length; i++)
+{
+ if (elements[i].getAttribute("name") == name)
+ {
+  container.push(elements[i]);
+ }
+}
+}
+
+var elements = [];
+FindTagsByName(elements, "code", "pre");
+FindTagsByName(elements, "code", "textarea");
+
+for(var i=0; i < elements.length; i++) {
+if(elements[i].nodeName.toUpperCase() == "TEXTAREA") {
+ var childNode = elements[i].childNodes[0];
+ var newNode = document.createTextNode(childNode.nodeValue.replace(/<br\s*\/?>/gi,'\n'));
+ elements[i].replaceChild(newNode, childNode);
+}
+else if(elements[i].nodeName.toUpperCase() == "PRE") {
+ brs = elements[i].getElementsByTagName("br");
+ for(var j = 0, brLength = brs.length; j < brLength; j++) {
+  var newNode = document.createTextNode("\n");
+  elements[i].replaceChild(newNode, brs[0]);
+ }
+}
+}
+
+//clipboard does not work well, no line breaks
+//dp.SyntaxHighlighter.ClipboardSwf = "http://lohhonch.googlepages.com/clipboard.swf";
+dp.SyntaxHighlighter.HighlightAll("code");
+//]]>
+</script>
+<!-- END OF SyntaxHighlighter -->
+<script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('widgetJsBefore');
+</script><script type="text/javascript" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/849756096-widgets.js"></script>
+<script type="text/javascript" src="./howto-howto  Build your own SMS gateway with Ubuntu Linux and Gammu_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript">
+if (typeof(BLOG_attachCsiOnload) != 'undefined' && BLOG_attachCsiOnload != null) { window['blogger_templates_experiment_id'] = "templatesV1";window['blogger_blog_id'] = '5444200150292933345';BLOG_attachCsiOnload('item_'); }_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d5444200150292933345','//howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html','5444200150292933345');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '5444200150292933345', 'bloggerUrl': 'http://www.blogger.com', 'title': 'howto-howto', 'pageType': 'item', 'postId': '1802842330931986259', 'url': 'http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html', 'canonicalUrl': 'http://howto-to-howto.blogspot.com/2010/03/build-your-own-sms-gateway-with-ubuntu.html', 'canonicalHomepageUrl': 'http://howto-to-howto.blogspot.com/', 'homepageUrl': 'http://howto-to-howto.blogspot.com/', 'blogspotFaviconUrl': 'http://howto-to-howto.blogspot.com/favicon.ico', 'enabledCommentProfileImages': true, 'adultContent': false, 'disableAdSenseWidget': false, 'analyticsAccountNumber': '', 'searchLabel': '', 'searchQuery': '', 'pageName': 'Build your own SMS gateway with Ubuntu Linux and Gammu', 'pageTitle': 'howto-howto: Build your own SMS gateway with Ubuntu Linux and Gammu', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'languageDirection': 'ltr', 'feedLinks': '\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42howto-howto - Atom\42 href\75\42http://howto-to-howto.blogspot.com/feeds/posts/default\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/rss+xml\42 title\75\42howto-howto - RSS\42 href\75\42http://howto-to-howto.blogspot.com/feeds/posts/default?alt\75rss\42 /\76\n\74link rel\75\42service.post\42 type\75\42application/atom+xml\42 title\75\42howto-howto - Atom\42 href\75\42http://www.blogger.com/feeds/5444200150292933345/posts/default\42 /\76\n\n\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42howto-howto - Atom\42 href\75\42http://howto-to-howto.blogspot.com/feeds/1802842330931986259/comments/default\42 /\76\n', 'meTag': '', 'openIdOpTag': '', 'latencyHeadScript': '\74script type\75\42text/javascript\42\76(function() { var b\75window,f\75\42chrome\42,g\75\42tick\42,k\75\42jstiming\42;(function(){function d(a){this.t\75{};this.tick\75function(a,d,c){var e\75void 0!\75c?c:(new Date).getTime();this.t[a]\75[e,d];if(void 0\75\75c)try{b.console.timeStamp(\42CSI/\42+a)}catch(h){}};this[g](\42start\42,null,a)}var a;b.performance\46\46(a\75b.performance.timing);var n\75a?new d(a.responseStart):new d;b.jstiming\75{Timer:d,load:n};if(a){var c\75a.navigationStart,h\75a.responseStart;0\74c\46\46h\76\75c\46\46(b[k].srt\75h-c)}if(a){var e\75b[k].load;0\74c\46\46h\76\75c\46\46(e[g](\42_wtsrt\42,void 0,c),e[g](\42wtsrt_\42,\42_wtsrt\42,h),e[g](\42tbsd_\42,\42wtsrt_\42))}try{a\75null,\nb[f]\46\46b[f].csi\46\46(a\75Math.floor(b[f].csi().pageT),e\46\0460\74c\46\46(e[g](\42_tbnd\42,void 0,b[f].csi().startE),e[g](\42tbnd_\42,\42_tbnd\42,c))),null\75\75a\46\46b.gtbExternal\46\46(a\75b.gtbExternal.pageT()),null\75\75a\46\46b.external\46\46(a\75b.external.pageT,e\46\0460\74c\46\46(e[g](\42_tbnd\42,void 0,b.external.startE),e[g](\42tbnd_\42,\42_tbnd\42,c))),a\46\46(b[k].pt\75a)}catch(p){}})();b.tickAboveFold\75function(d){var a\0750;if(d.offsetParent){do a+\75d.offsetTop;while(d\75d.offsetParent)}d\75a;750\76\75d\46\46b[k].load[g](\42aft\42)};var l\75!1;function m(){l||(l\75!0,b[k].load[g](\42firstScrollTime\42))}b.addEventListener?b.addEventListener(\42scroll\42,m,!1):b.attachEvent(\42onscroll\42,m);\n })();\74/script\076', 'mobileHeadScript': '', 'adsenseClientId': 'pub-9462521878470730', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/cda3ddef07a85452', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sf': 'n', 'tf': ''}}, {'name': 'skin', 'data': {'vars': {'sidebartextcolor': '#FF6600', 'menucolor': '#0A8490', 'descriptioncolor': '#333333', 'titlecolor': '#ff6600', 'linkcolor': '#039EC6', 'visitedlinkcolor': '#ff6600', 'textcolor': '#666666', 'pagetitlecolor': '#039EC6'}, 'override': ''}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\75classic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\75flipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\75magazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\75mosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\75sidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\75snapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\75timeslide'}}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', null, document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', null, document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PageListView', new _WidgetInfo('PageList1', 'page', null, document.getElementById('PageList1'), {'title': 'Pages', 'links': [{'href': 'http://howto-to-howto.blogspot.com/', 'title': 'Home', 'isCurrentPage': false}], 'mobile': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1302948329-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/791027213-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML2', 'sidebar0', null, document.getElementById('HTML2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense1', 'sidebar0', null, document.getElementById('AdSense1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'sidebar1', null, document.getElementById('HTML1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label1', 'sidebar1', null, document.getElementById('Label1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar2', null, document.getElementById('BlogArchive1'), {'languageDirection': 'ltr'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogListView', new _WidgetInfo('BlogList1', 'sidebar2', null, document.getElementById('BlogList1'), {'numItemsToShow': 0, 'totalItems': 2}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed6', 'footer1', null, document.getElementById('Feed6'), {'title': 'Yahoo! News: World News', 'showItemDate': false, 'showItemAuthor': false, 'feedUrl': 'http://rss.news.yahoo.com/rss/world', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed5', 'footer1', null, document.getElementById('Feed5'), {'title': 'Yahoo! News: Health News', 'showItemDate': false, 'showItemAuthor': false, 'feedUrl': 'http://rss.news.yahoo.com/rss/health', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense2', 'footer2', null, document.getElementById('AdSense2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed7', 'footer2', null, document.getElementById('Feed7'), {'title': 'detikcom: situs warta era digital', 'showItemDate': false, 'showItemAuthor': false, 'feedUrl': 'http://feeds.feedburner.com/Detikcom', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed8', 'footer3', null, document.getElementById('Feed8'), {'title': 'Viva News', 'showItemDate': false, 'showItemAuthor': false, 'feedUrl': 'http://rss.vivanews.com/get/all', 'numItemsShow': 5, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': true}, 'displayModeFull'));
+</script>
+
+<style>#AdSense2,#AdSense1,#ads > .dose > .dosesingle,#header + #content > #left > #rlblock_left,.AdSense,.inline-ad,[href^="http://www.faceporn.net/free?"]
+{display:none !important;}</style></body></html>
