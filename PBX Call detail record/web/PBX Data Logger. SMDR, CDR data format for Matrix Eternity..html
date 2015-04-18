@@ -1,0 +1,665 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0046)http://www.aggsoft.com/pbx/matrix-eternity.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>PBX Data Logger. SMDR, CDR data format for Matrix Eternity.</title>
+
+<meta name="rating" content="General">
+<meta name="content-language" content="english">
+<meta name="audience" content="all">
+<meta name="robots" content="index,follow">
+<meta name="author" content="AGG software">
+<meta name="copyright" content="AGG software">
+<meta name="application-name" content="AGG software">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="http://www.aggsoft.com/favicon.ico" type="image/x-icon">
+<link href="https://plus.google.com/u/0/114372191373046297818/" rel="publisher">
+<link rel="stylesheet" type="text/css" href="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/main.css">
+<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script type="text/javascript" async="" src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/wt0p0.js"></script><script type="text/javascript">var BG_COLOR_ON='#1c70b1';var BG_IMG_ON='/img/li-btn-sel.png';var BG_COLOR_OFF='#ffffff';var BG_IMG_OFF='/img/li-btn.png';function setMenuOn(el_id){el=document.getElementById(el_id);if(el){el.style.backgroundImage='url('+BG_IMG_ON+')';el.style.backgroundColor=BG_COLOR_ON}}function setMenuOff(el_id){el=document.getElementById(el_id);if(el){el.style.backgroundImage='url('+BG_IMG_OFF+')';el.style.backgroundColor=BG_COLOR_OFF}}</script>
+<!--[if lte IE 6]>
+<link href="/css/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<meta name="Description" content="PBX Data Logger. SMDR, CDR data format for Matrix Eternity.">
+<meta name="Keywords" content="Matrix Eternity, PBX Data Logger, call accounting, SMDR, CDR">
+<style type="text/css">
+#text table{text-align:center;margin:5px 0 0 5px}#text table th{background-color:#1c70b1;color:#fff;font-size:11px;text-align:center}#text table td{font-size:11px;text-align:left;padding:4px 5px;vertical-align:middle}#text address{font-size:10px;color:#1c70b1;margin:0;padding-top:14px;text-align:center}#text h3{color:#1c70b1;padding-left:6px}.r0{background-color:#F0F0F0}.t0{width:95%;border:solid #F0F0F0;border-width:2px;margin-left:10px}#pinout{width:40%}#text form{padding:0 5px}#text form select{width:100%;max-width:100%}@media screen and (max-width:700px){#text p img{width:100%;max-width:100%;height:auto}}
+</style>
+<style>#header + #content > #left > #rlblock_left,
+#content > #right > .dose > .dosesingle,
+#content > #center > .dose > .dosesingle
+{display:none !important;}</style><script type="text/javascript" async="" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-540fe52566621aa5&domready=1&async=1"></script></head>
+<body>
+<!--//
+PBX Data Logger. SMDR, CDR data format for Matrix Eternity
+//-->
+<table cellpadding="0" cellspacing="0" border="0" id="container">
+<tbody><tr>
+<td id="main-container">
+        	<div id="header" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="AGG Software">
+		<div id="logo"><a itemprop="url" href="http://www.aggsoft.com/"><img itemprop="image" src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/agg-logo.png" alt="AGG Software" width="245" height="50"></a></div>
+		<ul><!--
+			--><li><a href="http://www.aggsoft.com/support/contact.htm" title="Contact AGG Software">contact</a></li><!--
+			--><li><a href="http://www.aggsoft.com/support/" title="Support">support</a></li><!--
+			--><li><a href="http://www.aggsoft.com/articles.htm" title="Articles">articles</a></li><!--
+			--><li><a href="http://www.aggsoft.com/order/" title="Order">order</a></li><!--
+			--><li><a href="http://www.aggsoft.com/news.htm" title="Company news">news</a></li><!--
+			--><li><a href="http://forum.aggsoft.com/" title="Forum">Forum</a></li><!--
+		--></ul>
+		<div class="sep"><img src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/t.gif" width="710" height="2" alt=""></div>
+	</div>
+
+
+	<table cellpadding="0" cellspacing="0" border="0" id="content">
+	<tbody><tr>
+	<td id="left-block">
+        <!--noindex-->
+<ul>
+  <li><a href="http://www.aggsoft.com/serial-port-monitor.htm" title="Advanced Serial Port Monitor" onmousedown="return false;">Advanced Serial Port Monitor</a></li>
+  <li><a href="http://www.dataloggersuite.com/" title="Data Logger Suite" onmousedown="return false;">Data Logger Suite</a></li>
+  <li><a href="http://www.aggsoft.com/serial-data-logger.htm" title="Advanced Serial Data Logger" onmousedown="return false;">Advanced Serial Data Logger</a></li>
+  <li><a href="http://www.aggsoft.com/tcpip-data-logger.htm" title="Advanced TCP/IP Data Logger" onmousedown="return false;">Advanced TCP/IP Data Logger</a></li>
+  <li><a href="http://www.aggsoft.com/nmea-data-logger.htm" title="Advanced NMEA Data Logger" onmousedown="return false;">Advanced NMEA Data Logger</a></li>
+  <li><a href="http://www.aggsoft.com/gps-tracker-data-logger/" title="GPS Tracker Data Logger" onmousedown="return false;">GPS Tracker Data Logger</a></li>
+  <li><a href="http://www.aggsoft.com/gsmguard/" title="GSM Guard" onmousedown="return false;">GSM Guard</a></li>
+  <li><a href="http://www.aggsoft.com/serial-printer-logger.htm" title="Serial Printer Logger" onmousedown="return false;">Serial Printer Logger</a></li>
+  <li><a href="http://www.aggsoft.com/opc-data-logger.htm" title="Advanced OPC Data Logger" onmousedown="return false;">Advanced OPC Data Logger</a></li>
+  <li><a href="http://www.aggsoft.com/opc-scada-viewer.htm" title="OPC Scada Viewer" onmousedown="return false;">OPC Scada Viewer</a></li>
+  <li><a href="http://www.aggsoft.com/pbx-data-logger.htm" title="Advanced PBX Data Logger" onmousedown="return false;">Advanced PBX Data Logger</a></li>
+  <li><a href="http://www.aggsoft.com/snmp-data-logger/" title="SNMP Data Logger" onmousedown="return false;">SNMP Data Logger</a></li>
+  <li><a href="http://www.aggsoft.com/rs232-logger-activex.htm" title="Data logger ActiveX" onmousedown="return false;">Data logger ActiveX</a></li>
+  <li><a href="http://www.aggsoft.com/usb-port-monitor.htm" title="Advanced USB Port Monitor" onmousedown="return false;">Advanced USB Port Monitor</a></li>
+  <li><a href="http://www.aggsoft.com/usb-hid-logger/" title="USB HID Logger" onmousedown="return false;">USB HID Logger</a></li>
+  <li><a href="http://www.aggsoft.com/usb-log-lock/" title="USB Log &amp; Lock" onmousedown="return false;">USB Log &amp; Lock</a></li>
+  <li><a href="http://www.virtual-null-modem.com/" title="Virtual Null Modem" onmousedown="return false;">Virtual Null Modem</a></li>
+  <li><a href="http://www.aggsoft.com/tcp-com/" title="TCP COM Bridge" onmousedown="return false;">TCP COM Bridge</a></li>
+  <li><a href="http://www.cnc-syntax-editor.com/" title="CNC Syntax Editor" onmousedown="return false;">CNC Syntax Editor</a></li>
+  <li><a href="http://www.aggsoft.com/dnc-precision.htm" title="DNC Precision" onmousedown="return false;">DNC Precision</a></li>
+  <li><a href="http://www.aggsoft.com/printer-monitor.htm" title="Accurate Printer Monitor" onmousedown="return false;">Accurate Printer Monitor</a></li>
+  <li><a href="http://www.aggsoft.com/com-port-emulator.htm" title="COM Port Data Emulator" onmousedown="return false;">COM Port Data Emulator</a></li>
+  <li><a href="http://www.aggsoft.com/com-port-stress-test.htm" title="COM Port Stress Test" onmousedown="return false;">COM Port Stress Test</a></li>
+  <li><a href="http://www.aggsoft.com/log-monitor.htm" title="Log Monitor &amp; Export" onmousedown="return false;">Log Monitor &amp; Export</a></li>
+
+<li id="newsletters">
+	<p id="newslet-title">Our newsletters</p>
+	<p>Now you can receive AGG Software newsletters, plus the latest technical information, via Email. Your Email address will be kept confidential. Please, read our <a href="http://www.aggsoft.com/privacy.htm" title="read our privacy policy">Privacy Policy</a>.</p>
+	<form action="http://www.aggsoft.com/cgi-bin/mail/mail.cgi" method="post" name="subscribeform">
+	<input type="hidden" name="flavor" value="subscribe">
+	<input type="hidden" name="list" value="(none)">
+	Your Email:<input type="text" name="email" value="your@email"><input type="image" src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/arrows.gif" id="subscribe">
+	</form>
+</li>
+
+</ul>
+<!--/noindex-->
+
+	</td>
+	<td id="right-block">
+		<div id="text">
+		<h1>SMDR, CDR data captured by Advanced PBX Data Logger from Matrix Eternity</h1>
+                <div class="sep"><img src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/t.gif" alt="" width="1" height="1"></div>
+
+                <p><br>
+This data is being extracted with help of the "<a href="http://www.aggsoft.com/pbx-data-logger.htm">Advanced PBX Data Logger</a>" software only. It may not applicable for other software titles.<br>
+<br>
+</p>
+<!-- Matrix Eternity -->
+<p></p><table class="t0">
+<tbody><tr class="rh"><th valign="top">Description</th><th valign="top">Data type</th><th valign="top">Column name</th></tr>
+<tr class="r0"><td valign="top">Direction</td><td valign="top">string</td><td valign="top">DIRECTION</td></tr>
+<tr class="r1"><td valign="top">Direction</td><td valign="top">string</td><td valign="top">CALL_TYPE</td></tr>
+<tr class="r0"><td valign="top">Extension</td><td valign="top">string</td><td valign="top">EXT</td></tr>
+<tr class="r1"><td valign="top">Phone</td><td valign="top">string</td><td valign="top">DIALED_PHONE</td></tr>
+<tr class="r0"><td valign="top">Call time</td><td valign="top">datetime</td><td valign="top">CALL_TIME</td></tr>
+<tr class="r1"><td valign="top">Call duration (s)</td><td valign="top">integer</td><td valign="top">CALL_DURATION_S</td></tr>
+<tr class="r0"><td valign="top">Call duration</td><td valign="top">datetime</td><td valign="top">CALL_DURATION</td></tr>
+<tr class="r1"><td valign="top">Sequence number</td><td valign="top">string</td><td valign="top">FLAG1</td></tr>
+<tr class="r0"><td valign="top">Authority code</td><td valign="top">string</td><td valign="top">AUTH</td></tr>
+<tr class="r1"><td valign="top">Trunk</td><td valign="top">string</td><td valign="top">TRUNK</td></tr>
+<tr class="r0"><td valign="top">Cost</td><td valign="top">float</td><td valign="top">COST</td></tr>
+<tr class="r1"><td valign="top">Caller phone</td><td valign="top">string</td><td valign="top">CALLER_PHONE</td></tr>
+<tr class="r0"><td valign="top">Remarks</td><td valign="top">string</td><td valign="top">FLAG3</td></tr>
+</tbody></table>
+<h2>Configuring the PBX</h2>
+<p><b>Note 1:</b> SMDR via the Ethernet port will be available from ETERNITY version V8R10 onwards.</p>
+<p><b>Note 2:</b> You need to assign a static IP address to the computer with Advanced PBX Data Logger (for example, 192.168.0.102).</p>
+<p>
+1. Open web browser in PC.<br>
+2. Enter IP address of ETERNITY [for example, 192.168.0.7 ] in the address bar of your browser and press the "Enter" key.<br>
+3. You will get the ETERNITY home page<br>
+4. Log in as "System Engineer"<br>
+5. Click on "SMDR Online" as shown below.
+</p>
+<p style="text-align:center"><a href="http://www.aggsoft.com/pbx/Matrix%20Eternity-img1.png" target="_blank"><img src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/Matrix Eternity-img2.png" width="500" height="481" alt="SMDR recording"></a></p>
+<p>
+6. Change the SMDR record format as shown below.
+</p>
+<p style="text-align:center"><a href="http://www.aggsoft.com/pbx/Matrix%20Eternity-img3.png" target="_blank"><img src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/Matrix Eternity-img4.png" width="500" height="269" alt="SMDR incoming record format"></a></p>
+<p style="text-align:center"><a href="http://www.aggsoft.com/pbx/Matrix%20Eternity-img5.png" target="_blank"><img src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/Matrix Eternity-img6.png" width="500" height="382" alt="SMDR outgoing record format"></a></p>
+<p>
+7. Log out from the "System Engineer" mode.<br>
+8. Log in to the "System Administrator" mode.<br>
+9. Click on "SMDR Management".<br>
+10. Click on "SMDR Online" as shown below.
+</p>
+<p style="text-align:center"><a href="http://www.aggsoft.com/pbx/Matrix%20Eternity-img7.png" target="_blank"><img src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/Matrix Eternity-img8.png" width="500" height="375" alt="Enabling online SMDR"></a></p>
+<p>
+11. Click on the "Start" button to activate SMDR for necessary calls types.
+</p>
+<h2>Configuring Advanced PBX Data Logger</h2>
+<p>
+Advanced PBX Data Logger must be configured to the TCP server mode and listen on 0.0.0.0:514 (see below). The port number should match the value from SMDR settings.
+
+</p>
+
+<style type="text/css">
+.ftimage {position:relative;width:477px;margin-left:auto;margin-right:auto;} .ftimage .fttext {position:absolute;color:#000000;font-family:Tahoma;font-size:16px;}
+</style>
+<div style="width:100%; text-align: center;">
+<div class="ftimage">
+<img src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/Matrix Eternity-img9.png" width="477" height="479" alt="TCP Server Mode">
+<div class="fttext" style="top:193px;left:330px;width:100px;font-size:18px;"><p>514</p></div>
+<div class="fttext" style="top:222px;left:166px;width:100px;font-size:15px;"><p>514</p></div>
+</div>
+</div>
+<p></p>
+				  
+                  <div class="sep"><img src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/t.gif" alt="" width="1" height="1"></div>
+
+<script type="text/javascript">
+<!--
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  if(selObj.options[selObj.selectedIndex].value!=''){
+   eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+   if (restore) selObj.selectedIndex=0;
+  } else{
+   selObj.selectedIndex = 0;
+  }
+}
+//-->
+</script>
+                  <p></p><form name="navigation" action="">
+  <select name="select" onchange="MM_jumpMenu(&#39;parent&#39;,this,0)">
+    <option selected="">Please, select datasheet page</option>
+<option value="/pbx/3com-nbx-xml-v6.htm">3COM NBX (XML, v6)</option>
+<option value="/pbx/ayc-ipcts.htm">AYC IPcts</option>
+<option value="/pbx/aastra-intelligate-tab.htm">Aastra Intelligate (tab)</option>
+<option value="/pbx/aastra-intelligate-ip-smdr.htm">Aastra Intelligate IP SMDR</option>
+<option value="/pbx/aastra-mx-one.htm">Aastra MX-ONE</option>
+<option value="/pbx/alcatel-100-model-64-phase-ii.htm">Alcatel 100 model 64 phase II</option>
+<option value="/pbx/alcatel-4100.htm">Alcatel 4100</option>
+<option value="/pbx/alcatel-4200.htm">Alcatel 4200</option>
+<option value="/pbx/alcatel-4300.htm">Alcatel 4300</option>
+<option value="/pbx/alcatel-4400-ftp.htm">Alcatel 4400 (FTP)</option>
+<option value="/pbx/alcatel-4400-p.htm">Alcatel 4400 P</option>
+<option value="/pbx/alcatel-omnipcx-enterprise-ethernet-real-time.htm">Alcatel OmniPCX Enterprise (Ethernet Real Time)</option>
+<option value="/pbx/alcatel-omnipcx-enterprise-oxe.htm">Alcatel OmniPCX Enterprise (OXE)</option>
+<option value="/pbx/alcatel-omnipcx-office-ohl-driver-xml.htm">Alcatel OmniPCX Office (OHL Driver XML)</option>
+<option value="/pbx/alcatel-omnipcx-office.htm">Alcatel OmniPCX Office</option>
+<option value="/pbx/allworx.htm">Allworx</option>
+<option value="/pbx/altigen.htm">Altigen</option>
+<option value="/pbx/aristel-av38-dd-mm.htm">Aristel AV38 (DD MM)</option>
+<option value="/pbx/aristel-av38.htm">Aristel AV38</option>
+<option value="/pbx/asterisk-csv.htm">Asterisk (CSV)</option>
+<option value="/pbx/asterisk-fonality-csv.htm">Asterisk Fonality (CSV)</option>
+<option value="/pbx/australia-mobile-csv.htm">Australia Mobile (CSV)</option>
+<option value="/pbx/avaya-59-chars-output-format-acm-4.0+.htm">Avaya (59 Chars Output Format ACM 4.0+)</option>
+<option value="/pbx/avaya-customized-output-format-acm-4.0+.htm">Avaya (Customized Output Format ACM 4.0+)</option>
+<option value="/pbx/avaya-customized-output-format-acm-6.0+.htm">Avaya (Customized Output Format ACM 6.0+)</option>
+<option value="/pbx/avaya-enhanced-unformatted-output-format-acm-4.0+.htm">Avaya (Enhanced Unformatted Output Format ACM 4.0+)</option>
+<option value="/pbx/avaya-expanded-output-format-acm-4.0+.htm">Avaya (Expanded Output Format ACM 4.0+)</option>
+<option value="/pbx/avaya-printer-output-format-acm-4.0+.htm">Avaya (Printer Output Format ACM 4.0+)</option>
+<option value="/pbx/avaya-unformatted-output-format-acm-4.0+.htm">Avaya (Unformatted Output Format ACM 4.0+)</option>
+<option value="/pbx/avaya-cost.htm">Avaya (cost)</option>
+<option value="/pbx/avaya-acm3-custom-user-format.htm">Avaya ACM3 (Custom User Format)</option>
+<option value="/pbx/avaya-cms-split-feed.htm">Avaya CMS (Split Feed)</option>
+<option value="/pbx/avaya-communication-manager-customized-output-format-acm-6.3+.htm">Avaya Communication Manager (Customized Output Format ACM 6.3+)</option>
+<option value="/pbx/avaya-definity-v1.htm">Avaya Definity v1</option>
+<option value="/pbx/avaya-g3-v12-unformatted-acm-3.x.htm">Avaya G3 V12 (Unformatted ACM 3.x)</option>
+<option value="/pbx/avaya-g3-v12-unformatted-output-format.htm">Avaya G3 V12 (Unformatted Output Format)</option>
+<option value="/pbx/avaya-g3-v12.htm">Avaya G3 V12</option>
+<option value="/pbx/avaya-g3-v9.htm">Avaya G3 V9</option>
+<option value="/pbx/avaya-ip-office-406-csv.htm">Avaya IP Office 406 (CSV)</option>
+<option value="/pbx/avaya-ip-office-500-csv.htm">Avaya IP Office 500 (CSV)</option>
+<option value="/pbx/avaya-ip-office-phone-csv.htm">Avaya IP Office Phone (CSV)</option>
+<option value="/pbx/avaya-merlin-1030.htm">Avaya MERLIN 1030</option>
+<option value="/pbx/avaya-merlin-3070.htm">Avaya MERLIN 3070</option>
+<option value="/pbx/avaya-merlin-magic.htm">Avaya Merlin Magic</option>
+<option value="/pbx/avaya-multivantage-unformatted-output-format-acm-4.0+.htm">Avaya MultiVantage (Unformatted Output Format ACM 4.0+)</option>
+<option value="/pbx/avaya-partner.htm">Avaya Partner</option>
+<option value="/pbx/cadcom-3600.htm">Cadcom 3600</option>
+<option value="/pbx/cisco-call-manager-v6-csv.htm">Cisco Call Manager v6 (CSV)</option>
+<option value="/pbx/cisco-call-manager-v7-csv.htm">Cisco Call Manager v7 (CSV)</option>
+<option value="/pbx/cisco-call-manager-v8-csv.htm">Cisco Call Manager v8 (CSV)</option>
+<option value="/pbx/cisco-call-manager.htm">Cisco Call Manager</option>
+<option value="/pbx/cisco-uc560.htm">Cisco UC560</option>
+<option value="/pbx/comdial-csv.htm">Comdial (CSV)</option>
+<option value="/pbx/comdial-conversip-mp5000.htm">Comdial ConversIP MP5000</option>
+<option value="/pbx/comdial-dsu2.htm">Comdial DSU2</option>
+<option value="/pbx/comdial-dx80.htm">Comdial DX80</option>
+<option value="/pbx/comdial-dxp-smdr.htm">Comdial DXP (SMDR)</option>
+<option value="/pbx/comdial-dxp-plus-smda.htm">Comdial DXP Plus (SMDA)</option>
+<option value="/pbx/comdial-dxp-plus-smdr.htm">Comdial DXP Plus (SMDR)</option>
+<option value="/pbx/comdial-fx.htm">Comdial FX</option>
+<option value="/pbx/comdial-mp5000-v2.htm">Comdial MP5000 v2</option>
+<option value="/pbx/comdial.htm">Comdial</option>
+<option value="/pbx/dvc-digital-voice-corp.htm">DVC (Digital Voice Corp)</option>
+<option value="/pbx/digium-switchvox-event-notifications.htm">Digium Switchvox (Event Notifications)</option>
+<option value="/pbx/eci-telecom-coral-iii.htm">ECI Telecom Coral III</option>
+<option value="/pbx/esi-csv.htm">ESI (csv)</option>
+<option value="/pbx/esi-tabular.htm">ESI (tabular)</option>
+<option value="/pbx/esi-ivx128.htm">ESI IVX128</option>
+<option value="/pbx/esi-v2-csv.htm">ESI v2 (csv)</option>
+<option value="/pbx/esi-v3-extended-format.htm">ESI v3 (Extended Format)</option>
+<option value="/pbx/esi-v3-csv.htm">ESI v3 (csv)</option>
+<option value="/pbx/eclipse-executone-ids.htm">Eclipse Executone IDS</option>
+<option value="/pbx/ericsson-bp-250-bidi.htm">Ericsson BP 250 (BiDi)</option>
+<option value="/pbx/ericsson-bp-250.htm">Ericsson BP 250</option>
+<option value="/pbx/ericsson-bp128i-call-hotel.htm">Ericsson BP128i (Call-Hotel)</option>
+<option value="/pbx/ericsson-bp128i.htm">Ericsson BP128i</option>
+<option value="/pbx/ericsson-businessphone-250b.htm">Ericsson Businessphone 250b</option>
+<option value="/pbx/ericsson-businessphone-250c.htm">Ericsson Businessphone 250c</option>
+<option value="/pbx/ericsson-businessphone-250.htm">Ericsson Businessphone 250</option>
+<option value="/pbx/ericsson-businessphone-50-250-cil4hotel-format.htm">Ericsson Businessphone 50-250 (CIL4HOTEL Format)</option>
+<option value="/pbx/ericsson-businessphone-50-250-flexible-cil-format.htm">Ericsson Businessphone 50-250 (Flexible CIL Format)</option>
+<option value="/pbx/ericsson-businessphone-50.htm">Ericsson Businessphone 50</option>
+<option value="/pbx/ericsson-md110-bc12.htm">Ericsson MD110 BC12</option>
+<option value="/pbx/ericsson-md110-standard.htm">Ericsson MD110 Standard</option>
+<option value="/pbx/ericsson-md110.htm">Ericsson MD110</option>
+<option value="/pbx/fujitsu-9600.htm">Fujitsu 9600</option>
+<option value="/pbx/fujitsu-e650.htm">Fujitsu E650</option>
+<option value="/pbx/genbend-m6.htm">Genbend M6</option>
+<option value="/pbx/goldstar-gps-6a.htm">GoldStar GPS-6A</option>
+<option value="/pbx/grandstream-ucm6100.htm">Grandstream UCM6100</option>
+<option value="/pbx/greenlite.htm">Greenlite</option>
+<option value="/pbx/hitachi-cx-256ms.htm">HITACHI CX-256MS</option>
+<option value="/pbx/harris-20x20m.htm">Harris 20x20M</option>
+<option value="/pbx/harris-20x20.htm">Harris 20x20</option>
+<option value="/pbx/hybrex-g1-824.htm">Hybrex G1-824</option>
+<option value="/pbx/hybrex-gd-320.htm">Hybrex GD-320</option>
+<option value="/pbx/hybrex-gds-160.htm">Hybrex GDS-160</option>
+<option value="/pbx/inter-tel-5000.htm">Inter-Tel 5000</option>
+<option value="/pbx/intertel-axxess.htm">InterTel Axxess</option>
+<option value="/pbx/iwatsu-adix.htm">Iwatsu ADIX</option>
+<option value="/pbx/karel-ms48.htm">Karel MS48</option>
+<option value="/pbx/komutel-custom-format.htm">Komutel Custom Format</option>
+<option value="/pbx/lg-aria-soho.htm">LG Aria Soho</option>
+<option value="/pbx/lg-cs-1000.htm">LG CS-1000</option>
+<option value="/pbx/lg-ericsson-ipecs-mfim50a.htm">LG Ericsson IPECS MFIM50A</option>
+<option value="/pbx/lg-gdk-100.htm">LG GDK-100</option>
+<option value="/pbx/lg-gdk-162.htm">LG GDK-162</option>
+<option value="/pbx/lg-ghx-1232.htm">LG GHX-1232</option>
+<option value="/pbx/lg-ghx-46.htm">LG GHX-46</option>
+<option value="/pbx/lg-ldk-100.htm">LG LDK-100</option>
+<option value="/pbx/lg-ldk-300.htm">LG LDK-300</option>
+<option value="/pbx/lg-starex-vsp.htm">LG Starex VSP</option>
+<option value="/pbx/lg-ipldk-20.htm">LG ipLDK-20</option>
+<option value="/pbx/london-16.htm">London 16</option>
+<option value="/pbx/lucent-g3.htm">Lucent G3</option>
+<option value="/pbx/mta-m-200.htm">MTA M-200</option>
+<option value="/pbx/matrix-eternity-report.htm">Matrix Eternity (Report)</option>
+<option value="/pbx/matrix-eternity.htm">Matrix Eternity</option>
+<option value="/pbx/meisei-100-d-r3.htm">Meisei 100-D R3</option>
+<option value="/pbx/mitel-3000.htm">Mitel 3000</option>
+<option value="/pbx/mitel-3300-icp-standard-format.htm">Mitel 3300 ICP (Standard Format)</option>
+<option value="/pbx/mitel-3300-icp-standard-full.htm">Mitel 3300 ICP (Standard Full)</option>
+<option value="/pbx/mitel-3300-icp-universal.htm">Mitel 3300 ICP (Universal)</option>
+<option value="/pbx/mitel-5000-cp.htm">Mitel 5000 CP</option>
+<option value="/pbx/mitel-5000.htm">Mitel 5000</option>
+<option value="/pbx/mitel-cs-5000.htm">Mitel CS-5000</option>
+<option value="/pbx/mitel-sx-200-el.htm">Mitel SX 200 EL</option>
+<option value="/pbx/mitel-sx-2000.htm">Mitel SX 2000</option>
+<option value="/pbx/mitel-sx-200d.htm">Mitel SX 200D</option>
+<option value="/pbx/multicom-universal.htm">Multicom (Universal)</option>
+<option value="/pbx/multicom-a416.htm">Multicom A416</option>
+<option value="/pbx/multicom-a632.htm">Multicom A632</option>
+<option value="/pbx/multicom-bs-24100.htm">Multicom BS-24100</option>
+<option value="/pbx/multicom-c1248.htm">Multicom C1248</option>
+<option value="/pbx/multicom-g1260.htm">Multicom G1260</option>
+<option value="/pbx/multicom-maxicom-mp80.htm">Multicom Maxicom MP80</option>
+<option value="/pbx/multicom-maxicom-mxm300.htm">Multicom Maxicom MXM300</option>
+<option value="/pbx/multitek-300.htm">Multitek 300</option>
+<option value="/pbx/nch-axon.htm">NCH AXON</option>
+<option value="/pbx/nec-lan-extended-format-fixed-length.htm">NEC (LAN Extended Format Fixed Length)</option>
+<option value="/pbx/nec-lan-flexible-format-variable-length.htm">NEC (LAN Flexible Format Variable Length)</option>
+<option value="/pbx/nec-lan-normal-format-fixed-length.htm">NEC (LAN Normal Format Fixed Length)</option>
+<option value="/pbx/nec-2000-ivs-series.htm">NEC 2000 IVS Series</option>
+<option value="/pbx/nec-2400.htm">NEC 2400</option>
+<option value="/pbx/nec-aspire-300ip.htm">NEC Aspire 300IP</option>
+<option value="/pbx/nec-aspire-v2.htm">NEC Aspire V2</option>
+<option value="/pbx/nec-aspire.htm">NEC Aspire</option>
+<option value="/pbx/nec-ds2000.htm">NEC DS2000</option>
+<option value="/pbx/nec-dsx-160.htm">NEC DSX 160</option>
+<option value="/pbx/nec-dsx-80.htm">NEC DSX 80</option>
+<option value="/pbx/nec-electra-elite-ipk-ii-no-date.htm">NEC Electra Elite IPK II (no date)</option>
+<option value="/pbx/nec-electra-elite-ipk-ii.htm">NEC Electra Elite IPK II</option>
+<option value="/pbx/nec-electraelite-ipk-csv.htm">NEC ElectraElite IPK (CSV)</option>
+<option value="/pbx/nec-electraelite-ipk.htm">NEC ElectraElite IPK</option>
+<option value="/pbx/nec-elite-series-8000.htm">NEC Elite Series 8000</option>
+<option value="/pbx/nec-neax2000-ips.htm">NEC NEAX2000 IPS</option>
+<option value="/pbx/nec-neax7400-ics-m100.htm">NEC NEAX7400 ICS m100</option>
+<option value="/pbx/nec-neac-1400.htm">NEC Neac 1400</option>
+<option value="/pbx/nec-sl1000.htm">NEC SL1000</option>
+<option value="/pbx/nec-sl1100.htm">NEC SL1100</option>
+<option value="/pbx/nec-univerge-sv8100.htm">NEC Univerge SV8100</option>
+<option value="/pbx/nec-xn-120.htm">NEC XN 120</option>
+<option value="/pbx/netas-diginet-dx-1-2-3.htm">Netas Diginet DX-1,2,3</option>
+<option value="/pbx/neutralpoint.htm">NeutralPoint</option>
+<option value="/pbx/nitsuko-124i.htm">Nitsuko 124i</option>
+<option value="/pbx/nitsuko-288-m2.htm">Nitsuko 288 M2</option>
+<option value="/pbx/nitsuko-288.htm">Nitsuko 288</option>
+<option value="/pbx/nitsuko-384i.htm">Nitsuko 384i</option>
+<option value="/pbx/nitsuko-businesscom-ds.htm">Nitsuko Businesscom DS</option>
+<option value="/pbx/nitsuko-dx2e-32i.htm">Nitsuko DX2E-32i</option>
+<option value="/pbx/nitsuko.htm">Nitsuko</option>
+<option value="/pbx/nortel-cs1000-2-rows.htm">Nortel CS1000 (2 rows)</option>
+<option value="/pbx/nortel-meridian-1-row.htm">Nortel Meridian (1 row)</option>
+<option value="/pbx/nortel-meridian-2-rows.htm">Nortel Meridian (2 rows)</option>
+<option value="/pbx/nortel-meridian-3-rows.htm">Nortel Meridian (3 rows)</option>
+<option value="/pbx/nortel-norstar-sl1-clid.htm">Nortel Norstar SL1 CLID</option>
+<option value="/pbx/nortel-norstar-sl1-standard.htm">Nortel Norstar SL1 Standard</option>
+<option value="/pbx/nortel-norstar-standard.htm">Nortel Norstar Standard</option>
+<option value="/pbx/nortel-type-2.htm">Nortel Type 2</option>
+<option value="/pbx/onyx-iii.htm">Onyx III</option>
+<option value="/pbx/opticon-ip.htm">Opticon IP</option>
+<option value="/pbx/panasonic-576-caller-id.htm">Panasonic 576 (Caller ID)</option>
+<option value="/pbx/panasonic-576.htm">Panasonic 576</option>
+<option value="/pbx/panasonic-816.htm">Panasonic 816</option>
+<option value="/pbx/panasonic-dbs-72-cpc-a.htm">Panasonic DBS 72 CPC-A</option>
+<option value="/pbx/panasonic-dbs-90.htm">Panasonic DBS-90</option>
+<option value="/pbx/panasonic-kx-ncp1000.htm">Panasonic KX-NCP1000</option>
+<option value="/pbx/panasonic-kx-t1232-dd-mm-yy.htm">Panasonic KX-T1232 (DD-MM-YY)</option>
+<option value="/pbx/panasonic-kx-t1232.htm">Panasonic KX-T1232</option>
+<option value="/pbx/panasonic-kx-t336100b.htm">Panasonic KX-T336100b</option>
+<option value="/pbx/panasonic-kx-t7436.htm">Panasonic KX-T7436</option>
+<option value="/pbx/panasonic-kx-ta308.htm">Panasonic KX-TA308</option>
+<option value="/pbx/panasonic-kx-ta616.htm">Panasonic KX-TA616</option>
+<option value="/pbx/panasonic-kx-ta624.htm">Panasonic KX-TA624</option>
+<option value="/pbx/panasonic-kx-td1232.htm">Panasonic KX-TD1232</option>
+<option value="/pbx/panasonic-kx-td500-v2-ring.htm">Panasonic KX-TD500 v2 (ring)</option>
+<option value="/pbx/panasonic-kx-td500-v3-cost.htm">Panasonic KX-TD500 v3 (cost)</option>
+<option value="/pbx/panasonic-kx-td500-v4-ring-cost.htm">Panasonic KX-TD500 v4 (ring,cost)</option>
+<option value="/pbx/panasonic-kx-td500.htm">Panasonic KX-TD500</option>
+<option value="/pbx/panasonic-kx-td612.htm">Panasonic KX-TD612</option>
+<option value="/pbx/panasonic-kx-td816.htm">Panasonic KX-TD816</option>
+<option value="/pbx/panasonic-kx-tda100-cost.htm">Panasonic KX-TDA100 (cost)</option>
+<option value="/pbx/panasonic-kx-tda100-ring.htm">Panasonic KX-TDA100 (ring)</option>
+<option value="/pbx/panasonic-kx-tda100-ring-ampm.htm">Panasonic KX-TDA100 (ring,ampm)</option>
+<option value="/pbx/panasonic-kx-tda100-ring-cost.htm">Panasonic KX-TDA100 (ring,cost)</option>
+<option value="/pbx/panasonic-kx-tda200-cost.htm">Panasonic KX-TDA200 (cost)</option>
+<option value="/pbx/panasonic-kx-tda200-ring.htm">Panasonic KX-TDA200 (ring)</option>
+<option value="/pbx/panasonic-kx-tda200-ring-cost.htm">Panasonic KX-TDA200 (ring,cost)</option>
+<option value="/pbx/panasonic-kx-tda30-cost.htm">Panasonic KX-TDA30 (cost)</option>
+<option value="/pbx/panasonic-kx-tda30-ring-cost.htm">Panasonic KX-TDA30 (ring,cost)</option>
+<option value="/pbx/panasonic-kx-tda600-v2-cost.htm">Panasonic KX-TDA600 v2 (cost)</option>
+<option value="/pbx/panasonic-kx-tda600.htm">Panasonic KX-TDA600</option>
+<option value="/pbx/panasonic-kx-tda.htm">Panasonic KX-TDA</option>
+<option value="/pbx/panasonic-kx-tde-200-ring-cost.htm">Panasonic KX-TDE-200 (ring,cost)</option>
+<option value="/pbx/panasonic-kx-tde200-ring-mm.dd.yy.htm">Panasonic KX-TDE200 (ring, mm.dd.yy)</option>
+<option value="/pbx/panasonic-kx-teb308-cost.htm">Panasonic KX-TEB308 (cost)</option>
+<option value="/pbx/panasonic-kx-teb308.htm">Panasonic KX-TEB308</option>
+<option value="/pbx/panasonic-kx-tem824.htm">Panasonic KX-TEM824</option>
+<option value="/pbx/panasonic-mu.htm">Panasonic MU</option>
+<option value="/pbx/planet-ipx-2000.htm">Planet IPX-2000</option>
+<option value="/pbx/quintum-tenor.htm">Quintum Tenor</option>
+<option value="/pbx/rolm-9751-acd-ans-report.htm">Rolm 9751 (ACD ANS REPORT)</option>
+<option value="/pbx/rolm-redwood-9722.htm">Rolm Redwood 9722</option>
+<option value="/pbx/spider.htm">SPIDER</option>
+<option value="/pbx/samsung-dcs-compact-ii.htm">Samsung DCS Compact II</option>
+<option value="/pbx/samsung-dcs.htm">Samsung DCS</option>
+<option value="/pbx/samsung-mu.htm">Samsung MU</option>
+<option value="/pbx/samsung-nx-1232.htm">Samsung NX-1232</option>
+<option value="/pbx/samsung-nx-820.htm">Samsung NX-820</option>
+<option value="/pbx/samsung-officeserv-100.htm">Samsung OfficeServ 100</option>
+<option value="/pbx/samsung-officeserv-500.htm">Samsung OfficeServ 500</option>
+<option value="/pbx/samsung-officeserv-7030.htm">Samsung OfficeServ 7030</option>
+<option value="/pbx/samsung-officeserv-7200.htm">Samsung OfficeServ 7200</option>
+<option value="/pbx/samsung-officeserv-7400.htm">Samsung OfficeServ 7400</option>
+<option value="/pbx/samsung-skp-36hx.htm">Samsung SKP-36HX</option>
+<option value="/pbx/samsung-skp-56_120.htm">Samsung SKP-56_120</option>
+<option value="/pbx/samsung-skp-816h-fixed-pos.htm">Samsung SKP-816H (fixed pos)</option>
+<option value="/pbx/samsung-skp-816.htm">Samsung SKP-816</option>
+<option value="/pbx/samsung-idcs-100-m2.htm">Samsung iDCS 100 M2</option>
+<option value="/pbx/samsung-idcs-100.htm">Samsung iDCS 100</option>
+<option value="/pbx/samsung-idcs-500.htm">Samsung iDCS 500</option>
+<option value="/pbx/selta-1000.htm">Selta 1000</option>
+<option value="/pbx/selta-samoffice-8.htm">Selta SAMoffice 8</option>
+<option value="/pbx/selta-sti-100.htm">Selta Sti 100</option>
+<option value="/pbx/shoretel-6.htm">Shoretel 6</option>
+<option value="/pbx/shoretel-7.htm">Shoretel 7</option>
+<option value="/pbx/shoretel-9.htm">Shoretel 9</option>
+<option value="/pbx/siemens-hipath-1100.htm">Siemens HiPATH 1100</option>
+<option value="/pbx/siemens-hicom-118.htm">Siemens Hicom-118</option>
+<option value="/pbx/siemens-hicom-150-officecom-v2.htm">Siemens Hicom-150 OfficeCom v2</option>
+<option value="/pbx/siemens-hicom-150-officecom.htm">Siemens Hicom-150 OfficeCom</option>
+<option value="/pbx/siemens-hicom-250.htm">Siemens Hicom-250</option>
+<option value="/pbx/siemens-hicom-300e-ani-format.htm">Siemens Hicom-300E (ANI format)</option>
+<option value="/pbx/siemens-hicom-300h-ani-format.htm">Siemens Hicom-300H (ANI format)</option>
+<option value="/pbx/siemens-hicom-300h.htm">Siemens Hicom-300H</option>
+<option value="/pbx/siemens-hicom-350h.htm">Siemens Hicom-350H</option>
+<option value="/pbx/siemens-hipath-4000-cdr-standard-format.htm">Siemens Hipath 4000 (CDR Standard Format)</option>
+<option value="/pbx/siemens-hipath-4000-cdre.htm">Siemens Hipath 4000 (CDRE)</option>
+<option value="/pbx/siemens-hipath-4000.htm">Siemens Hipath 4000</option>
+<option value="/pbx/siemens-hipath-3350.htm">Siemens Hipath-3350</option>
+<option value="/pbx/siemens-hipath-3500.htm">Siemens Hipath-3500</option>
+<option value="/pbx/siemens-hipath-3550-ddmmyy.htm">Siemens Hipath-3550 (DDMMYY)</option>
+<option value="/pbx/siemens-hipath-3550-v2-ddmmyy.htm">Siemens Hipath-3550 v2 (DDMMYY)</option>
+<option value="/pbx/siemens-hipath-35xx-csv.htm">Siemens Hipath-35xx (CSV)</option>
+<option value="/pbx/siemens-hipath-35xx-csv-mmddyy.htm">Siemens Hipath-35xx (CSV,MMDDYY)</option>
+<option value="/pbx/siemens-hipath-3700-mmddyy.htm">Siemens Hipath-3700 (MMDDYY)</option>
+<option value="/pbx/siemens-hipath-3700.htm">Siemens Hipath-3700</option>
+<option value="/pbx/siemens-hipath-37xx-csv-ddmmyy.htm">Siemens Hipath-37xx (CSV, DDMMYY)</option>
+<option value="/pbx/siemens-hipath-37xx-csv-mmddyy.htm">Siemens Hipath-37xx (CSV, MMDDYY)</option>
+<option value="/pbx/siemens-hipath-37xx-delimited-ddmmyy.htm">Siemens Hipath-37xx (Delimited, DDMMYY)</option>
+<option value="/pbx/siemens-hipath-3800.htm">Siemens Hipath-3800</option>
+<option value="/pbx/siemens-rolm-9751-compat-no-ani.htm">Siemens Rolm 9751 (Compat,no ANI)</option>
+<option value="/pbx/siemens-unify-openscape-office-v3.htm">Siemens Unify Openscape Office V3</option>
+<option value="/pbx/siemens-isdx-realitis.htm">Siemens iSDX Realitis</option>
+<option value="/pbx/snom-one.htm">Snom ONE</option>
+<option value="/pbx/sphere-voip-softswitch.htm">Sphere VOIP Softswitch</option>
+<option value="/pbx/splicecom-maximiser.htm">Splicecom Maximiser</option>
+<option value="/pbx/tapi-data-parser.htm">TAPI data parser</option>
+<option value="/pbx/tadiran-coral-1-row.htm">Tadiran Coral (1 row)</option>
+<option value="/pbx/tadiran-coral-2-rows.htm">Tadiran Coral (2 rows)</option>
+<option value="/pbx/tadiran-coral-emerald.htm">Tadiran Coral Emerald</option>
+<option value="/pbx/tadiran-coral-flexicom-400.htm">Tadiran Coral Flexicom 400</option>
+<option value="/pbx/tadiran-coral-ii-2-rows.htm">Tadiran Coral II (2 rows)</option>
+<option value="/pbx/tadiran-coral-iii.htm">Tadiran Coral III</option>
+<option value="/pbx/tadiran-coral-ipx.htm">Tadiran Coral IPX</option>
+<option value="/pbx/tadiran-emerald-ice.htm">Tadiran Emerald ICE</option>
+<option value="/pbx/tadiran-ipx-500-1-row.htm">Tadiran IPX 500 (1 row)</option>
+<option value="/pbx/talkswitch.htm">Talkswitch</option>
+<option value="/pbx/tapit-csv.htm">Tapit CSV</option>
+<option value="/pbx/tekelec-t6000-csv.htm">Tekelec T6000 (CSV)</option>
+<option value="/pbx/telepo-3.htm">Telepo 3</option>
+<option value="/pbx/telrad-v2.htm">Telrad v2</option>
+<option value="/pbx/telrad.htm">Telrad</option>
+<option value="/pbx/tennyson-sox.htm">Tennyson SOX</option>
+<option value="/pbx/toshiba-ip-edge.htm">Toshiba IP Edge</option>
+<option value="/pbx/toshiba-strata-cix.htm">Toshiba Strata CIX</option>
+<option value="/pbx/toshiba-strata-ctx.htm">Toshiba Strata CTX</option>
+<option value="/pbx/toshiba-strata-dk-14-40-424.htm">Toshiba Strata DK 14,40,424</option>
+<option value="/pbx/toshiba-strata-dk-240-280.htm">Toshiba Strata DK 240,280</option>
+<option value="/pbx/toshiba-strata-dk-2.htm">Toshiba Strata DK 2</option>
+<option value="/pbx/toshiba-strata-dk-56.htm">Toshiba Strata DK 56</option>
+<option value="/pbx/voispeed.htm">VOISpeed</option>
+<option value="/pbx/vertical-sbx-320.htm">Vertical SBX 320</option>
+<option value="/pbx/vodavi-starplus.htm">Vodavi Starplus</option>
+<option value="/pbx/vodavi-xts.htm">Vodavi XTS</option>
+<option value="/pbx/welltech-epbx-100.htm">Welltech ePBX 100</option>
+<option value="/pbx/wypoint.htm">Wypoint</option>
+<option value="/pbx/yeastar-mypbx-enterprise.htm">Yeastar MyPBX Enterprise</option>
+<option value="/pbx/eon-millennium-v1.2.htm">eOn Millennium v1.2</option>
+<option value="/pbx/eon-millennium.htm">eOn Millennium</option>
+  </select>
+</form><p></p>
+        
+
+                  <p class="note"><b>Note:</b> Products and companies mentioned here are used only for definition and identification purposes and can be trademarks and/or registered trademarks of the respective companies.</p>
+
+		</div>
+	</td>
+	</tr>
+	<tr id="footer">
+		        		<td>Copyright © 1999-2015, AGG Software.<br> 
+		All rights reserved. <a rel="nofollow" href="http://www.aggsoft.com/terms.htm" title="Terms of use">Terms of use</a>&nbsp;|&nbsp;<a rel="nofollow" href="http://www.aggsoft.com/privacy.htm" title="Privacy policy">Privacy policy</a>
+		</td>
+		<td>
+			<ul><!--
+				--><li><a href="http://www.aggsoft.com/sitemap.htm" title="site map">site map</a></li><!--
+				--><li class="sep">|</li><!--
+				--><li><a href="http://www.aggsoft.com/support/contact.htm" title="contact AGG Software">contact</a></li><!--
+				--><li class="sep">|</li><!--
+				--><li><a href="http://www.aggsoft.com/support/" title="support">support</a></li><!--
+				--><li class="sep">|</li><!--
+				--><li><a href="http://www.aggsoft.com/rs232-software.htm" title="rs232 software">rs232 software</a></li><!--
+				--><li class="sep">|</li><!--
+				--><li><a href="http://www.aggsoft.com/rs232-pinout-cable/" title="rs232 pinout cable">rs232 pinout</a></li><!--
+				--><li class="sep">|</li><!--
+				--><li><a href="http://www.aggsoft.com/order/" title="order">order</a></li><!--
+				--><li class="sep">|</li><!--
+				--><li><a href="http://www.aggsoft.com/news.htm" title="news">news</a></li><!--
+				--><li class="sep">|</li><!--
+				--><li><a href="http://www.aggsoft.com/links.htm" title="links">links</a></li><!--
+			--></ul>
+			<div id="devoler"><a href="http://www.devoler.com/" title="Designed by Devoler" rel="nofollow"><img src="./PBX Data Logger. SMDR, CDR data format for Matrix Eternity._files/devoler.png" alt="Designed by Devoler" width="64" height="12"></a></div>
+
+<script type="text/javascript">   
+window.wtST = 0;
+ if(!window.wtPT){ window.wtPT = 0; }
+ if(!window.wtRD){
+  var aggs = document.createElement('script'); aggs.type = 'text/javascript'; aggs.async = true;
+  aggs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 
+ 
+  'www.' +
+
+  'aggsoft.com/js/wt'+window.wtST+'p'+window.wtPT+'.js?r='+escape(document.referrer)+((location.search)?'&pp='+escape(location.search):'');
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(aggs, s);
+ }
+</script>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-911637-1']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowHash', false]);
+
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1065378335;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+&lt;div style="display:inline;"&gt;
+&lt;img height="1" width="1" style="border-style:none;" alt=""  
+src="http://googleads.g.doubleclick.net/pagead/viewthroughconversion/1065378335/?value=0&amp;amp;guid=ON&amp;amp;script=0"/&gt;
+&lt;/div&gt;
+</noscript>
+
+
+
+
+
+
+<script type="text/javascript">
+var addthis_tb_obj;
+var addthis_style1 = 'float:right;border:1px solid #ddd;background-color:#ebebeb;';
+var addthis_style2 = 'display:none;width: 0px;height:0px;';
+var addthis_style3 = 'width:60px;height:355px;top:420px;visibility:visible;margin-left:930px;';
+function check_addthis_loaded()
+{
+ var bRepeat = true;
+ if(addthis_tb_obj)
+ {
+   var nl = addthis_tb_obj.getElementsByTagName('a');
+   var totalcnt = loadedcnt = 0;
+   for (var i=0; i<nl.length; i++) {
+	totalcnt++;
+	var el = nl.item(i);
+	if(el.childNodes && (el.childNodes.length>0))
+		loadedcnt++;	
+   }
+   if(loadedcnt >= totalcnt)
+   {
+	addthis_tb_obj.style = addthis_style1+addthis_style3;
+	bRepeat = false;
+   }
+ }
+ if(bRepeat)
+ 	window.setTimeout(check_addthis_loaded, 1000)
+}
+
+function addthis_loaded_func()
+{
+	var add_this_html =
+		'<a class="addthis_button_facebook_like" fb:like:layout="box_count" rel="nofollow"></a>'+
+		'<a class="addthis_button_tweet" tw:count="vertical" rel="nofollow"></a>'+
+		'<a class="addthis_button_google_plusone" g:plusone:size="tall" rel="nofollow"></a>'+
+		'<a class="addthis_counter" rel="nofollow"></a>'+
+		'<a class="addthis_button_pinterest_pinit" pi:pinit:layout="vertical" rel="nofollow"></a>';
+	
+	var obj = document.createElement('div');
+	addthis_tb_obj = obj;
+	obj.className = 'addthis_toolbox addthis_counter_style addthis_floating_style';
+	obj.id = 'addthis_toolbox';
+	obj.style = addthis_style1+addthis_style2;
+	obj.innerHTML = add_this_html;
+	var el = document.getElementById("main-container");
+	if(el)el.appendChild(obj);
+	obj.style.visibility = 'hidden';
+	obj.style.display = 'block';
+	check_addthis_loaded();
+}
+
+ var url1 = window.location.toString();
+ var addthis_loaded = false;
+ if((url1.indexOf('cgi-bin')<0)&&(url1.indexOf('.htm')>=0)&&(!document.getElementById('social-buttons'))){
+
+	var addthis_config = addthis_config||{};
+	addthis_config.data_track_addressbar = false;
+	addthis_config.data_track_clickback = false;	
+
+ 	var t = window.setTimeout(function() {
+	
+		var aggs = document.createElement('script'); aggs.type = 'text/javascript'; aggs.async = true;
+		aggs.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + 
+			'//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-540fe52566621aa5&domready=1&async=1';
+		aggs.onload = aggs.onreadystatechange = function() {
+			if (!addthis_loaded && (!this.readyState || this.readyState == 'complete')) {
+				addthis_loaded = true;
+				addthis_loaded_func();
+				addthis.init();
+			}
+		};
+		document.head.appendChild(aggs);
+	
+	 }, 1500);
+  }
+</script>
+		</td>
+	
+	</tr>
+	</tbody></table>
+</td>
+</tr>
+</tbody></table>
+
+
+</body></html>
